@@ -11,7 +11,7 @@ export const LEGAL_URLS = {
 };
 
 /** Marketing site origin (kept in sync with astro.config `site`). */
-export const SITE_ORIGIN = 'https://voxtranslate.com';
+export const SITE_ORIGIN = 'https://website.voxtranslate.app';
 
 export const SOCIAL = {
   // Placeholder handles — update when official accounts exist.

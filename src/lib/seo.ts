@@ -9,7 +9,7 @@ const SITE_NAME = 'VoxTranslate';
 
 /** Join the site origin with a path, collapsing duplicate slashes. */
 export function absoluteUrl(site: string | URL | undefined, path: string): string {
-  const origin = (site ? site.toString() : 'https://voxtranslate.com').replace(/\/+$/, '');
+  const origin = (site ? site.toString() : 'https://website.voxtranslate.app').replace(/\/+$/, '');
   const clean = path.startsWith('/') ? path : `/${path}`;
   return `${origin}${clean}`;
 }

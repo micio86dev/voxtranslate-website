@@ -97,7 +97,7 @@ Never commit `.env`. Copy `.env.example` and fill in values locally.
 ## Infrastructure
 
 ### Cloudflare
-- DNS: `voxtranslate.com` nameservers pointed to Cloudflare. Canonical site origin = `https://voxtranslate.com`.
+- DNS: marketing site served at `website.voxtranslate.app` (subdomain on Cloudflare). Canonical site origin = `https://website.voxtranslate.app`.
 - Pages: deployed via GitHub Actions on push to `main` (`cloudflare/wrangler-action`, project `voxtranslate-website`).
 - Geo-redirect: `functions/_middleware.ts` sends `/` to the visitor's language (CF-IPCountry), respecting a `vox-lang` cookie.
 - Bot Fight Mode: if ENABLED, whitelist ClaudeBot, GPTBot, PerplexityBot in

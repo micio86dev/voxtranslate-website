@@ -5,17 +5,17 @@ import tailwindcss from '@tailwindcss/vite';
 
 // Canonical origin for SEO — powers Astro.site so layouts emit absolute
 // canonical / Open Graph / hreflang / sitemap URLs. Marketing site is served on
-// Cloudflare Pages at the voxtranslate.com apex.
-const SITE = 'https://voxtranslate.com';
+// Cloudflare Pages at the website.voxtranslate.app apex.
+const SITE = 'https://website.voxtranslate.app';
 
 // 5 marketing locales. Keep in sync with src/i18n/*.json and the sitemap map.
 export const LOCALES = ['en', 'it', 'es', 'de', 'fr'];
 
 export default defineConfig({
   site: SITE,
-  // Pure static prerender → flat files in dist/. Vercel detects Astro natively
-  // and honors vercel.json (headers/CSP); build-time sharp keeps images optimal
-  // with no runtime image function — ideal for Lighthouse 100.
+  // Pure static prerender → flat files in dist/, deployed to Cloudflare Pages
+  // (headers/redirects via public/_headers & _redirects). Build-time sharp keeps
+  // images optimal with no runtime image function — ideal for Lighthouse 100.
   output: 'static',
   trailingSlash: 'always',
   i18n: {
