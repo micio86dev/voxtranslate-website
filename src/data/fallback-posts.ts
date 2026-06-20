@@ -7,11 +7,19 @@
 import type { RawPost, PostTranslation } from '../lib/pocketbase';
 import type { Locale } from '../lib/i18n';
 import translations from './post-translations.json';
+import newPosts from './new-posts.json';
 
 const TRANSLATIONS = translations as Record<
   string,
   Partial<Record<Locale, Partial<PostTranslation>>>
 >;
+
+// Additional posts authored as plain JSON (no per-post lang/cover boilerplate).
+const EXTRA_POSTS: RawPost[] = (newPosts as Array<Omit<RawPost, 'lang' | 'cover'>>).map((p) => ({
+  ...p,
+  lang: 'en' as Locale,
+  cover: `/blog/${p.slug}.svg`,
+}));
 
 const BASE_POSTS: RawPost[] = [
   {
@@ -160,7 +168,7 @@ const BASE_POSTS: RawPost[] = [
 ];
 
 /** Attach the bundled translations (by slug) so the fallback matches PocketBase. */
-export const FALLBACK_POSTS: RawPost[] = BASE_POSTS.map((p) => ({
+export const FALLBACK_POSTS: RawPost[] = [...BASE_POSTS, ...EXTRA_POSTS].map((p) => ({
   ...p,
   i18n: TRANSLATIONS[p.slug],
 }));
