@@ -33,11 +33,11 @@
     "title": "Built for conversations without borders",
     "languages": {
       "value": "2,000+",
-      "label": "Language pairs"
+      "label": "Language combinations"
     },
     "tiers": {
       "value": "4",
-      "label": "Engine tiers"
+      "label": "Quality tiers"
     },
     "latency": {
       "value": "<250ms",
@@ -57,7 +57,7 @@
         "desc": "Every voice is transcribed and translated as it's spoken, then shown as live captions in each listener's own language."
       },
       {
-        "title": "Four engine tiers",
+        "title": "Four quality tiers",
         "desc": "Pick the right balance of speed, voice quality and cost — from Standard up to natural AI voices on Premium."
       },
       {

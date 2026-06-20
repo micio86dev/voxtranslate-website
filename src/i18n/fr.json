@@ -33,11 +33,11 @@
     "title": "Conçu pour des conversations sans frontières",
     "languages": {
       "value": "2,000+",
-      "label": "Paires de langues"
+      "label": "Combinaisons de langues"
     },
     "tiers": {
       "value": "4",
-      "label": "Niveaux de moteur"
+      "label": "Niveaux de qualité"
     },
     "latency": {
       "value": "<250ms",
@@ -57,7 +57,7 @@
         "desc": "Chaque voix est transcrite et traduite au fil de la parole, puis affichée en sous-titres en direct dans la langue de chaque auditeur."
       },
       {
-        "title": "Quatre niveaux de moteur",
+        "title": "Quatre niveaux de qualité",
         "desc": "Trouvez le bon équilibre entre rapidité, qualité de voix et coût — de Standard jusqu'aux voix IA naturelles de Premium."
       },
       {
