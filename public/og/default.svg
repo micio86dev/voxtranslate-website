@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#0b1326"/>
-      <stop offset="1" stop-color="#131b2e"/>
+      <stop stop-color="#0a0b10"/>
+      <stop offset="1" stop-color="#13141c"/>
     </linearGradient>
     <radialGradient id="glow1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(180 120) rotate(40) scale(640)">
-      <stop stop-color="#3894ff" stop-opacity="0.5"/>
-      <stop offset="1" stop-color="#3894ff" stop-opacity="0"/>
+      <stop stop-color="#3b82f6" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#3b82f6" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1040 540) rotate(220) scale(620)">
-      <stop stop-color="#7c3aed" stop-opacity="0.45"/>
-      <stop offset="1" stop-color="#7c3aed" stop-opacity="0"/>
+      <stop stop-color="#0ea5e9" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#0ea5e9" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="mark" x1="0" y1="0" x2="96" y2="96" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#3894ff"/>
-      <stop offset="0.55" stop-color="#7c3aed"/>
+      <stop stop-color="#3b82f6"/>
+      <stop offset="0.55" stop-color="#0ea5e9"/>
       <stop offset="1" stop-color="#06b6d4"/>
     </linearGradient>
   </defs>
@@ -33,10 +33,10 @@
     </g>
   </g>
 
-  <text x="92" y="350" font-family="Sora, sans-serif" font-size="86" font-weight="700" fill="#dae2fd" letter-spacing="-2">
-    Vox<tspan fill="#3894ff">Translate</tspan>
+  <text x="92" y="350" font-family="Sora, sans-serif" font-size="86" font-weight="700" fill="#e2e4ec" letter-spacing="-2">
+    Vox<tspan fill="#3b82f6">Translate</tspan>
   </text>
-  <text x="94" y="430" font-family="Hanken Grotesk, sans-serif" font-size="40" fill="#c0c6d5">
+  <text x="94" y="430" font-family="Hanken Grotesk, sans-serif" font-size="40" fill="#8a90a8">
     Real-time translated video calls
   </text>
   <text x="94" y="500" font-family="JetBrains Mono, monospace" font-size="26" fill="#4cd7f6" letter-spacing="2">

@@ -143,42 +143,45 @@
 
 /* ---- Semantic tokens (runtime-switchable via CSS variables) ------------- */
 :root {
-  /* LIGHT (default) — derived from Stitch dark palette, accents deepened for
-     WCAG AA contrast on light surfaces. */
-  --base: #f7f9fc;
-  --base-2: #eef2f9;
+  /* LIGHT (default) — VoxTranslate app palette (blue/azure), light-adapted.
+     --primary = accent for text/logo/links; --primary-strong = button bg. */
+  --base: #f6f9fe;
+  --base-2: #eaf1fb;
   --surface: #ffffff;
   --surface-glass: rgba(255, 255, 255, 0.66);
-  --ink: #0b1326;
+  --ink: #0a0b10;
   --muted: #51607a;
   --primary: #2563eb;
   --primary-hover: #1d4ed8;
+  --primary-strong: #2563eb;
   --on-primary: #ffffff;
-  --accent: #7c3aed;
-  --tertiary: #0891b2;
+  --accent: #0284c7; /* azure */
+  --tertiary: #0891b2; /* cyan */
   --line: #e2e8f0;
-  --glass-border: rgba(11, 19, 38, 0.08);
-  --glow: rgba(56, 148, 255, 0.18);
-  --shadow-glass: 0 10px 30px -12px rgba(11, 19, 38, 0.18);
+  --glass-border: rgba(10, 11, 16, 0.08);
+  --glow: rgba(59, 130, 246, 0.18);
+  --shadow-glass: 0 10px 30px -12px rgba(10, 11, 16, 0.18);
   color-scheme: light;
 }
 
 .dark {
-  /* DARK — Stitch "Nexus Glass Evolution" tokens verbatim. */
-  --base: #0b1326;
-  --base-2: #131b2e;
-  --surface: #171f33;
-  --surface-glass: rgba(23, 31, 51, 0.55);
-  --ink: #dae2fd;
-  --muted: #c0c6d5;
-  --primary: #3894ff;
-  --primary-hover: #5aa6ff;
-  --on-primary: #001c3b;
-  --accent: #8b5cf6;
-  --tertiary: #4cd7f6;
-  --line: #2d3449;
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glow: rgba(56, 148, 255, 0.3);
+  /* DARK — matches the VoxTranslate app tokens (client/src/layouts/Base.astro).
+     --primary is the readable text/accent blue; --primary-strong the button bg. */
+  --base: #0a0b10;
+  --base-2: #13141c;
+  --surface: #1a1b26;
+  --surface-glass: rgba(26, 27, 38, 0.55);
+  --ink: #e2e4ec;
+  --muted: #8a90a8;
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --primary-strong: #2563eb;
+  --on-primary: #ffffff;
+  --accent: #38bdf8; /* azure */
+  --tertiary: #4cd7f6; /* cyan */
+  --line: #252836;
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glow: rgba(59, 130, 246, 0.3);
   --shadow-glass: 0 16px 40px -12px rgba(0, 0, 0, 0.55);
   color-scheme: dark;
 }
@@ -192,6 +195,7 @@
   --color-muted: var(--muted);
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
+  --color-primary-strong: var(--primary-strong);
   --color-on-primary: var(--on-primary);
   --color-accent: var(--accent);
   --color-tertiary: var(--tertiary);
@@ -348,10 +352,11 @@
     transform: translateY(1px);
   }
   .btn-primary {
+    /* Use the deeper --primary-strong so white label clears WCAG AA. */
     background: linear-gradient(
       180deg,
-      color-mix(in srgb, var(--primary) 92%, white),
-      var(--primary)
+      color-mix(in srgb, var(--primary-strong) 88%, white),
+      var(--primary-strong)
     );
     color: var(--on-primary);
     box-shadow: 0 0 0 0 var(--glow);
@@ -386,7 +391,7 @@
   }
   .badge-accent {
     color: var(--on-primary);
-    background: var(--primary);
+    background: var(--primary-strong);
     border-color: transparent;
   }
 }

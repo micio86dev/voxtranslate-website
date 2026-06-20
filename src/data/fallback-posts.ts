@@ -4,9 +4,16 @@
  * POCKETBASE_URL is set and reachable these are overridden by live content.
  * Keep IDs/slugs in sync with migrations/pb_migrations seed data.
  */
-import type { RawPost } from '../lib/pocketbase';
+import type { RawPost, PostTranslation } from '../lib/pocketbase';
+import type { Locale } from '../lib/i18n';
+import translations from './post-translations.json';
 
-export const FALLBACK_POSTS: RawPost[] = [
+const TRANSLATIONS = translations as Record<
+  string,
+  Partial<Record<Locale, Partial<PostTranslation>>>
+>;
+
+const BASE_POSTS: RawPost[] = [
   {
     id: 'seed-how-it-works',
     title: 'How VoxTranslate works: real-time multilingual voice translation explained',
@@ -151,3 +158,9 @@ export const FALLBACK_POSTS: RawPost[] = [
 `,
   },
 ];
+
+/** Attach the bundled translations (by slug) so the fallback matches PocketBase. */
+export const FALLBACK_POSTS: RawPost[] = BASE_POSTS.map((p) => ({
+  ...p,
+  i18n: TRANSLATIONS[p.slug],
+}));

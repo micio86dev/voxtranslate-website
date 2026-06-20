@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" fill="none" role="img" aria-label="VoxTranslate">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#0b1326"/>
-      <stop offset="1" stop-color="#131b2e"/>
+      <stop stop-color="#0a0b10"/>
+      <stop offset="1" stop-color="#13141c"/>
     </linearGradient>
     <radialGradient id="glow1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(300 200) rotate(40) scale(640)">
       <stop stop-color="#06b6d4" stop-opacity="0.5"/>
       <stop offset="1" stop-color="#06b6d4" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(950 540) rotate(220) scale(600)">
-      <stop stop-color="#3894ff" stop-opacity="0.55"/>
-      <stop offset="1" stop-color="#3894ff" stop-opacity="0"/>
+      <stop stop-color="#3b82f6" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#3b82f6" stop-opacity="0"/>
     </radialGradient>
   </defs>
   <rect width="1200" height="675" fill="url(#bg)"/>
@@ -22,12 +22,12 @@
     <path d="M440 270v135"/>
     <path d="M500 300v75"/>
   </g>
-  <g stroke="#3894ff" stroke-width="6" stroke-linecap="round" opacity="0.9">
+  <g stroke="#3b82f6" stroke-width="6" stroke-linecap="round" opacity="0.9">
     <path d="M700 300v75"/>
     <path d="M760 270v135"/>
     <path d="M820 300v75"/>
   </g>
-  <g font-family="Sora, sans-serif" fill="#dae2fd">
-    <text x="80" y="600" font-size="34" font-weight="700">Vox<tspan fill="#3894ff">Translate</tspan></text>
+  <g font-family="Sora, sans-serif" fill="#e2e4ec">
+    <text x="80" y="600" font-size="34" font-weight="700">Vox<tspan fill="#3b82f6">Translate</tspan></text>
   </g>
 </svg>

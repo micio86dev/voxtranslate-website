@@ -52,8 +52,8 @@ const jsonLdItems = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/icon.png" sizes="512x512" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
 
@@ -66,8 +66,8 @@ const jsonLdItems = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
 
     {/* Theme color follows OS chrome; in-page theme is class-based. */}
-    <meta name="theme-color" content="#f7f9fc" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0b1326" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f9fe" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0b10" media="(prefers-color-scheme: dark)" />
 
     {/* Open Graph */}
     <meta property="og:type" content={ogType} />
@@ -154,7 +154,7 @@ const jsonLdItems = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
         top: 0;
         z-index: 100;
         padding: 0.7rem 1rem;
-        background: var(--primary);
+        background: var(--primary-strong);
         color: var(--on-primary);
         border-radius: 0 0 var(--radius) 0;
         font-weight: 600;

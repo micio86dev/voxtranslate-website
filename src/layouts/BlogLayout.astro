@@ -4,8 +4,8 @@ import PostHeader from '../components/blog/PostHeader.astro';
 import TableOfContents from '../components/blog/TableOfContents.astro';
 import PostCard from '../components/blog/PostCard.astro';
 import Button from '../components/ui/Button.astro';
-import { LOCALES, useTranslations, localizePath, type Locale } from '../lib/i18n';
-import { absoluteUrl, blogPostingJsonLd, type Alternate } from '../lib/seo';
+import { useTranslations, type Locale } from '../lib/i18n';
+import { absoluteUrl, blogPostingJsonLd, buildAlternates } from '../lib/seo';
 import { APP_URL } from '../lib/site';
 import type { Post } from '../lib/pocketbase';
 import type { TocItem } from '../lib/content';
@@ -21,17 +21,10 @@ const { lang, post, contentHtml, toc, related } = Astro.props;
 const t = useTranslations(lang);
 
 const pathWithoutLocale = `blog/${post.slug}`;
-const canonical = absoluteUrl(Astro.site, localizePath(lang, pathWithoutLocale));
 
-// Posts are single-language: hreflang should reference only this URL.
-const alternates: Alternate[] = [
-  { hreflang: lang, href: canonical },
-  { hreflang: 'x-default', href: canonical },
-];
-// Other locales don't have this post → point the switcher to their blog index.
-const pathByLocale = Object.fromEntries(
-  LOCALES.map((l) => [l, l === lang ? pathWithoutLocale : 'blog']),
-) as Partial<Record<Locale, string>>;
+// Every post exists (translated) in every locale → full hreflang set, and the
+// language switcher keeps the reader on the same post.
+const alternates = buildAlternates(Astro.site, pathWithoutLocale);
 
 const imageAbs = post.image ? absoluteUrl(Astro.site, post.image) : undefined;
 const ogImage = post.image && !post.image.endsWith('.svg') ? post.image : '/og/default.png';
@@ -44,7 +37,6 @@ const jsonLd = blogPostingJsonLd(Astro.site, lang, { ...post, coverUrl: imageAbs
   title={post.seo_title || `${post.title} — VoxTranslate`}
   description={post.seo_desc || post.excerpt}
   pathWithoutLocale={pathWithoutLocale}
-  pathByLocale={pathByLocale}
   alternates={alternates}
   ogType="article"
   ogImage={ogImage}

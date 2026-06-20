@@ -8,24 +8,7 @@ const { lang, label } = Astro.props;
 ---
 
 <a class="logo" href={localizePath(lang)} aria-label={label}>
-  <svg class="logo-mark" width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-    <defs>
-      <linearGradient id="vox-grad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#3894ff"></stop>
-        <stop offset="0.55" stop-color="#7c3aed"></stop>
-        <stop offset="1" stop-color="#06b6d4"></stop>
-      </linearGradient>
-    </defs>
-    <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#vox-grad)"></rect>
-    <!-- Stylised sound waves -->
-    <g stroke="#fff" stroke-width="2.2" stroke-linecap="round">
-      <path d="M9 16h0.5"></path>
-      <path d="M13 12v8"></path>
-      <path d="M17 9v14"></path>
-      <path d="M21 12v8"></path>
-      <path d="M24.5 16h0.5"></path>
-    </g>
-  </svg>
+  <img class="logo-mark" src="/icon.png" alt="" width="32" height="32" decoding="async" />
   <span class="logo-word">Vox<span class="logo-accent">Translate</span></span>
 </a>
 
@@ -36,8 +19,9 @@ const { lang, label } = Astro.props;
     gap: 0.55rem;
   }
   .logo-mark {
-    border-radius: 9px;
-    box-shadow: 0 0 18px var(--glow);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 8px;
     flex-shrink: 0;
   }
   .logo-word {
