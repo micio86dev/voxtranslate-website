@@ -96,6 +96,39 @@
       }
     ]
   },
+  "highlights": {
+    "title": "Molto più di una videochiamata",
+    "subtitle": "Registrazione, AI post-chiamata, trascrizioni in qualsiasi lingua — e un posto dove conoscere gente nuova.",
+    "free": "Gratis",
+    "paid": "A pagamento",
+    "items": [
+      {
+        "badge": "free",
+        "title": "Conosci gente nuova nelle stanze pubbliche",
+        "desc": "Entra nelle stanze pubbliche e parla con persone da tutto il mondo, in lingue diverse — qualcosa che una normale app di meeting non offrirà mai."
+      },
+      {
+        "badge": "free",
+        "title": "Registrazione, lavagna e condivisione schermo",
+        "desc": "Registra l'intera chiamata, condividi lo schermo e fai brainstorming su una lavagna collaborativa — tutto incluso, gratis."
+      },
+      {
+        "badge": "free",
+        "title": "Trascrizioni in qualsiasi lingua",
+        "desc": "Scarica la trascrizione nella lingua che vuoi, gratis. Aggiungi l'autocorrezione AI per un risultato impeccabile (a pagamento)."
+      },
+      {
+        "badge": "paid",
+        "title": "Analisi del sentiment",
+        "desc": "Ottieni una lettura AI del tono e dell'umore della conversazione dopo la chiamata, per ogni partecipante."
+      },
+      {
+        "badge": "paid",
+        "title": "Report ed email riepilogativa",
+        "desc": "Genera un report AI della sessione e invia un riepilogo via email a ogni partecipante."
+      }
+    ]
+  },
   "tiers": {
     "title": "Scegli il tuo motore di traduzione",
     "subtitle": "Cambia motore per ogni chiamata e adatta qualità, latenza e budget a ciò che ti serve.",

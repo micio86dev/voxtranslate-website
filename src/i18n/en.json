@@ -96,6 +96,39 @@
       }
     ]
   },
+  "highlights": {
+    "title": "More than a video call",
+    "subtitle": "Recording, post-call AI, transcripts in any language — and a place to meet new people.",
+    "free": "Free",
+    "paid": "Paid",
+    "items": [
+      {
+        "badge": "free",
+        "title": "Meet new people in public rooms",
+        "desc": "Hop into public rooms and talk with people around the world, across languages — something a normal meeting app will never offer."
+      },
+      {
+        "badge": "free",
+        "title": "Recording, whiteboard & screen share",
+        "desc": "Record the whole call, share your screen, and brainstorm on a collaborative whiteboard — all included, free."
+      },
+      {
+        "badge": "free",
+        "title": "Transcripts in any language",
+        "desc": "Download the transcript in the language you choose, free. Add optional AI autocorrection for a polished result (paid)."
+      },
+      {
+        "badge": "paid",
+        "title": "Sentiment analysis",
+        "desc": "Get an AI read of the conversation's tone and mood after the call, per participant."
+      },
+      {
+        "badge": "paid",
+        "title": "Reports & email recap",
+        "desc": "Generate an AI session report and email a recap straight to every participant."
+      }
+    ]
+  },
   "tiers": {
     "title": "Choose your translation engine",
     "subtitle": "Switch engines per call to match the quality, latency and budget you need.",

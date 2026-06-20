@@ -96,6 +96,39 @@
       }
     ]
   },
+  "highlights": {
+    "title": "Mehr als ein Videoanruf",
+    "subtitle": "Aufnahme, KI nach dem Call, Transkripte in jeder Sprache — und ein Ort, um neue Leute kennenzulernen.",
+    "free": "Gratis",
+    "paid": "Kostenpflichtig",
+    "items": [
+      {
+        "badge": "free",
+        "title": "Lerne neue Leute in öffentlichen Räumen kennen",
+        "desc": "Spring in öffentliche Räume und sprich mit Menschen aus aller Welt, über Sprachgrenzen hinweg — etwas, das eine normale Meeting-App nie bieten wird."
+      },
+      {
+        "badge": "free",
+        "title": "Aufnahme, Whiteboard & Bildschirmfreigabe",
+        "desc": "Nimm den ganzen Call auf, teile deinen Bildschirm und sammle Ideen auf einem gemeinsamen Whiteboard — alles inklusive, gratis."
+      },
+      {
+        "badge": "free",
+        "title": "Transkripte in jeder Sprache",
+        "desc": "Lade das Transkript in der gewünschten Sprache herunter, gratis. Optionale KI-Autokorrektur für ein perfektes Ergebnis (kostenpflichtig)."
+      },
+      {
+        "badge": "paid",
+        "title": "Sentiment-Analyse",
+        "desc": "Erhalte nach dem Call eine KI-Auswertung von Ton und Stimmung des Gesprächs, pro Teilnehmer."
+      },
+      {
+        "badge": "paid",
+        "title": "Berichte & E-Mail-Zusammenfassung",
+        "desc": "Erstelle einen KI-Sitzungsbericht und schicke jedem Teilnehmer eine Zusammenfassung per E-Mail."
+      }
+    ]
+  },
   "tiers": {
     "title": "Wähle deine Übersetzungs-Engine",
     "subtitle": "Wechsle die Engine pro Anruf — passend zu Qualität, Latenz und Budget, die du brauchst.",

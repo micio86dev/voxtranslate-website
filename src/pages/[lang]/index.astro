@@ -4,6 +4,7 @@ import Hero from '../../components/home/Hero.astro';
 import SocialProof from '../../components/home/SocialProof.astro';
 import Features from '../../components/home/Features.astro';
 import HowItWorks from '../../components/home/HowItWorks.astro';
+import Highlights from '../../components/home/Highlights.astro';
 import Tiers from '../../components/home/Tiers.astro';
 import FinalCTA from '../../components/home/FinalCTA.astro';
 import { LOCALES, useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../lib/i18n';
@@ -31,6 +32,7 @@ const jsonLd = [websiteJsonLd(Astro.site, lang), softwareAppJsonLd(Astro.site)];
   <SocialProof lang={lang} />
   <Features lang={lang} />
   <HowItWorks lang={lang} />
+  <Highlights lang={lang} />
   <Tiers lang={lang} />
   <FinalCTA lang={lang} />
 </BaseLayout>

@@ -96,6 +96,39 @@
       }
     ]
   },
+  "highlights": {
+    "title": "Bien plus qu'un appel vidéo",
+    "subtitle": "Enregistrement, IA après l'appel, transcriptions dans n'importe quelle langue — et un endroit pour rencontrer de nouvelles personnes.",
+    "free": "Gratuit",
+    "paid": "Payant",
+    "items": [
+      {
+        "badge": "free",
+        "title": "Rencontrez de nouvelles personnes dans les salons publics",
+        "desc": "Rejoignez les salons publics et parlez avec des gens du monde entier, d'une langue à l'autre — ce qu'une appli de réunion classique n'offrira jamais."
+      },
+      {
+        "badge": "free",
+        "title": "Enregistrement, tableau blanc et partage d'écran",
+        "desc": "Enregistrez tout l'appel, partagez votre écran et réfléchissez ensemble sur un tableau blanc collaboratif — tout est inclus, gratuit."
+      },
+      {
+        "badge": "free",
+        "title": "Transcriptions dans n'importe quelle langue",
+        "desc": "Téléchargez la transcription dans la langue de votre choix, gratuitement. Ajoutez l'autocorrection par IA pour un résultat impeccable (payant)."
+      },
+      {
+        "badge": "paid",
+        "title": "Analyse de sentiment",
+        "desc": "Obtenez une lecture par IA du ton et de l'ambiance de la conversation après l'appel, par participant."
+      },
+      {
+        "badge": "paid",
+        "title": "Rapports et récapitulatif par e-mail",
+        "desc": "Générez un rapport de session par IA et envoyez un récapitulatif par e-mail à chaque participant."
+      }
+    ]
+  },
   "tiers": {
     "title": "Choisissez votre moteur de traduction",
     "subtitle": "Changez de moteur à chaque appel pour ajuster la qualité, la latence et le budget dont vous avez besoin.",

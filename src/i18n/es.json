@@ -96,6 +96,39 @@
       }
     ]
   },
+  "highlights": {
+    "title": "Mucho más que una videollamada",
+    "subtitle": "Grabación, IA tras la llamada, transcripciones en cualquier idioma — y un lugar donde conocer gente nueva.",
+    "free": "Gratis",
+    "paid": "De pago",
+    "items": [
+      {
+        "badge": "free",
+        "title": "Conoce gente nueva en las salas públicas",
+        "desc": "Entra en las salas públicas y habla con personas de todo el mundo, en distintos idiomas — algo que una app de reuniones normal nunca te dará."
+      },
+      {
+        "badge": "free",
+        "title": "Grabación, pizarra y pantalla compartida",
+        "desc": "Graba toda la llamada, comparte tu pantalla y haz lluvia de ideas en una pizarra colaborativa — todo incluido, gratis."
+      },
+      {
+        "badge": "free",
+        "title": "Transcripciones en cualquier idioma",
+        "desc": "Descarga la transcripción en el idioma que quieras, gratis. Añade autocorrección con IA para un resultado pulido (de pago)."
+      },
+      {
+        "badge": "paid",
+        "title": "Análisis de sentimiento",
+        "desc": "Obtén una lectura con IA del tono y el ánimo de la conversación tras la llamada, por participante."
+      },
+      {
+        "badge": "paid",
+        "title": "Informes y resumen por email",
+        "desc": "Genera un informe de la sesión con IA y envía un resumen por email a cada participante."
+      }
+    ]
+  },
   "tiers": {
     "title": "Elige tu motor de traducción",
     "subtitle": "Cambia de motor en cada llamada para ajustar la calidad, la latencia y el presupuesto que necesitas.",
