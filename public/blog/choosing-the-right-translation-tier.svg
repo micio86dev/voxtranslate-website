@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" fill="none" role="img" aria-label="VoxTranslate">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0b1326"/>
+      <stop offset="1" stop-color="#171f33"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(980 150) rotate(150) scale(620)">
+      <stop stop-color="#7c3aed" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(220 560) rotate(320) scale(560)">
+      <stop stop-color="#06b6d4" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#06b6d4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#glow1)"/>
+  <rect width="1200" height="675" fill="url(#glow2)"/>
+  <g opacity="0.92">
+    <rect x="470" y="380" width="60" height="120" rx="12" fill="#3894ff"/>
+    <rect x="550" y="320" width="60" height="180" rx="12" fill="#5aa6ff"/>
+    <rect x="630" y="250" width="60" height="250" rx="12" fill="#7c3aed"/>
+    <rect x="710" y="190" width="60" height="310" rx="12" fill="#4cd7f6"/>
+  </g>
+  <g font-family="Sora, sans-serif" fill="#dae2fd">
+    <text x="80" y="600" font-size="34" font-weight="700">Vox<tspan fill="#3894ff">Translate</tspan></text>
+  </g>
+</svg>

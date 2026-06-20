@@ -1,0 +1,27 @@
+# build output
+dist/
+.vercel/
+.output/
+
+# astro
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+pnpm-debug.log*
+
+# environment
+.env
+.env.production
+.env.local
+.DS_Store
+
+# pocketbase local data
+docker/pocketbase/pb_data/
+
+# editor
+.vscode/
+.idea/

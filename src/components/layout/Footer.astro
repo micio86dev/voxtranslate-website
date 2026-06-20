@@ -1,0 +1,136 @@
+---
+import Logo from './Logo.astro';
+import LangSwitcher from '../ui/LangSwitcher.astro';
+import { useTranslations, localizePath, type Locale } from '../../lib/i18n';
+import { APP_URL, LEGAL_URLS } from '../../lib/site';
+
+interface Props {
+  lang: Locale;
+  pathWithoutLocale?: string;
+  pathByLocale?: Partial<Record<Locale, string>>;
+}
+const { lang, pathWithoutLocale = '', pathByLocale } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+
+const product = [
+  { href: `${localizePath(lang)}#features`, label: t('footer.links.features') },
+  { href: `${localizePath(lang)}#tiers`, label: t('footer.links.pricing') },
+  { href: localizePath(lang, 'blog'), label: t('footer.links.blog') },
+  { href: APP_URL, label: t('footer.links.app'), external: true },
+];
+const legal = [
+  { href: LEGAL_URLS.privacy, label: t('footer.links.privacy') },
+  { href: LEGAL_URLS.terms, label: t('footer.links.terms') },
+  { href: LEGAL_URLS.acceptableUse, label: t('footer.links.acceptableUse') },
+];
+---
+
+<footer class="site-footer">
+  <div class="container-page footer-grid">
+    <div class="footer-brand">
+      <Logo lang={lang} label={t('a11y.homeLink')} />
+      <p>{t('footer.tagline')}</p>
+      <LangSwitcher lang={lang} pathWithoutLocale={pathWithoutLocale} pathByLocale={pathByLocale} />
+    </div>
+
+    <nav aria-label={t('footer.product')}>
+      <h2>{t('footer.product')}</h2>
+      <ul>
+        {
+          product.map((l) => (
+            <li>
+              <a href={l.href} rel={l.external ? 'noopener' : undefined}>
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <nav aria-label={t('footer.legal')}>
+      <h2>{t('footer.legal')}</h2>
+      <ul>
+        {
+          legal.map((l) => (
+            <li>
+              <a href={l.href} rel="noopener">
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+
+  <div class="container-page footer-bottom">
+    <span>© {year} VoxTranslate. {t('footer.rights')}</span>
+    <span class="footer-motto">{t('footer.builtWith')}</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 6rem;
+    border-top: 1px solid var(--glass-border);
+    background: color-mix(in srgb, var(--base-2) 60%, transparent);
+    padding-block: 3rem 1.5rem;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .footer-brand p {
+    margin: 1rem 0 1.25rem;
+    color: var(--muted);
+    max-width: 22rem;
+    line-height: 1.6;
+  }
+  .site-footer h2 {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 1rem;
+  }
+  .site-footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .site-footer ul a {
+    color: var(--ink);
+    font-size: 0.95rem;
+  }
+  .site-footer ul a:hover {
+    color: var(--primary);
+  }
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .footer-motto {
+    font-family: var(--font-mono);
+    letter-spacing: 0.03em;
+  }
+  @media (min-width: 760px) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+</style>

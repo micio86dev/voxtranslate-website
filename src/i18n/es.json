@@ -1,0 +1,199 @@
+{
+  "site": {
+    "name": "VoxTranslate",
+    "tagline": "Videollamadas traducidas en tiempo real"
+  },
+  "nav": {
+    "home": "Inicio",
+    "blog": "Blog",
+    "features": "Funciones",
+    "pricing": "Precios",
+    "app": "Abrir la app",
+    "tryFree": "Prueba gratis",
+    "menu": "Menú"
+  },
+  "theme": {
+    "toLight": "Cambiar al tema claro",
+    "toDark": "Cambiar al tema oscuro"
+  },
+  "lang": {
+    "label": "Idioma",
+    "select": "Seleccionar idioma"
+  },
+  "hero": {
+    "badge": "Habla tu idioma. Que te entiendan en el suyo.",
+    "title": "Videollamadas traducidas",
+    "titleAccent": "en tiempo real",
+    "subtitle": "VoxTranslate transcribe, traduce y da voz a cada persona de la sala — en directo. Inicia una llamada, elige tu idioma y habla. Sin instalaciones, sin esperas.",
+    "ctaPrimary": "Empezar a traducir",
+    "ctaSecondary": "Ver cómo funciona",
+    "note": "Créditos gratis para empezar · Sin tarjeta · 18+"
+  },
+  "social": {
+    "title": "Hecho para conversaciones sin fronteras",
+    "languages": { "value": "84", "label": "Idiomas" },
+    "tiers": { "value": "4", "label": "Niveles de motor" },
+    "latency": { "value": "<250ms", "label": "Latencia en directo" },
+    "p2p": { "value": "P2P", "label": "Privado por diseño" }
+  },
+  "features": {
+    "title": "Todo lo que necesitas para que te entiendan",
+    "subtitle": "Un stack completo de traducción en tiempo real — desde el reconocimiento de voz en streaming hasta la traducción hablada al oído de la otra persona.",
+    "items": [
+      {
+        "title": "Subtítulos en tiempo real",
+        "desc": "Cada voz se transcribe y traduce mientras se habla, y aparece como subtítulos en directo en el idioma de quien escucha."
+      },
+      {
+        "title": "Cuatro niveles de motor",
+        "desc": "Elige el equilibrio perfecto entre velocidad, calidad de voz y coste — desde Standard hasta las voces de IA naturales de Premium."
+      },
+      {
+        "title": "84 idiomas",
+        "desc": "Habla y escucha en 84 idiomas. El idioma de origen se detecta solo, o puedes fijarlo a mano."
+      },
+      {
+        "title": "Facturación por créditos",
+        "desc": "Paga solo por lo que usas. Empieza con créditos gratis y recarga cuando quieras — sin suscripciones, sin ataduras."
+      },
+      {
+        "title": "Baja latencia y privacidad",
+        "desc": "El audio y el vídeo van peer-to-peer por WebRTC. Tus contenidos nunca se quedan en nuestros servidores."
+      },
+      {
+        "title": "Nativo en el navegador",
+        "desc": "Nada que instalar. Abre un enlace, da permiso al micro y la cámara, y ya estás en la conversación."
+      }
+    ]
+  },
+  "how": {
+    "title": "Tres pasos para una llamada multilingüe",
+    "subtitle": "Sin configuración, sin plugins. Funciona en cuanto abres la sala.",
+    "steps": [
+      {
+        "title": "Elige tu idioma",
+        "desc": "Define el idioma que hablas y el que quieres escuchar. Cámbialo cuando quieras durante la llamada."
+      },
+      {
+        "title": "Habla con naturalidad",
+        "desc": "Habla como siempre. VoxTranslate transmite tu voz en streaming, la transcribe y la traduce al vuelo."
+      },
+      {
+        "title": "Escucha la traducción",
+        "desc": "Todos leen los subtítulos en directo y — en los niveles superiores — escuchan una traducción hablada natural en su idioma."
+      }
+    ]
+  },
+  "tiers": {
+    "title": "Elige tu motor de traducción",
+    "subtitle": "Cambia de motor en cada llamada para ajustar la calidad, la latencia y el presupuesto que necesitas.",
+    "popular": "El más elegido",
+    "perMinute": "se cobra por minuto de habla",
+    "cta": "Empezar con este nivel",
+    "items": [
+      {
+        "name": "Standard",
+        "tagline": "Rápido y económico",
+        "points": [
+          "Reconocimiento de voz en streaming",
+          "Subtítulos traducidos en directo",
+          "Voz integrada del navegador",
+          "Genial para charlas del día a día"
+        ]
+      },
+      {
+        "name": "Enhanced",
+        "tagline": "Directo, latencia ultrabaja",
+        "points": [
+          "Streaming directo desde el cliente",
+          "Respuesta de ~menos de 250ms",
+          "57 idiomas",
+          "Ideal para un ida y vuelta rápido"
+        ]
+      },
+      {
+        "name": "Pro",
+        "tagline": "Voz de IA natural",
+        "points": [
+          "Traducción con IA en directo",
+          "Voz sintetizada natural",
+          "Lo mejor para reuniones y demos",
+          "Calidad y coste equilibrados"
+        ]
+      },
+      {
+        "name": "Premium",
+        "tagline": "Máxima calidad, los 84 idiomas",
+        "points": [
+          "Traducción de máxima fidelidad",
+          "Voz de IA natural",
+          "Cobertura completa de 84 idiomas",
+          "Para conversaciones que importan"
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "title": "Empieza a traducir gratis hoy",
+    "subtitle": "Abre una sala, comparte el enlace y ten tu primera conversación multilingüe en menos de un minuto.",
+    "button": "Empezar a traducir",
+    "secondary": "Leer el blog"
+  },
+  "footer": {
+    "tagline": "Videollamadas traducidas en tiempo real para conversaciones sin fronteras.",
+    "product": "Producto",
+    "company": "Empresa",
+    "legal": "Legal",
+    "links": {
+      "features": "Funciones",
+      "pricing": "Precios",
+      "blog": "Blog",
+      "app": "Abrir la app",
+      "privacy": "Privacidad",
+      "terms": "Términos",
+      "acceptableUse": "Uso aceptable"
+    },
+    "rights": "Todos los derechos reservados.",
+    "builtWith": "Habla con libertad, en cualquier lugar."
+  },
+  "blog": {
+    "title": "El blog de VoxTranslate",
+    "subtitle": "Guías, comparativas y análisis a fondo sobre traducción en tiempo real.",
+    "readMore": "Leer artículo",
+    "readTime": "{n} min de lectura",
+    "allTags": "Todo",
+    "filterBy": "Filtrar por tema",
+    "related": "Artículos relacionados",
+    "backToBlog": "Volver al blog",
+    "publishedOn": "Publicado el {date}",
+    "updatedOn": "Actualizado el {date}",
+    "by": "por {author}",
+    "toc": "En esta página",
+    "empty": "Aún no hay artículos — vuelve pronto.",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "pageOf": "Página {n} de {m}",
+    "ctaTitle": "Prueba VoxTranslate gratis",
+    "ctaSubtitle": "Ponlo a prueba en una conversación real.",
+    "ctaButton": "Empezar a traducir"
+  },
+  "notFound": {
+    "title": "Perdido en la traducción",
+    "subtitle": "No encontramos esa página.",
+    "back": "Volver al inicio"
+  },
+  "a11y": {
+    "skipToContent": "Saltar al contenido",
+    "homeLink": "Inicio de VoxTranslate"
+  },
+  "meta": {
+    "home": {
+      "title": "VoxTranslate — Videollamadas traducidas en directo",
+      "description": "Habla con cualquiera, en cualquier idioma. VoxTranslate transcribe, traduce y da voz a cada persona de tu videollamada en directo — 84 idiomas, sin instalar nada."
+    },
+    "blog": {
+      "title": "Blog — VoxTranslate",
+      "description": "Guías y comparativas sobre traducción de voz en tiempo real: cómo funcionan los niveles de motor, cuál elegir y VoxTranslate frente a los intérpretes tradicionales."
+    }
+  }
+}

@@ -1,0 +1,13 @@
+# Railway service config for PocketBase.
+# Set the service's Root Directory to `docker/pocketbase` in the Railway UI so
+# this file and the Dockerfile are picked up, and attach a Volume mounted at
+# /pb/pb_data so content/uploads persist across deploys.
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/api/health"
+healthcheckTimeout = 120
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 5

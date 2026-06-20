@@ -1,0 +1,26 @@
+---
+import BlogLayout from '../../../layouts/BlogLayout.astro';
+import { LOCALES, isLocale, DEFAULT_LOCALE, type Locale } from '../../../lib/i18n';
+import { getPosts, getRelated } from '../../../lib/pocketbase';
+import { processContent } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const lang of LOCALES) {
+    const posts = await getPosts(lang);
+    for (const post of posts) {
+      paths.push({ params: { lang, slug: post.slug }, props: { post } });
+    }
+  }
+  return paths;
+}
+
+const langParam = Astro.params.lang;
+const lang: Locale = isLocale(langParam) ? langParam : DEFAULT_LOCALE;
+const { post } = Astro.props;
+
+const { html, toc } = processContent(post.content);
+const related = await getRelated(lang, post);
+---
+
+<BlogLayout lang={lang} post={post} contentHtml={html} toc={toc} related={related} />

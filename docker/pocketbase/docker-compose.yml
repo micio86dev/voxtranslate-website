@@ -1,0 +1,18 @@
+# Local development for the PocketBase CMS.
+#   docker compose -f docker/pocketbase/docker-compose.yml up --build
+# Admin UI: http://127.0.0.1:8090/_/   ·   Health: http://127.0.0.1:8090/api/health
+services:
+  pocketbase:
+    build:
+      context: .
+    ports:
+      - '8090:8090'
+    environment:
+      # Optional: trigger a site rebuild when posts are published.
+      - DEPLOY_HOOK_URL=${DEPLOY_HOOK_URL:-}
+    volumes:
+      - pb_data:/pb/pb_data
+    restart: unless-stopped
+
+volumes:
+  pb_data:

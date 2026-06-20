@@ -1,0 +1,199 @@
+{
+  "site": {
+    "name": "VoxTranslate",
+    "tagline": "Videoanrufe mit Echtzeit-Übersetzung"
+  },
+  "nav": {
+    "home": "Start",
+    "blog": "Blog",
+    "features": "Funktionen",
+    "pricing": "Preise",
+    "app": "App öffnen",
+    "tryFree": "Kostenlos testen",
+    "menu": "Menü"
+  },
+  "theme": {
+    "toLight": "Zum hellen Design wechseln",
+    "toDark": "Zum dunklen Design wechseln"
+  },
+  "lang": {
+    "label": "Sprache",
+    "select": "Sprache wählen"
+  },
+  "hero": {
+    "badge": "Sprich deine Sprache. Werde in ihrer verstanden.",
+    "title": "Videoanrufe mit",
+    "titleAccent": "Echtzeit-Übersetzung",
+    "subtitle": "VoxTranslate transkribiert, übersetzt und spricht jede Stimme im Raum — live. Anruf starten, Sprache wählen und einfach reden. Keine Installation, kein Warten.",
+    "ctaPrimary": "Jetzt übersetzen",
+    "ctaSecondary": "So funktioniert's",
+    "note": "Gratis-Startguthaben · Keine Kreditkarte · 18+"
+  },
+  "social": {
+    "title": "Gemacht für Gespräche ohne Grenzen",
+    "languages": { "value": "84", "label": "Sprachen" },
+    "tiers": { "value": "4", "label": "Engine-Stufen" },
+    "latency": { "value": "<250ms", "label": "Live-Latenz" },
+    "p2p": { "value": "P2P", "label": "Privat by Design" }
+  },
+  "features": {
+    "title": "Alles, damit du verstanden wirst",
+    "subtitle": "Ein kompletter Stack für Echtzeit-Übersetzung — von der Streaming-Spracherkennung bis zur gesprochenen Übersetzung im Ohr deines Gegenübers.",
+    "items": [
+      {
+        "title": "Untertitel in Echtzeit",
+        "desc": "Jede Stimme wird beim Sprechen transkribiert und übersetzt — als Live-Untertitel in der Sprache jedes Zuhörers."
+      },
+      {
+        "title": "Vier Engine-Stufen",
+        "desc": "Wähle die richtige Balance aus Tempo, Stimmqualität und Kosten — von Standard bis zu natürlichen KI-Stimmen mit Premium."
+      },
+      {
+        "title": "84 Sprachen",
+        "desc": "Sprich und höre in 84 Sprachen. Die Ausgangssprache wird automatisch erkannt oder du legst sie selbst fest."
+      },
+      {
+        "title": "Abrechnung per Guthaben",
+        "desc": "Zahle nur, was du nutzt. Starte mit Gratis-Guthaben und lade jederzeit auf — kein Abo, keine Bindung."
+      },
+      {
+        "title": "Geringe Latenz & privat",
+        "desc": "Audio und Video laufen Peer-to-Peer über WebRTC. Deine Medien landen nie auf unseren Servern."
+      },
+      {
+        "title": "Direkt im Browser",
+        "desc": "Nichts zu installieren. Link öffnen, Mikro und Kamera freigeben — und du bist im Gespräch."
+      }
+    ]
+  },
+  "how": {
+    "title": "In drei Schritten zum mehrsprachigen Anruf",
+    "subtitle": "Kein Setup, keine Plug-ins. Es läuft, sobald du den Raum öffnest.",
+    "steps": [
+      {
+        "title": "Sprache wählen",
+        "desc": "Lege fest, welche Sprache du sprichst und welche du hören willst. Jederzeit im Anruf änderbar."
+      },
+      {
+        "title": "Natürlich sprechen",
+        "desc": "Sprich, wie du es immer tust. VoxTranslate streamt deine Stimme, transkribiert und übersetzt sie in Echtzeit."
+      },
+      {
+        "title": "Übersetzung hören",
+        "desc": "Alle lesen Live-Untertitel und hören — in den höheren Stufen — eine natürliche gesprochene Übersetzung in ihrer Sprache."
+      }
+    ]
+  },
+  "tiers": {
+    "title": "Wähle deine Übersetzungs-Engine",
+    "subtitle": "Wechsle die Engine pro Anruf — passend zu Qualität, Latenz und Budget, die du brauchst.",
+    "popular": "Am beliebtesten",
+    "perMinute": "Abrechnung pro Sprechminute",
+    "cta": "Mit dieser Stufe starten",
+    "items": [
+      {
+        "name": "Standard",
+        "tagline": "Schnell und günstig",
+        "points": [
+          "Streaming-Spracherkennung",
+          "Live übersetzte Untertitel",
+          "Integrierte Browser-Stimme",
+          "Ideal für den Alltag"
+        ]
+      },
+      {
+        "name": "Enhanced",
+        "tagline": "Direkt, ultraniedrige Latenz",
+        "points": [
+          "Direktes Streaming vom Client",
+          "Reaktion in ~unter 250ms",
+          "57 Sprachen",
+          "Perfekt fürs schnelle Hin und Her"
+        ]
+      },
+      {
+        "name": "Pro",
+        "tagline": "Natürliche KI-Stimme",
+        "points": [
+          "Live-Übersetzung per KI",
+          "Natürliche synthetische Stimme",
+          "Top für Meetings & Demos",
+          "Ausgewogen bei Qualität und Kosten"
+        ]
+      },
+      {
+        "name": "Premium",
+        "tagline": "Top-Qualität, alle 84 Sprachen",
+        "points": [
+          "Übersetzung in höchster Güte",
+          "Natürliche KI-Stimme",
+          "Volle Abdeckung von 84 Sprachen",
+          "Für Gespräche, die zählen"
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "title": "Starte heute kostenlos mit dem Übersetzen",
+    "subtitle": "Raum öffnen, Link teilen und in unter einer Minute dein erstes mehrsprachiges Gespräch führen.",
+    "button": "Jetzt übersetzen",
+    "secondary": "Blog lesen"
+  },
+  "footer": {
+    "tagline": "Videoanrufe mit Echtzeit-Übersetzung für Gespräche ohne Grenzen.",
+    "product": "Produkt",
+    "company": "Unternehmen",
+    "legal": "Rechtliches",
+    "links": {
+      "features": "Funktionen",
+      "pricing": "Preise",
+      "blog": "Blog",
+      "app": "App öffnen",
+      "privacy": "Datenschutz",
+      "terms": "AGB",
+      "acceptableUse": "Nutzungsrichtlinie"
+    },
+    "rights": "Alle Rechte vorbehalten.",
+    "builtWith": "Sprich frei, überall."
+  },
+  "blog": {
+    "title": "Der VoxTranslate-Blog",
+    "subtitle": "Guides, Vergleiche und Deep Dives zur Echtzeit-Übersetzung.",
+    "readMore": "Artikel lesen",
+    "readTime": "{n} Min. Lesezeit",
+    "allTags": "Alle",
+    "filterBy": "Nach Thema filtern",
+    "related": "Verwandte Artikel",
+    "backToBlog": "Zurück zum Blog",
+    "publishedOn": "Veröffentlicht am {date}",
+    "updatedOn": "Aktualisiert am {date}",
+    "by": "von {author}",
+    "toc": "Auf dieser Seite",
+    "empty": "Noch keine Artikel — schau bald wieder vorbei.",
+    "prev": "Zurück",
+    "next": "Weiter",
+    "pageOf": "Seite {n} von {m}",
+    "ctaTitle": "VoxTranslate kostenlos testen",
+    "ctaSubtitle": "Stell es im echten Gespräch auf die Probe.",
+    "ctaButton": "Jetzt übersetzen"
+  },
+  "notFound": {
+    "title": "Lost in Translation",
+    "subtitle": "Diese Seite konnten wir nicht finden.",
+    "back": "Zurück zum Start"
+  },
+  "a11y": {
+    "skipToContent": "Zum Inhalt springen",
+    "homeLink": "VoxTranslate Startseite"
+  },
+  "meta": {
+    "home": {
+      "title": "VoxTranslate — Videoanrufe live übersetzt",
+      "description": "Sprich mit jedem, in jeder Sprache. VoxTranslate transkribiert, übersetzt und spricht jede Stimme in deinem Videoanruf live — 84 Sprachen, ohne Installation."
+    },
+    "blog": {
+      "title": "Blog — VoxTranslate",
+      "description": "Guides und Vergleiche zur Echtzeit-Sprachübersetzung: wie die Engine-Stufen arbeiten, welche du wählst und VoxTranslate vs. klassische Dolmetscher."
+    }
+  }
+}

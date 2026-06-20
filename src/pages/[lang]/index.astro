@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/home/Hero.astro';
+import SocialProof from '../../components/home/SocialProof.astro';
+import Features from '../../components/home/Features.astro';
+import HowItWorks from '../../components/home/HowItWorks.astro';
+import Tiers from '../../components/home/Tiers.astro';
+import FinalCTA from '../../components/home/FinalCTA.astro';
+import { LOCALES, useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../lib/i18n';
+import { websiteJsonLd, softwareAppJsonLd } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const langParam = Astro.params.lang;
+const lang: Locale = isLocale(langParam) ? langParam : DEFAULT_LOCALE;
+const t = useTranslations(lang);
+
+const jsonLd = [websiteJsonLd(Astro.site, lang), softwareAppJsonLd(Astro.site)];
+---
+
+<BaseLayout
+  lang={lang}
+  title={t('meta.home.title')}
+  description={t('meta.home.description')}
+  pathWithoutLocale=""
+  jsonLd={jsonLd}
+>
+  <Hero lang={lang} />
+  <SocialProof lang={lang} />
+  <Features lang={lang} />
+  <HowItWorks lang={lang} />
+  <Tiers lang={lang} />
+  <FinalCTA lang={lang} />
+</BaseLayout>
+
+<script>
+  import '../../scripts/animations';
+</script>

@@ -1,0 +1,162 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import PostHeader from '../components/blog/PostHeader.astro';
+import TableOfContents from '../components/blog/TableOfContents.astro';
+import PostCard from '../components/blog/PostCard.astro';
+import Button from '../components/ui/Button.astro';
+import { LOCALES, useTranslations, localizePath, type Locale } from '../lib/i18n';
+import { absoluteUrl, blogPostingJsonLd, type Alternate } from '../lib/seo';
+import { APP_URL } from '../lib/site';
+import type { Post } from '../lib/pocketbase';
+import type { TocItem } from '../lib/content';
+
+interface Props {
+  lang: Locale;
+  post: Post;
+  contentHtml: string;
+  toc: TocItem[];
+  related: Post[];
+}
+const { lang, post, contentHtml, toc, related } = Astro.props;
+const t = useTranslations(lang);
+
+const pathWithoutLocale = `blog/${post.slug}`;
+const canonical = absoluteUrl(Astro.site, localizePath(lang, pathWithoutLocale));
+
+// Posts are single-language: hreflang should reference only this URL.
+const alternates: Alternate[] = [
+  { hreflang: lang, href: canonical },
+  { hreflang: 'x-default', href: canonical },
+];
+// Other locales don't have this post → point the switcher to their blog index.
+const pathByLocale = Object.fromEntries(
+  LOCALES.map((l) => [l, l === lang ? pathWithoutLocale : 'blog']),
+) as Partial<Record<Locale, string>>;
+
+const imageAbs = post.image ? absoluteUrl(Astro.site, post.image) : undefined;
+const ogImage = post.image && !post.image.endsWith('.svg') ? post.image : '/og/default.png';
+
+const jsonLd = blogPostingJsonLd(Astro.site, lang, { ...post, coverUrl: imageAbs });
+---
+
+<BaseLayout
+  lang={lang}
+  title={post.seo_title || `${post.title} — VoxTranslate`}
+  description={post.seo_desc || post.excerpt}
+  pathWithoutLocale={pathWithoutLocale}
+  pathByLocale={pathByLocale}
+  alternates={alternates}
+  ogType="article"
+  ogImage={ogImage}
+  article={{
+    publishedTime: post.published_at,
+    modifiedTime: post.updated ?? post.published_at,
+    author: post.author,
+    tags: post.tags,
+  }}
+  jsonLd={jsonLd}
+>
+  <article class="post">
+    <PostHeader lang={lang} post={post} />
+
+    <div class="container-page post-layout">
+      <aside class="post-aside">
+        <TableOfContents lang={lang} items={toc} />
+      </aside>
+      <div class="prose post-content" set:html={contentHtml} />
+    </div>
+
+    <div class="container-prose">
+      <div class="post-cta glass glass-glow">
+        <h2>{t('blog.ctaTitle')}</h2>
+        <p>{t('blog.ctaSubtitle')}</p>
+        <Button href={APP_URL} variant="primary" rel="noopener">{t('blog.ctaButton')}</Button>
+      </div>
+    </div>
+
+    {
+      related.length > 0 && (
+        <section class="container-page related">
+          <h2>{t('blog.related')}</h2>
+          <ul class="related-grid">
+            {related.map((rp) => (
+              <li>
+                <PostCard lang={lang} post={rp} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+  </article>
+</BaseLayout>
+
+<style>
+  .post-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
+  .post-aside {
+    display: none;
+  }
+  .post-content {
+    max-width: 45rem;
+    margin-inline: auto;
+    width: 100%;
+  }
+  .post-cta {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    border-radius: var(--radius-xl);
+    margin-top: 4rem;
+  }
+  .post-cta h2 {
+    font-size: 1.6rem;
+    margin: 0 0 0.5rem;
+  }
+  .post-cta p {
+    color: var(--muted);
+    margin: 0 0 1.5rem;
+  }
+  .related {
+    margin-top: 5rem;
+  }
+  .related h2 {
+    font-size: 1.6rem;
+    margin: 0 0 1.5rem;
+  }
+  .related-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .related-grid > li {
+    display: flex;
+  }
+  .related-grid > li > :global(*) {
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .related-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (min-width: 1040px) {
+    .post-layout {
+      grid-template-columns: 16rem minmax(0, 1fr);
+      align-items: start;
+    }
+    .post-aside {
+      display: block;
+    }
+    .post-content {
+      margin-inline: 0;
+    }
+  }
+</style>

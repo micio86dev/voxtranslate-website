@@ -1,0 +1,35 @@
+{
+  "name": "voxtranslate-website",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "VoxTranslate marketing site & blog",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro check",
+    "lint": "prettier --check \"src/**/*.{astro,ts,js,json,css}\" && eslint .",
+    "format": "prettier --write \"src/**/*.{astro,ts,js,json,css}\"",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "@tailwindcss/vite": "^4.3.1",
+    "astro": "^5.18.2",
+    "pocketbase": "^0.27.0",
+    "tailwindcss": "^4.3.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@types/node": "^26.0.0",
+    "eslint": "^10.5.0",
+    "eslint-plugin-astro": "^1.7.0",
+    "prettier": "^3.8.4",
+    "prettier-plugin-astro": "^0.14.1",
+    "sharp": "^0.35.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.61.1"
+  }
+}

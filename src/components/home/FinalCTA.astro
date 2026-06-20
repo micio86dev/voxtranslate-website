@@ -1,0 +1,64 @@
+---
+import Button from '../ui/Button.astro';
+import { useTranslations, localizePath, type Locale } from '../../lib/i18n';
+import { APP_URL } from '../../lib/site';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="final-cta">
+  <div class="container-page">
+    <div class="cta-card glass glass-glow" data-reveal>
+      <h2>{t('cta.title')}</h2>
+      <p>{t('cta.subtitle')}</p>
+      <div class="cta-actions">
+        <Button href={APP_URL} variant="primary" rel="noopener">{t('cta.button')}</Button>
+        <Button href={localizePath(lang, 'blog')} variant="ghost">{t('cta.secondary')}</Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .final-cta {
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .cta-card {
+    text-align: center;
+    padding: clamp(2.5rem, 6vw, 4rem) 1.5rem;
+    border-radius: var(--radius-xl);
+    background:
+      radial-gradient(
+        120% 120% at 0% 0%,
+        color-mix(in srgb, var(--primary) 16%, transparent),
+        transparent 55%
+      ),
+      radial-gradient(
+        120% 120% at 100% 100%,
+        color-mix(in srgb, var(--accent) 16%, transparent),
+        transparent 55%
+      ),
+      var(--surface-glass);
+  }
+  .cta-card h2 {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    margin: 0 auto 0.85rem;
+    max-width: 22ch;
+  }
+  .cta-card p {
+    color: var(--muted);
+    font-size: 1.1rem;
+    margin: 0 auto 2rem;
+    max-width: 38rem;
+  }
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+</style>

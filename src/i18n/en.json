@@ -1,0 +1,199 @@
+{
+  "site": {
+    "name": "VoxTranslate",
+    "tagline": "Real-time translated video calls"
+  },
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "features": "Features",
+    "pricing": "Pricing",
+    "app": "Open app",
+    "tryFree": "Try free",
+    "menu": "Menu"
+  },
+  "theme": {
+    "toLight": "Switch to light theme",
+    "toDark": "Switch to dark theme"
+  },
+  "lang": {
+    "label": "Language",
+    "select": "Select language"
+  },
+  "hero": {
+    "badge": "Speak your language. Be understood in theirs.",
+    "title": "Real-time translated",
+    "titleAccent": "video calls",
+    "subtitle": "VoxTranslate transcribes, translates and speaks every voice in the room — live. Start a call, pick your language, and just talk. No installs, no waiting.",
+    "ctaPrimary": "Start translating",
+    "ctaSecondary": "See how it works",
+    "note": "Free starter credits · No credit card · 18+"
+  },
+  "social": {
+    "title": "Built for conversations without borders",
+    "languages": { "value": "84", "label": "Languages" },
+    "tiers": { "value": "4", "label": "Engine tiers" },
+    "latency": { "value": "<250ms", "label": "Live latency" },
+    "p2p": { "value": "P2P", "label": "Private by design" }
+  },
+  "features": {
+    "title": "Everything you need to be understood",
+    "subtitle": "A complete real-time translation stack — from streaming speech recognition to a spoken translation in the other person's ear.",
+    "items": [
+      {
+        "title": "Real-time subtitles",
+        "desc": "Every voice is transcribed and translated as it's spoken, then shown as live captions in each listener's own language."
+      },
+      {
+        "title": "Four engine tiers",
+        "desc": "Pick the right balance of speed, voice quality and cost — from Standard up to natural AI voices on Premium."
+      },
+      {
+        "title": "84 languages",
+        "desc": "Speak and listen across 84 languages. Source language is auto-detected, or you can set it manually."
+      },
+      {
+        "title": "Credit-based billing",
+        "desc": "Pay only for what you use. Start with free credits, top up anytime — no subscriptions, no lock-in."
+      },
+      {
+        "title": "Low-latency & private",
+        "desc": "Audio and video flow peer-to-peer over WebRTC. Your media never sits on our servers."
+      },
+      {
+        "title": "Browser-native",
+        "desc": "Nothing to install. Open a link, allow your mic and camera, and you're in the conversation."
+      }
+    ]
+  },
+  "how": {
+    "title": "Three steps to a multilingual call",
+    "subtitle": "No setup, no plugins. It works the moment you open the room.",
+    "steps": [
+      {
+        "title": "Choose your language",
+        "desc": "Set the language you speak and the one you want to hear. Change it anytime during the call."
+      },
+      {
+        "title": "Speak naturally",
+        "desc": "Talk like you always do. VoxTranslate streams your speech, transcribes it and translates it on the fly."
+      },
+      {
+        "title": "Hear the translation",
+        "desc": "Everyone reads live subtitles and — on higher tiers — hears a natural spoken translation in their language."
+      }
+    ]
+  },
+  "tiers": {
+    "title": "Choose your translation engine",
+    "subtitle": "Switch engines per call to match the quality, latency and budget you need.",
+    "popular": "Most popular",
+    "perMinute": "billed per minute of speech",
+    "cta": "Start with this tier",
+    "items": [
+      {
+        "name": "Standard",
+        "tagline": "Fast and economical",
+        "points": [
+          "Streaming speech recognition",
+          "Live translated subtitles",
+          "Built-in browser voice",
+          "Great for everyday chats"
+        ]
+      },
+      {
+        "name": "Enhanced",
+        "tagline": "Direct, ultra-low latency",
+        "points": [
+          "Client-direct streaming",
+          "~sub-250ms responsiveness",
+          "57 languages",
+          "Ideal for fast back-and-forth"
+        ]
+      },
+      {
+        "name": "Pro",
+        "tagline": "Natural AI voice",
+        "points": [
+          "Live AI translation",
+          "Natural synthesized voice",
+          "Best for meetings & demos",
+          "Balanced quality and cost"
+        ]
+      },
+      {
+        "name": "Premium",
+        "tagline": "Top quality, all 84 languages",
+        "points": [
+          "Highest-fidelity translation",
+          "Natural AI voice",
+          "Full 84-language coverage",
+          "For high-stakes conversations"
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "title": "Start translating for free today",
+    "subtitle": "Open a room, share the link, and have your first multilingual conversation in under a minute.",
+    "button": "Start translating",
+    "secondary": "Read the blog"
+  },
+  "footer": {
+    "tagline": "Real-time translated video calls for conversations without borders.",
+    "product": "Product",
+    "company": "Company",
+    "legal": "Legal",
+    "links": {
+      "features": "Features",
+      "pricing": "Pricing",
+      "blog": "Blog",
+      "app": "Open app",
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "acceptableUse": "Acceptable Use"
+    },
+    "rights": "All rights reserved.",
+    "builtWith": "Speak freely, everywhere."
+  },
+  "blog": {
+    "title": "The VoxTranslate blog",
+    "subtitle": "Guides, comparisons and deep dives on real-time translation.",
+    "readMore": "Read article",
+    "readTime": "{n} min read",
+    "allTags": "All",
+    "filterBy": "Filter by topic",
+    "related": "Related articles",
+    "backToBlog": "Back to blog",
+    "publishedOn": "Published {date}",
+    "updatedOn": "Updated {date}",
+    "by": "by {author}",
+    "toc": "On this page",
+    "empty": "No articles yet — check back soon.",
+    "prev": "Previous",
+    "next": "Next",
+    "pageOf": "Page {n} of {m}",
+    "ctaTitle": "Try VoxTranslate free",
+    "ctaSubtitle": "Put it to the test in a real conversation.",
+    "ctaButton": "Start translating"
+  },
+  "notFound": {
+    "title": "Lost in translation",
+    "subtitle": "We couldn't find that page.",
+    "back": "Back home"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "homeLink": "VoxTranslate home"
+  },
+  "meta": {
+    "home": {
+      "title": "VoxTranslate — Real-time translated video calls",
+      "description": "Talk to anyone, in any language. VoxTranslate transcribes, translates and speaks every voice in your video call live — 84 languages, no install."
+    },
+    "blog": {
+      "title": "Blog — VoxTranslate",
+      "description": "Guides and comparisons on real-time voice translation: how the engine tiers work, choosing a tier, and VoxTranslate vs. traditional interpreters."
+    }
+  }
+}

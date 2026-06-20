@@ -1,0 +1,108 @@
+---
+import { useTranslations, localizePath, type Locale } from '../../lib/i18n';
+import type { Post } from '../../lib/pocketbase';
+
+interface Props {
+  lang: Locale;
+  post: Post;
+  loading?: 'lazy' | 'eager';
+}
+const { lang, post, loading = 'lazy' } = Astro.props;
+const t = useTranslations(lang);
+const href = localizePath(lang, `blog/${post.slug}`);
+const date = new Intl.DateTimeFormat(lang, { dateStyle: 'medium' }).format(
+  new Date(post.published_at),
+);
+---
+
+<article class="post-card glass" data-tags={post.tags.join(',')}>
+  <a class="post-card-link" href={href} aria-label={post.title}>
+    {
+      post.image && (
+        <img
+          class="post-cover"
+          src={post.image}
+          alt={post.title}
+          width="1200"
+          height="675"
+          loading={loading}
+          decoding="async"
+        />
+      )
+    }
+    <div class="post-body">
+      <div class="post-tags">
+        {post.tags.slice(0, 2).map((tag) => <span class="badge">{tag}</span>)}
+      </div>
+      <h3 class="post-title">{post.title}</h3>
+      <p class="post-excerpt">{post.excerpt}</p>
+      <div class="post-meta">
+        <span>{date}</span>
+        <span aria-hidden="true">·</span>
+        <span>{t('blog.readTime', { n: post.readingMinutes })}</span>
+      </div>
+    </div>
+  </a>
+</article>
+
+<style>
+  .post-card {
+    overflow: hidden;
+    padding: 0;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  .post-card:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      var(--shadow-glass),
+      0 0 24px var(--glow);
+  }
+  .post-card-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .post-cover {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-bottom: 1px solid var(--glass-border);
+  }
+  .post-body {
+    padding: 1.25rem 1.25rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+  }
+  .post-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .post-title {
+    font-size: 1.2rem;
+    line-height: 1.3;
+    margin: 0;
+  }
+  .post-excerpt {
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin: 0;
+    flex: 1;
+  }
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+</style>

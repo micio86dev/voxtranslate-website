@@ -1,0 +1,41 @@
+---
+// Root entry: soft browser-language detection (no server redirect / 301).
+// Lighthouse runs against /en/ and /en/blog/, so this tiny shell never affects
+// scores. Localized pages carry hreflang for discovery.
+import { LOCALES, DEFAULT_LOCALE } from '../lib/i18n';
+const localesJson = JSON.stringify(LOCALES);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VoxTranslate — Real-time translated video calls</title>
+    <link rel="canonical" href="https://voxtranslate.com/en/" />
+    <meta name="robots" content="noindex, follow" />
+    <script is:inline define:vars={{ localesJson, def: DEFAULT_LOCALE }}>
+      (function () {
+        try {
+          const supported = JSON.parse(localesJson);
+          const prefs = navigator.languages || [navigator.language || def];
+          let pick = def;
+          for (let i = 0; i < prefs.length; i++) {
+            const code = (prefs[i] || '').slice(0, 2).toLowerCase();
+            if (supported.indexOf(code) > -1) {
+              pick = code;
+              break;
+            }
+          }
+          location.replace('/' + pick + '/');
+        } catch {
+          location.replace('/' + def + '/');
+        }
+      })();
+    </script>
+    <meta http-equiv="refresh" content="0; url=/en/" />
+  </head>
+  <body>
+    <p>Redirecting to <a href="/en/">VoxTranslate</a>…</p>
+  </body>
+</html>

@@ -1,0 +1,110 @@
+---
+import { useTranslations, type Locale } from '../../lib/i18n';
+import type { TocItem } from '../../lib/content';
+
+interface Props {
+  lang: Locale;
+  items: TocItem[];
+}
+const { lang, items } = Astro.props;
+const t = useTranslations(lang);
+---
+
+{
+  items.length > 0 && (
+    <nav class="toc" aria-label={t('blog.toc')}>
+      <details open>
+        <summary>{t('blog.toc')}</summary>
+        <ul>
+          {items.map((item) => (
+            <li class={`toc-l${item.level}`}>
+              <a href={`#${item.id}`} data-toc-link={item.id}>
+                {item.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </nav>
+  )
+}
+
+<style>
+  .toc {
+    font-size: 0.9rem;
+  }
+  .toc summary {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    margin-bottom: 0.75rem;
+  }
+  .toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+  .toc li a {
+    display: block;
+    padding: 0.35rem 0.85rem;
+    margin-left: -1px;
+    border-left: 2px solid transparent;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .toc-l3 a {
+    padding-left: 1.6rem;
+    font-size: 0.85rem;
+  }
+  .toc li a:hover {
+    color: var(--ink);
+  }
+  .toc li a[aria-current='true'] {
+    color: var(--primary);
+    border-left-color: var(--primary);
+    font-weight: 600;
+  }
+
+  @media (min-width: 1040px) {
+    .toc {
+      position: sticky;
+      top: 6rem;
+    }
+    .toc summary {
+      pointer-events: none;
+    }
+    .toc summary::-webkit-details-marker {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]'));
+  if (links.length) {
+    const byId = new Map(links.map((l) => [l.dataset.tocLink, l]));
+    const headings = links
+      .map((l) => document.getElementById(l.dataset.tocLink || ''))
+      .filter((el): el is HTMLElement => !!el);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            links.forEach((l) => l.removeAttribute('aria-current'));
+            byId.get(entry.target.id)?.setAttribute('aria-current', 'true');
+          }
+        });
+      },
+      { rootMargin: '-10% 0px -75% 0px', threshold: 0 },
+    );
+    headings.forEach((h) => observer.observe(h));
+  }
+</script>

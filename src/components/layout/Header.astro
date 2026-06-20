@@ -1,0 +1,167 @@
+---
+import Logo from './Logo.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import LangSwitcher from '../ui/LangSwitcher.astro';
+import Button from '../ui/Button.astro';
+import { useTranslations, localizePath, type Locale } from '../../lib/i18n';
+import { APP_URL } from '../../lib/site';
+
+interface Props {
+  lang: Locale;
+  pathWithoutLocale?: string;
+  pathByLocale?: Partial<Record<Locale, string>>;
+}
+const { lang, pathWithoutLocale = '', pathByLocale } = Astro.props;
+const t = useTranslations(lang);
+
+const navLinks = [
+  { href: localizePath(lang, 'blog'), label: t('nav.blog') },
+  { href: `${localizePath(lang)}#features`, label: t('nav.features') },
+  { href: `${localizePath(lang)}#tiers`, label: t('nav.pricing') },
+];
+---
+
+<header class="site-header">
+  <div class="container-page header-inner">
+    <Logo lang={lang} label={t('a11y.homeLink')} />
+
+    <nav class="nav-desktop" aria-label="Primary">
+      {navLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+
+    <div class="header-actions">
+      <LangSwitcher lang={lang} pathWithoutLocale={pathWithoutLocale} pathByLocale={pathByLocale} />
+      <ThemeToggle lang={lang} />
+      <Button href={APP_URL} variant="primary" class="cta-desktop" rel="noopener">
+        {t('nav.tryFree')}
+      </Button>
+      <button
+        id="menu-toggle"
+        class="menu-toggle"
+        type="button"
+        aria-label={t('nav.menu')}
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M3 6h18M3 12h18M3 18h18"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <nav id="mobile-nav" class="nav-mobile" aria-label="Mobile" hidden>
+    <div class="container-page">
+      {navLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+      <a href={APP_URL} rel="noopener" class="mobile-cta">{t('nav.tryFree')}</a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in srgb, var(--base) 78%, transparent);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    height: 4rem;
+  }
+  .nav-desktop {
+    display: none;
+    gap: 1.5rem;
+    margin-inline: auto;
+  }
+  .nav-desktop a {
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  .nav-desktop a:hover {
+    color: var(--ink);
+  }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .cta-desktop {
+    display: none;
+  }
+  .menu-toggle {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--glass-border);
+    background: color-mix(in srgb, var(--surface) 60%, transparent);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .nav-mobile {
+    border-bottom: 1px solid var(--glass-border);
+    background: var(--base);
+  }
+  .nav-mobile > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-block: 0.75rem;
+  }
+  .nav-mobile a {
+    padding: 0.7rem 0.5rem;
+    border-radius: var(--radius);
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .nav-mobile a:hover {
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
+  }
+  .mobile-cta {
+    color: var(--primary) !important;
+    font-weight: 600 !important;
+  }
+
+  @media (min-width: 860px) {
+    .nav-desktop {
+      display: flex;
+    }
+    .cta-desktop {
+      display: inline-flex;
+    }
+    .menu-toggle {
+      display: none;
+    }
+    .nav-mobile {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('mobile-nav');
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    if (nav) nav.hidden = open;
+  });
+</script>

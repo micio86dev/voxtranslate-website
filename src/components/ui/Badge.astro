@@ -1,0 +1,10 @@
+---
+interface Props {
+  variant?: 'default' | 'accent';
+  class?: string;
+}
+const { variant = 'default', class: className = '' } = Astro.props;
+const cls = `badge ${variant === 'accent' ? 'badge-accent' : ''} ${className}`.trim();
+---
+
+<span class={cls}><slot /></span>

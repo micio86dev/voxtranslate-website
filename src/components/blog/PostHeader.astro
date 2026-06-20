@@ -1,0 +1,114 @@
+---
+import { useTranslations, localizePath, type Locale } from '../../lib/i18n';
+import type { Post } from '../../lib/pocketbase';
+
+interface Props {
+  lang: Locale;
+  post: Post;
+}
+const { lang, post } = Astro.props;
+const t = useTranslations(lang);
+const date = new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(
+  new Date(post.published_at),
+);
+---
+
+<header class="post-header">
+  <div class="container-prose">
+    <a class="back-link" href={localizePath(lang, 'blog')}>
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M19 12H5M12 19l-7-7 7-7"></path>
+      </svg>
+      {t('blog.backToBlog')}
+    </a>
+    <div class="post-tags">
+      {post.tags.map((tag) => <span class="badge">{tag}</span>)}
+    </div>
+    <h1>{post.title}</h1>
+    <p class="post-lede">{post.excerpt}</p>
+    <div class="post-byline">
+      <span>{t('blog.by', { author: post.author })}</span>
+      <span aria-hidden="true">·</span>
+      <span>{t('blog.publishedOn', { date })}</span>
+      <span aria-hidden="true">·</span>
+      <span>{t('blog.readTime', { n: post.readingMinutes })}</span>
+    </div>
+  </div>
+  {
+    post.image && (
+      <div class="container-prose">
+        <img
+          class="post-hero-cover"
+          src={post.image}
+          alt={post.title}
+          width="1200"
+          height="675"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    )
+  }
+</header>
+
+<style>
+  .post-header {
+    padding-top: 2.5rem;
+  }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  .back-link:hover {
+    color: var(--primary);
+  }
+  .post-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .post-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 0 0 1rem;
+  }
+  .post-lede {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 0 0 1.5rem;
+  }
+  .post-byline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+  }
+  .post-hero-cover {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--glass-border);
+    margin-top: 2.5rem;
+  }
+</style>

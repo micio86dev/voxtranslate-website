@@ -1,0 +1,90 @@
+---
+import { useTranslations, tList, type Locale } from '../../lib/i18n';
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const steps = tList<{ title: string; desc: string }>(lang, 'how.steps');
+---
+
+<section class="how" id="how" aria-labelledby="how-title">
+  <div class="container-page">
+    <header class="section-head" data-reveal>
+      <h2 id="how-title">{t('how.title')}</h2>
+      <p>{t('how.subtitle')}</p>
+    </header>
+
+    <ol class="steps">
+      {
+        steps.map((step, i) => (
+          <li class="step glass" data-reveal>
+            <span class="step-num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{step.title}</h3>
+            <p>{step.desc}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .how {
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+  }
+  .section-head {
+    max-width: 42rem;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+  .section-head h2 {
+    font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+    margin: 0 0 0.75rem;
+  }
+  .section-head p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin: 0;
+  }
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    counter-reset: step;
+  }
+  .step {
+    padding: 1.75rem;
+    position: relative;
+  }
+  .step-num {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--on-primary);
+    background: var(--primary);
+    border-radius: 999px;
+    padding: 0.3rem 0.7rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 18px var(--glow);
+  }
+  .step h3 {
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem;
+  }
+  .step p {
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+  @media (min-width: 820px) {
+    .steps {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

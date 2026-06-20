@@ -1,0 +1,162 @@
+---
+import Button from '../ui/Button.astro';
+import { useTranslations, tList, type Locale } from '../../lib/i18n';
+import { APP_URL } from '../../lib/site';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const tiers = tList<{ name: string; tagline: string; points: string[] }>(lang, 'tiers.items');
+const POPULAR_INDEX = 2; // Pro
+---
+
+<section class="tiers" id="tiers" aria-labelledby="tiers-title">
+  <div class="container-page">
+    <header class="section-head" data-reveal>
+      <h2 id="tiers-title">{t('tiers.title')}</h2>
+      <p>{t('tiers.subtitle')}</p>
+    </header>
+
+    <ul class="tier-grid">
+      {
+        tiers.map((tier, i) => (
+          <li
+            class={`tier-card glass ${i === POPULAR_INDEX ? 'tier-popular glass-glow' : ''}`}
+            data-reveal
+          >
+            {i === POPULAR_INDEX && (
+              <span class="tier-flag badge badge-accent">{t('tiers.popular')}</span>
+            )}
+            <h3 class="tier-name">{tier.name}</h3>
+            <p class="tier-tagline">{tier.tagline}</p>
+            <ul class="tier-points">
+              {tier.points.map((p) => (
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                  <span>{p}</span>
+                </li>
+              ))}
+            </ul>
+            <p class="tier-meta">{t('tiers.perMinute')}</p>
+            <Button
+              href={APP_URL}
+              rel="noopener"
+              variant={i === POPULAR_INDEX ? 'primary' : 'ghost'}
+              class="tier-cta"
+            >
+              {t('tiers.cta')}
+            </Button>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .tiers {
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+  }
+  .section-head {
+    max-width: 42rem;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+  .section-head h2 {
+    font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+    margin: 0 0 0.75rem;
+  }
+  .section-head p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin: 0;
+  }
+  .tier-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+  .tier-card {
+    position: relative;
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .tier-popular {
+    border-color: color-mix(in srgb, var(--primary) 55%, var(--glass-border));
+  }
+  .tier-flag {
+    position: absolute;
+    top: -0.75rem;
+    left: 1.5rem;
+  }
+  .tier-name {
+    font-size: 1.4rem;
+    margin: 0 0 0.25rem;
+  }
+  .tier-tagline {
+    color: var(--muted);
+    margin: 0 0 1.25rem;
+    font-size: 0.95rem;
+  }
+  .tier-points {
+    list-style: none;
+    margin: 0 0 1.25rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+  }
+  .tier-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.92rem;
+    color: var(--ink);
+  }
+  .tier-points svg {
+    color: var(--tertiary);
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+  .tier-meta {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 1rem;
+  }
+  .tier-cta {
+    width: 100%;
+  }
+  @media (min-width: 640px) {
+    .tier-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1040px) {
+    .tier-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,251 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostCard from '../../../components/blog/PostCard.astro';
+import { LOCALES, useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../lib/i18n';
+import { getPosts, getTags } from '../../../lib/pocketbase';
+import { blogJsonLd } from '../../../lib/seo';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const langParam = Astro.params.lang;
+const lang: Locale = isLocale(langParam) ? langParam : DEFAULT_LOCALE;
+const t = useTranslations(lang);
+
+const posts = await getPosts(lang);
+const tags = await getTags(lang);
+const pageTemplate = t('blog.pageOf', { n: '%n', m: '%m' });
+const jsonLd = blogJsonLd(Astro.site, lang, posts);
+---
+
+<BaseLayout
+  lang={lang}
+  title={t('meta.blog.title')}
+  description={t('meta.blog.description')}
+  pathWithoutLocale="blog"
+  jsonLd={jsonLd}
+>
+  <section class="blog-list">
+    <div class="container-page">
+      <header class="blog-head">
+        <h1>{t('blog.title')}</h1>
+        <p>{t('blog.subtitle')}</p>
+      </header>
+
+      {
+        posts.length === 0 ? (
+          <p class="blog-empty glass">{t('blog.empty')}</p>
+        ) : (
+          <>
+            {tags.length > 0 && (
+              <div class="blog-filters" role="group" aria-label={t('blog.filterBy')}>
+                <button class="filter-btn" data-filter="all" aria-pressed="true">
+                  {t('blog.allTags')}
+                </button>
+                {tags.map((tag) => (
+                  <button class="filter-btn" data-filter={tag} aria-pressed="false">
+                    {tag}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            <ul class="blog-grid" id="blog-grid">
+              {posts.map((post, i) => (
+                <li>
+                  <PostCard lang={lang} post={post} loading={i === 0 ? 'eager' : 'lazy'} />
+                </li>
+              ))}
+            </ul>
+
+            <nav
+              class="blog-pagination"
+              id="blog-pagination"
+              aria-label="Pagination"
+              data-template={pageTemplate}
+              hidden
+            >
+              <button class="page-btn" id="page-prev">
+                {t('blog.prev')}
+              </button>
+              <span class="page-info" id="page-info" aria-live="polite" />
+              <button class="page-btn" id="page-next">
+                {t('blog.next')}
+              </button>
+            </nav>
+          </>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-list {
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .blog-head {
+    max-width: 42rem;
+    margin: 0 0 2.5rem;
+  }
+  .blog-head h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 0 0 0.75rem;
+  }
+  .blog-head p {
+    color: var(--muted);
+    font-size: 1.1rem;
+    margin: 0;
+  }
+  .blog-empty {
+    padding: 2.5rem;
+    text-align: center;
+    color: var(--muted);
+  }
+  .blog-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .filter-btn {
+    padding: 0.45rem 0.95rem;
+    border-radius: 999px;
+    border: 1px solid var(--glass-border);
+    background: color-mix(in srgb, var(--surface) 60%, transparent);
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .filter-btn:hover {
+    border-color: var(--primary);
+    color: var(--ink);
+  }
+  .filter-btn[aria-pressed='true'] {
+    background: var(--primary);
+    color: var(--on-primary);
+    border-color: transparent;
+  }
+  .blog-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .blog-grid > li {
+    display: flex;
+  }
+  .blog-grid > li > :global(*) {
+    width: 100%;
+  }
+  .blog-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+  .page-btn {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--glass-border);
+    background: color-mix(in srgb, var(--surface) 60%, transparent);
+    color: var(--ink);
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .page-info {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  @media (min-width: 640px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 980px) {
+    .blog-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
+
+<script>
+  const PAGE_SIZE = 6;
+  const grid = document.getElementById('blog-grid');
+  if (grid) {
+    const items = Array.from(grid.querySelectorAll<HTMLLIElement>(':scope > li'));
+    const cards = items.map((li) => li.querySelector<HTMLElement>('[data-tags]'));
+    const filterBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-filter]'));
+    const pagination = document.getElementById('blog-pagination');
+    const prevBtn = document.getElementById('page-prev') as HTMLButtonElement | null;
+    const nextBtn = document.getElementById('page-next') as HTMLButtonElement | null;
+    const pageInfo = document.getElementById('page-info');
+    const template = pagination?.dataset.template ?? 'Page %n of %m';
+
+    let activeTag = 'all';
+    let page = 1;
+
+    function matches(i: number): boolean {
+      if (activeTag === 'all') return true;
+      const tags = (cards[i]?.dataset.tags ?? '').split(',');
+      return tags.includes(activeTag);
+    }
+
+    function render() {
+      const visibleIdx = items.map((_, i) => i).filter(matches);
+      const pages = Math.max(1, Math.ceil(visibleIdx.length / PAGE_SIZE));
+      if (page > pages) page = pages;
+
+      items.forEach((li) => (li.style.display = 'none'));
+      visibleIdx.forEach((idx, pos) => {
+        const onPage = pos >= (page - 1) * PAGE_SIZE && pos < page * PAGE_SIZE;
+        items[idx].style.display = onPage ? '' : 'none';
+      });
+
+      if (pagination) {
+        if (pages > 1) {
+          pagination.hidden = false;
+          if (prevBtn) prevBtn.disabled = page <= 1;
+          if (nextBtn) nextBtn.disabled = page >= pages;
+          if (pageInfo)
+            pageInfo.textContent = template
+              .replace('%n', String(page))
+              .replace('%m', String(pages));
+        } else {
+          pagination.hidden = true;
+        }
+      }
+    }
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeTag = btn.dataset.filter ?? 'all';
+        page = 1;
+        filterBtns.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+        render();
+      });
+    });
+    prevBtn?.addEventListener('click', () => {
+      if (page > 1) {
+        page--;
+        render();
+      }
+    });
+    nextBtn?.addEventListener('click', () => {
+      page++;
+      render();
+    });
+
+    render();
+  }
+</script>

@@ -1,0 +1,134 @@
+---
+import {
+  LOCALES,
+  LOCALE_NAMES,
+  LOCALE_FLAGS,
+  localizePath,
+  useTranslations,
+  type Locale,
+} from '../../lib/i18n';
+
+interface Props {
+  lang: Locale;
+  /** Path without locale prefix for the current page ('' = home, 'blog'). */
+  pathWithoutLocale?: string;
+  /** Optional per-locale override (e.g. blog posts that only exist in some langs). */
+  pathByLocale?: Partial<Record<Locale, string>>;
+}
+const { lang, pathWithoutLocale = '', pathByLocale } = Astro.props;
+const t = useTranslations(lang);
+
+function targetFor(l: Locale): string {
+  const p = pathByLocale?.[l] ?? pathWithoutLocale;
+  return localizePath(l, p);
+}
+---
+
+<details class="lang" aria-label={t('lang.select')}>
+  <summary aria-haspopup="listbox">
+    <span aria-hidden="true">{LOCALE_FLAGS[lang]}</span>
+    <span class="lang-code">{lang.toUpperCase()}</span>
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      aria-hidden="true"
+    >
+      <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+  </summary>
+  <ul role="listbox">
+    {
+      LOCALES.map((l) => (
+        <li role="option" aria-selected={l === lang}>
+          <a href={targetFor(l)} hreflang={l} aria-current={l === lang ? 'true' : undefined}>
+            <span aria-hidden="true">{LOCALE_FLAGS[l]}</span>
+            <span>{LOCALE_NAMES[l]}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</details>
+
+<style>
+  .lang {
+    position: relative;
+  }
+  .lang > summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    list-style: none;
+    cursor: pointer;
+    height: 2.5rem;
+    padding: 0 0.7rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--glass-border);
+    background: color-mix(in srgb, var(--surface) 60%, transparent);
+    color: var(--ink);
+    font-size: 0.85rem;
+    user-select: none;
+  }
+  .lang > summary::-webkit-details-marker {
+    display: none;
+  }
+  .lang > summary:hover {
+    border-color: var(--primary);
+  }
+  .lang-code {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+  .lang[open] > summary svg {
+    transform: rotate(180deg);
+  }
+  ul {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.5rem);
+    z-index: 50;
+    min-width: 11rem;
+    margin: 0;
+    padding: 0.35rem;
+    list-style: none;
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-glass);
+  }
+  li a {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.6rem;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+  li a:hover,
+  li a[aria-current='true'] {
+    background: color-mix(in srgb, var(--primary) 12%, transparent);
+    color: var(--primary);
+  }
+</style>
+
+<script>
+  // Close the dropdown on outside click or Escape.
+  document.addEventListener('click', (e) => {
+    document.querySelectorAll<HTMLDetailsElement>('details.lang[open]').forEach((d) => {
+      if (!d.contains(e.target as Node)) d.open = false;
+    });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document
+        .querySelectorAll<HTMLDetailsElement>('details.lang[open]')
+        .forEach((d) => (d.open = false));
+    }
+  });
+</script>
