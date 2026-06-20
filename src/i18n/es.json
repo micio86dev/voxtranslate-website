@@ -31,10 +31,22 @@
   },
   "social": {
     "title": "Hecho para conversaciones sin fronteras",
-    "languages": { "value": "84", "label": "Idiomas" },
-    "tiers": { "value": "4", "label": "Niveles de motor" },
-    "latency": { "value": "<250ms", "label": "Latencia en directo" },
-    "p2p": { "value": "P2P", "label": "Privado por diseño" }
+    "languages": {
+      "value": "2,000+",
+      "label": "Pares de idiomas"
+    },
+    "tiers": {
+      "value": "4",
+      "label": "Niveles de motor"
+    },
+    "latency": {
+      "value": "<250ms",
+      "label": "Latencia en directo"
+    },
+    "p2p": {
+      "value": "P2P",
+      "label": "Privado por diseño"
+    }
   },
   "features": {
     "title": "Todo lo que necesitas para que te entiendan",

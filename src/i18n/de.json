@@ -31,10 +31,22 @@
   },
   "social": {
     "title": "Gemacht für Gespräche ohne Grenzen",
-    "languages": { "value": "84", "label": "Sprachen" },
-    "tiers": { "value": "4", "label": "Engine-Stufen" },
-    "latency": { "value": "<250ms", "label": "Live-Latenz" },
-    "p2p": { "value": "P2P", "label": "Privat by Design" }
+    "languages": {
+      "value": "2,000+",
+      "label": "Sprachpaare"
+    },
+    "tiers": {
+      "value": "4",
+      "label": "Engine-Stufen"
+    },
+    "latency": {
+      "value": "<250ms",
+      "label": "Live-Latenz"
+    },
+    "p2p": {
+      "value": "P2P",
+      "label": "Privat by Design"
+    }
   },
   "features": {
     "title": "Alles, damit du verstanden wirst",

@@ -31,10 +31,22 @@
   },
   "social": {
     "title": "Built for conversations without borders",
-    "languages": { "value": "84", "label": "Languages" },
-    "tiers": { "value": "4", "label": "Engine tiers" },
-    "latency": { "value": "<250ms", "label": "Live latency" },
-    "p2p": { "value": "P2P", "label": "Private by design" }
+    "languages": {
+      "value": "2,000+",
+      "label": "Language pairs"
+    },
+    "tiers": {
+      "value": "4",
+      "label": "Engine tiers"
+    },
+    "latency": {
+      "value": "<250ms",
+      "label": "Live latency"
+    },
+    "p2p": {
+      "value": "P2P",
+      "label": "Private by design"
+    }
   },
   "features": {
     "title": "Everything you need to be understood",
