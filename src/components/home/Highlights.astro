@@ -8,7 +8,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-type Item = { badge: 'free' | 'paid'; title: string; desc: string };
+type Item = { title: string; desc: string };
 const items = tList<Item>(lang, 'highlights.items');
 
 // Icons (app set) in the same order as highlights.items.
@@ -32,9 +32,6 @@ const icons = ['users', 'recording', 'subtitle', 'sparkles', 'mail'];
                 aria-hidden="true"
                 set:html={icon(icons[i] ?? 'sparkles', 22)}
               />
-              <span class={`hl-badge hl-${item.badge}`}>
-                {item.badge === 'free' ? t('highlights.free') : t('highlights.paid')}
-              </span>
             </div>
             <h3>{item.title}</h3>
             <p>{item.desc}</p>
@@ -80,7 +77,6 @@ const icons = ['users', 'recording', 'subtitle', 'sparkles', 'mail'];
   .hl-top {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin-bottom: 1rem;
   }
   .hl-icon {
@@ -95,28 +91,6 @@ const icons = ['users', 'recording', 'subtitle', 'sparkles', 'mail'];
   .hl-icon :global(.ico) {
     width: 22px;
     height: 22px;
-  }
-  .hl-badge {
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    padding: 0.2rem 0.6rem;
-    border-radius: 999px;
-    border: 1px solid transparent;
-  }
-  .hl-free {
-    color: #16a34a;
-    background: color-mix(in srgb, #22c55e 16%, transparent);
-    border-color: color-mix(in srgb, #22c55e 35%, transparent);
-  }
-  :global(.dark) .hl-free {
-    color: #4ade80;
-  }
-  .hl-paid {
-    color: var(--primary);
-    background: color-mix(in srgb, var(--primary) 14%, transparent);
-    border-color: color-mix(in srgb, var(--primary) 35%, transparent);
   }
   .hl-card h3 {
     font-size: 1.15rem;
