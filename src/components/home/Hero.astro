@@ -5,10 +5,11 @@ import { APP_URL } from '../../lib/site';
 import { icon } from '../../lib/icons';
 
 // In-call control bar — same icons as the app (mic, camera, screen share, chat,
-// leave). `leave` is the red hang-up; the rest are neutral controls.
+// leave). Mic + camera are green (active/on), `leave` is the red hang-up, the
+// rest are neutral.
 const controls = [
-  { name: 'mic', kind: 'neutral' },
-  { name: 'video', kind: 'neutral' },
+  { name: 'mic', kind: 'success' },
+  { name: 'video', kind: 'success' },
   { name: 'monitor', kind: 'neutral' },
   { name: 'chat', kind: 'neutral' },
   { name: 'leave', kind: 'leave' },
@@ -197,6 +198,11 @@ const tiles = [
   .ctrl :global(.ico) {
     width: 15px;
     height: 15px;
+  }
+  .ctrl-success {
+    background: #22c55e;
+    border-color: transparent;
+    color: #fff;
   }
   .ctrl-leave {
     background: #ef4444;

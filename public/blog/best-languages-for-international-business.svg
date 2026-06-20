@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" fill="none" role="img" aria-label="VoxTranslate">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse"><stop stop-color="#0a0b10"/><stop offset="1" stop-color="#13141c"/></linearGradient>
+    <radialGradient id="g1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(220 150) rotate(40) scale(620)"><stop stop-color="#0ea5e9" stop-opacity="0.5"/><stop offset="1" stop-color="#0ea5e9" stop-opacity="0"/></radialGradient>
+    <radialGradient id="g2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1000 560) rotate(210) scale(580)"><stop stop-color="#06b6d4" stop-opacity="0.45"/><stop offset="1" stop-color="#06b6d4" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#g1)"/>
+  <rect width="1200" height="675" fill="url(#g2)"/>
+  <g opacity="0.92"><rect x="480" y="360" width="44" height="120" rx="10" fill="#3b82f6"/><rect x="540" y="280" width="44" height="200" rx="10" fill="#60a5fa"/><rect x="600" y="200" width="44" height="280" rx="10" fill="#0ea5e9"/><rect x="660" y="320" width="44" height="160" rx="10" fill="#22d3ee"/><rect x="720" y="240" width="44" height="240" rx="10" fill="#4cd7f6"/></g>
+  <text x="80" y="610" font-family="Sora, sans-serif" font-size="34" font-weight="700" fill="#e2e4ec">Vox<tspan fill="#3b82f6">Translate</tspan></text>
+</svg>
