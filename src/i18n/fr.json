@@ -196,10 +196,18 @@
       "app": "Ouvrir l'app",
       "privacy": "Confidentialité",
       "terms": "Conditions",
-      "acceptableUse": "Usage acceptable"
+      "acceptableUse": "Usage acceptable",
+      "cookies": "Paramètres des cookies"
     },
     "rights": "Tous droits réservés.",
     "builtWith": "Parlez librement, partout."
+  },
+  "consent": {
+    "title": "Votre confidentialité",
+    "message": "Nous utilisons des cookies marketing optionnels (Meta Pixel) pour mesurer notre publicité. Ils ne se chargent qu'avec votre accord — modifiez votre choix à tout moment ci-dessous.",
+    "accept": "Accepter",
+    "reject": "Refuser",
+    "privacy": "Politique de confidentialité"
   },
   "blog": {
     "title": "Le blog VoxTranslate",

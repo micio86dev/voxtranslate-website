@@ -1,0 +1,225 @@
+---
+import { useTranslations, type Locale } from '../../lib/i18n';
+import { LEGAL_URLS, FB_PIXEL_ID } from '../../lib/site';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+{
+  /*
+  GDPR/ePrivacy consent gate: the Meta Pixel loads ONLY after the visitor
+  accepts. No tracking before consent, "Reject" is as prominent as "Accept",
+  the choice persists, and it can be changed later via the footer link.
+  Hidden by default — no JS / no choice ⇒ no banner shown and no pixel loaded.
+*/
+}
+<div
+  id="vox-consent"
+  class="consent"
+  role="dialog"
+  aria-live="polite"
+  aria-label={t('consent.title')}
+  hidden
+>
+  <div class="consent-inner container-page">
+    <div class="consent-copy">
+      <strong>{t('consent.title')}</strong>
+      <p>
+        {t('consent.message')}{' '}
+        <a href={LEGAL_URLS.privacy} rel="noopener">{t('consent.privacy')}</a>
+      </p>
+    </div>
+    <div class="consent-actions">
+      <button type="button" id="vox-consent-reject" class="consent-btn ghost">
+        {t('consent.reject')}
+      </button>
+      <button type="button" id="vox-consent-accept" class="consent-btn primary">
+        {t('consent.accept')}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ FB_PIXEL_ID }}>
+  (function () {
+    const KEY = 'vox-consent';
+    const banner = document.getElementById('vox-consent');
+
+    function loadPixel() {
+      if (window.fbq) return;
+      const n = function (...args) {
+        if (n.callMethod) n.callMethod(...args);
+        else n.queue.push(args);
+      };
+      n.queue = [];
+      n.loaded = true;
+      n.version = '2.0';
+      n.push = n;
+      window.fbq = n;
+      if (!window._fbq) window._fbq = n;
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://connect.facebook.net/en_US/fbevents.js';
+      const first = document.getElementsByTagName('script')[0];
+      first.parentNode.insertBefore(s, first);
+      window.fbq('init', FB_PIXEL_ID);
+      window.fbq('track', 'PageView');
+    }
+
+    function getConsent() {
+      try {
+        return localStorage.getItem(KEY);
+      } catch {
+        return null;
+      }
+    }
+    function storeConsent(v) {
+      try {
+        localStorage.setItem(KEY, v);
+      } catch {
+        /* storage unavailable — fail closed (no pixel) */
+      }
+    }
+    function show() {
+      if (banner) banner.hidden = false;
+    }
+    function hide() {
+      if (banner) banner.hidden = true;
+    }
+
+    const choice = getConsent();
+    if (choice === 'granted') loadPixel();
+    else if (choice !== 'denied') show(); // undecided → ask before loading anything
+
+    const accept = document.getElementById('vox-consent-accept');
+    const reject = document.getElementById('vox-consent-reject');
+    if (accept) {
+      accept.addEventListener('click', function () {
+        storeConsent('granted');
+        hide();
+        loadPixel();
+      });
+    }
+    if (reject) {
+      reject.addEventListener('click', function () {
+        const had = getConsent();
+        storeConsent('denied');
+        hide();
+        // Withdrawing a prior consent: reload to drop the already-loaded pixel.
+        if (had === 'granted' || window.fbq) location.reload();
+      });
+    }
+
+    // Re-open from the footer "Cookie settings" link to change the choice.
+    window.voxOpenConsent = show;
+    const reopen = document.getElementById('vox-consent-reopen');
+    if (reopen) {
+      reopen.addEventListener('click', function (e) {
+        e.preventDefault();
+        show();
+      });
+    }
+  })();
+</script>
+
+<style>
+  .consent {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    padding: 1rem;
+    background: color-mix(in srgb, var(--base-2) 88%, transparent);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--glass-border);
+    animation: consent-in 0.25s ease both;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .consent {
+      animation: none;
+    }
+  }
+  @keyframes consent-in {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+  .consent-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .consent-copy {
+    flex: 1 1 22rem;
+    min-width: 0;
+  }
+  .consent-copy strong {
+    display: block;
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+    color: var(--ink);
+  }
+  .consent-copy p {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+  .consent-copy a {
+    color: var(--primary);
+    text-decoration: underline;
+  }
+  .consent-actions {
+    display: flex;
+    gap: 0.6rem;
+    flex-shrink: 0;
+  }
+  .consent-btn {
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.55rem 1.1rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    border: 1px solid var(--glass-border);
+    transition:
+      background 0.15s ease,
+      border-color 0.15s ease;
+  }
+  .consent-btn.ghost {
+    background: transparent;
+    color: var(--ink);
+  }
+  .consent-btn.ghost:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+  .consent-btn.primary {
+    background: var(--primary-strong);
+    color: var(--on-primary);
+    border-color: transparent;
+  }
+  .consent-btn.primary:hover {
+    filter: brightness(1.05);
+  }
+  .consent-btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+  @media (max-width: 640px) {
+    .consent-actions {
+      width: 100%;
+    }
+    .consent-btn {
+      flex: 1;
+    }
+  }
+</style>
