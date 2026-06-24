@@ -268,17 +268,17 @@
         {
           "icon": "🏢",
           "title": "Spazio di lavoro per il team",
-          "desc": "Organizza le chiamate per progetto e mantieni una cronologia completa e ricercabile per tutta l'organizzazione."
+          "desc": "Organizza le chiamate per progetto e conserva uno storico completo e filtrabile per tutta la tua organizzazione."
         },
         {
           "icon": "📝",
           "title": "Trascrizioni multilingue",
-          "desc": "Ogni chiamata trascritta e traducibile in 84 lingue, con etichette dei relatori e traduzione su richiesta."
+          "desc": "Registra qualsiasi chiamata per ottenere una trascrizione con i relatori, traducibile in 84 lingue, con etichette dei relatori e traduzione su richiesta."
         },
         {
           "icon": "🔒",
           "title": "Privacy e conformità",
-          "desc": "Registro di controllo, conservazione dei dati configurabile e archiviazione nell'UE — pensato per team regolamentati."
+          "desc": "Log di audit, conservazione dei dati configurabile e archiviazione privata con URL firmati — pensato per team regolamentati."
         }
       ]
     },
@@ -299,7 +299,8 @@
             "Cronologia chiamate illimitata",
             "Trascrizioni incluse",
             "Supporto via email"
-          ]
+          ],
+          "annual": "o €490/anno — 2 mesi gratis"
         },
         {
           "name": "Enterprise",
@@ -310,7 +311,8 @@
             "Modalità compliance + registro di controllo",
             "Conservazione dati configurabile",
             "SLA e supporto prioritario"
-          ]
+          ],
+          "annual": "o €1.990/anno — 2 mesi gratis"
         }
       ]
     },

@@ -268,17 +268,17 @@
         {
           "icon": "🏢",
           "title": "Team-Workspace",
-          "desc": "Organisiere Anrufe nach Projekt und behalte eine vollständige, durchsuchbare Historie für deine gesamte Organisation."
+          "desc": "Organisiere Anrufe nach Projekt und behalte den vollständigen, filterbaren Verlauf für deine gesamte Organisation."
         },
         {
           "icon": "📝",
           "title": "Mehrsprachige Transkripte",
-          "desc": "Jeder Anruf transkribiert und in 84 Sprachen übersetzbar, mit Sprecher-Labels und Übersetzung auf Abruf."
+          "desc": "Nimm jeden Anruf auf und erhalte ein Transkript mit Sprecher-Labels, übersetzbar in 84 Sprachen, mit Übersetzung auf Abruf."
         },
         {
           "icon": "🔒",
           "title": "Datenschutz & Compliance",
-          "desc": "Audit-Log, konfigurierbare Datenaufbewahrung und EU-Speicherung — für regulierte Teams."
+          "desc": "Audit-Log, konfigurierbare Datenaufbewahrung und privater Speicher mit signierten URLs — für regulierte Teams."
         }
       ]
     },
@@ -299,7 +299,8 @@
             "Unbegrenzte Anrufhistorie",
             "Transkripte inklusive",
             "E-Mail-Support"
-          ]
+          ],
+          "annual": "oder €490/Jahr — 2 Monate gratis"
         },
         {
           "name": "Enterprise",
@@ -310,7 +311,8 @@
             "Compliance-Modus + Audit-Log",
             "Konfigurierbare Datenaufbewahrung",
             "SLA & Priority-Support"
-          ]
+          ],
+          "annual": "oder €1.990/Jahr — 2 Monate gratis"
         }
       ]
     },

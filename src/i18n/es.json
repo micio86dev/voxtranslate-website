@@ -268,17 +268,17 @@
         {
           "icon": "🏢",
           "title": "Espacio de trabajo en equipo",
-          "desc": "Organiza las llamadas por proyecto y conserva un historial completo y consultable para toda tu organización."
+          "desc": "Organiza las llamadas por proyecto y guarda un historial completo y filtrable para toda tu organización."
         },
         {
           "icon": "📝",
           "title": "Transcripciones multilingües",
-          "desc": "Cada llamada transcrita y traducible a 84 idiomas, con etiquetas de hablante y traducción a demanda."
+          "desc": "Graba cualquier llamada para obtener una transcripción con hablantes, traducible a 84 idiomas, con etiquetas de hablante y traducción bajo demanda."
         },
         {
           "icon": "🔒",
           "title": "Privacidad y cumplimiento",
-          "desc": "Registro de auditoría, retención de datos configurable y almacenamiento en la UE — para equipos regulados."
+          "desc": "Registro de auditoría, retención de datos configurable y almacenamiento privado con URLs firmadas — diseñado para equipos regulados."
         }
       ]
     },
@@ -299,7 +299,8 @@
             "Historial de llamadas ilimitado",
             "Transcripciones incluidas",
             "Soporte por correo"
-          ]
+          ],
+          "annual": "o €490/año — 2 meses gratis"
         },
         {
           "name": "Enterprise",
@@ -310,7 +311,8 @@
             "Modo de cumplimiento + registro de auditoría",
             "Retención de datos configurable",
             "SLA y soporte prioritario"
-          ]
+          ],
+          "annual": "o €1990/año — 2 meses gratis"
         }
       ]
     },

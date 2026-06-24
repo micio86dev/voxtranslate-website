@@ -268,17 +268,17 @@
         {
           "icon": "🏢",
           "title": "Espace de travail d'équipe",
-          "desc": "Organisez les appels par projet et conservez un historique complet et consultable pour toute votre organisation."
+          "desc": "Organisez les appels par projet et conservez un historique complet et filtrable pour toute votre organisation."
         },
         {
           "icon": "📝",
           "title": "Transcriptions multilingues",
-          "desc": "Chaque appel transcrit et traduisible en 84 langues, avec étiquettes de locuteur et traduction à la demande."
+          "desc": "Enregistrez n'importe quel appel pour obtenir une transcription avec locuteurs, traduisible en 84 langues, avec étiquettes de locuteur et traduction à la demande."
         },
         {
           "icon": "🔒",
           "title": "Confidentialité et conformité",
-          "desc": "Journal d'audit, conservation des données configurable et stockage dans l'UE — pour les équipes réglementées."
+          "desc": "Journal d'audit, rétention des données configurable et stockage privé à URL signées — conçu pour les équipes réglementées."
         }
       ]
     },
@@ -299,7 +299,8 @@
             "Historique des appels illimité",
             "Transcriptions incluses",
             "Support par e-mail"
-          ]
+          ],
+          "annual": "ou €490/an — 2 mois offerts"
         },
         {
           "name": "Enterprise",
@@ -310,7 +311,8 @@
             "Mode conformité + journal d'audit",
             "Conservation des données configurable",
             "SLA et support prioritaire"
-          ]
+          ],
+          "annual": "ou €1990/an — 2 mois offerts"
         }
       ]
     },

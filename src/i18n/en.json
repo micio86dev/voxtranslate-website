@@ -193,17 +193,17 @@
         {
           "icon": "🏢",
           "title": "Team workspace",
-          "desc": "Organize calls by project and keep full, searchable history for your whole organization."
+          "desc": "Organize calls by project and keep a full, filterable history for your whole organization."
         },
         {
           "icon": "📝",
           "title": "Multilingual transcripts",
-          "desc": "Every call transcribed and translatable into 84 languages, with speaker labels and on-demand translation."
+          "desc": "Record any call for a diarized transcript — translatable into 84 languages, with speaker labels and on-demand translation."
         },
         {
           "icon": "🔒",
           "title": "Privacy & compliance",
-          "desc": "Audit log, configurable data retention and EU storage — built for regulated teams."
+          "desc": "Audit log, configurable data retention and private, signed-URL storage — built for regulated teams."
         }
       ]
     },
@@ -224,7 +224,8 @@
             "Unlimited call history",
             "Transcripts included",
             "Email support"
-          ]
+          ],
+          "annual": "or €490/yr — 2 months free"
         },
         {
           "name": "Enterprise",
@@ -235,7 +236,8 @@
             "Compliance mode + audit log",
             "Configurable data retention",
             "SLA & priority support"
-          ]
+          ],
+          "annual": "or €1,990/yr — 2 months free"
         }
       ]
     },
@@ -245,12 +247,36 @@
       "vox": "VoxTranslate",
       "meet": "Google Meet",
       "rows": [
-        { "feature": "Languages", "vox": "84", "meet": "6" },
-        { "feature": "Translated recording", "vox": "yes", "meet": "no" },
-        { "feature": "Call history", "vox": "yes", "meet": "no" },
-        { "feature": "Standalone", "vox": "yes", "meet": "Requires Workspace" },
-        { "feature": "Price", "vox": "From €49/org", "meet": "From $14/user" },
-        { "feature": "Mobile support", "vox": "yes", "meet": "Later 2026" }
+        {
+          "feature": "Languages",
+          "vox": "84",
+          "meet": "6"
+        },
+        {
+          "feature": "Translated recording",
+          "vox": "yes",
+          "meet": "no"
+        },
+        {
+          "feature": "Call history",
+          "vox": "yes",
+          "meet": "no"
+        },
+        {
+          "feature": "Standalone",
+          "vox": "yes",
+          "meet": "Requires Workspace"
+        },
+        {
+          "feature": "Price",
+          "vox": "From €49/org",
+          "meet": "From $14/user"
+        },
+        {
+          "feature": "Mobile support",
+          "vox": "yes",
+          "meet": "Later 2026"
+        }
       ]
     },
     "cta": {

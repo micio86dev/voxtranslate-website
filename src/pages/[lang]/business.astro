@@ -23,7 +23,7 @@ const features = tList<{ icon: string; title: string; desc: string }>(
   lang,
   'business.features.items',
 );
-const plans = tList<{ name: string; price: string; points: string[] }>(
+const plans = tList<{ name: string; price: string; points: string[]; annual?: string }>(
   lang,
   'business.pricing.plans',
 );
@@ -97,6 +97,7 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
                 <span class="biz-price">{plan.price}</span>
                 <span class="biz-per">{t('business.pricing.perMonth')}</span>
               </p>
+              {plan.annual && <p class="biz-annual">{plan.annual}</p>}
               <ul class="biz-plan-points">
                 {plan.points.map((p) => (
                   <li>
@@ -118,12 +119,12 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
                 ))}
               </ul>
               <Button
-                href={i === POPULAR ? `${DASHBOARD_URL}/` : mailto}
+                href={`${DASHBOARD_URL}/`}
                 variant={i === POPULAR ? 'primary' : 'ghost'}
                 rel="noopener"
                 class="biz-plan-cta"
               >
-                {i === POPULAR ? t('business.pricing.cta') : t('business.pricing.contactCta')}
+                {t('business.pricing.cta')}
               </Button>
             </li>
           ))
@@ -288,7 +289,7 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
     margin: 0 0 0.5rem;
   }
   .biz-plan-price {
-    margin: 0 0 1.25rem;
+    margin: 0 0 0.3rem;
     display: flex;
     align-items: baseline;
     gap: 0.3rem;
@@ -300,6 +301,11 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
   .biz-per {
     color: var(--muted);
     font-size: 0.9rem;
+  }
+  .biz-annual {
+    margin: 0 0 1.25rem;
+    color: var(--muted);
+    font-size: 0.85rem;
   }
   .biz-plan-points {
     list-style: none;
