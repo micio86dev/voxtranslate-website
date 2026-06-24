@@ -10,7 +10,8 @@
     "pricing": "Tarifs",
     "app": "Ouvrir l'app",
     "tryFree": "Essai gratuit",
-    "menu": "Menu"
+    "menu": "Menu",
+    "business": "Business"
   },
   "theme": {
     "toLight": "Passer au thème clair",
@@ -247,6 +248,114 @@
     "blog": {
       "title": "Blog — VoxTranslate",
       "description": "Guides et comparatifs sur la traduction vocale en temps réel : fonctionnement des niveaux de moteur, lequel choisir, et VoxTranslate face aux interprètes classiques."
+    },
+    "business": {
+      "title": "VoxTranslate for Business — réunions multilingues pour les équipes",
+      "description": "Appels vidéo traduits pour toute votre équipe : historique partagé, transcriptions multilingues, projets et conformité — en 84 langues. À partir de €49/mois par organisation."
+    }
+  },
+  "business": {
+    "hero": {
+      "badge": "VoxTranslate for Business",
+      "title": "Réunions multilingues en temps réel pour votre équipe",
+      "subtitle": "Offrez à votre équipe des appels vidéo traduits avec historique partagé, transcriptions et projets — en 84 langues.",
+      "ctaPrimary": "Commencer",
+      "ctaSecondary": "Nous contacter"
+    },
+    "features": {
+      "title": "Conçu pour les équipes qui travaillent entre les langues",
+      "items": [
+        {
+          "icon": "🏢",
+          "title": "Espace de travail d'équipe",
+          "desc": "Organisez les appels par projet et conservez un historique complet et consultable pour toute votre organisation."
+        },
+        {
+          "icon": "📝",
+          "title": "Transcriptions multilingues",
+          "desc": "Chaque appel transcrit et traduisible en 84 langues, avec étiquettes de locuteur et traduction à la demande."
+        },
+        {
+          "icon": "🔒",
+          "title": "Confidentialité et conformité",
+          "desc": "Journal d'audit, conservation des données configurable et stockage dans l'UE — pour les équipes réglementées."
+        }
+      ]
+    },
+    "pricing": {
+      "title": "Des forfaits simples pour chaque équipe",
+      "subtitle": "Tarif par organisation, pas par siège. Renouvellement automatique — annulez à tout moment.",
+      "perMonth": "/mois",
+      "popular": "Le plus populaire",
+      "cta": "Commencer",
+      "contactCta": "Contacter le service commercial",
+      "plans": [
+        {
+          "name": "Business",
+          "price": "€49",
+          "points": [
+            "Crédits mensuels inclus",
+            "Jusqu'à 20 membres",
+            "Historique des appels illimité",
+            "Transcriptions incluses",
+            "Support par e-mail"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "price": "€199",
+          "points": [
+            "Plus de crédits inclus",
+            "Membres illimités",
+            "Mode conformité + journal d'audit",
+            "Conservation des données configurable",
+            "SLA et support prioritaire"
+          ]
+        }
+      ]
+    },
+    "compare": {
+      "title": "VoxTranslate vs Google Meet",
+      "feature": "Fonctionnalité",
+      "vox": "VoxTranslate",
+      "meet": "Google Meet",
+      "rows": [
+        {
+          "feature": "Langues",
+          "vox": "84",
+          "meet": "6"
+        },
+        {
+          "feature": "Enregistrement traduit",
+          "vox": "yes",
+          "meet": "no"
+        },
+        {
+          "feature": "Historique des appels",
+          "vox": "yes",
+          "meet": "no"
+        },
+        {
+          "feature": "Autonome",
+          "vox": "yes",
+          "meet": "Nécessite Workspace"
+        },
+        {
+          "feature": "Prix",
+          "vox": "À partir de €49/org",
+          "meet": "À partir de $14/utilisateur"
+        },
+        {
+          "feature": "Compatible mobile",
+          "vox": "yes",
+          "meet": "Plus tard en 2026"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Réunissez votre équipe, dans toutes les langues",
+      "subtitle": "Configurez votre espace de travail en quelques minutes. Commencez gratuitement, invitez votre équipe et tenez aujourd'hui votre première réunion traduite.",
+      "button": "Commencer"
     }
   }
 }

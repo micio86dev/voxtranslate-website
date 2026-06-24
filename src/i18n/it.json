@@ -10,7 +10,8 @@
     "pricing": "Prezzi",
     "app": "Apri l'app",
     "tryFree": "Prova gratis",
-    "menu": "Menu"
+    "menu": "Menu",
+    "business": "Business"
   },
   "theme": {
     "toLight": "Passa al tema chiaro",
@@ -247,6 +248,114 @@
     "blog": {
       "title": "Blog — VoxTranslate",
       "description": "Guide e confronti sulla traduzione vocale in tempo reale: come funzionano i livelli di motore, quale scegliere e VoxTranslate rispetto agli interpreti tradizionali."
+    },
+    "business": {
+      "title": "VoxTranslate for Business — riunioni multilingue per i team",
+      "description": "Videochiamate tradotte per tutto il team: cronologia condivisa, trascrizioni multilingue, progetti e conformità — in 84 lingue. Da €49/mese per organizzazione."
+    }
+  },
+  "business": {
+    "hero": {
+      "badge": "VoxTranslate for Business",
+      "title": "Riunioni multilingue in tempo reale per il tuo team",
+      "subtitle": "Offri al tuo team videochiamate tradotte con cronologia condivisa, trascrizioni e progetti — in 84 lingue.",
+      "ctaPrimary": "Inizia ora",
+      "ctaSecondary": "Contattaci"
+    },
+    "features": {
+      "title": "Pensato per team che lavorano tra più lingue",
+      "items": [
+        {
+          "icon": "🏢",
+          "title": "Spazio di lavoro per il team",
+          "desc": "Organizza le chiamate per progetto e mantieni una cronologia completa e ricercabile per tutta l'organizzazione."
+        },
+        {
+          "icon": "📝",
+          "title": "Trascrizioni multilingue",
+          "desc": "Ogni chiamata trascritta e traducibile in 84 lingue, con etichette dei relatori e traduzione su richiesta."
+        },
+        {
+          "icon": "🔒",
+          "title": "Privacy e conformità",
+          "desc": "Registro di controllo, conservazione dei dati configurabile e archiviazione nell'UE — pensato per team regolamentati."
+        }
+      ]
+    },
+    "pricing": {
+      "title": "Piani semplici per ogni team",
+      "subtitle": "Prezzo per organizzazione, non per utente. Si rinnova automaticamente — annulla quando vuoi.",
+      "perMonth": "/mese",
+      "popular": "Più popolare",
+      "cta": "Inizia ora",
+      "contactCta": "Contatta le vendite",
+      "plans": [
+        {
+          "name": "Business",
+          "price": "€49",
+          "points": [
+            "Crediti mensili inclusi",
+            "Fino a 20 membri",
+            "Cronologia chiamate illimitata",
+            "Trascrizioni incluse",
+            "Supporto via email"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "price": "€199",
+          "points": [
+            "Più crediti inclusi",
+            "Membri illimitati",
+            "Modalità compliance + registro di controllo",
+            "Conservazione dati configurabile",
+            "SLA e supporto prioritario"
+          ]
+        }
+      ]
+    },
+    "compare": {
+      "title": "VoxTranslate vs Google Meet",
+      "feature": "Funzionalità",
+      "vox": "VoxTranslate",
+      "meet": "Google Meet",
+      "rows": [
+        {
+          "feature": "Lingue",
+          "vox": "84",
+          "meet": "6"
+        },
+        {
+          "feature": "Registrazione tradotta",
+          "vox": "yes",
+          "meet": "no"
+        },
+        {
+          "feature": "Cronologia chiamate",
+          "vox": "yes",
+          "meet": "no"
+        },
+        {
+          "feature": "Indipendente",
+          "vox": "yes",
+          "meet": "Richiede Workspace"
+        },
+        {
+          "feature": "Prezzo",
+          "vox": "Da €49/org",
+          "meet": "Da $14/utente"
+        },
+        {
+          "feature": "Supporto mobile",
+          "vox": "yes",
+          "meet": "Più avanti nel 2026"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Unisci il tuo team, in ogni lingua",
+      "subtitle": "Configura il tuo spazio di lavoro in pochi minuti. Inizia gratis, invita il team e fai oggi la tua prima riunione tradotta.",
+      "button": "Inizia ora"
     }
   }
 }

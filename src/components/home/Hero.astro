@@ -24,10 +24,34 @@ const t = useTranslations(lang);
 // Decorative call-grid tiles. Faces are synthetic (AI-generated, not real
 // people); fixed dimensions + aspect-ratio keep CLS at zero.
 const tiles = [
-  { flag: '🇮🇹', name: 'Giulia', caption: 'Ciao a tutti!', sub: 'Hi everyone!', img: '/people/giulia.webp' },
-  { flag: '🇯🇵', name: 'Haru', caption: 'はじめまして', sub: 'Nice to meet you', img: '/people/haru.webp' },
-  { flag: '🇪🇸', name: 'Mateo', caption: '¿Empezamos?', sub: 'Shall we start?', img: '/people/mateo.webp' },
-  { flag: '🇩🇪', name: 'Lena', caption: 'Klar, los geht’s', sub: 'Sure, let’s go', img: '/people/lena.webp' },
+  {
+    flag: '🇮🇹',
+    name: 'Giulia',
+    caption: 'Ciao a tutti!',
+    sub: 'Hi everyone!',
+    img: '/people/giulia.webp',
+  },
+  {
+    flag: '🇯🇵',
+    name: 'Haru',
+    caption: 'はじめまして',
+    sub: 'Nice to meet you',
+    img: '/people/haru.webp',
+  },
+  {
+    flag: '🇪🇸',
+    name: 'Mateo',
+    caption: '¿Empezamos?',
+    sub: 'Shall we start?',
+    img: '/people/mateo.webp',
+  },
+  {
+    flag: '🇩🇪',
+    name: 'Lena',
+    caption: 'Klar, los geht’s',
+    sub: 'Sure, let’s go',
+    img: '/people/lena.webp',
+  },
 ];
 ---
 
@@ -65,7 +89,7 @@ const tiles = [
                 <div class="tile-top">
                   <span class="tile-flag">{tile.flag}</span>
                   <span class="tile-name">{tile.name}</span>
-                  <span class="tile-live"></span>
+                  <span class="tile-live" />
                 </div>
                 <div class="tile-caption">
                   <span class="orig">{tile.caption}</span>

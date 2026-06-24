@@ -6,6 +6,7 @@ import Features from '../../components/home/Features.astro';
 import HowItWorks from '../../components/home/HowItWorks.astro';
 import Highlights from '../../components/home/Highlights.astro';
 import Tiers from '../../components/home/Tiers.astro';
+import Business from '../../components/home/Business.astro';
 import FinalCTA from '../../components/home/FinalCTA.astro';
 import { LOCALES, useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../lib/i18n';
 import { websiteJsonLd, softwareAppJsonLd } from '../../lib/seo';
@@ -34,6 +35,7 @@ const jsonLd = [websiteJsonLd(Astro.site, lang), softwareAppJsonLd(Astro.site)];
   <HowItWorks lang={lang} />
   <Highlights lang={lang} />
   <Tiers lang={lang} />
+  <Business lang={lang} />
   <FinalCTA lang={lang} />
 </BaseLayout>
 

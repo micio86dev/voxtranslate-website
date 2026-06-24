@@ -1,0 +1,389 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import {
+  LOCALES,
+  useTranslations,
+  tList,
+  isLocale,
+  DEFAULT_LOCALE,
+  type Locale,
+} from '../../lib/i18n';
+import { DASHBOARD_URL, CONTACT_EMAIL } from '../../lib/site';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const langParam = Astro.params.lang;
+const lang: Locale = isLocale(langParam) ? langParam : DEFAULT_LOCALE;
+const t = useTranslations(lang);
+
+const features = tList<{ icon: string; title: string; desc: string }>(
+  lang,
+  'business.features.items',
+);
+const plans = tList<{ name: string; price: string; points: string[] }>(
+  lang,
+  'business.pricing.plans',
+);
+const rows = tList<{ feature: string; vox: string; meet: string }>(lang, 'business.compare.rows');
+const POPULAR = 0; // Business
+const mailto = `mailto:${CONTACT_EMAIL}`;
+---
+
+<BaseLayout
+  lang={lang}
+  title={t('meta.business.title')}
+  description={t('meta.business.description')}
+  pathWithoutLocale="business"
+>
+  <!-- Hero -->
+  <section class="biz-hero">
+    <div class="container-page" data-reveal>
+      <span class="badge badge-accent">{t('business.hero.badge')}</span>
+      <h1>{t('business.hero.title')}</h1>
+      <p class="biz-sub">{t('business.hero.subtitle')}</p>
+      <div class="biz-cta-row">
+        <Button href={`${DASHBOARD_URL}/`} variant="primary" rel="noopener">
+          {t('business.hero.ctaPrimary')}
+        </Button>
+        <Button href={mailto} variant="ghost">{t('business.hero.ctaSecondary')}</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features (3 columns) -->
+  <section class="biz-features">
+    <div class="container-page">
+      <header class="section-head" data-reveal>
+        <h2>{t('business.features.title')}</h2>
+      </header>
+      <ul class="biz-feature-grid">
+        {
+          features.map((f) => (
+            <li class="biz-feature glass" data-reveal>
+              <span class="biz-feature-icon" aria-hidden="true">
+                {f.icon}
+              </span>
+              <h3>{f.title}</h3>
+              <p>{f.desc}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="biz-pricing" id="pricing">
+    <div class="container-page">
+      <header class="section-head" data-reveal>
+        <h2>{t('business.pricing.title')}</h2>
+        <p>{t('business.pricing.subtitle')}</p>
+      </header>
+      <ul class="biz-plan-grid">
+        {
+          plans.map((plan, i) => (
+            <li
+              class={`biz-plan glass ${i === POPULAR ? 'biz-plan-popular glass-glow' : ''}`}
+              data-reveal
+            >
+              {i === POPULAR && (
+                <span class="biz-flag badge badge-accent">{t('business.pricing.popular')}</span>
+              )}
+              <h3 class="biz-plan-name">{plan.name}</h3>
+              <p class="biz-plan-price">
+                <span class="biz-price">{plan.price}</span>
+                <span class="biz-per">{t('business.pricing.perMonth')}</span>
+              </p>
+              <ul class="biz-plan-points">
+                {plan.points.map((p) => (
+                  <li>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+              <Button
+                href={i === POPULAR ? `${DASHBOARD_URL}/` : mailto}
+                variant={i === POPULAR ? 'primary' : 'ghost'}
+                rel="noopener"
+                class="biz-plan-cta"
+              >
+                {i === POPULAR ? t('business.pricing.cta') : t('business.pricing.contactCta')}
+              </Button>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Comparison table -->
+  <section class="biz-compare">
+    <div class="container-page">
+      <header class="section-head" data-reveal>
+        <h2>{t('business.compare.title')}</h2>
+      </header>
+      <div class="biz-table-wrap glass" data-reveal>
+        <table class="biz-table">
+          <thead>
+            <tr>
+              <th scope="col">{t('business.compare.feature')}</th>
+              <th scope="col" class="biz-col-vox">{t('business.compare.vox')}</th>
+              <th scope="col">{t('business.compare.meet')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              rows.map((r) => (
+                <tr>
+                  <th scope="row">{r.feature}</th>
+                  <td class="biz-col-vox">
+                    {r.vox === 'yes' ? (
+                      <span class="biz-yes" aria-label="Yes">
+                        ✓
+                      </span>
+                    ) : r.vox === 'no' ? (
+                      <span class="biz-no" aria-label="No">
+                        ✗
+                      </span>
+                    ) : (
+                      r.vox
+                    )}
+                  </td>
+                  <td>
+                    {r.meet === 'yes' ? (
+                      <span class="biz-yes" aria-label="Yes">
+                        ✓
+                      </span>
+                    ) : r.meet === 'no' ? (
+                      <span class="biz-no" aria-label="No">
+                        ✗
+                      </span>
+                    ) : (
+                      r.meet
+                    )}
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="biz-final">
+    <div class="container-page" data-reveal>
+      <div class="biz-final-card glass glass-glow">
+        <h2>{t('business.cta.title')}</h2>
+        <p>{t('business.cta.subtitle')}</p>
+        <Button href={`${DASHBOARD_URL}/`} variant="primary" rel="noopener">
+          {t('business.cta.button')}
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import '../../scripts/animations';
+</script>
+
+<style>
+  .biz-hero {
+    padding-block: clamp(3.5rem, 9vw, 6.5rem);
+    text-align: center;
+  }
+  .biz-hero h1 {
+    font-size: clamp(2rem, 6vw, 3.4rem);
+    margin: 1rem auto 0.75rem;
+    max-width: 18ch;
+  }
+  .biz-sub {
+    color: var(--muted);
+    font-size: 1.15rem;
+    max-width: 44rem;
+    margin: 0 auto 1.75rem;
+  }
+  .biz-cta-row {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .section-head {
+    max-width: 42rem;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+  }
+  .section-head h2 {
+    font-size: clamp(1.7rem, 4.5vw, 2.4rem);
+    margin: 0 0 0.5rem;
+  }
+  .section-head p {
+    color: var(--muted);
+    margin: 0;
+  }
+  .biz-features,
+  .biz-pricing,
+  .biz-compare {
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .biz-feature-grid,
+  .biz-plan-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+  .biz-feature {
+    padding: 1.75rem 1.5rem;
+  }
+  .biz-feature-icon {
+    font-size: 1.9rem;
+  }
+  .biz-feature h3 {
+    margin: 0.75rem 0 0.4rem;
+    font-size: 1.2rem;
+  }
+  .biz-feature p {
+    color: var(--muted);
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  .biz-plan {
+    position: relative;
+    padding: 1.9rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .biz-plan-popular {
+    border-color: color-mix(in srgb, var(--primary) 55%, var(--glass-border));
+  }
+  .biz-flag {
+    position: absolute;
+    top: -0.75rem;
+    left: 1.6rem;
+  }
+  .biz-plan-name {
+    font-size: 1.4rem;
+    margin: 0 0 0.5rem;
+  }
+  .biz-plan-price {
+    margin: 0 0 1.25rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+  }
+  .biz-price {
+    font-size: 2.2rem;
+    font-weight: 700;
+  }
+  .biz-per {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .biz-plan-points {
+    list-style: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+  }
+  .biz-plan-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+  }
+  .biz-plan-points svg {
+    color: var(--tertiary);
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+  .biz-plan-cta {
+    width: 100%;
+  }
+  .biz-table-wrap {
+    overflow-x: auto;
+    padding: 0.5rem;
+  }
+  .biz-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+  .biz-table th,
+  .biz-table td {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--glass-border);
+  }
+  .biz-table thead th {
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .biz-table tbody th {
+    font-weight: 500;
+  }
+  .biz-table tr:last-child th,
+  .biz-table tr:last-child td {
+    border-bottom: none;
+  }
+  .biz-col-vox {
+    background: color-mix(in srgb, var(--primary) 6%, transparent);
+  }
+  .biz-yes {
+    color: var(--tertiary);
+    font-weight: 700;
+  }
+  .biz-no {
+    color: var(--muted);
+  }
+  .biz-final {
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .biz-final-card {
+    text-align: center;
+    padding: clamp(2rem, 5vw, 3.5rem);
+  }
+  .biz-final-card h2 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    margin: 0 0 0.5rem;
+  }
+  .biz-final-card p {
+    color: var(--muted);
+    max-width: 40rem;
+    margin: 0 auto 1.5rem;
+  }
+  @media (min-width: 720px) {
+    .biz-feature-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .biz-plan-grid {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 56rem;
+      margin-inline: auto;
+    }
+  }
+</style>
