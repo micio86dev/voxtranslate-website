@@ -10,7 +10,8 @@
     "pricing": "Precios",
     "app": "Abrir la app",
     "tryFree": "Prueba gratis",
-    "menu": "Menú"
+    "menu": "Menú",
+    "business": "Business"
   },
   "theme": {
     "toLight": "Cambiar al tema claro",
@@ -247,6 +248,114 @@
     "blog": {
       "title": "Blog — VoxTranslate",
       "description": "Guías y comparativas sobre traducción de voz en tiempo real: cómo funcionan los niveles de motor, cuál elegir y VoxTranslate frente a los intérpretes tradicionales."
+    },
+    "business": {
+      "title": "VoxTranslate for Business — reuniones multilingües para equipos",
+      "description": "Videollamadas traducidas para todo tu equipo: historial compartido, transcripciones multilingües, proyectos y cumplimiento — en 84 idiomas. Desde €49/mes por organización."
+    }
+  },
+  "business": {
+    "hero": {
+      "badge": "VoxTranslate for Business",
+      "title": "Reuniones multilingües en tiempo real para tu equipo",
+      "subtitle": "Ofrece a tu equipo videollamadas traducidas con historial compartido, transcripciones y proyectos — en 84 idiomas.",
+      "ctaPrimary": "Empezar",
+      "ctaSecondary": "Contáctanos"
+    },
+    "features": {
+      "title": "Diseñado para equipos que trabajan entre idiomas",
+      "items": [
+        {
+          "icon": "🏢",
+          "title": "Espacio de trabajo en equipo",
+          "desc": "Organiza las llamadas por proyecto y conserva un historial completo y consultable para toda tu organización."
+        },
+        {
+          "icon": "📝",
+          "title": "Transcripciones multilingües",
+          "desc": "Cada llamada transcrita y traducible a 84 idiomas, con etiquetas de hablante y traducción a demanda."
+        },
+        {
+          "icon": "🔒",
+          "title": "Privacidad y cumplimiento",
+          "desc": "Registro de auditoría, retención de datos configurable y almacenamiento en la UE — para equipos regulados."
+        }
+      ]
+    },
+    "pricing": {
+      "title": "Planes sencillos para cada equipo",
+      "subtitle": "Precio por organización, no por usuario. Se renueva automáticamente — cancela cuando quieras.",
+      "perMonth": "/mes",
+      "popular": "Más popular",
+      "cta": "Empezar",
+      "contactCta": "Contactar con ventas",
+      "plans": [
+        {
+          "name": "Business",
+          "price": "€49",
+          "points": [
+            "Créditos mensuales incluidos",
+            "Hasta 20 miembros",
+            "Historial de llamadas ilimitado",
+            "Transcripciones incluidas",
+            "Soporte por correo"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "price": "€199",
+          "points": [
+            "Más créditos incluidos",
+            "Miembros ilimitados",
+            "Modo de cumplimiento + registro de auditoría",
+            "Retención de datos configurable",
+            "SLA y soporte prioritario"
+          ]
+        }
+      ]
+    },
+    "compare": {
+      "title": "VoxTranslate vs Google Meet",
+      "feature": "Función",
+      "vox": "VoxTranslate",
+      "meet": "Google Meet",
+      "rows": [
+        {
+          "feature": "Idiomas",
+          "vox": "84",
+          "meet": "6"
+        },
+        {
+          "feature": "Grabación traducida",
+          "vox": "yes",
+          "meet": "no"
+        },
+        {
+          "feature": "Historial de llamadas",
+          "vox": "yes",
+          "meet": "no"
+        },
+        {
+          "feature": "Independiente",
+          "vox": "yes",
+          "meet": "Requiere Workspace"
+        },
+        {
+          "feature": "Precio",
+          "vox": "Desde €49/org",
+          "meet": "Desde $14/usuario"
+        },
+        {
+          "feature": "Compatible con móvil",
+          "vox": "yes",
+          "meet": "Más adelante en 2026"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Une a tu equipo, en cada idioma",
+      "subtitle": "Configura tu espacio de trabajo en minutos. Empieza gratis, invita a tu equipo y celebra hoy tu primera reunión traducida.",
+      "button": "Empezar"
     }
   }
 }

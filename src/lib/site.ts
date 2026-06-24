@@ -3,6 +3,12 @@
 /** The live VoxTranslate app (where "Try free" / "Open app" point). */
 export const APP_URL = 'https://voxtranslate.app';
 
+/** The Business dashboard app (where the "Business" page CTAs point). */
+export const DASHBOARD_URL = 'https://dashboard.voxtranslate.app';
+
+/** Sales/contact address for Business enquiries. */
+export const CONTACT_EMAIL = 'business@voxtranslate.app';
+
 /** Existing legal pages live on the app domain. */
 export const LEGAL_URLS = {
   privacy: `${APP_URL}/privacy`,

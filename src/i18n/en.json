@@ -8,6 +8,7 @@
     "blog": "Blog",
     "features": "Features",
     "pricing": "Pricing",
+    "business": "Business",
     "app": "Open app",
     "tryFree": "Try free",
     "menu": "Menu"
@@ -178,6 +179,86 @@
       }
     ]
   },
+  "business": {
+    "hero": {
+      "badge": "VoxTranslate for Business",
+      "title": "Real-time multilingual meetings for your team",
+      "subtitle": "Give your team translated video calls with shared history, transcripts and projects — across 84 languages.",
+      "ctaPrimary": "Get started",
+      "ctaSecondary": "Contact us"
+    },
+    "features": {
+      "title": "Built for teams that work across languages",
+      "items": [
+        {
+          "icon": "🏢",
+          "title": "Team workspace",
+          "desc": "Organize calls by project and keep full, searchable history for your whole organization."
+        },
+        {
+          "icon": "📝",
+          "title": "Multilingual transcripts",
+          "desc": "Every call transcribed and translatable into 84 languages, with speaker labels and on-demand translation."
+        },
+        {
+          "icon": "🔒",
+          "title": "Privacy & compliance",
+          "desc": "Audit log, configurable data retention and EU storage — built for regulated teams."
+        }
+      ]
+    },
+    "pricing": {
+      "title": "Simple plans for every team",
+      "subtitle": "Priced per organization, not per seat. Auto-renews — cancel anytime.",
+      "perMonth": "/month",
+      "popular": "Most popular",
+      "cta": "Get started",
+      "contactCta": "Contact sales",
+      "plans": [
+        {
+          "name": "Business",
+          "price": "€49",
+          "points": [
+            "Monthly credits included",
+            "Up to 20 members",
+            "Unlimited call history",
+            "Transcripts included",
+            "Email support"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "price": "€199",
+          "points": [
+            "More credits included",
+            "Unlimited members",
+            "Compliance mode + audit log",
+            "Configurable data retention",
+            "SLA & priority support"
+          ]
+        }
+      ]
+    },
+    "compare": {
+      "title": "VoxTranslate vs Google Meet",
+      "feature": "Feature",
+      "vox": "VoxTranslate",
+      "meet": "Google Meet",
+      "rows": [
+        { "feature": "Languages", "vox": "84", "meet": "6" },
+        { "feature": "Translated recording", "vox": "yes", "meet": "no" },
+        { "feature": "Call history", "vox": "yes", "meet": "no" },
+        { "feature": "Standalone", "vox": "yes", "meet": "Requires Workspace" },
+        { "feature": "Price", "vox": "From €49/org", "meet": "From $14/user" },
+        { "feature": "Mobile support", "vox": "yes", "meet": "Later 2026" }
+      ]
+    },
+    "cta": {
+      "title": "Bring your team together, in every language",
+      "subtitle": "Set up your workspace in minutes. Start free, invite your team, and run your first translated meeting today.",
+      "button": "Get started"
+    }
+  },
   "cta": {
     "title": "Start translating for free today",
     "subtitle": "Open a room, share the link, and have your first multilingual conversation in under a minute.",
@@ -247,6 +328,10 @@
     "blog": {
       "title": "Blog — VoxTranslate",
       "description": "Guides and comparisons on real-time voice translation: how the engine tiers work, choosing a tier, and VoxTranslate vs. traditional interpreters."
+    },
+    "business": {
+      "title": "VoxTranslate for Business — multilingual meetings for teams",
+      "description": "Translated video calls for your whole team: shared call history, multilingual transcripts, projects, and compliance — across 84 languages. From €49/month per organization."
     }
   }
 }
