@@ -9,7 +9,7 @@ import {
   DEFAULT_LOCALE,
   type Locale,
 } from '../../lib/i18n';
-import { DASHBOARD_URL, CONTACT_EMAIL } from '../../lib/site';
+import { DASHBOARD_URL, CONTACT_EMAIL, API_BASE } from '../../lib/site';
 
 export function getStaticPaths() {
   return LOCALES.map((lang) => ({ params: { lang } }));
@@ -48,7 +48,7 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
         <Button href={`${DASHBOARD_URL}/`} variant="primary" rel="noopener">
           {t('business.hero.ctaPrimary')}
         </Button>
-        <Button href={mailto} variant="ghost">{t('business.hero.ctaSecondary')}</Button>
+        <Button href="#contact" variant="ghost">{t('business.hero.ctaSecondary')}</Button>
       </div>
     </div>
   </section>
@@ -188,6 +188,48 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
     </div>
   </section>
 
+  <!-- Contact form -->
+  <section class="biz-contact" id="contact">
+    <div class="container-page">
+      <header class="section-head" data-reveal>
+        <h2>{t('business.contact.title')}</h2>
+        <p>{t('business.contact.subtitle')}</p>
+      </header>
+      <form
+        class="biz-contact-form glass"
+        id="contact-form"
+        data-reveal
+        novalidate
+        data-endpoint={`${API_BASE}/api/contact`}
+        data-sending={t('business.contact.sending')}
+        data-success={t('business.contact.success')}
+        data-error={t('business.contact.error')}
+        data-mailto={mailto}
+      >
+        <div class="biz-field">
+          <label for="cf-name">{t('business.contact.name')}</label>
+          <input id="cf-name" name="name" type="text" required maxlength="200" autocomplete="name" />
+        </div>
+        <div class="biz-field">
+          <label for="cf-email">{t('business.contact.email')}</label>
+          <input id="cf-email" name="email" type="email" required autocomplete="email" />
+        </div>
+        <div class="biz-field">
+          <label for="cf-company">{t('business.contact.company')}</label>
+          <input id="cf-company" name="company" type="text" autocomplete="organization" />
+        </div>
+        <div class="biz-field">
+          <label for="cf-message">{t('business.contact.message')}</label>
+          <textarea id="cf-message" name="message" rows="5" required maxlength="4000"></textarea>
+        </div>
+        <Button type="submit" variant="primary" class="biz-contact-submit" id="cf-submit">
+          {t('business.contact.submit')}
+        </Button>
+        <p class="biz-contact-status" id="cf-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
   <!-- Final CTA -->
   <section class="biz-final">
     <div class="container-page" data-reveal>
@@ -204,6 +246,72 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
 
 <script>
   import '../../scripts/animations';
+</script>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  if (form) {
+    const submit = document.getElementById('cf-submit') as HTMLButtonElement | null;
+    const status = document.getElementById('cf-status');
+    const endpoint = form.dataset.endpoint ?? '';
+    const msgSending = form.dataset.sending ?? 'Sending…';
+    const msgSuccess = form.dataset.success ?? 'Thanks — we will be in touch soon.';
+    const msgError = form.dataset.error ?? 'Something went wrong. Please try again.';
+    const mailto = form.dataset.mailto ?? '';
+    const submitLabel = submit?.textContent ?? 'Send message';
+
+    const setStatus = (text: string, kind: 'error' | 'success' | '') => {
+      if (!status) return;
+      status.textContent = text;
+      status.classList.toggle('is-error', kind === 'error');
+      status.classList.toggle('is-success', kind === 'success');
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+
+      const data = new FormData(form);
+      const payload = {
+        name: String(data.get('name') ?? '').trim(),
+        email: String(data.get('email') ?? '').trim(),
+        company: String(data.get('company') ?? '').trim(),
+        message: String(data.get('message') ?? '').trim(),
+      };
+
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = msgSending;
+      }
+      setStatus('', '');
+
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        form.reset();
+        setStatus(msgSuccess, 'success');
+      } catch {
+        const fallback = mailto ? `${msgError} ` : msgError;
+        setStatus(fallback, 'error');
+        if (status && mailto) {
+          const a = document.createElement('a');
+          a.href = mailto;
+          a.textContent = mailto.replace('mailto:', '');
+          a.style.textDecoration = 'underline';
+          status.appendChild(a);
+        }
+      } finally {
+        if (submit) {
+          submit.disabled = false;
+          submit.textContent = submitLabel;
+        }
+      }
+    });
+  }
 </script>
 
 <style>
@@ -365,6 +473,63 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
   }
   .biz-no {
     color: var(--muted);
+  }
+  .biz-contact {
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .biz-contact-form {
+    max-width: 36rem;
+    margin-inline: auto;
+    padding: clamp(1.5rem, 4vw, 2.25rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .biz-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .biz-field label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .biz-field input,
+  .biz-field textarea {
+    width: 100%;
+    padding: 0.7rem 0.85rem;
+    border-radius: 0.6rem;
+    border: 1px solid var(--glass-border);
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    color: inherit;
+    font: inherit;
+    transition: border-color 0.15s ease;
+  }
+  .biz-field input:focus,
+  .biz-field textarea:focus {
+    outline: none;
+    border-color: color-mix(in srgb, var(--primary) 60%, var(--glass-border));
+  }
+  .biz-field textarea {
+    resize: vertical;
+    min-height: 7rem;
+  }
+  .biz-contact-submit {
+    width: 100%;
+    margin-top: 0.25rem;
+  }
+  .biz-contact-status {
+    margin: 0;
+    min-height: 1.2rem;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  .biz-contact-status.is-error {
+    color: #ef4444;
+  }
+  .biz-contact-status.is-success {
+    color: var(--tertiary);
   }
   .biz-final {
     padding-block: clamp(2.5rem, 6vw, 4.5rem);

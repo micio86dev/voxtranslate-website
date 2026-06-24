@@ -9,6 +9,15 @@ export const DASHBOARD_URL = 'https://dashboard.voxtranslate.app';
 /** Sales/contact address for Business enquiries. */
 export const CONTACT_EMAIL = 'business@voxtranslate.app';
 
+/**
+ * VoxTranslate API origin (Railway, fronted by Cloudflare), without a trailing
+ * slash. Used by the Business contact form (`POST /api/contact`). Overridable at
+ * build time via `PUBLIC_API_BASE`.
+ */
+export const API_BASE = (
+  import.meta.env.PUBLIC_API_BASE || 'https://api.voxtranslate.app'
+).replace(/\/$/, '');
+
 /** Existing legal pages live on the app domain. */
 export const LEGAL_URLS = {
   privacy: `${APP_URL}/privacy`,

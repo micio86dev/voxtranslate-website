@@ -358,6 +358,18 @@
       "title": "Une a tu equipo, en cada idioma",
       "subtitle": "Configura tu espacio de trabajo en minutos. Empieza gratis, invita a tu equipo y celebra hoy tu primera reunión traducida.",
       "button": "Empezar"
+    },
+    "contact": {
+      "title": "Habla con nuestro equipo",
+      "subtitle": "¿Preguntas sobre los planes, Enterprise o algo a medida? Envíanos un mensaje y te responderemos.",
+      "name": "Tu nombre",
+      "email": "Correo de trabajo",
+      "company": "Empresa (opcional)",
+      "message": "¿Cómo podemos ayudarte?",
+      "submit": "Enviar mensaje",
+      "sending": "Enviando…",
+      "success": "Gracias — hemos recibido tu mensaje y te contactaremos pronto.",
+      "error": "Algo salió mal. Inténtalo de nuevo o escríbenos directamente."
     }
   }
 }

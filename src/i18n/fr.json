@@ -358,6 +358,18 @@
       "title": "Réunissez votre équipe, dans toutes les langues",
       "subtitle": "Configurez votre espace de travail en quelques minutes. Commencez gratuitement, invitez votre équipe et tenez aujourd'hui votre première réunion traduite.",
       "button": "Commencer"
+    },
+    "contact": {
+      "title": "Parlez à notre équipe",
+      "subtitle": "Des questions sur les offres, Enterprise ou un besoin sur mesure ? Envoyez-nous un message et nous reviendrons vers vous.",
+      "name": "Votre nom",
+      "email": "E-mail professionnel",
+      "company": "Entreprise (facultatif)",
+      "message": "Comment pouvons-nous vous aider ?",
+      "submit": "Envoyer le message",
+      "sending": "Envoi…",
+      "success": "Merci — nous avons bien reçu votre message et reviendrons vers vous rapidement.",
+      "error": "Une erreur s'est produite. Réessayez ou écrivez-nous directement."
     }
   }
 }

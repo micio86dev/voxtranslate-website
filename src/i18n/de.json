@@ -358,6 +358,18 @@
       "title": "Bring dein Team zusammen — in jeder Sprache",
       "subtitle": "Richte deinen Workspace in Minuten ein. Starte kostenlos, lade dein Team ein und halte heute dein erstes übersetztes Meeting.",
       "button": "Loslegen"
+    },
+    "contact": {
+      "title": "Sprich mit unserem Team",
+      "subtitle": "Fragen zu den Tarifen, zu Enterprise oder zu etwas Individuellem? Schreib uns und wir melden uns.",
+      "name": "Dein Name",
+      "email": "Geschäftliche E-Mail",
+      "company": "Unternehmen (optional)",
+      "message": "Wie können wir helfen?",
+      "submit": "Nachricht senden",
+      "sending": "Wird gesendet…",
+      "success": "Danke — wir haben deine Nachricht erhalten und melden uns bald.",
+      "error": "Etwas ist schiefgelaufen. Bitte versuche es erneut oder schreib uns direkt."
     }
   }
 }

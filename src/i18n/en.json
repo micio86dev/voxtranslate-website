@@ -283,6 +283,18 @@
       "title": "Bring your team together, in every language",
       "subtitle": "Set up your workspace in minutes. Start free, invite your team, and run your first translated meeting today.",
       "button": "Get started"
+    },
+    "contact": {
+      "title": "Talk to our team",
+      "subtitle": "Questions about plans, Enterprise, or something custom? Send us a message and we'll get back to you.",
+      "name": "Your name",
+      "email": "Work email",
+      "company": "Company (optional)",
+      "message": "How can we help?",
+      "submit": "Send message",
+      "sending": "Sending…",
+      "success": "Thanks — we've got your message and will be in touch soon.",
+      "error": "Something went wrong. Please try again, or email us directly."
     }
   },
   "cta": {
