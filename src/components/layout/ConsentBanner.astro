@@ -1,6 +1,6 @@
 ---
 import { useTranslations, type Locale } from '../../lib/i18n';
-import { LEGAL_URLS, FB_PIXEL_ID } from '../../lib/site';
+import { LEGAL_URLS, FB_PIXEL_ID, GA_ID } from '../../lib/site';
 
 interface Props {
   lang: Locale;
@@ -44,10 +44,16 @@ const t = useTranslations(lang);
   </div>
 </div>
 
-<script is:inline define:vars={{ FB_PIXEL_ID }}>
+<script is:inline define:vars={{ FB_PIXEL_ID, GA_ID }}>
   (function () {
     const KEY = 'vox-consent';
     const banner = document.getElementById('vox-consent');
+
+    // Load every consented tracker (Meta Pixel + Google Analytics 4).
+    function loadTrackers() {
+      loadPixel();
+      loadGtag();
+    }
 
     function loadPixel() {
       if (window.fbq) return;
@@ -68,6 +74,21 @@ const t = useTranslations(lang);
       first.parentNode.insertBefore(s, first);
       window.fbq('init', FB_PIXEL_ID);
       window.fbq('track', 'PageView');
+    }
+
+    // Google Analytics 4 (gtag.js). No-ops when PUBLIC_GA_ID is unset.
+    function loadGtag() {
+      if (!GA_ID || window.gtag) return;
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function (...args) {
+        window.dataLayer.push(args);
+      };
+      window.gtag('js', new Date());
+      window.gtag('config', GA_ID);
     }
 
     function getConsent() {
@@ -92,7 +113,7 @@ const t = useTranslations(lang);
     }
 
     const choice = getConsent();
-    if (choice === 'granted') loadPixel();
+    if (choice === 'granted') loadTrackers();
     else if (choice !== 'denied') show(); // undecided → ask before loading anything
 
     const accept = document.getElementById('vox-consent-accept');
@@ -101,7 +122,7 @@ const t = useTranslations(lang);
       accept.addEventListener('click', function () {
         storeConsent('granted');
         hide();
-        loadPixel();
+        loadTrackers();
       });
     }
     if (reject) {
@@ -109,8 +130,8 @@ const t = useTranslations(lang);
         const had = getConsent();
         storeConsent('denied');
         hide();
-        // Withdrawing a prior consent: reload to drop the already-loaded pixel.
-        if (had === 'granted' || window.fbq) location.reload();
+        // Withdrawing a prior consent: reload to drop already-loaded trackers.
+        if (had === 'granted' || window.fbq || window.gtag) location.reload();
       });
     }
 
