@@ -62,7 +62,11 @@ const jsonLdItems = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {
+      (noindex || import.meta.env.PUBLIC_STAGING === 'true') && (
+        <meta name="robots" content="noindex, nofollow" />
+      )
+    }
 
     {/* hreflang alternates */}
     {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
