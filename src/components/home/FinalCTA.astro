@@ -16,7 +16,7 @@ const t = useTranslations(lang);
       <h2>{t('cta.title')}</h2>
       <p>{t('cta.subtitle')}</p>
       <div class="cta-actions">
-        <Button href={APP_URL} variant="primary" rel="noopener">{t('cta.button')}</Button>
+        <Button href={APP_URL} variant="primary" rel="noopener" data-track-cta="try_free" data-track-location="footer_cta">{t('cta.button')}</Button>
         <Button href={localizePath(lang, 'blog')} variant="ghost">{t('cta.secondary')}</Button>
       </div>
     </div>

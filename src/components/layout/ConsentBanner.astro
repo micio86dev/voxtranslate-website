@@ -88,7 +88,11 @@ const t = useTranslations(lang);
         window.dataLayer.push(args);
       };
       window.gtag('js', new Date());
-      window.gtag('config', GA_ID);
+      window.gtag('config', GA_ID, {
+        linker: {
+          domains: ['voxtranslate.app', 'website.voxtranslate.app', 'dashboard.voxtranslate.app']
+        }
+      });
     }
 
     function getConsent() {

@@ -41,4 +41,18 @@ const jsonLd = [websiteJsonLd(Astro.site, lang), softwareAppJsonLd(Astro.site)];
 
 <script>
   import '../../scripts/animations';
+  import { track } from '../../scripts/analytics';
+
+  // Track CTA clicks
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-track-cta]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const button = btn.getAttribute('data-track-cta');
+        const location = btn.getAttribute('data-track-location');
+        if (button && location) {
+          track('cta_clicked', { button, location });
+        }
+      });
+    });
+  });
 </script>
