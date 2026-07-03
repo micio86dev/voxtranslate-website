@@ -39,7 +39,14 @@ const navLinks = [
         />
       </span>
       <ThemeToggle lang={lang} />
-      <Button href={APP_URL} variant="primary" class="cta-desktop" rel="noopener" data-track-cta="open_app" data-track-location="navbar">
+      <Button
+        href={APP_URL}
+        variant="primary"
+        class="cta-desktop"
+        rel="noopener"
+        data-track-cta="open_app"
+        data-track-location="navbar"
+      >
         {t('nav.tryFree')}
       </Button>
       <button
@@ -76,7 +83,13 @@ const navLinks = [
           pathByLocale={pathByLocale}
         />
       </div>
-      <a href={APP_URL} rel="noopener" class="mobile-cta" data-track-cta="open_app" data-track-location="mobile_nav">{t('nav.tryFree')}</a>
+      <a
+        href={APP_URL}
+        rel="noopener"
+        class="mobile-cta"
+        data-track-cta="open_app"
+        data-track-location="mobile_nav">{t('nav.tryFree')}</a
+      >
     </div>
   </nav>
 </header>
