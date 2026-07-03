@@ -65,7 +65,13 @@ const tiles = [
       </h1>
       <p class="hero-sub" data-reveal>{t('hero.subtitle')}</p>
       <div class="hero-cta" data-reveal>
-        <Button href={APP_URL} variant="primary" rel="noopener" data-track-cta="try_free" data-track-location="hero">{t('hero.ctaPrimary')}</Button>
+        <Button
+          href={APP_URL}
+          variant="primary"
+          rel="noopener"
+          data-track-cta="try_free"
+          data-track-location="hero">{t('hero.ctaPrimary')}</Button
+        >
         <Button href="#how" variant="ghost">{t('hero.ctaSecondary')}</Button>
       </div>
       <p class="hero-note" data-reveal>{t('hero.note')}</p>
