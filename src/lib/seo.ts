@@ -64,11 +64,19 @@ export function softwareAppJsonLd(site: string | URL | undefined) {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     name: SITE_NAME,
+    alternateName: 'VoxTranslate AI Voice Translator',
     applicationCategory: 'CommunicationApplication',
     operatingSystem: 'Web',
     url: absoluteUrl(site, '/'),
     description:
-      'Real-time translated video calls. VoxTranslate transcribes, translates and speaks every voice in your call live across 84 languages.',
+      'Real-time AI voice translator for video calls. VoxTranslate transcribes, translates and speaks every voice in your call live — voice-to-voice across 84 languages.',
+    featureList: [
+      'Real-time AI voice translation',
+      'Voice-to-voice translation in video calls',
+      'Live translated subtitles',
+      'Auto-translated text chat',
+      '84 languages',
+    ],
     offers: {
       '@type': 'Offer',
       price: '0',
