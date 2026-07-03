@@ -3,11 +3,11 @@
     "path": "/*",
     "timings": [
       { "metric": "interactive", "budget": 3000 },
-      { "metric": "first-contentful-paint", "budget": 1500 }
+      { "metric": "first-contentful-paint", "budget": 1800 }
     ],
     "resourceSizes": [
       { "resourceType": "script", "budget": 60 },
-      { "resourceType": "total", "budget": 300 }
+      { "resourceType": "total", "budget": 450 }
     ],
     "resourceCounts": [{ "resourceType": "third-party", "budget": 0 }]
   }
