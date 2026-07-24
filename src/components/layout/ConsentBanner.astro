@@ -1,6 +1,6 @@
 ---
 import { useTranslations, type Locale } from '../../lib/i18n';
-import { LEGAL_URLS, FB_PIXEL_ID, GA_ID } from '../../lib/site';
+import { LEGAL_URLS, FB_PIXEL_ID, GA_ID, GOOGLE_ADS_ID } from '../../lib/site';
 
 interface Props {
   lang: Locale;
@@ -44,7 +44,7 @@ const t = useTranslations(lang);
   </div>
 </div>
 
-<script is:inline define:vars={{ FB_PIXEL_ID, GA_ID }}>
+<script is:inline define:vars={{ FB_PIXEL_ID, GA_ID, GOOGLE_ADS_ID }}>
   (function () {
     const KEY = 'vox-consent';
     const banner = document.getElementById('vox-consent');
@@ -76,23 +76,31 @@ const t = useTranslations(lang);
       window.fbq('track', 'PageView');
     }
 
-    // Google Analytics 4 (gtag.js). No-ops when PUBLIC_GA_ID is unset.
+    // Google tag (gtag.js) — one shared library for GA4 + Google Ads. Loads
+    // once, then configures whichever ids are set. No-ops when both are unset.
     function loadGtag() {
-      if (!GA_ID || window.gtag) return;
+      const primaryId = GA_ID || GOOGLE_ADS_ID;
+      if (!primaryId || window.gtag) return;
       const s = document.createElement('script');
       s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + primaryId;
       document.head.appendChild(s);
       window.dataLayer = window.dataLayer || [];
       window.gtag = function (...args) {
         window.dataLayer.push(args);
       };
       window.gtag('js', new Date());
-      window.gtag('config', GA_ID, {
-        linker: {
-          domains: ['voxtranslate.app', 'website.voxtranslate.app', 'dashboard.voxtranslate.app'],
-        },
-      });
+      if (GA_ID) {
+        window.gtag('config', GA_ID, {
+          linker: {
+            domains: ['voxtranslate.app', 'website.voxtranslate.app', 'dashboard.voxtranslate.app'],
+          },
+        });
+      }
+      // Google Ads — conversion tracking / remarketing.
+      if (GOOGLE_ADS_ID) {
+        window.gtag('config', GOOGLE_ADS_ID);
+      }
     }
 
     function getConsent() {

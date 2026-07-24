@@ -99,15 +99,10 @@
   },
   "highlights": {
     "title": "Mehr als ein Videoanruf",
-    "subtitle": "Aufnahme, KI nach dem Call, Transkripte in jeder Sprache — und ein Ort, um neue Leute kennenzulernen.",
+    "subtitle": "Aufnahme, KI nach dem Call und Transkripte in jeder Sprache.",
     "free": "Gratis",
     "paid": "Kostenpflichtig",
     "items": [
-      {
-        "badge": "free",
-        "title": "Lerne neue Leute in öffentlichen Räumen kennen",
-        "desc": "Spring in öffentliche Räume und sprich mit Menschen aus aller Welt, über Sprachgrenzen hinweg — etwas, das eine normale Meeting-App nie bieten wird."
-      },
       {
         "badge": "free",
         "title": "Aufnahme, Whiteboard & Bildschirmfreigabe",
@@ -205,7 +200,7 @@
   },
   "consent": {
     "title": "Deine Privatsphäre",
-    "message": "Wir verwenden optionale Marketing-Cookies (Meta Pixel), um unsere Werbung zu messen. Sie werden nur geladen, wenn du zustimmst — du kannst deine Wahl unten jederzeit ändern.",
+    "message": "Wir verwenden optionale Marketing-Cookies (Meta, Google), um unsere Werbung zu messen. Sie werden nur geladen, wenn du zustimmst — du kannst deine Wahl unten jederzeit ändern.",
     "accept": "Akzeptieren",
     "reject": "Ablehnen",
     "privacy": "Datenschutzerklärung"
@@ -317,15 +312,25 @@
       ]
     },
     "compare": {
-      "title": "VoxTranslate vs Google Meet",
+      "title": "Günstiger als ein Dolmetscher, präziser als gebrochenes Englisch",
       "feature": "Funktion",
       "vox": "VoxTranslate",
-      "meet": "Google Meet",
+      "meet": "Dolmetscher",
       "rows": [
         {
-          "feature": "Sprachen",
+          "feature": "Kosten",
+          "vox": "Ab €49/Monat",
+          "meet": "€60–120 / Stunde"
+        },
+        {
+          "feature": "Verfügbarkeit",
+          "vox": "Sofort, rund um die Uhr",
+          "meet": "Tage im Voraus gebucht"
+        },
+        {
+          "feature": "Sprachen pro Meeting",
           "vox": "84",
-          "meet": "6"
+          "meet": "Ein Sprachpaar pro Dolmetscher"
         },
         {
           "feature": "Übersetzte Aufnahme",
@@ -333,24 +338,14 @@
           "meet": "no"
         },
         {
-          "feature": "Anrufhistorie",
+          "feature": "Skaliert aufs ganze Team",
+          "vox": "yes",
+          "meet": "Ein Raum nach dem anderen"
+        },
+        {
+          "feature": "Verlauf & Transkripte",
           "vox": "yes",
           "meet": "no"
-        },
-        {
-          "feature": "Eigenständig",
-          "vox": "yes",
-          "meet": "Erfordert Workspace"
-        },
-        {
-          "feature": "Preis",
-          "vox": "Ab €49/Org",
-          "meet": "Ab $14/Nutzer"
-        },
-        {
-          "feature": "Mobil-Unterstützung",
-          "vox": "yes",
-          "meet": "Später 2026"
         }
       ]
     },
