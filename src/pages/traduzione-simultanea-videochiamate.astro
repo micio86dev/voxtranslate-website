@@ -1,0 +1,325 @@
+---
+// Standalone SEO landing — targets the Italian query "traduzione simultanea per
+// videochiamate". Intentionally self-contained: NO site Header/Footer, NO nav,
+// no pricing, no tiers, no public rooms. One goal, one CTA, zero exits.
+import '../styles/global.css';
+import Button from '../components/ui/Button.astro';
+import ConsentBanner from '../components/layout/ConsentBanner.astro';
+import { APP_URL } from '../lib/site';
+
+// Demo reel lives on Cloudflare R2 (bucket: vox-web-assets), served over the
+// custom domain cdn.voxtranslate.app. Vertical 9:16 source, muted + web-optimized.
+const R2 = 'https://cdn.voxtranslate.app/demo';
+
+const site = Astro.site;
+const canonical = new URL('/traduzione-simultanea-videochiamate/', site).href;
+const ogImage = new URL('/og/default.png', site).href;
+
+const title = 'Traduzione simultanea per videochiamate — VoxTranslate';
+const description =
+  'Parla italiano, il tuo fornitore sente nella sua lingua, in tempo reale. Nessuna installazione: apri il browser e inizi. 84 lingue.';
+
+const isStaging = import.meta.env.PUBLIC_STAGING === 'true';
+
+// Benefits, not features: each line is what the visitor gets, not what we built.
+const benefits = [
+  'Non installi niente. Apri il browser e parli.',
+  'Chi inviti apre un link e ci siete. Nessun account, nessun download.',
+  '84 lingue tradotte in tempo reale. Meet e Zoom si fermano a 5.',
+];
+---
+
+<!doctype html>
+<html lang="it" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {isStaging && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta name="theme-color" content="#f6f9fe" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0b10" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="VoxTranslate" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="it_IT" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="preload" href="/fonts/sora-latin-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/hanken-latin-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    {/* No-FOUC theme + progressive-enhancement (runs before paint). */}
+    <script is:inline>
+      (function () {
+        const el = document.documentElement;
+        el.classList.remove('no-js');
+        el.classList.add('js');
+        try {
+          if (localStorage.getItem('vox-theme') === 'dark') el.classList.add('dark');
+        } catch {}
+        try {
+          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+            el.classList.add('reduce-motion');
+        } catch {}
+      })();
+    </script>
+  </head>
+
+  <body>
+    <main id="main" class="lp">
+      <div class="container-page lp-inner">
+        {/* Brand mark only — plain text, not a link. No navigation. */}
+        <p class="lp-brand">VoxTranslate</p>
+
+        <header class="lp-hero">
+          <h1 class="lp-h1">
+            Traduzione <span class="accent">simultanea</span> per videochiamate
+          </h1>
+          <p class="lp-sub">
+            Parla italiano. Il tuo fornitore sente in cinese. Nessuna installazione.
+          </p>
+          <div class="lp-cta">
+            <Button
+              href={APP_URL}
+              variant="primary"
+              rel="noopener"
+              data-track-cta="try_free"
+              data-track-location="landing_hero"
+            >
+              Prova gratis
+            </Button>
+          </div>
+        </header>
+
+        <section class="lp-demo glass glass-glow" aria-label="Demo">
+          <video
+            id="demo-video"
+            class="lp-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster={`${R2}/voxtranslate-demo-poster.jpg`}
+            aria-label="Demo: una videochiamata tradotta in tempo reale"
+          >
+            <source src={`${R2}/voxtranslate-demo.webm`} type="video/webm" />
+            <source src={`${R2}/voxtranslate-demo.mp4`} type="video/mp4" />
+          </video>
+        </section>
+
+        <section class="lp-benefits" aria-label="Perché VoxTranslate">
+          <ul class="lp-benefit-list">
+            {
+              benefits.map((b) => (
+                <li class="lp-benefit">
+                  <svg
+                    class="lp-check"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                  <span>{b}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section class="lp-final">
+          <Button
+            href={APP_URL}
+            variant="primary"
+            rel="noopener"
+            data-track-cta="try_free"
+            data-track-location="landing_footer"
+          >
+            Prova gratis
+          </Button>
+        </section>
+
+        <footer class="lp-foot">
+          <span>© 2026 VoxTranslate</span>
+          <button type="button" id="vox-consent-reopen" class="lp-foot-link">Cookie</button>
+        </footer>
+      </div>
+    </main>
+
+    <ConsentBanner lang="it" />
+
+    {/* Respect reduced-motion: stop the looping autoplay for those users. */}
+    <script is:inline>
+      (function () {
+        try {
+          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const v = document.getElementById('demo-video');
+            if (v) {
+              v.removeAttribute('autoplay');
+              v.pause();
+            }
+          }
+        } catch {}
+      })();
+    </script>
+
+    <style>
+      .lp {
+        min-height: 100dvh;
+        display: flex;
+        align-items: center;
+        padding-block: clamp(2.5rem, 6vw, 4.5rem);
+      }
+      .lp-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: clamp(2rem, 5vw, 3rem);
+        max-width: 60rem;
+      }
+      .lp-brand {
+        margin: 0;
+        font-family: var(--font-display, 'Sora', system-ui, sans-serif);
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+      }
+      .lp-hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+      }
+      .lp-h1 {
+        font-size: clamp(2.2rem, 6vw, 3.6rem);
+        line-height: 1.08;
+        margin: 0;
+        max-width: 18ch;
+      }
+      .lp-h1 .accent {
+        background: linear-gradient(120deg, var(--primary), var(--accent) 55%, var(--tertiary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .lp-sub {
+        font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+        line-height: 1.55;
+        color: var(--muted);
+        max-width: 40ch;
+        margin: 0;
+      }
+      .lp-cta,
+      .lp-final {
+        display: flex;
+        justify-content: center;
+      }
+      /* Bigger, unmissable CTA on both placements. */
+      .lp-cta :global(.btn),
+      .lp-final :global(.btn) {
+        font-size: 1.05rem;
+        padding: 0.9rem 2rem;
+      }
+      /* Phone-shaped frame — the demo is a vertical 9:16 reel. */
+      .lp-demo {
+        width: min(340px, 78vw);
+        padding: 0.6rem;
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+      }
+      .lp-video {
+        display: block;
+        width: 100%;
+        aspect-ratio: 9 / 16;
+        object-fit: cover;
+        border-radius: var(--radius-lg);
+        background: var(--base-2);
+      }
+      .lp-benefits {
+        width: 100%;
+      }
+      .lp-benefit-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 1fr;
+        max-width: 44rem;
+        margin-inline: auto;
+      }
+      .lp-benefit {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-align: left;
+        font-size: 1.05rem;
+        line-height: 1.45;
+      }
+      .lp-check {
+        flex-shrink: 0;
+        color: var(--tertiary);
+      }
+      .lp-foot {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      .lp-foot-link {
+        background: none;
+        border: 0;
+        padding: 0;
+        font: inherit;
+        color: var(--muted);
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      .lp-foot-link:hover {
+        color: var(--primary);
+      }
+      @media (min-width: 760px) {
+        .lp-benefit-list {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
+        }
+        .lp-benefit {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 0.6rem;
+        }
+      }
+    </style>
+  </body>
+</html>
