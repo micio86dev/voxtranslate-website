@@ -99,15 +99,10 @@
   },
   "highlights": {
     "title": "Bien plus qu'un appel vidéo",
-    "subtitle": "Enregistrement, IA après l'appel, transcriptions dans n'importe quelle langue — et un endroit pour rencontrer de nouvelles personnes.",
+    "subtitle": "Enregistrement, IA après l'appel et transcriptions dans n'importe quelle langue.",
     "free": "Gratuit",
     "paid": "Payant",
     "items": [
-      {
-        "badge": "free",
-        "title": "Rencontrez de nouvelles personnes dans les salons publics",
-        "desc": "Rejoignez les salons publics et parlez avec des gens du monde entier, d'une langue à l'autre — ce qu'une appli de réunion classique n'offrira jamais."
-      },
       {
         "badge": "free",
         "title": "Enregistrement, tableau blanc et partage d'écran",
@@ -205,7 +200,7 @@
   },
   "consent": {
     "title": "Votre confidentialité",
-    "message": "Nous utilisons des cookies marketing optionnels (Meta Pixel) pour mesurer notre publicité. Ils ne se chargent qu'avec votre accord — modifiez votre choix à tout moment ci-dessous.",
+    "message": "Nous utilisons des cookies marketing optionnels (Meta, Google) pour mesurer notre publicité. Ils ne se chargent qu'avec votre accord — modifiez votre choix à tout moment ci-dessous.",
     "accept": "Accepter",
     "reject": "Refuser",
     "privacy": "Politique de confidentialité"
@@ -317,15 +312,25 @@
       ]
     },
     "compare": {
-      "title": "VoxTranslate vs Google Meet",
+      "title": "Moins cher qu'un interprète, plus précis que l'anglais approximatif",
       "feature": "Fonctionnalité",
       "vox": "VoxTranslate",
-      "meet": "Google Meet",
+      "meet": "Interprète humain",
       "rows": [
         {
-          "feature": "Langues",
+          "feature": "Coût",
+          "vox": "À partir de €49/mois",
+          "meet": "€60–120 / heure"
+        },
+        {
+          "feature": "Disponibilité",
+          "vox": "Instantané, 24/7",
+          "meet": "Réservé des jours à l'avance"
+        },
+        {
+          "feature": "Langues par réunion",
           "vox": "84",
-          "meet": "6"
+          "meet": "Une paire par interprète"
         },
         {
           "feature": "Enregistrement traduit",
@@ -333,24 +338,14 @@
           "meet": "no"
         },
         {
-          "feature": "Historique des appels",
+          "feature": "S'adapte à toute l'équipe",
+          "vox": "yes",
+          "meet": "Une salle à la fois"
+        },
+        {
+          "feature": "Historique et transcriptions",
           "vox": "yes",
           "meet": "no"
-        },
-        {
-          "feature": "Autonome",
-          "vox": "yes",
-          "meet": "Nécessite Workspace"
-        },
-        {
-          "feature": "Prix",
-          "vox": "À partir de €49/org",
-          "meet": "À partir de $14/utilisateur"
-        },
-        {
-          "feature": "Compatible mobile",
-          "vox": "yes",
-          "meet": "Plus tard en 2026"
         }
       ]
     },

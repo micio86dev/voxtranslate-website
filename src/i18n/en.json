@@ -99,15 +99,10 @@
   },
   "highlights": {
     "title": "More than a video call",
-    "subtitle": "Recording, post-call AI, transcripts in any language — and a place to meet new people.",
+    "subtitle": "Recording, post-call AI, and transcripts in any language.",
     "free": "Free",
     "paid": "Paid",
     "items": [
-      {
-        "badge": "free",
-        "title": "Meet new people in public rooms",
-        "desc": "Hop into public rooms and talk with people around the world, across languages — something a normal meeting app will never offer."
-      },
       {
         "badge": "free",
         "title": "Recording, whiteboard & screen share",
@@ -242,15 +237,25 @@
       ]
     },
     "compare": {
-      "title": "VoxTranslate vs Google Meet",
+      "title": "Cheaper than an interpreter, sharper than broken English",
       "feature": "Feature",
       "vox": "VoxTranslate",
-      "meet": "Google Meet",
+      "meet": "Human interpreter",
       "rows": [
         {
-          "feature": "Languages",
+          "feature": "Cost",
+          "vox": "From €49/mo",
+          "meet": "€60–120 / hour"
+        },
+        {
+          "feature": "Availability",
+          "vox": "Instant, 24/7",
+          "meet": "Booked days ahead"
+        },
+        {
+          "feature": "Languages per meeting",
           "vox": "84",
-          "meet": "6"
+          "meet": "One pair per interpreter"
         },
         {
           "feature": "Translated recording",
@@ -258,24 +263,14 @@
           "meet": "no"
         },
         {
-          "feature": "Call history",
+          "feature": "Scales across your team",
+          "vox": "yes",
+          "meet": "One room at a time"
+        },
+        {
+          "feature": "History & transcripts",
           "vox": "yes",
           "meet": "no"
-        },
-        {
-          "feature": "Standalone",
-          "vox": "yes",
-          "meet": "Requires Workspace"
-        },
-        {
-          "feature": "Price",
-          "vox": "From €49/org",
-          "meet": "From $14/user"
-        },
-        {
-          "feature": "Mobile support",
-          "vox": "yes",
-          "meet": "Later 2026"
         }
       ]
     },
@@ -323,7 +318,7 @@
   },
   "consent": {
     "title": "Your privacy",
-    "message": "We use optional marketing cookies (Meta Pixel) to measure our advertising. They load only if you accept — change your choice anytime below.",
+    "message": "We use optional marketing cookies (Meta, Google) to measure our advertising. They load only if you accept — change your choice anytime below.",
     "accept": "Accept",
     "reject": "Reject",
     "privacy": "Privacy policy"
