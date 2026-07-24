@@ -37,6 +37,11 @@ export const FB_PIXEL_ID = '362182456310675';
  *  visitor accepts the cookie/consent banner. */
 export const GA_ID = import.meta.env.PUBLIC_GA_ID ?? '';
 
+/** Google Ads tag id (`AW-XXXXXXXXX`) for conversion tracking / remarketing. Set
+ *  via PUBLIC_GOOGLE_ADS_ID at build time; empty string ⇒ the tag never loads.
+ *  Shares gtag.js with GA4 and, like the Pixel, loads only after consent. */
+export const GOOGLE_ADS_ID = import.meta.env.PUBLIC_GOOGLE_ADS_ID ?? '';
+
 export const SOCIAL = {
   // Placeholder handles — update when official accounts exist.
   x: 'https://x.com/voxtranslate',
