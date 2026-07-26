@@ -142,6 +142,7 @@ const token = await authenticate();
 let created = 0;
 let updated = 0;
 let skipped = 0;
+const failed = [];
 for (const p of selected) {
   const record = toRecord(p);
   const found = await api(
@@ -173,17 +174,42 @@ for (const p of selected) {
     updated++;
     console.log(`updated ${p.slug}`);
   } else {
-    await api(
-      '/api/collections/posts/records',
-      {
-        method: 'POST',
-        body: JSON.stringify(record),
-      },
-      token,
-    );
-    created++;
-    console.log(`created ${p.slug}`);
+    try {
+      await api(
+        '/api/collections/posts/records',
+        { method: 'POST', body: JSON.stringify(record) },
+        token,
+      );
+      created++;
+      console.log(`created ${p.slug}`);
+    } catch (err) {
+      // The record may well have been written anyway. pb_hooks/deploy.pb.js runs
+      // onRecordAfterCreateRequest and POSTs to DEPLOY_HOOK_URL to rebuild the site; when
+      // that call fails — a build is already queued, so the hook rate-limits — the hook
+      // throws and PocketBase 0.22 reports it as a bare 400 with an empty data object,
+      // AFTER the row is committed. Verify before believing the error.
+      const check = await api(
+        `/api/collections/posts/records?perPage=1&filter=${encodeURIComponent(`slug="${p.slug}"`)}`,
+        {},
+        token,
+      ).catch(() => null);
+      if (check?.items?.length) {
+        created++;
+        console.log(
+          `created ${p.slug} — the API returned an error after the write (an after-create` +
+            ' hook failed, most likely the deploy hook); the record is there',
+        );
+      } else {
+        failed.push(`${p.slug}: ${err.message}`);
+        console.error(`FAILED ${p.slug}`);
+      }
+    }
   }
 }
 console.log(`\n${created} created, ${updated} updated, ${skipped} skipped on ${url}`);
+if (failed.length) {
+  console.error(`\n${failed.length} genuinely failed:`);
+  for (const f of failed) console.error(`  ${f}`);
+  process.exitCode = 1;
+}
 console.log('Rebuild the site (Cloudflare Pages) so the new records are prerendered.');
