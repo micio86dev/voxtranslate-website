@@ -38,14 +38,20 @@ export const SITE_ORIGIN = 'https://website.voxtranslate.app';
  * undefined repo Variable arrives as an empty string, which must not silently disable
  * tracking. Pass the literal `off` to ship no pixel at all.
  *
- * Replaced the original id (362182456310675) in July 2026: Meta refused its traffic and
- * its settings were unreachable from this account, so the allow-list could not be fixed.
  * Whichever id is in use needs this site's domain allowed under the pixel's traffic
  * permissions, or Meta accepts the script and drops every event.
+ *
+ * History, so the previous ids are not tried again:
+ *   - 362182456310675 — a real pixel, but Meta refused its traffic and its settings were
+ *     unreachable from this account, so the domain allow-list could not be fixed.
+ *   - 1829395151799504 — an APP id, not a pixel (Events Manager routes it under
+ *     /list/app/ rather than /list/dataset/). Requests to /tr were answered 200, but an
+ *     app data source is not what web conversions are attributed against, and it has no
+ *     traffic permissions because apps have no domains.
  */
 const configuredPixelId = import.meta.env.PUBLIC_FB_PIXEL_ID;
 export const FB_PIXEL_ID =
-  configuredPixelId === 'off' ? '' : configuredPixelId || '1829395151799504';
+  configuredPixelId === 'off' ? '' : configuredPixelId || '2706418669760386';
 
 /** Google Analytics 4 Measurement ID (`G-XXXXXXX`). Set via PUBLIC_GA_ID at build
  *  time; empty string ⇒ gtag never loads. Like the Pixel, it loads only after the
