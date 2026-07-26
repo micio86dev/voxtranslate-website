@@ -101,6 +101,33 @@ async function authenticate() {
 const selected = posts.filter((p) => !only || only.has(p.slug));
 if (!selected.length) throw new Error('no posts selected');
 
+// The `posts` collection's own constraints (pb_migrations/1747000000_create_posts.js).
+// Checked here because PocketBase answers an over-long excerpt with a bare
+// "Something went wrong while processing your request." and an EMPTY data object —
+// no field, no length, nothing to go on. Fail locally with the actual reason instead.
+const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const problems = [];
+for (const p of selected) {
+  if (p.excerpt.length > 200) {
+    problems.push(`${p.slug}: excerpt is ${p.excerpt.length} chars, the field allows 200`);
+  }
+  if (!SLUG_PATTERN.test(p.slug)) {
+    problems.push(`${p.slug}: slug must match ${SLUG_PATTERN} (lowercase, digits, hyphens)`);
+  }
+  if (!['en', 'it', 'es', 'de', 'fr'].includes(p.lang ?? 'en')) {
+    problems.push(`${p.slug}: lang "${p.lang}" is not one of en/it/es/de/fr`);
+  }
+  for (const field of ['title', 'excerpt', 'content', 'author', 'published_at']) {
+    if (!p[field]) problems.push(`${p.slug}: ${field} is required and empty`);
+  }
+}
+if (problems.length) {
+  console.error(
+    `\nThe bundled data violates the collection's constraints:\n  ${problems.join('\n  ')}\n`,
+  );
+  process.exit(1);
+}
+
 if (dryRun) {
   for (const p of selected) {
     const rec = toRecord(p);
@@ -125,7 +152,15 @@ for (const p of selected) {
   const existing = found.items?.[0];
   if (existing && !updateExisting) {
     skipped++;
-    console.log(`skipped ${p.slug} (already in the CMS — pass --update-existing to overwrite)`);
+    // A record can exist and still be invisible: the collection's listRule is
+    // `published = true`, so an unpublished draft blocks creation here while never
+    // appearing on the site — the confusing state where the CMS "has" the post and
+    // readers cannot see it. Say so rather than reporting a bare skip.
+    const draft =
+      existing.published === false ? ' — DRAFT, not published, so the site does NOT show it' : '';
+    console.log(
+      `skipped ${p.slug} (already in the CMS${draft}${draft ? '' : ' — pass --update-existing to overwrite'})`,
+    );
   } else if (existing) {
     await api(
       `/api/collections/posts/records/${existing.id}`,
