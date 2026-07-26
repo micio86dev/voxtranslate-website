@@ -32,12 +32,20 @@ export const SITE_ORIGIN = 'https://website.voxtranslate.app';
 /**
  * Meta (Facebook) Pixel id. Public value; only loaded after marketing consent.
  *
- * Overridable via PUBLIC_FB_PIXEL_ID at build time, like the Google ids below — so
- * swapping the pixel (or turning it off with an empty value) is an env change plus a
- * rebuild, not a code deploy. The default is the id in use since June 2026; note that
- * Meta rejects its traffic unless this site's domain is allowed on that pixel.
+ * Overridable via PUBLIC_FB_PIXEL_ID at build time, like the Google ids below, so
+ * swapping the pixel is an env change plus a rebuild rather than a code deploy. An
+ * UNSET or empty variable keeps the default below — CI always defines the var, and an
+ * undefined repo Variable arrives as an empty string, which must not silently disable
+ * tracking. Pass the literal `off` to ship no pixel at all.
+ *
+ * Replaced the original id (362182456310675) in July 2026: Meta refused its traffic and
+ * its settings were unreachable from this account, so the allow-list could not be fixed.
+ * Whichever id is in use needs this site's domain allowed under the pixel's traffic
+ * permissions, or Meta accepts the script and drops every event.
  */
-export const FB_PIXEL_ID = import.meta.env.PUBLIC_FB_PIXEL_ID ?? '362182456310675';
+const configuredPixelId = import.meta.env.PUBLIC_FB_PIXEL_ID;
+export const FB_PIXEL_ID =
+  configuredPixelId === 'off' ? '' : configuredPixelId || '1829395151799504';
 
 /** Google Analytics 4 Measurement ID (`G-XXXXXXX`). Set via PUBLIC_GA_ID at build
  *  time; empty string ⇒ gtag never loads. Like the Pixel, it loads only after the
