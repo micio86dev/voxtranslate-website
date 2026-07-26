@@ -180,7 +180,9 @@ const jsonLd = blogJsonLd(Astro.site, lang, posts);
 </style>
 
 <script>
-  const PAGE_SIZE = 6;
+  // Posts per page. Every post is prerendered into the page and paginated client-side,
+  // so this only changes how many are visible at once, not what gets fetched.
+  const PAGE_SIZE = 15;
   const grid = document.getElementById('blog-grid');
   if (grid) {
     const items = Array.from(grid.querySelectorAll<HTMLLIElement>(':scope > li'));

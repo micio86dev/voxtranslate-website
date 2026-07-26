@@ -18,6 +18,15 @@ const localesJson = JSON.stringify(LOCALES);
       (function () {
         try {
           const supported = JSON.parse(localesJson);
+          // An explicit choice (set by the language switcher) outranks the browser's
+          // configured languages. Normally the Cloudflare middleware has already
+          // redirected using the same rule; this path covers a local preview, a cached
+          // copy of this page, or the middleware not running for any reason.
+          const stored = (document.cookie.match(/(?:^|;\s*)vox-lang=([^;]+)/) || [])[1];
+          if (stored && supported.indexOf(decodeURIComponent(stored)) > -1) {
+            location.replace('/' + decodeURIComponent(stored) + '/');
+            return;
+          }
           const prefs = navigator.languages || [navigator.language || def];
           let pick = def;
           for (let i = 0; i < prefs.length; i++) {

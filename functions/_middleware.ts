@@ -5,7 +5,8 @@
 //      (the permanent project domain + per-deploy <hash> aliases, which can't be
 //      deleted) is 301'd to the custom domain, so the site is only reachable —
 //      and only indexed — at CANONICAL_HOST. Skipped on staging (own host).
-//   2. Geo-based language redirect for the bare root, honoring a cookie pref.
+//   2. Language redirect for the bare root: an explicit `vox-lang` cookie wins,
+//      otherwise the browser's Accept-Language, otherwise English.
 const DEFAULT_CANONICAL_HOST = 'website.voxtranslate.app';
 
 interface Env {
@@ -15,18 +16,13 @@ interface Env {
   CANONICAL_HOST?: string;
 }
 
-const COUNTRY_TO_LANG: Record<string, string> = {
-  IT: 'it',
-  DE: 'de',
-  AT: 'de',
-  CH: 'de', // Switzerland is multilingual; default to the largest group.
-  ES: 'es',
-  MX: 'es',
-  AR: 'es',
-  CO: 'es',
-  FR: 'fr',
-  BE: 'fr',
-};
+// Kept in sync with src/lib/i18n.ts — this function runs outside the Astro build, so it
+// cannot import from src/.
+const LOCALES = ['en', 'it', 'es', 'de', 'fr'] as const;
+type Locale = (typeof LOCALES)[number];
+const DEFAULT_LOCALE: Locale = 'en';
+/** Where an explicit language choice is remembered (written by LangSwitcher). */
+const COOKIE = 'vox-lang';
 
 export async function onRequest(context: EventContext<Env, string, unknown>) {
   const { request, next, env } = context;
@@ -58,18 +54,53 @@ export async function onRequest(context: EventContext<Env, string, unknown>) {
     return Response.redirect(`https://${canonicalHost}${url.pathname}${url.search}`, 301);
   }
 
-  // 2. Only geo-redirect the bare root.
+  // 2. Only language-redirect the bare root.
   if (url.pathname !== '/') return next();
 
-  // Respect an existing cookie preference.
-  const cookie = request.headers.get('Cookie') || '';
-  if (cookie.includes('vox-lang=')) return next();
-
-  // Use Cloudflare's geo header.
-  const country = request.headers.get('CF-IPCountry') || 'US';
-  const lang = COUNTRY_TO_LANG[country] || 'en';
-
+  const lang = pickLanguage(request);
   return Response.redirect(`${url.origin}/${lang}/`, 302);
+}
+
+/**
+ * Which locale the bare root should send this visitor to:
+ *   1. the `vox-lang` cookie — an explicit choice, so it outranks everything
+ *   2. `Accept-Language` — what the browser is actually configured for
+ *   3. `en`
+ *
+ * Deliberately NOT geo: country and language are different things, and conflating
+ * them serves Spanish to a German speaker in Madrid. `Accept-Language` is the
+ * visitor's own stated preference, which is what we want to honour.
+ */
+function pickLanguage(request: Request): Locale {
+  const stored = readCookie(request.headers.get('Cookie') || '', COOKIE);
+  if (stored && isLocale(stored)) return stored;
+
+  // "de-CH,de;q=0.9,en;q=0.8" — highest q first, so first supported match wins.
+  const header = request.headers.get('Accept-Language') || '';
+  const tags = header
+    .split(',')
+    .map((part) => ({
+      code: part.split(';')[0].trim().slice(0, 2).toLowerCase(),
+      q: Number(/q=([\d.]+)/.exec(part)?.[1] ?? 1),
+    }))
+    .filter((t) => t.code)
+    .sort((a, b) => b.q - a.q);
+  for (const tag of tags) {
+    if (isLocale(tag.code)) return tag.code;
+  }
+  return DEFAULT_LOCALE;
+}
+
+function readCookie(header: string, name: string): string | undefined {
+  for (const part of header.split(';')) {
+    const [k, ...v] = part.trim().split('=');
+    if (k === name) return decodeURIComponent(v.join('='));
+  }
+  return undefined;
+}
+
+function isLocale(value: string): value is Locale {
+  return (LOCALES as readonly string[]).includes(value);
 }
 
 /** Constant-ish Basic Auth check against an `expected` "user:pass" string. */
