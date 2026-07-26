@@ -155,6 +155,38 @@ const jsonLdItems = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <Footer lang={lang} pathWithoutLocale={pathWithoutLocale} pathByLocale={pathByLocale} />
     <ConsentBanner lang={lang} />
 
+    <script is:inline define:vars={{ locales: LOCALES }}>
+      // Remember the language actually being viewed, so the bare root sends the visitor
+      // back to it. Covers both ways a language gets chosen: the switcher, and typing or
+      // following a URL with a different locale prefix — the URL is the authority either
+      // way, which is why this lives here rather than on the switcher's click.
+      //
+      // Only a real locale prefix counts: a 404 or the prefix-less landing page must not
+      // rewrite the preference. Localized URLs stay honoured as-is (a shared /it/ link
+      // opens in Italian whatever the cookie says); the cookie only decides where `/` goes.
+      (function () {
+        function remember() {
+          try {
+            var seg = location.pathname.split('/')[1];
+            if (locales.indexOf(seg) === -1) return;
+            var current = (document.cookie.match(/(?:^|;\s*)vox-lang=([^;]+)/) || [])[1];
+            if (current === seg) return;
+            var secure = location.protocol === 'https:' ? '; Secure' : '';
+            document.cookie =
+              'vox-lang=' + seg + '; Path=/; Max-Age=31536000; SameSite=Lax' + secure;
+          } catch {
+            /* storage blocked — the redirect just falls back to Accept-Language */
+          }
+        }
+        remember();
+        // A back/forward restore from the bfcache does not re-run inline scripts, so the
+        // cookie would keep pointing at the page navigated away from.
+        addEventListener('pageshow', function (e) {
+          if (e.persisted) remember();
+        });
+      })();
+    </script>
+
     <style>
       .skip-link {
         position: absolute;
