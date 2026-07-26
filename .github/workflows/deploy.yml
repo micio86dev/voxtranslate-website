@@ -39,6 +39,9 @@ jobs:
       - name: Build
         env:
           POCKETBASE_URL: ${{ secrets.POCKETBASE_URL }}
+          # Optional override for the Meta pixel (repo Variables → PUBLIC_FB_PIXEL_ID).
+          # Unset falls back to the id in src/lib/site.ts; 'off' ships no pixel at all.
+          PUBLIC_FB_PIXEL_ID: ${{ vars.PUBLIC_FB_PIXEL_ID }}
         run: pnpm run build
 
       - name: Deploy to Cloudflare Pages
