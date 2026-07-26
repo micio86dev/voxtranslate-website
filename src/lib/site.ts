@@ -29,8 +29,15 @@ export const LEGAL_URLS = {
 /** Marketing site origin (kept in sync with astro.config `site`). */
 export const SITE_ORIGIN = 'https://website.voxtranslate.app';
 
-/** Meta (Facebook) Pixel id. Public value; only loaded after marketing consent. */
-export const FB_PIXEL_ID = '362182456310675';
+/**
+ * Meta (Facebook) Pixel id. Public value; only loaded after marketing consent.
+ *
+ * Overridable via PUBLIC_FB_PIXEL_ID at build time, like the Google ids below — so
+ * swapping the pixel (or turning it off with an empty value) is an env change plus a
+ * rebuild, not a code deploy. The default is the id in use since June 2026; note that
+ * Meta rejects its traffic unless this site's domain is allowed on that pixel.
+ */
+export const FB_PIXEL_ID = import.meta.env.PUBLIC_FB_PIXEL_ID ?? '362182456310675';
 
 /** Google Analytics 4 Measurement ID (`G-XXXXXXX`). Set via PUBLIC_GA_ID at build
  *  time; empty string ⇒ gtag never loads. Like the Pixel, it loads only after the
