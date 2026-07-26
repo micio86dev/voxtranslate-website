@@ -256,6 +256,8 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
 </script>
 
 <script>
+  import { track, trackFB } from '../../scripts/analytics';
+
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
   if (form) {
     const submit = document.getElementById('cf-submit') as HTMLButtonElement | null;
@@ -301,6 +303,12 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         form.reset();
         setStatus(msgSuccess, 'success');
+        // The site's only real conversion: a B2B enquiry that reached the API. Reported
+        // to Meta as the standard `Lead` (standard events are what campaign optimisation
+        // can bid on) and to GA4 as `generate_lead`, its recommended name. Both no-op
+        // until the visitor accepts the consent banner, which is what loads the tags.
+        trackFB('Lead');
+        track('generate_lead', { form: 'business_contact' });
       } catch {
         const fallback = mailto ? `${msgError} ` : msgError;
         setStatus(fallback, 'error');
