@@ -44,7 +44,12 @@ function targetFor(l: Locale): string {
     {
       LOCALES.map((l) => (
         <li role="option" aria-selected={l === lang}>
-          <a href={targetFor(l)} hreflang={l} aria-current={l === lang ? 'true' : undefined}>
+          <a
+            href={targetFor(l)}
+            hreflang={l}
+            data-lang={l}
+            aria-current={l === lang ? 'true' : undefined}
+          >
             <span aria-hidden="true">{LOCALE_FLAGS[l]}</span>
             <span>{LOCALE_NAMES[l]}</span>
           </a>
@@ -53,6 +58,24 @@ function targetFor(l: Locale): string {
     }
   </ul>
 </details>
+
+<script>
+  // Remember an explicit language choice for a year, so the bare root stops guessing
+  // from Accept-Language once the visitor has told us. The middleware
+  // (functions/_middleware.ts) reads this cookie first; the root page reads it too, for
+  // the case where the middleware isn't in front (local preview).
+  //
+  // Progressive enhancement: the links navigate on their own, this only records the
+  // choice. SameSite=Lax so it survives following a link in from elsewhere.
+  document.querySelectorAll('details.lang a[data-lang]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const lang = link.getAttribute('data-lang');
+      if (!lang) return;
+      const secure = location.protocol === 'https:' ? '; Secure' : '';
+      document.cookie = `vox-lang=${lang}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
+    });
+  });
+</script>
 
 <style>
   .lang {
