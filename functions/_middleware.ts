@@ -58,7 +58,19 @@ export async function onRequest(context: EventContext<Env, string, unknown>) {
   if (url.pathname !== '/') return next();
 
   const lang = pickLanguage(request);
-  return Response.redirect(`${url.origin}/${lang}/`, 302);
+  // This redirect is per-visitor: it depends on Accept-Language and on the cookie. A
+  // shared cache holding one copy of it sends the first visitor's language to everyone
+  // (observed: `/` kept answering /es/ for German and Japanese browsers because the
+  // edge had cached the Spanish redirect). Vary states the real cache key; no-store
+  // keeps it out of shared caches entirely, and recomputing costs nothing.
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: `${url.origin}/${lang}/`,
+      Vary: 'Accept-Language, Cookie',
+      'Cache-Control': 'no-store',
+    },
+  });
 }
 
 /**
