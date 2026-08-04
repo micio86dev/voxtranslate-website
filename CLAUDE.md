@@ -112,3 +112,27 @@ Never commit `.env`. Copy `.env.example` and fill in values locally.
 - Service root directory: `docker/pocketbase`. Attach a Volume mounted at `/pb/pb_data`.
 - Expose via a Cloudflare DNS (proxied) record to hide the Railway origin; set `POCKETBASE_URL` to that host.
 - Cache GET `/api/collections/posts/records` at the Cloudflare edge (~5 min).
+
+**Shipping a CMS change (migrations, seeds) — the service has NO Git source.** Every
+deployment is a directory upload, so a "Redeploy" in the Railway UI republishes the OLD
+snapshot and silently ignores a migration you just committed. Nothing errors; the content
+simply does not change. The sequence that works:
+
+```bash
+cd docker/pocketbase
+railway link --project <pocketbase-project-id> --environment production --service voxtranslate-pocketbase   # once per checkout
+railway up --detach            # uploads THIS directory; migrations run at boot
+# then rebuild the static site so it reads the migrated content:
+gh workflow run deploy.yml --ref main
+```
+
+- `railway link` is not optional: `railway up --project … --service …` fails with
+  "No linked project found" — the flags alone do not bind the directory (CLI 5.30.x).
+- If `railway` returns `Unauthorized`, check for a stale `RAILWAY_API_TOKEN` in your
+  shell: it takes precedence over the browser session. Prefix with
+  `env -u RAILWAY_API_TOKEN`.
+- `--detach` avoids the log-stream flake that makes the CLI exit 1 on a healthy deploy.
+- Cloudflare can serve the old page for a while after the rebuild. Verify with a
+  cache-busting query string before concluding a locale was missed.
+- Migrations are content-destructive and their `down` is usually a no-op: back the
+  collection up first — `curl "$PB/api/collections/posts/records?perPage=200" -o backup.json`.
