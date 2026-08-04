@@ -19,6 +19,21 @@ export const API_BASE = (import.meta.env.PUBLIC_API_BASE || 'https://api.voxtran
   '',
 );
 
+/**
+ * Whether the Pro tier is offered. **OFF unless `PUBLIC_PRO_TIER_ENABLED` is truthy at
+ * build time**, mirroring the server's `PRO_TIER_ENABLED` — the tier is withdrawn on
+ * price/quality, not deleted, so bringing it back is a flag flip on both sides.
+ *
+ * This site is static, so it cannot read the server's flag at runtime; the two are set
+ * together. The server is the enforcing side (an unregistered engine cannot be started);
+ * this only stops the marketing site advertising something the app will not offer.
+ */
+export const PRO_TIER_ENABLED = ['1', 'true', 'yes', 'on'].includes(
+  String(import.meta.env.PUBLIC_PRO_TIER_ENABLED ?? '')
+    .trim()
+    .toLowerCase(),
+);
+
 /** Existing legal pages live on the app domain. */
 export const LEGAL_URLS = {
   privacy: `${APP_URL}/privacy`,

@@ -1,15 +1,20 @@
 ---
 import Button from '../ui/Button.astro';
 import { useTranslations, tList, type Locale } from '../../lib/i18n';
-import { APP_URL } from '../../lib/site';
+import { APP_URL, PRO_TIER_ENABLED } from '../../lib/site';
 
 interface Props {
   lang: Locale;
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const tiers = tList<{ name: string; tagline: string; points: string[] }>(lang, 'tiers.items');
-const POPULAR_INDEX = 2; // Pro
+const allTiers = tList<{ name: string; tagline: string; points: string[] }>(lang, 'tiers.items');
+// Tier names are product names, identical in every locale, so filtering by name is
+// locale-safe — unlike the index, which shifts the moment a tier is added or withdrawn.
+const tiers = PRO_TIER_ENABLED ? allTiers : allTiers.filter((tier) => tier.name !== 'Pro');
+// Keyed by NAME, not a fixed index: with Pro withdrawn, index 2 silently promoted
+// Premium to "Most popular". When no tier matches, no card is flagged.
+const POPULAR_NAME = PRO_TIER_ENABLED ? 'Pro' : 'Enhanced';
 ---
 
 <section class="tiers" id="tiers" aria-labelledby="tiers-title">
@@ -19,14 +24,16 @@ const POPULAR_INDEX = 2; // Pro
       <p>{t('tiers.subtitle')}</p>
     </header>
 
-    <ul class="tier-grid">
+    <!-- The wide-screen column count follows the tier count: hard-coding 4 left an empty
+         cell the moment a tier was withdrawn. -->
+    <ul class="tier-grid" style={`--tier-count: ${tiers.length}`}>
       {
-        tiers.map((tier, i) => (
+        tiers.map((tier) => (
           <li
-            class={`tier-card glass ${i === POPULAR_INDEX ? 'tier-popular glass-glow' : ''}`}
+            class={`tier-card glass ${tier.name === POPULAR_NAME ? 'tier-popular glass-glow' : ''}`}
             data-reveal
           >
-            {i === POPULAR_INDEX && (
+            {tier.name === POPULAR_NAME && (
               <span class="tier-flag badge badge-accent">{t('tiers.popular')}</span>
             )}
             <h3 class="tier-name">{tier.name}</h3>
@@ -55,7 +62,7 @@ const POPULAR_INDEX = 2; // Pro
             <Button
               href={APP_URL}
               rel="noopener"
-              variant={i === POPULAR_INDEX ? 'primary' : 'ghost'}
+              variant={tier.name === POPULAR_NAME ? 'primary' : 'ghost'}
               class="tier-cta"
             >
               {t('tiers.cta')}
@@ -156,7 +163,7 @@ const POPULAR_INDEX = 2; // Pro
   }
   @media (min-width: 1040px) {
     .tier-grid {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(var(--tier-count, 4), 1fr);
     }
   }
 </style>
