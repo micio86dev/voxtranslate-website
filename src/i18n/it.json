@@ -37,16 +37,16 @@
       "label": "Combinazioni linguistiche"
     },
     "tiers": {
-      "value": "4",
+      "value": "3",
       "label": "Livelli di qualità"
-    },
-    "latency": {
-      "value": "<250ms",
-      "label": "Latenza live"
     },
     "p2p": {
       "value": "P2P",
       "label": "Privacy by design"
+    },
+    "catalogue": {
+      "value": "84",
+      "label": "Lingue"
     }
   },
   "features": {
@@ -144,10 +144,10 @@
       },
       {
         "name": "Enhanced",
-        "tagline": "Diretto, latenza ultra bassa",
+        "tagline": "Diretto, con la tua voce",
         "points": [
           "Streaming diretto dal client",
-          "Reattività ~sotto i 250ms",
+          "Clonazione vocale: la tua voce, tradotta",
           "57 lingue",
           "Ideale per botta e risposta rapidi"
         ]

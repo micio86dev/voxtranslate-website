@@ -5,7 +5,10 @@ interface Props {
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const stats = ['languages', 'tiers', 'latency', 'p2p'] as const;
+// No latency stat: a millisecond figure on a marketing page is a promise measured on
+// someone else's network, and we do not quote one anywhere else either. The catalogue
+// size took its cell — a fact that cannot degrade.
+const stats = ['languages', 'catalogue', 'tiers', 'p2p'] as const;
 ---
 
 <section class="social" aria-label={t('social.title')}>

@@ -37,16 +37,16 @@
       "label": "Language combinations"
     },
     "tiers": {
-      "value": "4",
+      "value": "3",
       "label": "Quality tiers"
-    },
-    "latency": {
-      "value": "<250ms",
-      "label": "Live latency"
     },
     "p2p": {
       "value": "P2P",
       "label": "Private by design"
+    },
+    "catalogue": {
+      "value": "84",
+      "label": "Languages"
     }
   },
   "features": {
@@ -144,10 +144,10 @@
       },
       {
         "name": "Enhanced",
-        "tagline": "Direct, ultra-low latency",
+        "tagline": "Direct, with your own voice",
         "points": [
           "Client-direct streaming",
-          "~sub-250ms responsiveness",
+          "Voice cloning so you sound like you",
           "57 languages",
           "Ideal for fast back-and-forth"
         ]
