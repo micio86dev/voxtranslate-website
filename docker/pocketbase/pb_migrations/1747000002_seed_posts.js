@@ -12,7 +12,7 @@ migrate(
         title: 'How VoxTranslate works: real-time multilingual voice translation explained',
         slug: 'how-voxtranslate-works',
         excerpt:
-          "A look under the hood at the pipeline that turns your voice into live, translated speech for everyone in the call — and the four engine tiers that power it.",
+          "A look under the hood at the pipeline that turns your voice into live, translated speech for everyone in the call — and the three engine tiers that power it.",
         author: 'VoxTranslate Team',
         published_at: '2026-05-12 09:00:00.000Z',
         lang: 'en',
@@ -29,14 +29,12 @@ migrate(
 </ol>
 <h3>Why peer-to-peer matters</h3>
 <p>The video and audio you share travel directly between browsers over WebRTC, in a mesh of up to four people. Your media isn't recorded or routed through a central server — the server handles signaling, translation and chat relay. Fewer hops means lower latency and a smaller privacy surface.</p>
-<h2>The four engine tiers</h2>
+<h2>The three engine tiers</h2>
 <p>Not every conversation needs the same trade-off between speed, voice quality and cost, so VoxTranslate lets you pick an engine per call.</p>
 <h3>Standard</h3>
 <p>The default. Fast, economical streaming recognition with live translated subtitles and a built-in browser voice. Perfect for everyday chats.</p>
 <h3>Enhanced</h3>
 <p>A client-direct streaming path tuned for ultra-low latency — roughly sub-250-millisecond responsiveness — across a wide set of languages. Ideal for fast, natural back-and-forth.</p>
-<h3>Pro</h3>
-<p>Live AI translation with a natural synthesized voice. The sweet spot for meetings and demos: high quality, a real spoken translation, and a balanced cost.</p>
 <h3>Premium</h3>
 <p>The highest-fidelity option, with a natural AI voice and the broadest coverage — all 84 supported languages. Built for high-stakes conversations.</p>
 <h2>A note on AI output</h2>
@@ -48,13 +46,13 @@ migrate(
         title: 'Choosing the right translation tier for your use case',
         slug: 'choosing-the-right-translation-tier',
         excerpt:
-          'Standard, Enhanced, Pro or Premium? A practical guide to picking the VoxTranslate engine that fits your conversation, your latency needs and your budget.',
+          'Standard, Enhanced or Premium? A practical guide to picking the VoxTranslate engine that fits your conversation, your latency needs and your budget.',
         author: 'VoxTranslate Team',
         published_at: '2026-05-26 09:00:00.000Z',
         lang: 'en',
         tags: ['Guides', 'Product'],
         content: `
-<p>VoxTranslate gives you four translation engines and lets you switch between them per call. That flexibility is powerful, but it raises a fair question: which one should you actually use? Here's how to decide in under a minute.</p>
+<p>VoxTranslate gives you three translation engines and lets you switch between them per call. That flexibility is powerful, but it raises a fair question: which one should you actually use? Here's how to decide in under a minute.</p>
 <h2>Start with the conversation, not the tier</h2>
 <p>The best engine depends less on the technology and more on what the conversation is for. Ask yourself: How much does latency matter? Do listeners need to <em>hear</em> a natural voice, or is reading enough? And how many languages need coverage?</p>
 <h2>The tiers at a glance</h2>
@@ -62,8 +60,6 @@ migrate(
 <p>Choose Standard when subtitles are the main event and budget matters. Fast and economical. Great for casual catch-ups and quick coordination.</p>
 <h3>Enhanced — fast, natural back-and-forth</h3>
 <p>When the rhythm of the conversation matters — interviews, negotiations, lively group calls — Enhanced's client-direct path delivers roughly sub-250-millisecond responsiveness.</p>
-<h3>Pro — meetings and demos</h3>
-<p>Pro adds a natural AI voice on top of live translation. The balanced choice for client meetings, demos and webinars. For most teams, this is the default upgrade.</p>
 <h3>Premium — high-stakes, every language</h3>
 <p>Premium is the highest-fidelity tier, with a natural voice and full coverage of all 84 languages. Reach for it when nuance is non-negotiable.</p>
 <h2>How billing fits in</h2>
@@ -72,11 +68,10 @@ migrate(
 <ul>
   <li><strong>Just need to understand each other?</strong> Standard.</li>
   <li><strong>Need it to feel instant?</strong> Enhanced.</li>
-  <li><strong>Presenting to others?</strong> Pro.</li>
   <li><strong>Can't afford to be misunderstood?</strong> Premium.</li>
 </ul>
 <h2>You're not locked in</h2>
-<p>Because you choose the engine at the start of each call, you can experiment cheaply. Try Standard today, switch to Pro for your next meeting, and let the results decide.</p>`,
+<p>Because you choose the engine at the start of each call, you can experiment cheaply. Try Standard today, switch to Premium for your next meeting, and let the results decide.</p>`,
       },
       {
         title: 'VoxTranslate vs traditional interpreters: speed, cost, and quality',

@@ -24,7 +24,7 @@ export const GET: APIRoute = async ({ site }) => {
     "VoxTranslate turns any video call into a multilingual conversation: live speech-to-text captions, spoken voice-to-voice translation in each listener's own language, and auto-translated text chat. It runs in the browser with no install and is free to start. The app lives at https://voxtranslate.app; this marketing site (product, business, blog) lives at https://website.voxtranslate.app.",
     '',
     '## Product',
-    `- [VoxTranslate — real-time AI voice translator](${url(localizePath('en'))}): product overview, features, four quality tiers, and pricing.`,
+    `- [VoxTranslate — real-time AI voice translator](${url(localizePath('en'))}): product overview, features, three quality tiers, and pricing.`,
     `- [VoxTranslate for Business](${url(localizePath('en', 'business'))}): translated meetings for teams — shared call history, multilingual transcripts, projects, and compliance.`,
     `- [Launch the app](${APP_URL}): start or join a real-time translated video call.`,
     '',
