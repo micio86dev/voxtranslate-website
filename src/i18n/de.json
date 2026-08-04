@@ -37,16 +37,16 @@
       "label": "Sprachkombinationen"
     },
     "tiers": {
-      "value": "4",
+      "value": "3",
       "label": "Qualitätsstufen"
-    },
-    "latency": {
-      "value": "<250ms",
-      "label": "Live-Latenz"
     },
     "p2p": {
       "value": "P2P",
       "label": "Privat by Design"
+    },
+    "catalogue": {
+      "value": "84",
+      "label": "Sprachen"
     }
   },
   "features": {
@@ -144,10 +144,10 @@
       },
       {
         "name": "Enhanced",
-        "tagline": "Direkt, ultraniedrige Latenz",
+        "tagline": "Direkt, mit deiner eigenen Stimme",
         "points": [
           "Direktes Streaming vom Client",
-          "Reaktion in ~unter 250ms",
+          "Stimmklonung, damit du wie du klingst",
           "57 Sprachen",
           "Perfekt fürs schnelle Hin und Her"
         ]
