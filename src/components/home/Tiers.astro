@@ -2,7 +2,7 @@
 import Button from '../ui/Button.astro';
 import { useTranslations, tList, localizePath, type Locale } from '../../lib/i18n';
 import { APP_URL, PRO_TIER_ENABLED } from '../../lib/site';
-import { getEngines, formatRate } from '../../lib/engines';
+import { ENGINES, formatRate } from '../../lib/engines';
 
 interface Props {
   lang: Locale;
@@ -17,7 +17,7 @@ const tiers = PRO_TIER_ENABLED ? allTiers : allTiers.filter((tier) => tier.name 
 // Language counts come from the live catalogue, never from the copy: the bullets used to
 // hardcode "57 languages" for Enhanced while the engine reported 61. The i18n strings
 // carry a {count} placeholder that is filled here.
-const engines = await getEngines();
+const engines = ENGINES;
 const languageCount = new Map(
   engines.map((engine) => [engine.display_name, engine.output_languages.length]),
 );

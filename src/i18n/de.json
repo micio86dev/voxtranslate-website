@@ -417,7 +417,7 @@
         },
         {
           "what": "VoxTranslate Premium",
-          "cost": "4,10 $ / Stunde",
+          "cost": "4,11 $ / Stunde",
           "note": "84 Sprachen, sofort, ohne Buchung"
         }
       ],
@@ -452,7 +452,6 @@
           "a": "Ja. Die VoxTranslate-Browsererweiterung übersetzt den Ton, der in Ihrem Tab läuft — das deckt Meet und Zoom im Web ab, zusätzlich zu den VoxTranslate-Räumen und -Webinaren."
         }
       ]
-    },
-    "stale": "Die angezeigten Preise sind Richtwerte — der Live-Katalog war beim Build dieser Seite nicht erreichbar."
+    }
   }
 }
