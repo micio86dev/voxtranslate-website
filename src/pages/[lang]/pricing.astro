@@ -1,0 +1,505 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import {
+  LOCALES,
+  useTranslations,
+  tList,
+  isLocale,
+  localizePath,
+  DEFAULT_LOCALE,
+  type Locale,
+} from '../../lib/i18n';
+import { APP_URL } from '../../lib/site';
+import {
+  getEngines,
+  enginesAreStale,
+  formatRate,
+  formatCallCost,
+  freeMinutes,
+  type Engine,
+} from '../../lib/engines';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const langParam = Astro.params.lang;
+const lang: Locale = isLocale(langParam) ? langParam : DEFAULT_LOCALE;
+const t = useTranslations(lang);
+
+const engines = await getEngines();
+const stale = enginesAreStale();
+
+// Enhanced is the "most popular" tier on the homepage; keep the two pages agreeing.
+const POPULAR = 'Enhanced';
+
+const compareRows = tList<{ what: string; cost: string; note: string }>(
+  lang,
+  'pricing.compare.rows',
+);
+const faqItems = tList<{ q: string; a: string }>(lang, 'pricing.faq.items');
+
+const cheapest = engines.reduce((a, b) => (a.rate_per_minute <= b.rate_per_minute ? a : b));
+const freeStandardMinutes = freeMinutes(cheapest.rate_per_minute);
+
+/** The two worked examples the page shows for every engine. */
+const EXAMPLE_MINUTES = 60;
+
+function bullets(engine: Engine): string[] {
+  const out: string[] = [];
+  if (engine.capabilities.translated_audio) out.push(t('pricing.tiers.audio'));
+  if (engine.capabilities.client_direct) {
+    out.push(t('pricing.tiers.subtitlesOnly'));
+    out.push(t('pricing.tiers.direct'));
+  }
+  return out;
+}
+
+// FAQPage structured data — the one schema type that still earns a rich result for a
+// pricing page, and the questions are already the ones buyers ask in support.
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+---
+
+<BaseLayout
+  lang={lang}
+  title={t('meta.pricing.title')}
+  description={t('meta.pricing.description')}
+  pathWithoutLocale="pricing"
+>
+  <!-- Hero -->
+  <section class="pr-hero">
+    <div class="container-page" data-reveal>
+      <span class="badge badge-accent">{t('pricing.hero.badge')}</span>
+      <h1>{t('pricing.hero.title')}</h1>
+      <p class="pr-sub">{t('pricing.hero.subtitle')}</p>
+      <div class="pr-cta-row">
+        <Button href={APP_URL} variant="primary" rel="noopener">{t('pricing.tiers.cta')}</Button>
+      </div>
+      <p class="pr-note">{t('pricing.hero.note')}</p>
+      {stale && <p class="pr-stale">{t('pricing.stale')}</p>}
+    </div>
+  </section>
+
+  <!-- How billing works. This sits ABOVE the rates on purpose: the per-minute number
+       is charged once per target language, and a reader who meets the rate first
+       anchors on it and feels misled later. -->
+  <section class="pr-billing">
+    <div class="container-page">
+      <div class="pr-billing-card glass" data-reveal>
+        <h2>{t('pricing.perLanguage.title')}</h2>
+        <p>{t('pricing.perLanguage.body')}</p>
+        <p class="pr-billing-em">{t('pricing.perLanguage.example')}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engines -->
+  <section class="pr-tiers" id="tiers">
+    <div class="container-page">
+      <header class="section-head" data-reveal>
+        <h2>{t('pricing.tiers.title')}</h2>
+        <p>{t('pricing.tiers.subtitle')}</p>
+      </header>
+
+      <ul class="pr-tier-grid" style={`--tier-count: ${engines.length}`}>
+        {
+          engines.map((engine) => (
+            <li
+              class={`pr-tier glass ${engine.display_name === POPULAR ? 'pr-tier-popular glass-glow' : ''}`}
+              data-reveal
+            >
+              {engine.display_name === POPULAR && (
+                <span class="pr-flag badge badge-accent">{t('pricing.tiers.popular')}</span>
+              )}
+              <h3>{engine.display_name}</h3>
+
+              <p class="pr-rate">
+                <strong>{formatRate(engine.rate_per_minute)}</strong>
+                <span>{t('pricing.tiers.perMinute')}</span>
+              </p>
+
+              <p class="pr-langs">
+                {t('pricing.tiers.languages', { count: engine.output_languages.length })}
+              </p>
+
+              <ul class="pr-points">
+                {bullets(engine).map((point) => (
+                  <li>{point}</li>
+                ))}
+              </ul>
+
+              <dl class="pr-example">
+                <div>
+                  <dt>{t('pricing.examples.oneLang')}</dt>
+                  <dd>{formatCallCost(engine.rate_per_minute, EXAMPLE_MINUTES, 1)}</dd>
+                </div>
+                <div>
+                  <dt>{t('pricing.examples.threeLang')}</dt>
+                  <dd>{formatCallCost(engine.rate_per_minute, EXAMPLE_MINUTES, 3)}</dd>
+                </div>
+              </dl>
+
+              <Button
+                href={APP_URL}
+                rel="noopener"
+                variant={engine.display_name === POPULAR ? 'primary' : 'ghost'}
+                class="pr-cta"
+              >
+                {t('pricing.tiers.cta')}
+              </Button>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="pr-examples-note" data-reveal>
+        {t('pricing.examples.subtitle')} · {
+          t('pricing.examples.free', { minutes: freeStandardMinutes })
+        }
+      </p>
+    </div>
+  </section>
+
+  <!-- Cost comparison -->
+  <section class="pr-compare">
+    <div class="container-page">
+      <header class="section-head" data-reveal>
+        <h2>{t('pricing.compare.title')}</h2>
+        <p>{t('pricing.compare.subtitle')}</p>
+      </header>
+
+      <div class="pr-table-wrap" data-reveal>
+        <table class="pr-table">
+          <tbody>
+            {
+              compareRows.map((row, i) => (
+                <tr class={i === compareRows.length - 1 ? 'pr-row-vox' : ''}>
+                  <th scope="row">{row.what}</th>
+                  <td class="pr-cost">{row.cost}</td>
+                  <td class="pr-row-note">{row.note}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="pr-disclaimer" data-reveal>{t('pricing.compare.note')}</p>
+    </div>
+  </section>
+
+  <!-- Business -->
+  <section class="pr-business">
+    <div class="container-page">
+      <div class="pr-business-card glass" data-reveal>
+        <h2>{t('pricing.business.title')}</h2>
+        <p>{t('pricing.business.body')}</p>
+        <Button href={`${localizePath(lang)}business/`} variant="primary">
+          {t('pricing.business.cta')}
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="pr-faq">
+    <div class="container-page">
+      <header class="section-head" data-reveal>
+        <h2>{t('pricing.faq.title')}</h2>
+      </header>
+      <ul class="pr-faq-list">
+        {
+          faqItems.map((item) => (
+            <li class="pr-faq-item glass" data-reveal>
+              <h3>{item.q}</h3>
+              <p>{item.a}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} is:inline />
+</BaseLayout>
+
+<style>
+  .pr-hero {
+    padding-block: clamp(3rem, 8vw, 5.5rem) clamp(2rem, 5vw, 3rem);
+    text-align: center;
+  }
+  .pr-hero h1 {
+    font-size: clamp(2rem, 5.5vw, 3.2rem);
+    margin: 1rem 0 0.75rem;
+  }
+  .pr-sub {
+    color: var(--muted);
+    font-size: 1.1rem;
+    max-width: 40rem;
+    margin: 0 auto 1.75rem;
+  }
+  .pr-cta-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .pr-note {
+    margin: 1rem 0 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .pr-stale {
+    margin: 1rem auto 0;
+    max-width: 34rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .pr-billing {
+    padding-block: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  .pr-billing-card {
+    padding: 1.75rem;
+    max-width: 46rem;
+    margin: 0 auto;
+  }
+  .pr-billing-card h2 {
+    font-size: 1.35rem;
+    margin: 0 0 0.75rem;
+  }
+  .pr-billing-card p {
+    margin: 0 0 0.6rem;
+    color: var(--ink);
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+  .pr-billing-em {
+    color: var(--muted) !important;
+    font-size: 0.9rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  .pr-tiers,
+  .pr-compare,
+  .pr-business,
+  .pr-faq {
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .section-head {
+    max-width: 42rem;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+  }
+  .section-head h2 {
+    font-size: clamp(1.7rem, 4.2vw, 2.3rem);
+    margin: 0 0 0.7rem;
+  }
+  .section-head p {
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .pr-tier-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+  .pr-tier {
+    position: relative;
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .pr-tier-popular {
+    border-color: color-mix(in srgb, var(--primary) 55%, var(--glass-border));
+  }
+  .pr-flag {
+    position: absolute;
+    top: -0.75rem;
+    left: 1.5rem;
+  }
+  .pr-tier h3 {
+    font-size: 1.4rem;
+    margin: 0 0 0.75rem;
+  }
+  .pr-rate {
+    margin: 0 0 0.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .pr-rate strong {
+    font-family: var(--font-mono);
+    font-size: 1.9rem;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .pr-rate span {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .pr-langs {
+    margin: 0 0 1rem;
+    font-size: 0.9rem;
+    color: var(--tertiary);
+    font-weight: 600;
+  }
+  .pr-points {
+    list-style: none;
+    margin: 0 0 1.25rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+  .pr-points li::before {
+    content: '✓';
+    color: var(--tertiary);
+    margin-right: 0.45rem;
+  }
+  .pr-example {
+    margin: 0 0 1.25rem;
+    padding: 0.85rem 0;
+    border-block: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .pr-example div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: baseline;
+  }
+  .pr-example dt {
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .pr-example dd {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+  .pr-cta {
+    width: 100%;
+  }
+  .pr-examples-note {
+    margin: 1.75rem auto 0;
+    max-width: 42rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .pr-table-wrap {
+    overflow-x: auto;
+    max-width: 52rem;
+    margin: 0 auto;
+  }
+  .pr-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+  .pr-table th,
+  .pr-table td {
+    text-align: left;
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--glass-border);
+    vertical-align: top;
+  }
+  .pr-table th {
+    font-weight: 600;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .pr-cost {
+    font-family: var(--font-mono);
+    white-space: nowrap;
+  }
+  .pr-row-note {
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+  .pr-row-vox th,
+  .pr-row-vox .pr-cost {
+    color: var(--primary);
+    font-weight: 700;
+  }
+  .pr-disclaimer {
+    margin: 1.25rem auto 0;
+    max-width: 52rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .pr-business-card {
+    padding: 2rem;
+    max-width: 46rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .pr-business-card h2 {
+    font-size: 1.5rem;
+    margin: 0 0 0.75rem;
+  }
+  .pr-business-card p {
+    color: var(--muted);
+    margin: 0 0 1.5rem;
+  }
+
+  .pr-faq-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+  .pr-faq-item {
+    padding: 1.35rem 1.5rem;
+  }
+  .pr-faq-item h3 {
+    font-size: 1.05rem;
+    margin: 0 0 0.5rem;
+  }
+  .pr-faq-item p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  @media (min-width: 640px) {
+    .pr-tier-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1040px) {
+    .pr-tier-grid {
+      grid-template-columns: repeat(var(--tier-count, 3), 1fr);
+    }
+  }
+</style>

@@ -1,7 +1,8 @@
 ---
 import Button from '../ui/Button.astro';
-import { useTranslations, tList, type Locale } from '../../lib/i18n';
+import { useTranslations, tList, localizePath, type Locale } from '../../lib/i18n';
 import { APP_URL, PRO_TIER_ENABLED } from '../../lib/site';
+import { getEngines, formatRate } from '../../lib/engines';
 
 interface Props {
   lang: Locale;
@@ -12,6 +13,21 @@ const allTiers = tList<{ name: string; tagline: string; points: string[] }>(lang
 // Tier names are product names, identical in every locale, so filtering by name is
 // locale-safe — unlike the index, which shifts the moment a tier is added or withdrawn.
 const tiers = PRO_TIER_ENABLED ? allTiers : allTiers.filter((tier) => tier.name !== 'Pro');
+
+// Language counts come from the live catalogue, never from the copy: the bullets used to
+// hardcode "57 languages" for Enhanced while the engine reported 61. The i18n strings
+// carry a {count} placeholder that is filled here.
+const engines = await getEngines();
+const languageCount = new Map(
+  engines.map((engine) => [engine.display_name, engine.output_languages.length]),
+);
+const fillCount = (point: string, tierName: string): string =>
+  point.replace('{count}', String(languageCount.get(tierName) ?? ''));
+
+const rateByName = new Map(engines.map((engine) => [engine.display_name, engine.rate_per_minute]));
+const rateOf = (tierName: string): number => rateByName.get(tierName) ?? 0;
+
+const pricingHref = `${localizePath(lang)}pricing/`;
 // Keyed by NAME, not a fixed index: with Pro withdrawn, index 2 silently promoted
 // Premium to "Most popular". When no tier matches, no card is flagged.
 const POPULAR_NAME = PRO_TIER_ENABLED ? 'Pro' : 'Enhanced';
@@ -54,11 +70,14 @@ const POPULAR_NAME = PRO_TIER_ENABLED ? 'Pro' : 'Enhanced';
                   >
                     <path d="M20 6L9 17l-5-5" />
                   </svg>
-                  <span>{p}</span>
+                  <span>{fillCount(p, tier.name)}</span>
                 </li>
               ))}
             </ul>
-            <p class="tier-meta">{t('tiers.perMinute')}</p>
+            <p class="tier-price">
+              <strong>{formatRate(rateOf(tier.name))}</strong>
+              <span>{t('pricing.tiers.perMinute')}</span>
+            </p>
             <Button
               href={APP_URL}
               rel="noopener"
@@ -71,6 +90,10 @@ const POPULAR_NAME = PRO_TIER_ENABLED ? 'Pro' : 'Enhanced';
         ))
       }
     </ul>
+
+    <p class="tiers-more" data-reveal>
+      <a href={pricingHref}>{t('pricing.perLanguage.title')} →</a>
+    </p>
   </div>
 </section>
 
@@ -145,13 +168,37 @@ const POPULAR_NAME = PRO_TIER_ENABLED ? 'Pro' : 'Enhanced';
     flex-shrink: 0;
     margin-top: 0.15rem;
   }
-  .tier-meta {
+  .tier-price {
+    margin: 0 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .tier-price strong {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: 1.35rem;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .tier-price span {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--muted);
-    margin: 0 0 1rem;
+  }
+  .tiers-more {
+    margin: 2rem 0 0;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+  .tiers-more a {
+    color: var(--primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .tiers-more a:hover {
+    border-bottom-color: currentColor;
   }
   .tier-cta {
     width: 100%;
