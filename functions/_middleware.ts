@@ -9,11 +9,19 @@
 //      otherwise the browser's Accept-Language, otherwise English.
 const DEFAULT_CANONICAL_HOST = 'voxtranslate.app';
 
-/** Where the call app moved when the marketing site took the apex. */
-const APP_HOST = 'app.voxtranslate.app';
+/** Where the call app moved when the marketing site took the apex. `APP_HOST`. */
+const DEFAULT_APP_HOST = 'app.voxtranslate.app';
 
-/** The apex the marketing site was served from before the migration. */
-const LEGACY_MARKETING_HOST = 'website.voxtranslate.app';
+/**
+ * The host the marketing site was served from before the migration.
+ * `LEGACY_MARKETING_HOST`.
+ *
+ * It stays attached to this Pages project ON PURPOSE and must not be deleted: it is
+ * what keeps the old blog URLs answering, and answering with a 301 is what transfers
+ * their accumulated authority to the apex. Detaching it would drop those backlinks
+ * on the floor instead.
+ */
+const DEFAULT_LEGACY_MARKETING_HOST = 'website.voxtranslate.app';
 
 /**
  * Paths that belonged to the call app while it owned the apex, and must keep
@@ -34,6 +42,10 @@ interface Env {
   STAGING_BASIC_AUTH?: string;
   /** Overrides the canonical host (staging serves under its own domain). */
   CANONICAL_HOST?: string;
+  /** Overrides where app-owned paths are sent. Defaults to app.voxtranslate.app. */
+  APP_HOST?: string;
+  /** Overrides the pre-migration marketing host that 301s to the apex. */
+  LEGACY_MARKETING_HOST?: string;
 }
 
 // Kept in sync with src/lib/i18n.ts — this function runs outside the Astro build, so it
@@ -70,6 +82,8 @@ export async function onRequest(context: EventContext<Env, string, unknown>) {
   //    domain (permanent 301), preserving path + query. Makes pages.dev
   //    effectively unreachable and untracked.
   const canonicalHost = env.CANONICAL_HOST || DEFAULT_CANONICAL_HOST;
+  const appHost = env.APP_HOST || DEFAULT_APP_HOST;
+  const legacyMarketingHost = env.LEGACY_MARKETING_HOST || DEFAULT_LEGACY_MARKETING_HOST;
   if (url.hostname.endsWith('.pages.dev')) {
     return Response.redirect(`https://${canonicalHost}${url.pathname}${url.search}`, 301);
   }
@@ -77,11 +91,8 @@ export async function onRequest(context: EventContext<Env, string, unknown>) {
   // 1b. The old marketing host keeps answering, but only to hand visitors and
   //     crawlers to the apex. Permanent, path- and query-preserving: the blog URLs
   //     are the ones carrying backlinks, and this is what transfers them.
-  if (url.hostname === LEGACY_MARKETING_HOST) {
-    return Response.redirect(
-      `https://${canonicalHost}${url.pathname}${url.search}`,
-      301,
-    );
+  if (url.hostname === legacyMarketingHost) {
+    return Response.redirect(`https://${canonicalHost}${url.pathname}${url.search}`, 301);
   }
 
   // 1c. Paths the call app owned while it was on the apex. These must outlive the
@@ -90,7 +101,7 @@ export async function onRequest(context: EventContext<Env, string, unknown>) {
     APP_PATH_PREFIXES.some((prefix) => url.pathname.startsWith(prefix)) ||
     APP_EXACT_PATHS.includes(url.pathname.replace(/\/$/, ''));
   if (isAppPath) {
-    return Response.redirect(`https://${APP_HOST}${url.pathname}${url.search}`, 301);
+    return Response.redirect(`https://${appHost}${url.pathname}${url.search}`, 301);
   }
 
   // 1d. Invite links are `https://voxtranslate.app/?room=<code>` — a QUERY on the
@@ -98,7 +109,7 @@ export async function onRequest(context: EventContext<Env, string, unknown>) {
   //     and are shared in chat and calendar invites, so the root has to recognise
   //     them and hand them to the app before the language redirect swallows them.
   if (url.pathname === '/' && url.searchParams.has('room')) {
-    return Response.redirect(`https://${APP_HOST}/${url.search}`, 301);
+    return Response.redirect(`https://${appHost}/${url.search}`, 301);
   }
 
   // 2. Only language-redirect the bare root.

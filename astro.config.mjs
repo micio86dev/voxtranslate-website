@@ -8,7 +8,9 @@ import tailwindcss from '@tailwindcss/vite';
 // APEX: all content authority accrues to voxtranslate.app, and the call app moved
 // to app.voxtranslate.app. website.voxtranslate.app 301s here permanently — the
 // blog URLs are the ones carrying backlinks.
-const SITE = 'https://voxtranslate.app';
+// `import.meta.env` does not exist in the Astro config, so this reads process.env
+// directly. Same variable as src/lib/site.ts SITE_ORIGIN — keep them in step.
+const SITE = (process.env.PUBLIC_SITE_ORIGIN || 'https://voxtranslate.app').replace(/\/$/, '');
 
 // 5 marketing locales. Keep in sync with src/i18n/*.json and the sitemap map.
 export const LOCALES = ['en', 'it', 'es', 'de', 'fr'];

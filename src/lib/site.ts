@@ -1,23 +1,40 @@
-/** Cross-cutting site constants (non-translatable). */
+/**
+ * Cross-cutting site constants (non-translatable).
+ *
+ * Every origin is build-time overridable and defaults to production. The apex
+ * migration (runbook 121) had to touch the same hostname in a dozen files across
+ * three repos, which is the argument for reading them from one place per repo and
+ * from the environment where a deploy might differ.
+ *
+ * Defaults are PRODUCTION, never localhost: this site builds statically on the
+ * host, and a missing variable must degrade to the right public URL rather than
+ * silently baking a dead one into the shipped HTML.
+ */
 
-/** The live VoxTranslate app (where "Try free" / "Open app" point). */
-export const APP_URL = 'https://app.voxtranslate.app';
+/** Strip any trailing slash so callers can always append `/path` safely. */
+const origin = (value: string | undefined, fallback: string): string =>
+  (value || fallback).trim().replace(/\/$/, '');
 
-/** The Business dashboard app (where the "Business" page CTAs point). */
-export const DASHBOARD_URL = 'https://dashboard.voxtranslate.app';
+/** The live VoxTranslate app (where "Try free" / "Open app" point). `PUBLIC_APP_URL`. */
+export const APP_URL = origin(import.meta.env.PUBLIC_APP_URL, 'https://app.voxtranslate.app');
 
-/** Sales/contact address for Business enquiries. */
-export const CONTACT_EMAIL = 'business@voxtranslate.app';
+/** The Business dashboard app (where the "Business" page CTAs point). `PUBLIC_DASHBOARD_URL`. */
+export const DASHBOARD_URL = origin(
+  import.meta.env.PUBLIC_DASHBOARD_URL,
+  'https://dashboard.voxtranslate.app',
+);
+
+/** Sales/contact address for Business enquiries. `PUBLIC_CONTACT_EMAIL`. */
+export const CONTACT_EMAIL = (
+  import.meta.env.PUBLIC_CONTACT_EMAIL || 'business@voxtranslate.app'
+).trim();
 
 /**
  * VoxTranslate API origin (Railway, fronted by Cloudflare), without a trailing
  * slash. Used by the Business contact form (`POST /api/contact`). Overridable at
  * build time via `PUBLIC_API_BASE`.
  */
-export const API_BASE = (import.meta.env.PUBLIC_API_BASE || 'https://api.voxtranslate.app').replace(
-  /\/$/,
-  '',
-);
+export const API_BASE = origin(import.meta.env.PUBLIC_API_BASE, 'https://api.voxtranslate.app');
 
 /**
  * Whether the Pro tier is offered. **OFF unless `PUBLIC_PRO_TIER_ENABLED` is truthy at
@@ -41,8 +58,12 @@ export const LEGAL_URLS = {
   acceptableUse: `${APP_URL}/acceptable-use`,
 };
 
-/** Marketing site origin (kept in sync with astro.config `site`). */
-export const SITE_ORIGIN = 'https://voxtranslate.app';
+/**
+ * Marketing site origin — the apex. Kept in sync with astro.config `site`, which
+ * reads the same `PUBLIC_SITE_ORIGIN` (from `process.env` there, since
+ * `import.meta.env` does not exist in the config file).
+ */
+export const SITE_ORIGIN = origin(import.meta.env.PUBLIC_SITE_ORIGIN, 'https://voxtranslate.app');
 
 /**
  * Meta (Facebook) Pixel id. Public value; only loaded after marketing consent.
