@@ -4,9 +4,11 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 // Canonical origin for SEO — powers Astro.site so layouts emit absolute
-// canonical / Open Graph / hreflang / sitemap URLs. Marketing site is served on
-// Cloudflare Pages at the website.voxtranslate.app apex.
-const SITE = 'https://website.voxtranslate.app';
+// canonical / Open Graph / hreflang / sitemap URLs. The marketing site owns the
+// APEX: all content authority accrues to voxtranslate.app, and the call app moved
+// to app.voxtranslate.app. website.voxtranslate.app 301s here permanently — the
+// blog URLs are the ones carrying backlinks.
+const SITE = 'https://voxtranslate.app';
 
 // 5 marketing locales. Keep in sync with src/i18n/*.json and the sitemap map.
 export const LOCALES = ['en', 'it', 'es', 'de', 'fr'];

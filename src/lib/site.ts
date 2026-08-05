@@ -1,7 +1,7 @@
 /** Cross-cutting site constants (non-translatable). */
 
 /** The live VoxTranslate app (where "Try free" / "Open app" point). */
-export const APP_URL = 'https://voxtranslate.app';
+export const APP_URL = 'https://app.voxtranslate.app';
 
 /** The Business dashboard app (where the "Business" page CTAs point). */
 export const DASHBOARD_URL = 'https://dashboard.voxtranslate.app';
@@ -42,7 +42,7 @@ export const LEGAL_URLS = {
 };
 
 /** Marketing site origin (kept in sync with astro.config `site`). */
-export const SITE_ORIGIN = 'https://website.voxtranslate.app';
+export const SITE_ORIGIN = 'https://voxtranslate.app';
 
 /**
  * Meta (Facebook) Pixel id. Public value; only loaded after marketing consent.
