@@ -11,14 +11,7 @@ import {
   type Locale,
 } from '../../lib/i18n';
 import { APP_URL } from '../../lib/site';
-import {
-  getEngines,
-  enginesAreStale,
-  formatRate,
-  formatCallCost,
-  freeMinutes,
-  type Engine,
-} from '../../lib/engines';
+import { ENGINES, formatRate, formatCallCost, freeMinutes, type Engine } from '../../lib/engines';
 
 export function getStaticPaths() {
   return LOCALES.map((lang) => ({ params: { lang } }));
@@ -28,8 +21,7 @@ const langParam = Astro.params.lang;
 const lang: Locale = isLocale(langParam) ? langParam : DEFAULT_LOCALE;
 const t = useTranslations(lang);
 
-const engines = await getEngines();
-const stale = enginesAreStale();
+const engines = ENGINES;
 
 // Enhanced is the "most popular" tier on the homepage; keep the two pages agreeing.
 const POPULAR = 'Enhanced';
@@ -85,7 +77,6 @@ const faqSchema = {
         <Button href={APP_URL} variant="primary" rel="noopener">{t('pricing.tiers.cta')}</Button>
       </div>
       <p class="pr-note">{t('pricing.hero.note')}</p>
-      {stale && <p class="pr-stale">{t('pricing.stale')}</p>}
     </div>
   </section>
 
@@ -256,13 +247,6 @@ const faqSchema = {
     margin: 1rem 0 0;
     font-size: 0.85rem;
     color: var(--muted);
-  }
-  .pr-stale {
-    margin: 1rem auto 0;
-    max-width: 34rem;
-    font-size: 0.85rem;
-    color: var(--muted);
-    font-style: italic;
   }
 
   .pr-billing {
