@@ -136,20 +136,20 @@
         "name": "Standard",
         "tagline": "Veloce ed economico",
         "points": [
-          "Riconoscimento vocale in streaming",
-          "Sottotitoli tradotti in tempo reale",
-          "Voce integrata del browser",
-          "Perfetto per le chiacchiere di tutti i giorni"
+          "Traduzione voce-a-voce",
+          "Voce tradotta e sottotitoli in diretta",
+          "{count} lingue",
+          "Ottimo per le conversazioni di tutti i giorni"
         ]
       },
       {
         "name": "Enhanced",
         "tagline": "Diretto, con la tua voce",
         "points": [
-          "Streaming diretto dal client",
-          "Clonazione vocale: la tua voce, tradotta",
-          "57 lingue",
-          "Ideale per botta e risposta rapidi"
+          "Clonazione della voce: sembri te stesso",
+          "L'audio non passa dai nostri server",
+          "{count} lingue",
+          "Ideale per scambi rapidi"
         ]
       },
       {
@@ -166,9 +166,9 @@
         "name": "Premium",
         "tagline": "Massima qualità, tutte le 84 lingue",
         "points": [
-          "Traduzione alla massima fedeltà",
-          "Voce AI naturale",
-          "Copertura completa di 84 lingue",
+          "Traduzione della massima fedeltà",
+          "Voce tradotta naturale",
+          "{count} lingue — la copertura completa",
           "Per le conversazioni che contano"
         ]
       }
@@ -247,6 +247,10 @@
     "business": {
       "title": "VoxTranslate for Business — riunioni multilingue per i team",
       "description": "Videochiamate tradotte per tutto il team: cronologia condivisa, trascrizioni multilingue, progetti e conformità — in 84 lingue. Da €49/mese per organizzazione."
+    },
+    "pricing": {
+      "title": "Prezzi — paghi al minuto, da $0,0045",
+      "description": "Prezzi VoxTranslate: tre motori di traduzione fatturati al minuto di parlato, per lingua di destinazione. Nessuna licenza per postazione, nessun abbonamento obbligatorio. Credito iniziale gratuito."
     }
   },
   "business": {
@@ -366,5 +370,89 @@
       "success": "Grazie — abbiamo ricevuto il tuo messaggio e ti contatteremo presto.",
       "error": "Qualcosa è andato storto. Riprova o scrivici direttamente."
     }
+  },
+  "pricing": {
+    "hero": {
+      "badge": "Prezzi",
+      "title": "Paghi i minuti che parli",
+      "subtitle": "Nessuna postazione. Nessun minimo mensile. Scegli il motore per ogni chiamata e paghi al minuto di parlato.",
+      "note": "Credito iniziale gratuito · Senza carta di credito · 18+"
+    },
+    "perLanguage": {
+      "title": "Come funziona la fatturazione",
+      "body": "La tariffa qui sotto si applica per minuto di parlato, una volta per ogni lingua di destinazione presente nella stanza. Una chiamata di 30 minuti tradotta in una lingua costa tariffa × 30. Tradotta in tre lingue, costa tariffa × 30 × 3.",
+      "example": "Paga solo chi parla — ascoltare è gratis."
+    },
+    "tiers": {
+      "title": "Tre motori",
+      "subtitle": "Cambi motore a ogni chiamata, in base a qualità, copertura e budget.",
+      "perMinute": "al minuto, per lingua",
+      "languages": "{count} lingue",
+      "cta": "Inizia gratis",
+      "audio": "Voce tradotta",
+      "subtitlesOnly": "Clonazione della voce",
+      "direct": "L'audio non passa dai nostri server",
+      "popular": "Il più scelto"
+    },
+    "examples": {
+      "title": "Quanto costa una chiamata vera",
+      "subtitle": "Una chiamata di 60 minuti, un relatore, tradotta in diretta.",
+      "oneLang": "in 1 lingua",
+      "threeLang": "in 3 lingue",
+      "free": "Il credito iniziale gratuito copre circa {minutes} minuti su Standard."
+    },
+    "compare": {
+      "title": "Rispetto a un interprete",
+      "subtitle": "La stessa sessione multilingue di 60 minuti.",
+      "rows": [
+        {
+          "what": "Interprete umano",
+          "cost": "€60–120 / ora",
+          "note": "Da prenotare giorni prima, una coppia linguistica"
+        },
+        {
+          "what": "Piattaforme AI per eventi",
+          "cost": "da $75 / ora",
+          "note": "Pacchetti di ore prepagate, setup evento"
+        },
+        {
+          "what": "VoxTranslate Premium",
+          "cost": "$4,10 / ora",
+          "note": "84 lingue, subito, senza prenotare"
+        }
+      ],
+      "note": "Le tariffe di interpreti e piattaforme per eventi sono listini pubblici, riportati come riferimento."
+    },
+    "business": {
+      "title": "Team e organizzazioni",
+      "body": "Crediti condivisi, gestione dei membri, storico chiamate, trascrizioni, registro di audit e modalità compliance.",
+      "cta": "Vedi i piani Business"
+    },
+    "faq": {
+      "title": "Domande",
+      "items": [
+        {
+          "q": "Chi ascolta paga?",
+          "a": "No. Consuma credito solo chi parla, e solo mentre parla. Entrare, ascoltare e leggere i sottotitoli è gratis."
+        },
+        {
+          "q": "Perché la tariffa si moltiplica per il numero di lingue?",
+          "a": "Ogni lingua di destinazione apre il proprio flusso di traduzione in tempo reale presso il provider: una stanza con tre lingue fa il triplo del lavoro. Il moltiplicatore è sempre visibile prima che la chiamata inizi."
+        },
+        {
+          "q": "Serve un abbonamento?",
+          "a": "No. I crediti sono a consumo e non scadono ogni mese. I piani Business ed Enterprise esistono per i team che vogliono crediti condivisi e amministrazione, non perché l'uso al minuto li richieda."
+        },
+        {
+          "q": "Cosa include il credito iniziale gratuito?",
+          "a": "Ogni nuovo account riceve $2 di credito, utilizzabili su qualsiasi motore. Su Standard sono diverse ore di parlato tradotto."
+        },
+        {
+          "q": "Posso usarlo dentro Google Meet o Zoom?",
+          "a": "Sì. L'estensione per browser di VoxTranslate traduce l'audio in riproduzione nella scheda, quindi copre Meet e Zoom sul web, oltre alle stanze e ai webinar VoxTranslate."
+        }
+      ]
+    },
+    "stale": "I prezzi mostrati sono indicativi — il catalogo live non era raggiungibile durante la build di questa pagina."
   }
 }

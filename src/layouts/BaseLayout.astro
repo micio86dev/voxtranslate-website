@@ -167,11 +167,11 @@ const jsonLdItems = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
       (function () {
         function remember() {
           try {
-            var seg = location.pathname.split('/')[1];
+            const seg = location.pathname.split('/')[1];
             if (locales.indexOf(seg) === -1) return;
-            var current = (document.cookie.match(/(?:^|;\s*)vox-lang=([^;]+)/) || [])[1];
+            const current = (document.cookie.match(/(?:^|;\s*)vox-lang=([^;]+)/) || [])[1];
             if (current === seg) return;
-            var secure = location.protocol === 'https:' ? '; Secure' : '';
+            const secure = location.protocol === 'https:' ? '; Secure' : '';
             document.cookie =
               'vox-lang=' + seg + '; Path=/; Max-Age=31536000; SameSite=Lax' + secure;
           } catch {

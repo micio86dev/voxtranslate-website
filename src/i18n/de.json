@@ -136,9 +136,9 @@
         "name": "Standard",
         "tagline": "Schnell und günstig",
         "points": [
-          "Streaming-Spracherkennung",
-          "Live übersetzte Untertitel",
-          "Integrierte Browser-Stimme",
+          "Sprache-zu-Sprache-Übersetzung",
+          "Übersetzte Stimme und Live-Untertitel",
+          "{count} Sprachen",
           "Ideal für den Alltag"
         ]
       },
@@ -146,10 +146,10 @@
         "name": "Enhanced",
         "tagline": "Direkt, mit deiner eigenen Stimme",
         "points": [
-          "Direktes Streaming vom Client",
-          "Stimmklonung, damit du wie du klingst",
-          "57 Sprachen",
-          "Perfekt fürs schnelle Hin und Her"
+          "Stimmklonung — Sie klingen wie Sie",
+          "Audio läuft nie über unsere Server",
+          "{count} Sprachen",
+          "Ideal für schnellen Austausch"
         ]
       },
       {
@@ -166,10 +166,10 @@
         "name": "Premium",
         "tagline": "Top-Qualität, alle 84 Sprachen",
         "points": [
-          "Übersetzung in höchster Güte",
-          "Natürliche KI-Stimme",
-          "Volle Abdeckung von 84 Sprachen",
-          "Für Gespräche, die zählen"
+          "Höchste Übersetzungsqualität",
+          "Natürliche übersetzte Stimme",
+          "{count} Sprachen — volle Abdeckung",
+          "Für entscheidende Gespräche"
         ]
       }
     ]
@@ -247,6 +247,10 @@
     "business": {
       "title": "VoxTranslate for Business — mehrsprachige Meetings für Teams",
       "description": "Übersetzte Videoanrufe für dein ganzes Team: gemeinsame Historie, mehrsprachige Transkripte, Projekte und Compliance — in 84 Sprachen. Ab €49/Monat pro Organisation."
+    },
+    "pricing": {
+      "title": "Preise — Abrechnung pro Minute, ab 0,0045 $",
+      "description": "VoxTranslate-Preise: drei Übersetzungs-Engines, abgerechnet pro gesprochener Minute und Zielsprache. Keine Platzlizenzen, kein Pflichtabo. Kostenloses Startguthaben."
     }
   },
   "business": {
@@ -366,5 +370,89 @@
       "success": "Danke — wir haben deine Nachricht erhalten und melden uns bald.",
       "error": "Etwas ist schiefgelaufen. Bitte versuche es erneut oder schreib uns direkt."
     }
+  },
+  "pricing": {
+    "hero": {
+      "badge": "Preise",
+      "title": "Sie zahlen die Minuten, die Sie sprechen",
+      "subtitle": "Keine Plätze. Kein Monatsminimum. Engine pro Anruf wählen und pro gesprochener Minute zahlen.",
+      "note": "Kostenloses Startguthaben · Ohne Kreditkarte · 18+"
+    },
+    "perLanguage": {
+      "title": "So wird abgerechnet",
+      "body": "Der Tarif unten gilt pro gesprochener Minute, einmal je Zielsprache im Raum. Ein 30-Minuten-Gespräch in eine Sprache kostet Tarif × 30. In drei Sprachen kostet es Tarif × 30 × 3.",
+      "example": "Nur wer spricht, zahlt — Zuhören ist kostenlos."
+    },
+    "tiers": {
+      "title": "Drei Engines",
+      "subtitle": "Pro Anruf wechseln — passend zu Qualität, Abdeckung und Budget.",
+      "perMinute": "pro Minute, pro Sprache",
+      "languages": "{count} Sprachen",
+      "cta": "Kostenlos starten",
+      "audio": "Übersetzte Stimme",
+      "subtitlesOnly": "Stimmklonung",
+      "direct": "Audio läuft nie über unsere Server",
+      "popular": "Am beliebtesten"
+    },
+    "examples": {
+      "title": "Was ein echtes Gespräch kostet",
+      "subtitle": "Ein 60-Minuten-Gespräch, ein Sprecher, live übersetzt.",
+      "oneLang": "in 1 Sprache",
+      "threeLang": "in 3 Sprachen",
+      "free": "Ihr kostenloses Startguthaben reicht für rund {minutes} Minuten auf Standard."
+    },
+    "compare": {
+      "title": "Im Vergleich zum Dolmetscher",
+      "subtitle": "Dieselbe mehrsprachige Sitzung über 60 Minuten.",
+      "rows": [
+        {
+          "what": "Dolmetscher",
+          "cost": "60–120 € / Stunde",
+          "note": "Tage im Voraus gebucht, ein Sprachpaar"
+        },
+        {
+          "what": "KI-Eventplattformen",
+          "cost": "ab 75 $ / Stunde",
+          "note": "Vorausbezahlte Stundenpakete, Event-Setup"
+        },
+        {
+          "what": "VoxTranslate Premium",
+          "cost": "4,10 $ / Stunde",
+          "note": "84 Sprachen, sofort, ohne Buchung"
+        }
+      ],
+      "note": "Die Tarife für Dolmetscher und Eventplattformen sind öffentliche Listenpreise und dienen der Orientierung."
+    },
+    "business": {
+      "title": "Teams und Organisationen",
+      "body": "Geteiltes Guthaben, Mitgliederverwaltung, Anrufverlauf, Transkripte, Audit-Log und Compliance-Modus.",
+      "cta": "Business-Pläne ansehen"
+    },
+    "faq": {
+      "title": "Fragen",
+      "items": [
+        {
+          "q": "Zahlen Zuhörer?",
+          "a": "Nein. Guthaben verbraucht nur, wer spricht, und nur während des Sprechens. Beitreten, zuhören und Untertitel lesen ist kostenlos."
+        },
+        {
+          "q": "Warum wird der Tarif mit der Zahl der Sprachen multipliziert?",
+          "a": "Jede Zielsprache öffnet beim Anbieter einen eigenen Live-Übersetzungsstream — ein Raum mit drei Sprachen leistet dreifache Arbeit. Der Multiplikator ist vor Gesprächsbeginn immer sichtbar."
+        },
+        {
+          "q": "Brauche ich ein Abo?",
+          "a": "Nein. Guthaben ist Pay-as-you-go und verfällt nicht monatlich. Business- und Enterprise-Pläne gibt es für Teams, die geteiltes Guthaben und Verwaltung wollen — nicht weil die Minutennutzung sie erfordert."
+        },
+        {
+          "q": "Was enthält das kostenlose Startguthaben?",
+          "a": "Jedes neue Konto erhält 2 $ Guthaben, nutzbar auf jeder Engine. Auf Standard sind das mehrere Stunden übersetzte Sprache."
+        },
+        {
+          "q": "Kann ich es in Google Meet oder Zoom nutzen?",
+          "a": "Ja. Die VoxTranslate-Browsererweiterung übersetzt den Ton, der in Ihrem Tab läuft — das deckt Meet und Zoom im Web ab, zusätzlich zu den VoxTranslate-Räumen und -Webinaren."
+        }
+      ]
+    },
+    "stale": "Die angezeigten Preise sind Richtwerte — der Live-Katalog war beim Build dieser Seite nicht erreichbar."
   }
 }

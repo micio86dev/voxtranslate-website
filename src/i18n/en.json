@@ -136,9 +136,9 @@
         "name": "Standard",
         "tagline": "Fast and economical",
         "points": [
-          "Streaming speech recognition",
-          "Live translated subtitles",
-          "Built-in browser voice",
+          "Speech-to-speech translation",
+          "Translated voice and live subtitles",
+          "{count} languages",
           "Great for everyday chats"
         ]
       },
@@ -146,9 +146,9 @@
         "name": "Enhanced",
         "tagline": "Direct, with your own voice",
         "points": [
-          "Client-direct streaming",
           "Voice cloning so you sound like you",
-          "57 languages",
+          "Audio never touches our servers",
+          "{count} languages",
           "Ideal for fast back-and-forth"
         ]
       },
@@ -167,8 +167,8 @@
         "tagline": "Top quality, all 84 languages",
         "points": [
           "Highest-fidelity translation",
-          "Natural AI voice",
-          "Full 84-language coverage",
+          "Natural translated voice",
+          "{count} languages — our full coverage",
           "For high-stakes conversations"
         ]
       }
@@ -365,6 +365,94 @@
     "business": {
       "title": "VoxTranslate for Business — multilingual meetings for teams",
       "description": "Translated video calls for your whole team: shared call history, multilingual transcripts, projects, and compliance — across 84 languages. From €49/month per organization."
+    },
+    "pricing": {
+      "title": "Pricing — pay by the minute, from $0.0045",
+      "description": "VoxTranslate pricing: three translation engines billed per minute of speech, per target language. No seats, no subscription required. Free starter credit."
     }
+  },
+  "pricing": {
+    "hero": {
+      "badge": "Pricing",
+      "title": "Pay for the minutes you speak",
+      "subtitle": "No seats. No monthly minimum. Pick an engine per call and pay by the minute of speech.",
+      "note": "Free starter credit · No credit card · 18+"
+    },
+    "perLanguage": {
+      "title": "How billing works",
+      "body": "The rate below is charged per minute of speech, once for each target language in the room. A 30-minute call translated into one language costs the rate × 30. Translated into three languages, it costs the rate × 30 × 3.",
+      "example": "Only the person speaking is billed — listening is free."
+    },
+    "tiers": {
+      "title": "Three engines",
+      "subtitle": "Switch per call to match the quality, coverage and budget you need.",
+      "perMinute": "per minute, per language",
+      "languages": "{count} languages",
+      "cta": "Start free",
+      "audio": "Translated voice",
+      "subtitlesOnly": "Voice cloning",
+      "direct": "Audio never touches our servers",
+      "popular": "Most popular"
+    },
+    "examples": {
+      "title": "What a real call costs",
+      "subtitle": "A 60-minute call, one speaker, translated live.",
+      "oneLang": "into 1 language",
+      "threeLang": "into 3 languages",
+      "free": "Your free starter credit covers about {minutes} minutes on Standard."
+    },
+    "compare": {
+      "title": "Compared with an interpreter",
+      "subtitle": "The same 60-minute multilingual session.",
+      "rows": [
+        {
+          "what": "Human interpreter",
+          "cost": "€60–120 / hour",
+          "note": "Booked days ahead, one language pair"
+        },
+        {
+          "what": "AI event platforms",
+          "cost": "from $75 / hour",
+          "note": "Prepaid hour packages, event setup"
+        },
+        {
+          "what": "VoxTranslate Premium",
+          "cost": "$4.10 / hour",
+          "note": "84 languages, instant, no booking"
+        }
+      ],
+      "note": "Rates for human interpreters and event platforms are public list prices, shown for orientation."
+    },
+    "business": {
+      "title": "Teams and organisations",
+      "body": "Shared credits, member management, call history, transcripts, audit log and compliance mode.",
+      "cta": "See Business plans"
+    },
+    "faq": {
+      "title": "Questions",
+      "items": [
+        {
+          "q": "Do listeners pay?",
+          "a": "No. Only the person speaking consumes credit, and only while they speak. Joining, listening and reading subtitles are free."
+        },
+        {
+          "q": "Why is the rate multiplied by the number of languages?",
+          "a": "Each target language opens its own live translation stream on the provider, so a room with three languages does three times the work. You always see the multiplier before the call starts."
+        },
+        {
+          "q": "Do I need a subscription?",
+          "a": "No. Credits are pay-as-you-go and do not expire monthly. Business and Enterprise plans exist for teams that want shared credits and administration, not because per-minute use requires them."
+        },
+        {
+          "q": "What does the free starter credit include?",
+          "a": "Every new account gets $2 of credit, usable on any engine. On Standard that is several hours of translated speech."
+        },
+        {
+          "q": "Can I use it inside Google Meet or Zoom?",
+          "a": "Yes. The VoxTranslate browser extension translates the audio playing in your tab, which covers Meet and Zoom on the web, alongside the built-in VoxTranslate call and webinar rooms."
+        }
+      ]
+    },
+    "stale": "Prices shown are indicative — the live catalogue was unreachable when this page was built."
   }
 }
