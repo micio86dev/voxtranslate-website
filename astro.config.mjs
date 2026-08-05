@@ -61,6 +61,19 @@ export default defineConfig({
   prefetch: { prefetchAll: true, defaultStrategy: 'viewport' },
   image: { service: { entrypoint: 'astro/assets/services/sharp' } },
   vite: {
-    plugins: [tailwindcss()],
+    // `astro check` sees two copies of Vite's types and rejects the plugin on nominal
+    // identity alone: `@tailwindcss/vite` resolves the hoisted `node_modules/vite`
+    // (8.x) while Astro 5 bundles its own `astro/node_modules/vite` (6.4.3). The two
+    // `Plugin` interfaces are structurally the same apart from the `this` type on
+    // `hotUpdate`, which nothing here calls — the build itself is clean.
+    //
+    // The durable fix is to pin one Vite so both resolve the same package. That needs a
+    // regenerated lockfile, so it is deliberately NOT done here: pnpm-lock.yaml already
+    // contains only vite@6.4.3, and shipping a package.json that disagrees with it would
+    // turn a type-check complaint into a hard `--frozen-lockfile` failure in CI.
+    // See docs/runbooks/120-domain-and-listings.md §4.
+    // Cast is `any` on purpose: naming either side's type re-imports one of the two
+    // conflicting copies and reintroduces the mismatch.
+    plugins: [/** @type {any} */ (tailwindcss())],
   },
 });
