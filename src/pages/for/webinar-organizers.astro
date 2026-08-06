@@ -1,0 +1,108 @@
+---
+import SeoLayout from '../../layouts/SeoLayout.astro';
+import { personaBySlug, isPublished, personaUrl, guideUrl } from '../../lib/seo-routes';
+import { APP_URL } from '../../lib/site';
+
+const persona = personaBySlug('webinar-organizers');
+const title = 'Live translation for webinar organisers';
+const description =
+  'Run a webinar in several languages without prepaid hour blocks or a sales call. ' +
+  'Published per-minute pricing, credits that never expire, no per-language tariff.';
+---
+
+<SeoLayout
+  title={title}
+  description={description}
+  path={personaUrl(persona.slug)}
+  noindex={!isPublished(persona)}
+>
+  <article class="wrap">
+    <h1>{title}</h1>
+
+    <p class="lede">
+      Most webinar translation is sold in prepaid hour blocks, through a sales call, on an annual
+      contract. That works if you run four conferences a year and can forecast the hours. It works
+      badly if you announced Thursday's session on Tuesday.
+    </p>
+
+    <h2>What usually goes wrong</h2>
+    <ul>
+      <li>
+        <strong>The platform does less than assumed.</strong> Zoom translates to captions only — no translated
+        audio. Teams Interpreter is not available in webinars or town halls at all. Google Meet supports
+        one language pair per meeting, with a 90-minute cap.
+      </li>
+      <li>
+        <strong>The recording loses the translation.</strong> Microsoft's own documentation states that
+        Teams recordings capture only the original meeting audio. For a session most people watch afterwards,
+        that serves the smaller half of the audience.
+      </li>
+      <li>
+        <strong>The hours expire.</strong> Event vendors sell 10 to 50-hour minimums with 12-month expiry
+        and no rollover. Irregular usage pays for hours it never uses.
+      </li>
+    </ul>
+
+    <h2>What we do differently</h2>
+    <ul>
+      <li><strong>Price published per minute.</strong> No sales call to find out what it costs.</li>
+      <li>
+        <strong>Credits that never expire.</strong> An unused hour is still there next quarter.
+      </li>
+      <li>
+        <strong>No per-language tariff.</strong> A session in four languages is not four times a session
+        in one.
+      </li>
+    </ul>
+
+    <h2>When you should not choose us</h2>
+    <p>
+      If you are running a 5,000-person congress with simultaneous interpreters and a procurement
+      process that expects SOC 2 and ISO 27001, an established event vendor is the right answer and
+      we will say so. If your content is legally binding, hire a human interpreter. We serve the
+      sessions that currently happen in one language because booking interpreters for them was never
+      realistic.
+    </p>
+
+    <h2>Where to start</h2>
+    <ul>
+      <li>
+        <a href={guideUrl('how-to-run-a-multilingual-webinar')}>How to run a multilingual webinar</a
+        >
+      </li>
+      <li>
+        <a href={guideUrl('webinar-software-with-live-translation')}
+          >Webinar software with live translation, compared honestly</a
+        >
+      </li>
+      <li>
+        <a href={guideUrl('do-i-need-an-interpreter-for-my-webinar')}
+          >Do I need an interpreter for my webinar?</a
+        >
+      </li>
+    </ul>
+
+    <p class="cta"><a href={APP_URL}>Try it on a real session</a> — no contract, no minimum.</p>
+  </article>
+</SeoLayout>
+
+<style>
+  .wrap {
+    max-width: 72ch;
+    margin-inline: auto;
+    padding: 3rem 1.25rem;
+  }
+  .lede {
+    font-size: 1.15rem;
+  }
+  ul {
+    padding-left: 1.25rem;
+  }
+  li {
+    margin-block: 0.5rem;
+  }
+  .cta {
+    margin-top: 2rem;
+    font-weight: 600;
+  }
+</style>
