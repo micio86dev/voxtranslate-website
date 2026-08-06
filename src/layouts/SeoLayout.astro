@@ -1,0 +1,49 @@
+---
+/**
+ * Layout for the non-localised SEO routes (docs/seo/AGENTS.md §3).
+ *
+ * Wraps BaseLayout with the three things every page in that architecture needs and must
+ * not get wrong individually: a root-level canonical (not locale-prefixed), NO hreflang
+ * (§1 — none until localisation actually exists), and a BreadcrumbList. Centralising them
+ * means a new template cannot forget one.
+ *
+ * Chrome, fonts, consent and theming all come from BaseLayout, so these pages stay inside
+ * the same performance budget as the rest of the site (R7).
+ */
+import BaseLayout from './BaseLayout.astro';
+import { breadcrumbJsonLd, type Crumb } from '../lib/seo';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Root-relative canonical path with a trailing slash. */
+  path: string;
+  /** Ancestors only — the current page is appended automatically. */
+  crumbs?: Crumb[];
+  /** Page-specific structured data (FAQPage, SoftwareApplication, …). */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** Set for entries with `publishedAt: null`, which must never be crawled. */
+  noindex?: boolean;
+  ogImage?: string;
+}
+
+const { title, description, path, crumbs = [], jsonLd, noindex = false, ogImage } = Astro.props;
+
+const trail: Crumb[] = [{ name: 'Home', path: '/en/' }, ...crumbs, { name: title, path }];
+
+const extra = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const structuredData = [breadcrumbJsonLd(Astro.site, trail), ...extra];
+---
+
+<BaseLayout
+  lang="en"
+  title={title}
+  description={description}
+  canonicalPath={path}
+  alternates={[]}
+  jsonLd={structuredData}
+  noindex={noindex}
+  ogImage={ogImage}
+>
+  <slot />
+</BaseLayout>

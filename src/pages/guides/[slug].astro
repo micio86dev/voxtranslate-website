@@ -1,0 +1,65 @@
+---
+/**
+ * `/guides/{slug}/` — the topical-authority cluster.
+ *
+ * `shortAnswer` is rendered first and capped at 300 characters by the schema, because its
+ * job is to be lifted verbatim into a featured snippet or an AI answer. Past that length
+ * it stops being liftable, which is why the constraint is a maximum rather than a minimum.
+ */
+import { getCollection, render } from 'astro:content';
+import SeoLayout from '../../layouts/SeoLayout.astro';
+import { isPublished, guideUrl, pairUrl } from '../../lib/seo-routes';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('guides');
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, shortAnswer, relatedPairs = [] } = entry.data;
+---
+
+<SeoLayout
+  title={title}
+  description={shortAnswer}
+  path={guideUrl(entry.id)}
+  noindex={!isPublished(entry.data)}
+>
+  <article class="wrap">
+    <h1>{title}</h1>
+    <p class="short-answer">{shortAnswer}</p>
+
+    <Content />
+
+    {
+      relatedPairs.length > 0 && (
+        <nav aria-labelledby="related-h">
+          <h2 id="related-h">Related language pairs</h2>
+          <ul>
+            {relatedPairs.map((p) => (
+              <li>
+                <a href={pairUrl(p)}>{p.replace(/-/g, ' ')}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )
+    }
+  </article>
+</SeoLayout>
+
+<style>
+  .wrap {
+    max-width: 72ch;
+    margin-inline: auto;
+    padding: 3rem 1.25rem;
+  }
+  .short-answer {
+    font-size: 1.15rem;
+    font-weight: 500;
+  }
+  ul {
+    padding-left: 1.25rem;
+  }
+</style>

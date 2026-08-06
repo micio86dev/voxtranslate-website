@@ -1,0 +1,119 @@
+---
+/**
+ * `/languages/` — the public language matrix.
+ *
+ * Data-driven from `src/data/measurements/`, which is what keeps it honest without anyone
+ * having to remember to update it: the tiers it publishes are the tiers the harness
+ * measured, including the B and C ones.
+ *
+ * Publishing the weak pairs is the point, not an oversight. Every competitor inflates a
+ * language count and documents nothing; a matrix that admits where quality drops is the
+ * only version a serious buyer can act on — and it makes the A claims believable.
+ *
+ * Until task 01 produces measurements the table is empty, so the page ships `noindex` and
+ * flips itself to indexable on the first build that has data. An empty matrix in the index
+ * is thin content; the same page with real rows is an asset.
+ */
+import SeoLayout from '../layouts/SeoLayout.astro';
+import { listMeasurements } from '../lib/measurements';
+import { LANGUAGES_URL, LATENCY_URL, pairUrl } from '../lib/seo-routes';
+
+const measurements = listMeasurements();
+const hasData = measurements.length > 0;
+
+const TIER_MEANING: Record<string, string> = {
+  A: 'Fast enough for natural turn-taking, glossary accurate on 90%+ of business terms.',
+  B: 'Meets one of the two thresholds.',
+  C: 'Meets neither — usable, but expect to wait or to correct terminology.',
+};
+
+const title = 'Language matrix: measured quality per pair';
+const description =
+  'Every language pair VoxTranslate supports, with a measured quality tier and the date it ' +
+  'was last tested — including the pairs that are not top tier.';
+---
+
+<SeoLayout title={title} description={description} path={LANGUAGES_URL} noindex={!hasData}>
+  <div class="wrap">
+    <h1>{title}</h1>
+    <p>
+      Tiers are assigned by a rule in code from the measurements described on
+      <a href={LATENCY_URL}>the methodology page</a>, not by hand.
+    </p>
+
+    {
+      hasData ? (
+        <>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Pair</th>
+                <th scope="col">Tier</th>
+                <th scope="col">Time to first audio (p95)</th>
+                <th scope="col">Last measured</th>
+              </tr>
+            </thead>
+            <tbody>
+              {measurements.map((m) => {
+                const best = Object.values(m.latency).sort((a, b) => a.ttfaP95Ms - b.ttfaP95Ms)[0];
+                return (
+                  <tr>
+                    <th scope="row">
+                      <a href={pairUrl(m.pair)}>{m.pair.replace(/-/g, ' ')}</a>
+                    </th>
+                    <td>{m.qualityTier}</td>
+                    <td>{best ? `${best.ttfaP95Ms} ms` : '—'}</td>
+                    <td>
+                      <time datetime={m.measuredAt}>{m.measuredAt.slice(0, 10)}</time>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+
+          <h2>What the tiers mean</h2>
+          <dl>
+            {Object.entries(TIER_MEANING).map(([tier, meaning]) => (
+              <>
+                <dt>{tier}</dt>
+                <dd>{meaning}</dd>
+              </>
+            ))}
+          </dl>
+        </>
+      ) : (
+        <p class="pending">
+          The matrix is published from measurement runs. No run has been recorded yet, so there is
+          nothing to show here — rather than an estimate.
+        </p>
+      )
+    }
+  </div>
+</SeoLayout>
+
+<style>
+  .wrap {
+    max-width: 72ch;
+    margin-inline: auto;
+    padding: 3rem 1.25rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-block: 1.5rem;
+  }
+  th,
+  td {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+  dt {
+    font-weight: 600;
+    margin-top: 0.75rem;
+  }
+  .pending {
+    opacity: 0.8;
+  }
+</style>

@@ -3,6 +3,12 @@
 Marketing site & multilingual blog for VoxTranslate. Lives as a git submodule at
 `website/` inside the main VoxTranslate repo. Separate deploy pipeline from the app.
 
+## Marketing context
+
+Before writing any public-facing copy — headlines, meta descriptions, landing page
+text, FAQs — read `docs/positioning.md`. Never invent competitor claims or product
+numbers that are not in that file. For SEO work, follow `docs/seo/AGENTS.md`.
+
 ## Stack
 
 - **Framework:** Astro 5 (static SSG, `output: 'static'`, `trailingSlash: 'always'`)
@@ -97,7 +103,7 @@ Never commit `.env`. Copy `.env.example` and fill in values locally.
 ## Infrastructure
 
 ### Cloudflare
-- DNS: marketing site served at `website.voxtranslate.app` (subdomain on Cloudflare). Canonical site origin = `https://website.voxtranslate.app`.
+- DNS: marketing site served at the APEX, `voxtranslate.app` (Cloudflare). Canonical site origin = `https://voxtranslate.app`, read from `PUBLIC_SITE_ORIGIN` in `astro.config.mjs` and `src/lib/site.ts`. `website.voxtranslate.app` and `www.voxtranslate.app` 301 here in one hop; the call app lives at `app.voxtranslate.app`.
 - Pages: deployed via GitHub Actions on push to `main` (`cloudflare/wrangler-action`, project `voxtranslate-website`).
 - Geo-redirect: `functions/_middleware.ts` sends `/` to the visitor's language (CF-IPCountry), respecting a `vox-lang` cookie.
 - Bot Fight Mode: if ENABLED, whitelist ClaudeBot, GPTBot, PerplexityBot in

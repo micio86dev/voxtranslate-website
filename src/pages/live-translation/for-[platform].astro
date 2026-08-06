@@ -1,0 +1,44 @@
+---
+/**
+ * `/live-translation/for-{platform}/` — platform integration pages (Zoom, Teams, Meet…).
+ *
+ * These target integration intent ("how do I get translation INTO this tool"), which is a
+ * different query from the head terms AGENTS.md R6 bans. The distinction matters: a page
+ * about running VoxTranslate alongside Zoom is legitimate; a page targeting "zoom
+ * translation" is a head term owned by Zoom's own documentation.
+ *
+ * `PLATFORMS` is empty until task 02/03 fills it, so this route builds zero pages today.
+ */
+import SeoLayout from '../../layouts/SeoLayout.astro';
+import { PLATFORMS, platformUrl, LIVE_TRANSLATION_HUB } from '../../lib/seo-routes';
+
+export function getStaticPaths() {
+  return PLATFORMS.map((p) => ({ params: { platform: p.slug }, props: { platform: p } }));
+}
+
+const { platform } = Astro.props;
+const title = `Live translation for ${platform.name}`;
+const description =
+  `How to add real-time voice translation and translated subtitles to ${platform.name} ` +
+  `meetings, and what the setup actually costs in latency.`;
+---
+
+<SeoLayout
+  title={title}
+  description={description}
+  path={platformUrl(platform.slug)}
+  crumbs={[{ name: 'Live translation', path: LIVE_TRANSLATION_HUB }]}
+>
+  <div class="wrap">
+    <h1>{title}</h1>
+    <slot />
+  </div>
+</SeoLayout>
+
+<style>
+  .wrap {
+    max-width: 72ch;
+    margin-inline: auto;
+    padding: 3rem 1.25rem;
+  }
+</style>

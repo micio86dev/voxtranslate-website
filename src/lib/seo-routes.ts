@@ -1,0 +1,108 @@
+/**
+ * The URL architecture from docs/seo/AGENTS.md §3, as one source of truth.
+ *
+ * "Fixed, not negotiable" only holds if there is a single place the shape is written
+ * down. Templates, internal links and the four segmented sitemaps all build their URLs
+ * from here, so a change is one edit rather than a grep across the repo — and a typo
+ * cannot put a page in the sitemap under a URL that does not exist.
+ *
+ * These routes are deliberately NOT locale-prefixed. `english-to-german` is the pattern
+ * people actually search (AGENTS.md §3); the pages exist in English only until
+ * localisation is real, which is also why nothing here emits hreflang (§1).
+ */
+
+/** Every entry carries a nullable publish date; `null` means "not live yet". */
+export interface Publishable {
+  publishedAt: string | null;
+}
+
+/** Live = has a publish date, and it is not in the future. */
+export function isPublished(entry: Publishable, now = new Date()): boolean {
+  if (!entry.publishedAt) return false;
+  return new Date(entry.publishedAt).getTime() <= now.getTime();
+}
+
+/* -- URL builders ---------------------------------------------------------- */
+
+/** `english`, `german` → `english-to-german`. Directional: the reverse is a different page. */
+export function pairSlug(source: string, target: string): string {
+  return `${source.toLowerCase()}-to-${target.toLowerCase()}`;
+}
+
+export const LIVE_TRANSLATION_HUB = '/live-translation/';
+
+export const pairUrl = (slug: string) => `${LIVE_TRANSLATION_HUB}${slug}/`;
+export const platformUrl = (platform: string) => `${LIVE_TRANSLATION_HUB}for-${platform}/`;
+export const alternativeUrl = (brand: string) => `/alternatives/${brand}/`;
+export const versusUrl = (slug: string) => `/compare/${slug}/`;
+export const brandPricingUrl = (brand: string) => `/pricing/${brand}-pricing/`;
+export const personaUrl = (persona: string) => `/for/${persona}/`;
+export const guideUrl = (slug: string) => `/guides/${slug}/`;
+
+export const LATENCY_URL = '/latency/';
+export const LANGUAGES_URL = '/languages/';
+
+/**
+ * Map a comparison entry to its URL. The three kinds share one collection because they
+ * share one contract (verified sources, a publish date, an honest "when not to choose
+ * us"), but they live under three different prefixes.
+ */
+export function comparisonUrl(kind: 'alternative' | 'versus' | 'pricing', slug: string): string {
+  switch (kind) {
+    case 'alternative':
+      return alternativeUrl(slug);
+    case 'versus':
+      return versusUrl(slug);
+    case 'pricing':
+      // Slugs are authored as `{brand}-pricing`, matching the public URL exactly.
+      return `/pricing/${slug}/`;
+  }
+}
+
+/* -- Platform and persona registries --------------------------------------- */
+
+export interface PlatformEntry {
+  /** URL segment after `for-`, e.g. `zoom` → /live-translation/for-zoom/ */
+  slug: string;
+  name: string;
+}
+
+export interface PersonaEntry {
+  slug: string;
+  name: string;
+  /** Same convention as the collections: `null` = written but not live. */
+  publishedAt: string | null;
+}
+
+/**
+ * Platform integration pages. Still empty — task 02's territory.
+ *
+ * Note AGENTS.md R6: `/live-translation/for-zoom/` is a platform INTEGRATION page and is
+ * allowed. A page targeting the head term "zoom translation" is not.
+ */
+export const PLATFORMS: readonly PlatformEntry[] = [];
+
+/**
+ * Use-case landing pages (task 03 §3). Unlike guides, these carry a direct commercial
+ * CTA, which is why each is a hand-written page under `src/pages/for/` rather than an
+ * entry in a collection rendered through one template.
+ *
+ * All five are drafts. They render for review, `noindex`, and stay out of the sitemap
+ * until someone sets a date here — publishing five pages of commercial copy is a
+ * decision, not a build step.
+ */
+export const PERSONAS: readonly PersonaEntry[] = [
+  { slug: 'webinar-organizers', name: 'webinar organisers', publishedAt: null },
+  { slug: 'distributed-teams', name: 'distributed teams', publishedAt: null },
+  { slug: 'procurement', name: 'procurement teams', publishedAt: null },
+  { slug: 'internal-comms', name: 'internal communications', publishedAt: null },
+  { slug: 'sales-teams', name: 'sales teams', publishedAt: null },
+];
+
+/** Look up a persona by slug. Throws rather than returning undefined, so a typo in a
+ *  page's slug fails the build instead of rendering an untitled page. */
+export function personaBySlug(slug: string): PersonaEntry {
+  const found = PERSONAS.find((p) => p.slug === slug);
+  if (!found) throw new Error(`[seo-routes] unknown persona slug "${slug}"`);
+  return found;
+}

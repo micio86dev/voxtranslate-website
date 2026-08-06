@@ -1,8 +1,14 @@
 name: CI
 
 on:
+  # Every pull request, whatever its base — no branch allow-list.
+  #
+  # This previously listed `main` only, so nothing ran on PRs into `develop`, which is
+  # where every feature actually lands. Adding `develop` was not enough either: a stacked
+  # PR based on another feature branch still matched nothing, so the change that most
+  # needs checking — one built on top of unmerged work — was the one that got no checks
+  # at all. An allow-list of bases is the wrong shape for this; a PR is a PR.
   pull_request:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -35,6 +41,12 @@ jobs:
       - name: Typecheck
         run: pnpm run typecheck
 
+      # The publication threshold, re-proved on every PR. Asserts that the content
+      # schemas still REJECT thin and unmeasured entries (and still accept complete
+      # ones). See docs/seo/AGENTS.md R2/R3.
+      - name: Schema gate
+        run: pnpm run verify:schemas
+
       - name: Build
         run: pnpm run build
 
@@ -44,11 +56,16 @@ jobs:
       - name: Wait for server
         run: npx --yes wait-on http://localhost:4321/en/ --timeout 30000
 
+      # R7: no new page ships below 90 mobile. `lighthouserc.json` turns that from a
+      # note in a doc into a failing check, and carries the resource budget with it.
       - name: Lighthouse CI
         uses: treosh/lighthouse-ci-action@v11
         with:
           urls: |
             http://localhost:4321/en/
             http://localhost:4321/en/blog/
-          budgetPath: ./lighthouse-budget.json
+            http://localhost:4321/live-translation/
+            http://localhost:4321/latency/
+            http://localhost:4321/languages/
+          configPath: ./lighthouserc.json
           uploadArtifacts: true

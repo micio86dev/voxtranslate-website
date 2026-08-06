@@ -1,0 +1,118 @@
+---
+import SeoLayout from '../../layouts/SeoLayout.astro';
+import { personaBySlug, isPublished, personaUrl, guideUrl } from '../../lib/seo-routes';
+import { APP_URL } from '../../lib/site';
+
+const persona = personaBySlug('sales-teams');
+const title = 'Live translation for sales teams';
+const description =
+  'The routine client calls that currently happen in approximate English, translated — with ' +
+  'per-room glossaries for your product terms and pricing you can quote without a sales call.';
+---
+
+<SeoLayout
+  title={title}
+  description={description}
+  path={personaUrl(persona.slug)}
+  noindex={!isPublished(persona)}
+>
+  <article class="wrap">
+    <h1>{title}</h1>
+
+    <p class="lede">
+      Nobody books an interpreter for a Tuesday check-in. So those calls happen in whatever English
+      both sides can manage, and the quality of the conversation is set by the weaker speaker rather
+      than by who has the most to say.
+    </p>
+
+    <h2>The calls this is actually for</h2>
+    <ul>
+      <li>Recurring check-ins with an international account</li>
+      <li>Discovery calls where the decision-maker is not the person who emails you</li>
+      <li>Support and escalation calls where the customer is already frustrated</li>
+      <li>Candidate interviews for roles that do not require fluency in your working language</li>
+    </ul>
+    <p>
+      These are competing with <strong>nothing</strong> — not with an interpreter — which changes the
+      standard the tooling has to meet.
+    </p>
+
+    <h2>Why the native tooling usually does not fit</h2>
+    <p>
+      Client calls are external calls, and that is precisely where the platform features fall over.
+      <strong>Teams Interpreter excludes external guests and anonymous users</strong> and requires Microsoft
+      365 Copilot. <strong
+        >Google Meet handles one English-anchored language pair per meeting</strong
+      >, with a 90-minute cap. <strong>Zoom gives captions but no translated audio</strong>, which
+      is poor in a negotiation where tone carries meaning.
+    </p>
+
+    <h2>What matters in practice</h2>
+    <ul>
+      <li>
+        <strong>Per-room glossaries</strong> — product names, SKUs, plan names and contract terms fixed
+        once and reused
+      </li>
+      <li>
+        <strong>Published per-minute pricing</strong>, so a rep can start a call without raising a
+        purchase request
+      </li>
+      <li>
+        <strong>Credits that never expire</strong>, which suits irregular usage far better than
+        prepaid hour blocks
+      </li>
+    </ul>
+
+    <h2>When you should not choose us</h2>
+    <p>
+      For the deal that decides your quarter, book a human interpreter — the judgement in a
+      negotiation is worth more than the convenience. And if your buyer's procurement requires SOC 2
+      Type II and ISO 27001 today, we do not have them, and an established vendor is the honest
+      answer.
+    </p>
+
+    <h2>Where to start</h2>
+    <ul>
+      <li>
+        <a href={guideUrl('sales-call-with-a-foreign-client')}
+          >Running a sales call with a client who speaks another language</a
+        >
+      </li>
+      <li>
+        <a href={guideUrl('translate-a-client-call-in-real-time')}
+          >How to translate a client call in real time</a
+        >
+      </li>
+      <li>
+        <a href={guideUrl('customer-support-call-in-another-language')}
+          >Handling a customer support call in another language</a
+        >
+      </li>
+    </ul>
+
+    <p class="cta">
+      <a href={APP_URL}>Try it on your next client call</a> — no contract, no minimum.
+    </p>
+  </article>
+</SeoLayout>
+
+<style>
+  .wrap {
+    max-width: 72ch;
+    margin-inline: auto;
+    padding: 3rem 1.25rem;
+  }
+  .lede {
+    font-size: 1.15rem;
+  }
+  ul {
+    padding-left: 1.25rem;
+  }
+  li {
+    margin-block: 0.5rem;
+  }
+  .cta {
+    margin-top: 2rem;
+    font-weight: 600;
+  }
+</style>
