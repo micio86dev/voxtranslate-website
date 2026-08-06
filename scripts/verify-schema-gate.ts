@@ -13,6 +13,7 @@
  * Run:  node --experimental-strip-types scripts/verify-schema-gate.ts
  *       (the flag is a no-op on Node 24+, required on Node 22.6-22.17)
  */
+import { readFileSync } from 'node:fs';
 import type { ZodTypeAny } from 'astro/zod';
 import { pairSchema, comparisonSchema, guideSchema } from '../src/content/schemas.ts';
 import {
@@ -225,6 +226,75 @@ check(
   measurementAgeDays(iso(NOW), NOW) <= MAX_MEASUREMENT_AGE_DAYS,
 );
 throws('loadMeasurement on a missing file (R2)', () => loadMeasurement('no-such-pair', NOW));
+
+/* -- corpus --------------------------------------------------------------- */
+
+// The corpus is the fixed reference every latency figure is measured against. If it
+// silently degrades — a category quietly dropped, the hard cases edited out because they
+// were awkward — the numbers keep being produced and stop meaning what the methodology
+// page says they mean. That failure is invisible in the output, so it is checked here.
+
+const phrasesDoc = JSON.parse(
+  readFileSync(new URL('../src/data/corpus/business-phrases.json', import.meta.url), 'utf-8'),
+);
+const termsDoc = JSON.parse(
+  readFileSync(new URL('../src/data/corpus/business-terms.json', import.meta.url), 'utf-8'),
+);
+
+const phrases = phrasesDoc.phrases as Array<{ id: string; category: string; traits: string[] }>;
+
+check(
+  `corpus holds 40-60 phrases (has ${phrases.length})`,
+  phrases.length >= 40 && phrases.length <= 60,
+);
+check(
+  'corpus is versioned',
+  typeof phrasesDoc.version === 'string' && phrasesDoc.version.length > 0,
+);
+check('phrase ids are unique', new Set(phrases.map((p) => p.id)).size === phrases.length);
+
+// Task 01 §1 names these eight explicitly.
+const REQUIRED_CATEGORIES = [
+  'supplier-negotiation',
+  'sales-discovery',
+  'technical-support',
+  'recruiting-interview',
+  'project-status',
+  'contract-terms',
+  'scheduling',
+  'small-talk',
+];
+const presentCategories = new Set(phrases.map((p) => p.category));
+for (const c of REQUIRED_CATEGORIES) {
+  check(`corpus covers category "${c}"`, presentCategories.has(c));
+}
+check(
+  'corpus has no category outside the declared eight',
+  [...presentCategories].every((c) => REQUIRED_CATEGORIES.includes(c)),
+);
+
+// The hard cases. These are the reason the corpus produces an interesting p95 rather than
+// a flattering mean, so each must survive editing.
+const REQUIRED_TRAITS = ['subordinate', 'numeric', 'propernoun', 'overlap', 'register'];
+for (const t of REQUIRED_TRAITS) {
+  const n = phrases.filter((p) => p.traits.includes(t)).length;
+  check(`corpus keeps at least 4 "${t}" phrases (has ${n})`, n >= 4);
+}
+check(
+  'every declared trait is documented',
+  REQUIRED_TRAITS.every((t) => typeof phrasesDoc.traits?.[t] === 'string'),
+);
+check(
+  'no phrase claims an undocumented trait',
+  phrases.every((p) => p.traits.every((t) => REQUIRED_TRAITS.includes(t))),
+);
+
+const terms = Object.values(termsDoc.domains as Record<string, Array<{ term: string }>>).flat();
+check(`term list holds at least 25 terms (has ${terms.length})`, terms.length >= 25);
+check('term list is versioned', typeof termsDoc.version === 'string');
+check('terms are unique across domains', new Set(terms.map((t) => t.term)).size === terms.length);
+// Pair pages require a glossary of 15+ (pairSchema), so the pool must comfortably exceed it.
+check('term pool exceeds the pair-page glossary minimum', terms.length > 15);
 
 /* -- report --------------------------------------------------------------- */
 

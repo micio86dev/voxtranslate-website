@@ -1,0 +1,89 @@
+{
+  "version": "business-terms@1",
+  "language": "en",
+  "note": "Fixed term list for the per-pair glossaries (docs/seo/tasks/01-measurement-harness.md §1). The harness records the translation the engine ACTUALLY produces for each of these — verbatim, not scored by a model — and that output becomes the glossary on the pair page. These are chosen because they are the terms that get mistranslated in ways a bilingual speaker would notice and a dictionary would not: business senses that differ from the everyday sense of the same word.",
+  "domains": {
+    "procurement": [
+      {
+        "term": "purchase order",
+        "trap": "Often rendered as a generic 'order', losing the document sense."
+      },
+      { "term": "lead time", "trap": "Frequently calqued as 'leading time'." },
+      { "term": "unit price", "trap": null },
+      { "term": "volume discount", "trap": null },
+      { "term": "request for quotation", "trap": "The acronym RFQ rarely survives." },
+      { "term": "supplier", "trap": null },
+      { "term": "backorder", "trap": "Often becomes 'late order', which is not the same thing." },
+      { "term": "minimum order quantity", "trap": null },
+      { "term": "incoterms", "trap": "A proper noun that must not be translated." },
+      { "term": "tooling cost", "trap": null }
+    ],
+    "finance": [
+      { "term": "invoice", "trap": null },
+      { "term": "net thirty", "trap": "A payment term, not a quantity. Commonly mangled." },
+      { "term": "accounts receivable", "trap": null },
+      { "term": "escrow", "trap": "Has no direct equivalent in several target languages." },
+      { "term": "margin", "trap": "Collides with the everyday 'edge' sense." },
+      { "term": "run rate", "trap": null },
+      {
+        "term": "churn",
+        "trap": "The everyday sense is physical agitation; the business sense is customer loss."
+      },
+      { "term": "chargeback", "trap": null },
+      { "term": "purchase requisition", "trap": null },
+      { "term": "cost centre", "trap": null }
+    ],
+    "legal": [
+      {
+        "term": "non-disclosure agreement",
+        "trap": "The acronym NDA is often kept in English; record which."
+      },
+      { "term": "indemnity", "trap": null },
+      { "term": "liability cap", "trap": null },
+      {
+        "term": "termination for convenience",
+        "trap": "Legal term of art; a literal rendering changes the meaning."
+      },
+      { "term": "governing law", "trap": null },
+      { "term": "data processing addendum", "trap": null },
+      { "term": "subprocessor", "trap": "Recent GDPR-specific term; coverage is uneven." },
+      { "term": "force majeure", "trap": "Already French; should pass through untouched." },
+      {
+        "term": "warranty",
+        "trap": "Frequently conflated with 'guarantee', which is a different obligation."
+      },
+      { "term": "assignment", "trap": "The contract sense, not the task sense." }
+    ],
+    "delivery": [
+      { "term": "milestone", "trap": null },
+      { "term": "scope creep", "trap": "Idiomatic; a literal rendering is meaningless." },
+      { "term": "blocker", "trap": null },
+      { "term": "handover", "trap": null },
+      { "term": "service level agreement", "trap": "SLA acronym handling varies by language." },
+      { "term": "uptime", "trap": null },
+      {
+        "term": "rollback",
+        "trap": "The everyday sense is physical; the technical sense is a reversion."
+      },
+      { "term": "sprint", "trap": "Collides hard with the athletic sense." },
+      { "term": "backlog", "trap": null },
+      { "term": "post-mortem", "trap": "Latin already; the medical sense may leak through." }
+    ],
+    "people": [
+      { "term": "headcount", "trap": null },
+      { "term": "onboarding", "trap": "Often left in English; record whether it is." },
+      { "term": "notice period", "trap": null },
+      { "term": "performance review", "trap": null },
+      {
+        "term": "direct report",
+        "trap": "Commonly mistranslated as a document rather than a person."
+      },
+      { "term": "severance", "trap": null },
+      {
+        "term": "contractor",
+        "trap": "The legal category differs by jurisdiction, so the natural term differs too."
+      },
+      { "term": "shortlist", "trap": null }
+    ]
+  }
+}

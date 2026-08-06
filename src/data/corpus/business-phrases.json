@@ -1,0 +1,309 @@
+{
+  "version": "business-phrases@1",
+  "language": "en",
+  "note": "Fixed reference corpus for the latency harness (docs/seo/tasks/01-measurement-harness.md §1). Every published latency figure is measured against THIS list at THIS version. Changing a sentence changes the numbers, so edits bump the version and invalidate prior runs — they are not comparable across versions. Traits mark why each sentence is in the set; they are what make the tail interesting rather than the mean.",
+  "traits": {
+    "subordinate": "Long sentence with an embedded clause. Forces the pipeline to buffer more before it can emit — the dominant cost on verb-final target languages.",
+    "numeric": "Numbers, dates, currencies. Cheap to mistranslate, expensive to get wrong in a negotiation.",
+    "propernoun": "Proper nouns and product names, which must survive untranslated.",
+    "overlap": "Interruption or turn-taking marker.",
+    "register": "Politeness or directness that has to carry across, not just the literal content."
+  },
+  "phrases": [
+    {
+      "id": "sn-01",
+      "category": "supplier-negotiation",
+      "text": "If we commit to twelve thousand units a quarter, can you hold the unit price at four euros eighty through the end of the contract?",
+      "traits": ["subordinate", "numeric"]
+    },
+    {
+      "id": "sn-02",
+      "category": "supplier-negotiation",
+      "text": "Our current lead time is six weeks, and that is already two weeks longer than what we agreed in March.",
+      "traits": ["numeric"]
+    },
+    {
+      "id": "sn-03",
+      "category": "supplier-negotiation",
+      "text": "I appreciate the offer, but we cannot accept those payment terms.",
+      "traits": ["register"]
+    },
+    {
+      "id": "sn-04",
+      "category": "supplier-negotiation",
+      "text": "Would you be able to send over a revised quotation before Friday, so that we can take it to the board on Monday morning?",
+      "traits": ["subordinate", "register"]
+    },
+    {
+      "id": "sn-05",
+      "category": "supplier-negotiation",
+      "text": "The tooling cost of twenty-two thousand five hundred is a one-off charge, not a recurring one.",
+      "traits": ["numeric"]
+    },
+    {
+      "id": "sn-06",
+      "category": "supplier-negotiation",
+      "text": "Sorry, let me stop you there — that is not what the purchase order says.",
+      "traits": ["overlap"]
+    },
+
+    {
+      "id": "sd-01",
+      "category": "sales-discovery",
+      "text": "Before we talk about pricing, I would like to understand how your team currently handles meetings where not everyone speaks the same language.",
+      "traits": ["subordinate"]
+    },
+    {
+      "id": "sd-02",
+      "category": "sales-discovery",
+      "text": "How many people would typically be on a call like that?",
+      "traits": []
+    },
+    {
+      "id": "sd-03",
+      "category": "sales-discovery",
+      "text": "We evaluated Interprefy and Wordly last year, but neither fitted the way we run standups.",
+      "traits": ["propernoun"]
+    },
+    {
+      "id": "sd-04",
+      "category": "sales-discovery",
+      "text": "What would need to be true for you to move forward this quarter?",
+      "traits": []
+    },
+    {
+      "id": "sd-05",
+      "category": "sales-discovery",
+      "text": "To be direct with you: we are not going to replace our existing conferencing platform.",
+      "traits": ["register"]
+    },
+    {
+      "id": "sd-06",
+      "category": "sales-discovery",
+      "text": "If I understood you correctly, the blocker is not the budget but the fact that your legal team has not signed off on where the audio is processed.",
+      "traits": ["subordinate"]
+    },
+
+    {
+      "id": "ts-01",
+      "category": "technical-support",
+      "text": "Can you check whether the microphone permission is granted in the browser settings?",
+      "traits": []
+    },
+    {
+      "id": "ts-02",
+      "category": "technical-support",
+      "text": "The error appears about thirty seconds after joining, and only on Chrome version one hundred and thirty-two.",
+      "traits": ["numeric", "propernoun"]
+    },
+    {
+      "id": "ts-03",
+      "category": "technical-support",
+      "text": "When you say it stops working, do you mean the audio cuts out completely, or that the translation stops while you can still hear the other person?",
+      "traits": ["subordinate"]
+    },
+    {
+      "id": "ts-04",
+      "category": "technical-support",
+      "text": "Hold on, hold on — say that again, I lost you.",
+      "traits": ["overlap"]
+    },
+    {
+      "id": "ts-05",
+      "category": "technical-support",
+      "text": "I have escalated this to engineering and you should hear back within one business day.",
+      "traits": ["numeric", "register"]
+    },
+    {
+      "id": "ts-06",
+      "category": "technical-support",
+      "text": "Please could you send me the session identifier from the bottom of the settings panel?",
+      "traits": ["register"]
+    },
+
+    {
+      "id": "ri-01",
+      "category": "recruiting-interview",
+      "text": "Tell me about a project where the requirements changed halfway through and you had to decide what to cut.",
+      "traits": ["subordinate"]
+    },
+    {
+      "id": "ri-02",
+      "category": "recruiting-interview",
+      "text": "You mentioned you led a team of eight for about three years — what did that look like day to day?",
+      "traits": ["numeric"]
+    },
+    {
+      "id": "ri-03",
+      "category": "recruiting-interview",
+      "text": "We work in Rust and TypeScript, mostly on the backend.",
+      "traits": ["propernoun"]
+    },
+    {
+      "id": "ri-04",
+      "category": "recruiting-interview",
+      "text": "I have to be honest with you: the salary band for this role tops out below what you have asked for.",
+      "traits": ["register"]
+    },
+    {
+      "id": "ri-05",
+      "category": "recruiting-interview",
+      "text": "Sorry to interrupt — we are running short on time, so let me move to the last question.",
+      "traits": ["overlap"]
+    },
+    {
+      "id": "ri-06",
+      "category": "recruiting-interview",
+      "text": "If we made you an offer next week, when would you realistically be able to start?",
+      "traits": ["subordinate"]
+    },
+
+    {
+      "id": "ps-01",
+      "category": "project-status",
+      "text": "We closed nineteen of the twenty-four tickets in the sprint, and the remaining five are all blocked on the same external dependency.",
+      "traits": ["numeric", "subordinate"]
+    },
+    {
+      "id": "ps-02",
+      "category": "project-status",
+      "text": "The migration is scheduled for the fourteenth of September at two in the morning, Central European Time.",
+      "traits": ["numeric"]
+    },
+    {
+      "id": "ps-03",
+      "category": "project-status",
+      "text": "Nothing is on fire this week.",
+      "traits": []
+    },
+    {
+      "id": "ps-04",
+      "category": "project-status",
+      "text": "I want to flag early that if the vendor does not confirm by Thursday, we will miss the release window entirely.",
+      "traits": ["subordinate", "register"]
+    },
+    {
+      "id": "ps-05",
+      "category": "project-status",
+      "text": "Marta is covering the on-call rotation while Jonas is out.",
+      "traits": ["propernoun"]
+    },
+    {
+      "id": "ps-06",
+      "category": "project-status",
+      "text": "Quick one before we move on — has anyone actually tested the rollback?",
+      "traits": ["overlap"]
+    },
+
+    {
+      "id": "ct-01",
+      "category": "contract-terms",
+      "text": "The agreement auto-renews for a further twelve months unless either party gives ninety days written notice.",
+      "traits": ["numeric", "subordinate"]
+    },
+    {
+      "id": "ct-02",
+      "category": "contract-terms",
+      "text": "Liability is capped at the total fees paid in the preceding twelve-month period.",
+      "traits": ["numeric"]
+    },
+    {
+      "id": "ct-03",
+      "category": "contract-terms",
+      "text": "We will not sign anything that includes an exclusivity clause.",
+      "traits": ["register"]
+    },
+    {
+      "id": "ct-04",
+      "category": "contract-terms",
+      "text": "Could your legal team confirm in writing that the data processing addendum covers subprocessors outside the European Economic Area?",
+      "traits": ["subordinate", "register"]
+    },
+    {
+      "id": "ct-05",
+      "category": "contract-terms",
+      "text": "The invoice is due thirty days net, and late payment accrues interest at eight per cent above base rate.",
+      "traits": ["numeric"]
+    },
+    {
+      "id": "ct-06",
+      "category": "contract-terms",
+      "text": "That clause was struck out in the version Anna sent on the second of June.",
+      "traits": ["propernoun", "numeric"]
+    },
+
+    {
+      "id": "sc-01",
+      "category": "scheduling",
+      "text": "Does Tuesday at half past nine work for you, or would later in the week be easier?",
+      "traits": ["numeric"]
+    },
+    {
+      "id": "sc-02",
+      "category": "scheduling",
+      "text": "I am three hours ahead of you, so anything after four my time is going to be difficult.",
+      "traits": ["numeric", "subordinate"]
+    },
+    {
+      "id": "sc-03",
+      "category": "scheduling",
+      "text": "Let us push this to next week.",
+      "traits": []
+    },
+    {
+      "id": "sc-04",
+      "category": "scheduling",
+      "text": "I am afraid I cannot make that one.",
+      "traits": ["register"]
+    },
+    {
+      "id": "sc-05",
+      "category": "scheduling",
+      "text": "If the whole group cannot make it, I would rather move the meeting than run it twice.",
+      "traits": ["subordinate"]
+    },
+    {
+      "id": "sc-06",
+      "category": "scheduling",
+      "text": "Sorry, you go ahead — I thought you had finished.",
+      "traits": ["overlap", "register"]
+    },
+
+    {
+      "id": "st-01",
+      "category": "small-talk",
+      "text": "Can everyone hear me all right?",
+      "traits": []
+    },
+    {
+      "id": "st-02",
+      "category": "small-talk",
+      "text": "Give it another minute, I think a couple of people are still joining.",
+      "traits": []
+    },
+    {
+      "id": "st-03",
+      "category": "small-talk",
+      "text": "No, no, after you.",
+      "traits": ["overlap", "register"]
+    },
+    {
+      "id": "st-04",
+      "category": "small-talk",
+      "text": "How was the trip to Lisbon?",
+      "traits": ["propernoun"]
+    },
+    {
+      "id": "st-05",
+      "category": "small-talk",
+      "text": "Thanks everyone, that is all from me — I will send the notes round this afternoon.",
+      "traits": ["register"]
+    },
+    {
+      "id": "st-06",
+      "category": "small-talk",
+      "text": "Sorry, my connection dropped for a second there, what was the last thing you said?",
+      "traits": ["overlap", "subordinate"]
+    }
+  ]
+}
