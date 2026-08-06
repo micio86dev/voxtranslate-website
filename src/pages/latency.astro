@@ -1,0 +1,135 @@
+---
+/**
+ * `/latency/` — the measurement methodology.
+ *
+ * This page is what turns every latency figure on the site from a marketing number into a
+ * verifiable one. It answers a behaviour that already exists in this market: buyers search
+ * for vendor speed tests because they do not believe vendor claims. Nobody in the category
+ * publishes a method. Being the first is cheap and hard to copy credibly.
+ *
+ * The prose here describes the METHOD, which is stable and safe to write in task 00. The
+ * numbers — corpus size, hardware, engine versions, sample counts — are rendered from the
+ * measurement files and stay absent until task 01 produces them. That split is deliberate:
+ * a methodology page that quotes invented figures destroys the exact credibility it exists
+ * to build, so the page ships `noindex` until it has real runs behind it.
+ */
+import SeoLayout from '../layouts/SeoLayout.astro';
+import { listMeasurements, MAX_MEASUREMENT_AGE_DAYS } from '../lib/measurements';
+import { LATENCY_URL, LANGUAGES_URL } from '../lib/seo-routes';
+
+const measurements = listMeasurements();
+const hasData = measurements.length > 0;
+
+// Derived, never hand-written.
+const corpusVersions = [...new Set(measurements.map((m) => m.corpusVersion))];
+const hardware = [...new Set(measurements.map((m) => m.hardware))];
+const engines = [...new Set(measurements.flatMap((m) => Object.values(m.engineVersions)))];
+const lastRun = measurements
+  .map((m) => m.measuredAt)
+  .sort()
+  .at(-1);
+const totalSamples = measurements.reduce(
+  (sum, m) => sum + Object.values(m.latency).reduce((s, l) => s + l.sampleSize, 0),
+  0,
+);
+
+const title = 'How we measure translation latency';
+const description =
+  'The corpus, hardware, sample sizes and definitions behind every latency figure on this ' +
+  'site — published so the numbers can be checked rather than trusted.';
+---
+
+<SeoLayout title={title} description={description} path={LATENCY_URL} noindex={!hasData}>
+  <div class="wrap">
+    <h1>{title}</h1>
+
+    <p>
+      Every latency number on this site comes from the same harness, run against the same fixed
+      corpus, and is republished when it moves. This page describes exactly how, so the figures can
+      be checked instead of taken on trust.
+    </p>
+
+    <h2>What we measure</h2>
+    <dl>
+      <dt>Time to first audio</dt>
+      <dd>
+        From the moment the speaker's utterance ends to the first sample of translated audio leaving
+        the server. This is the delay a listener actually perceives as a pause.
+      </dd>
+      <dt>Completion time</dt>
+      <dd>From end of utterance to the last sample of translated audio.</dd>
+      <dt>Glossary output</dt>
+      <dd>
+        The translation the engine actually produces for a fixed list of business terms — recorded
+        verbatim, not scored by a model.
+      </dd>
+    </dl>
+
+    <h2>p50 and p95, never averages</h2>
+    <p>
+      An average hides the tail, and in a conversation the tail is the only part anyone notices: one
+      4-second pause in twenty exchanges is what people remember, not the mean. Both percentiles are
+      published for every pair.
+    </p>
+
+    <h2>Direction matters</h2>
+    <p>
+      Each direction is measured separately. English to Japanese and Japanese to English are
+      different problems — verb-final target languages force the pipeline to buffer more of the
+      sentence before it can emit anything — and they get different numbers and different pages.
+    </p>
+
+    <h2>Freshness</h2>
+    <p>
+      Measurements expire after {MAX_MEASUREMENT_AGE_DAYS} days. When a file passes that age the site
+      fails to build rather than serving a figure nobody has re-checked.
+    </p>
+
+    {
+      hasData ? (
+        <>
+          <h2>Current run</h2>
+          <dl>
+            <dt>Last measured</dt>
+            <dd>
+              <time datetime={lastRun}>{lastRun?.slice(0, 10)}</time>
+            </dd>
+            <dt>Pairs covered</dt>
+            <dd>
+              {measurements.length} — see <a href={LANGUAGES_URL}>the language matrix</a>
+            </dd>
+            <dt>Total samples</dt>
+            <dd>{totalSamples}</dd>
+            <dt>Corpus</dt>
+            <dd>{corpusVersions.join(', ')}</dd>
+            <dt>Hardware</dt>
+            <dd>{hardware.join(', ')}</dd>
+            <dt>Engine versions</dt>
+            <dd>{engines.join(', ')}</dd>
+          </dl>
+        </>
+      ) : (
+        <p class="pending">
+          No measurement run has been recorded yet. The corpus, hardware and sample sizes appear
+          here as soon as the harness has produced them — this page will not carry estimated
+          figures.
+        </p>
+      )
+    }
+  </div>
+</SeoLayout>
+
+<style>
+  .wrap {
+    max-width: 72ch;
+    margin-inline: auto;
+    padding: 3rem 1.25rem;
+  }
+  dt {
+    font-weight: 600;
+    margin-top: 0.9rem;
+  }
+  .pending {
+    opacity: 0.8;
+  }
+</style>

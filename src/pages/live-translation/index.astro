@@ -1,0 +1,95 @@
+---
+/**
+ * `/live-translation/` — the pillar hub.
+ *
+ * AGENTS.md R6 bans dedicated pages for head terms; this hub is its single stated
+ * exception. It exists to hold the internal-link graph together (every pair and platform
+ * page links back here) and to give the cluster one canonical entry point — not to
+ * compete for "live translation", which DeepL, Google and Wordly already own.
+ *
+ * It renders with zero children today. That is intended: the scaffolding ships in task
+ * 00, the pages arrive in tasks 02-05.
+ */
+import { getCollection } from 'astro:content';
+import SeoLayout from '../../layouts/SeoLayout.astro';
+import { softwareAppJsonLd } from '../../lib/seo';
+import {
+  isPublished,
+  pairUrl,
+  platformUrl,
+  PLATFORMS,
+  LANGUAGES_URL,
+  LATENCY_URL,
+  LIVE_TRANSLATION_HUB,
+} from '../../lib/seo-routes';
+
+const pairs = (await getCollection('pairs'))
+  .filter((e) => isPublished(e.data))
+  .sort((a, b) => a.id.localeCompare(b.id));
+
+const title = 'Live voice translation for video calls';
+const description =
+  'Real-time voice-to-voice translation for meetings: measured latency per language pair, ' +
+  'published methodology, and a documented quality matrix.';
+---
+
+<SeoLayout
+  title={title}
+  description={description}
+  path={LIVE_TRANSLATION_HUB}
+  jsonLd={softwareAppJsonLd(Astro.site)}
+>
+  <div class="wrap">
+    <h1>{title}</h1>
+    <p>
+      Every latency figure on these pages is measured against a fixed business corpus and
+      republished when it moves. The method is public on <a href={LATENCY_URL}>the latency page</a>,
+      and the per-pair quality tiers — including the ones that are not top tier — are on <a
+        href={LANGUAGES_URL}>the language matrix</a
+      >.
+    </p>
+
+    {
+      pairs.length > 0 && (
+        <nav aria-labelledby="pairs-h">
+          <h2 id="pairs-h">Language pairs</h2>
+          <ul>
+            {pairs.map((p) => (
+              <li>
+                <a href={pairUrl(p.id)}>
+                  {p.data.source} to {p.data.target}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )
+    }
+
+    {
+      PLATFORMS.length > 0 && (
+        <nav aria-labelledby="platforms-h">
+          <h2 id="platforms-h">Platform integrations</h2>
+          <ul>
+            {PLATFORMS.map((p) => (
+              <li>
+                <a href={platformUrl(p.slug)}>{p.name}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )
+    }
+  </div>
+</SeoLayout>
+
+<style>
+  .wrap {
+    max-width: 72ch;
+    margin-inline: auto;
+    padding: 3rem 1.25rem;
+  }
+  ul {
+    padding-left: 1.25rem;
+  }
+</style>

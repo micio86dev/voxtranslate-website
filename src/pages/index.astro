@@ -2,8 +2,14 @@
 // Root entry: soft browser-language detection (no server redirect / 301).
 // Lighthouse runs against /en/ and /en/blog/, so this tiny shell never affects
 // scores. Localized pages carry hreflang for discovery.
-import { LOCALES, DEFAULT_LOCALE } from '../lib/i18n';
+import { LOCALES, DEFAULT_LOCALE, localizePath } from '../lib/i18n';
+import { absoluteUrl } from '../lib/seo';
 const localesJson = JSON.stringify(LOCALES);
+
+// Derived from `Astro.site`, never hardcoded: this canonical previously pointed at
+// website.voxtranslate.app, which has 301'd to the apex since the migration — so the
+// apex root was telling Google its canonical was a redirect.
+const canonical = absoluteUrl(Astro.site, localizePath(DEFAULT_LOCALE));
 ---
 
 <!doctype html>
@@ -12,7 +18,7 @@ const localesJson = JSON.stringify(LOCALES);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>VoxTranslate — Real-time translated video calls</title>
-    <link rel="canonical" href="https://website.voxtranslate.app/en/" />
+    <link rel="canonical" href={canonical} />
     <meta name="robots" content="noindex, follow" />
     <script is:inline define:vars={{ localesJson, def: DEFAULT_LOCALE }}>
       (function () {

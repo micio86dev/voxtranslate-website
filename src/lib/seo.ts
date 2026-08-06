@@ -9,7 +9,10 @@ const SITE_NAME = 'VoxTranslate';
 
 /** Join the site origin with a path, collapsing duplicate slashes. */
 export function absoluteUrl(site: string | URL | undefined, path: string): string {
-  const origin = (site ? site.toString() : 'https://website.voxtranslate.app').replace(/\/+$/, '');
+  // Fallback is the APEX. `website.voxtranslate.app` was the pre-migration host and now
+  // 301s here; leaving it as the default would bake a redirect into any canonical emitted
+  // before `Astro.site` resolves.
+  const origin = (site ? site.toString() : 'https://voxtranslate.app').replace(/\/+$/, '');
   const clean = path.startsWith('/') ? path : `/${path}`;
   return `${origin}${clean}`;
 }
@@ -83,6 +86,51 @@ export function softwareAppJsonLd(site: string | URL | undefined) {
       priceCurrency: 'USD',
       description: 'Free starter credits, credit-based usage billing.',
     },
+  };
+}
+
+export interface Crumb {
+  name: string;
+  /** Root-relative path with a trailing slash, e.g. `/live-translation/`. */
+  path: string;
+}
+
+/**
+ * `BreadcrumbList` for the non-localised SEO routes (docs/seo/AGENTS.md §3).
+ *
+ * Mandatory on every template in that architecture: pair and comparison URLs sit two or
+ * three levels deep, and without breadcrumbs Google renders the bare URL in the SERP
+ * instead of a readable hierarchy. Positions are 1-based and must be contiguous.
+ */
+export function breadcrumbJsonLd(site: string | URL | undefined, crumbs: Crumb[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: crumbs.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.name,
+      item: absoluteUrl(site, c.path),
+    })),
+  };
+}
+
+export interface FaqEntry {
+  q: string;
+  a: string;
+}
+
+/** `FAQPage` for templates that carry FAQs. Emit only when entries actually exist —
+ *  an empty FAQPage is a structured-data error, not an empty list. */
+export function faqPageJsonLd(entries: FaqEntry[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: entries.map((e) => ({
+      '@type': 'Question',
+      name: e.q,
+      acceptedAnswer: { '@type': 'Answer', text: e.a },
+    })),
   };
 }
 

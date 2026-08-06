@@ -1,0 +1,74 @@
+---
+/**
+ * Shared body for the three comparison route families — `/alternatives/`, `/compare/`
+ * and `/pricing/`. They differ only in URL prefix and framing, so the parts that carry
+ * legal and reputational risk live in ONE component rather than three copies that drift.
+ *
+ * Two sections are rendered unconditionally, because both are rules rather than editorial
+ * choices (docs/seo/AGENTS.md):
+ *   R1 — every competitor claim carries its primary source and a verification date.
+ *   R5 — "when NOT to choose VoxTranslate", in good faith. A comparison where the author
+ *        always wins persuades nobody, and on a new domain candour is the only edge.
+ */
+import type { Comparison } from '../../content/schemas';
+
+interface Props {
+  data: Comparison;
+  title: string;
+}
+
+const { data, title } = Astro.props;
+const verified = new Date(data.verifiedAt).toISOString().slice(0, 10);
+---
+
+<article class="wrap">
+  <h1>{title}</h1>
+
+  <p class="verified">
+    Competitor pricing and limits below were checked on
+    <time datetime={data.verifiedAt}>{verified}</time>. Vendors change terms without notice — every
+    claim links to the source it came from.
+  </p>
+
+  <slot />
+
+  <section aria-labelledby="honest-h" class="honest">
+    <h2 id="honest-h">When not to choose VoxTranslate</h2>
+    <p>{data.whenNotToChooseUs}</p>
+  </section>
+
+  <section aria-labelledby="sources-h">
+    <h2 id="sources-h">Sources</h2>
+    <ul>
+      {
+        data.primarySources.map((url) => (
+          <li>
+            <a href={url} rel="nofollow noopener" target="_blank">
+              {url}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</article>
+
+<style>
+  .wrap {
+    max-width: 72ch;
+    margin-inline: auto;
+    padding: 3rem 1.25rem;
+  }
+  .verified {
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+  .honest {
+    border-left: 3px solid var(--line);
+    padding-left: 1rem;
+  }
+  ul {
+    padding-left: 1.25rem;
+    overflow-wrap: anywhere;
+  }
+</style>

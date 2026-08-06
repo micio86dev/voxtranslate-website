@@ -1,0 +1,37 @@
+---
+/**
+ * `/compare/{a}-vs-{b}/` — head-to-head comparisons.
+ *
+ * Note that `{a}` is not always VoxTranslate. Comparing two competitors against each
+ * other is the version of this page a buyer actually trusts, and it ranks for a query
+ * neither vendor will ever write about honestly.
+ */
+import { getCollection, render } from 'astro:content';
+import SeoLayout from '../../layouts/SeoLayout.astro';
+import ComparisonArticle from '../../components/seo/ComparisonArticle.astro';
+import { isPublished, versusUrl } from '../../lib/seo-routes';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('comparisons', (e) => e.data.kind === 'versus');
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const title = `${entry.data.competitors.join(' vs ')}: live translation compared`;
+const description =
+  `A side-by-side comparison of ${entry.data.competitors.join(' and ')} for real-time ` +
+  `meeting translation — latency, languages, pricing and the trade-offs behind each.`;
+---
+
+<SeoLayout
+  title={title}
+  description={description}
+  path={versusUrl(entry.id)}
+  noindex={!isPublished(entry.data)}
+>
+  <ComparisonArticle data={entry.data} title={title}>
+    <Content />
+  </ComparisonArticle>
+</SeoLayout>
