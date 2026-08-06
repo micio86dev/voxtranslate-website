@@ -1,0 +1,204 @@
+---
+/**
+ * `/live-translation/{source}-to-{target}/` — the programmatic pair page.
+ *
+ * This is the template the whole SEO programme is built to protect. Its unique modules
+ * are enforced by `pairSchema` (thin content cannot compile) and its numbers come from
+ * `loadMeasurement()` (unmeasured content cannot compile). Between the two, a pair page
+ * physically cannot ship as a template with a language name substituted in.
+ *
+ * Drafts (`publishedAt: null`) still render, so they can be reviewed, but they are
+ * `noindex` and excluded from every sitemap. Only PUBLISHED entries are held to the
+ * measurement gate: a draft is allowed not to have data yet, a live page is not.
+ */
+import { getCollection } from 'astro:content';
+import SeoLayout from '../../layouts/SeoLayout.astro';
+import { faqPageJsonLd } from '../../lib/seo';
+import { loadMeasurement, type Measurement } from '../../lib/measurements';
+import {
+  isPublished,
+  pairUrl,
+  guideUrl,
+  LATENCY_URL,
+  LIVE_TRANSLATION_HUB,
+} from '../../lib/seo-routes';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('pairs');
+  return entries.map((entry) => {
+    const live = isPublished(entry.data);
+    // Throws on a missing, malformed or >180-day-old file — which fails the build.
+    const measurement = live ? loadMeasurement(entry.data.measurementRef) : null;
+    return { params: { pair: entry.id }, props: { data: entry.data, measurement, live } };
+  });
+}
+
+interface Props {
+  data: import('../../content/schemas').Pair;
+  measurement: Measurement | null;
+  live: boolean;
+}
+
+const { data, measurement, live } = Astro.props;
+
+const sourceName = data.source[0].toUpperCase() + data.source.slice(1);
+const targetName = data.target[0].toUpperCase() + data.target.slice(1);
+const title = `Live ${sourceName} to ${targetName} voice translation`;
+const description =
+  `Real-time ${sourceName}→${targetName} speech translation for video calls, with measured latency ` +
+  `and a business glossary. Measured, not estimated.`;
+
+// Tiers are ordered so the fastest measured engine leads.
+const tiers = measurement ? Object.entries(measurement.latency) : [];
+---
+
+<SeoLayout
+  title={title}
+  description={description}
+  path={pairUrl(Astro.params.pair!)}
+  crumbs={[{ name: 'Live translation', path: LIVE_TRANSLATION_HUB }]}
+  jsonLd={faqPageJsonLd(data.faq)}
+  noindex={!live}
+>
+  <article class="wrap">
+    <h1>{title}</h1>
+
+    {
+      measurement && (
+        <section aria-labelledby="latency-h">
+          <h2 id="latency-h">Measured latency</h2>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Engine</th>
+                <th scope="col">Time to first audio (p50)</th>
+                <th scope="col">Time to first audio (p95)</th>
+                <th scope="col">Samples</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tiers.map(([tier, l]) => (
+                <tr>
+                  <th scope="row">{tier}</th>
+                  <td>{l.ttfaP50Ms} ms</td>
+                  <td>{l.ttfaP95Ms} ms</td>
+                  <td>{l.sampleSize}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p>
+            Quality tier <strong>{measurement.qualityTier}</strong>. Measured{' '}
+            <time datetime={measurement.measuredAt}>
+              {new Date(measurement.measuredAt).toISOString().slice(0, 10)}
+            </time>{' '}
+            on {measurement.hardware}. <a href={LATENCY_URL}>How we measure</a>.
+          </p>
+        </section>
+      )
+    }
+
+    <section aria-labelledby="linguistic-h">
+      <h2 id="linguistic-h">What makes {sourceName}→{targetName} hard</h2>
+      <p>{data.linguisticNote}</p>
+    </section>
+
+    <section aria-labelledby="context-h">
+      <h2 id="context-h">Where this pair gets used</h2>
+      <p>{data.corridorContext}</p>
+    </section>
+
+    <section aria-labelledby="usecases-h">
+      <h2 id="usecases-h">Use cases</h2>
+      {
+        data.useCases.map((u) => (
+          <article>
+            <h3>{u.title}</h3>
+            <p>{u.body}</p>
+          </article>
+        ))
+      }
+    </section>
+
+    <section aria-labelledby="glossary-h">
+      <h2 id="glossary-h">Business glossary</h2>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">{sourceName}</th>
+            <th scope="col">{targetName}</th>
+            <th scope="col">Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            data.glossary.map((g) => (
+              <tr>
+                <th scope="row">{g.term}</th>
+                <td>{g.translation}</td>
+                <td>{g.note ?? ''}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="faq-h">
+      <h2 id="faq-h">Questions</h2>
+      <dl>
+        {
+          data.faq.map((f) => (
+            <>
+              <dt>{f.q}</dt>
+              <dd>{f.a}</dd>
+            </>
+          ))
+        }
+      </dl>
+    </section>
+
+    <nav aria-labelledby="related-h">
+      <h2 id="related-h">Related</h2>
+      <ul>
+        {
+          data.relatedPairs.map((p) => (
+            <li>
+              <a href={pairUrl(p)}>{p.replace(/-/g, ' ')}</a>
+            </li>
+          ))
+        }
+        {
+          data.relatedGuides.map((g) => (
+            <li>
+              <a href={guideUrl(g)}>{g.replace(/-/g, ' ')}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </article>
+</SeoLayout>
+
+<style>
+  .wrap {
+    max-width: 72ch;
+    margin-inline: auto;
+    padding: 3rem 1.25rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-block: 1rem;
+  }
+  th,
+  td {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+  dt {
+    font-weight: 600;
+    margin-top: 1rem;
+  }
+</style>

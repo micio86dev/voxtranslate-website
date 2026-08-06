@@ -24,6 +24,15 @@ interface Props {
   noindex?: boolean;
   /** Override hreflang alternates (e.g. single-language blog posts). */
   alternates?: Alternate[];
+  /**
+   * Absolute-from-root canonical path, bypassing locale prefixing.
+   *
+   * The SEO programme's URL architecture (docs/seo/AGENTS.md §3) is deliberately NOT
+   * locale-prefixed: `/live-translation/english-to-german/` targets an English search
+   * pattern and exists in one language only. Those pages pass their own path here and
+   * `alternates={[]}`, since AGENTS.md §1 forbids hreflang until localisation is real.
+   */
+  canonicalPath?: string;
 }
 
 const {
@@ -38,11 +47,12 @@ const {
   jsonLd,
   noindex = false,
   alternates: alternatesOverride,
+  canonicalPath,
 } = Astro.props;
 
 const t = useTranslations(lang);
 const site = Astro.site;
-const canonical = absoluteUrl(site, localizePath(lang, pathWithoutLocale));
+const canonical = absoluteUrl(site, canonicalPath ?? localizePath(lang, pathWithoutLocale));
 const alternates = alternatesOverride ?? buildAlternates(site, pathWithoutLocale);
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : absoluteUrl(site, ogImage);
 const jsonLdItems = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];

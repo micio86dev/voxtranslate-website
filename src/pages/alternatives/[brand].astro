@@ -1,0 +1,38 @@
+---
+/**
+ * `/alternatives/{brand}/` — "X alternative" searches.
+ *
+ * Commercial intent, and the SERP is held by aggregators and content farms rather than by
+ * DeepL or Google. That is the whole reason this family ships before the pair pages: it is
+ * the one place a new domain can actually win inside twelve months.
+ */
+import { getCollection, render } from 'astro:content';
+import SeoLayout from '../../layouts/SeoLayout.astro';
+import ComparisonArticle from '../../components/seo/ComparisonArticle.astro';
+import { isPublished, alternativeUrl } from '../../lib/seo-routes';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('comparisons', (e) => e.data.kind === 'alternative');
+  return entries.map((entry) => ({ params: { brand: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const brand = entry.data.competitors[0];
+const title = `${brand} alternatives for live meeting translation`;
+const description =
+  `An honest comparison of ${brand} and VoxTranslate for real-time voice translation in ` +
+  `meetings — pricing, limits and the cases where ${brand} is the better choice.`;
+---
+
+<SeoLayout
+  title={title}
+  description={description}
+  path={alternativeUrl(entry.id)}
+  noindex={!isPublished(entry.data)}
+>
+  <ComparisonArticle data={entry.data} title={title}>
+    <Content />
+  </ComparisonArticle>
+</SeoLayout>

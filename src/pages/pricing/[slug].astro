@@ -1,0 +1,42 @@
+---
+/**
+ * `/pricing/{brand}-pricing/` — "what does X actually cost" searches.
+ *
+ * The highest-risk family in the programme: it makes specific monetary claims about other
+ * companies. `verifiedAt` and `primarySources` are schema-mandatory (R1) and the rendered
+ * page states the check date in the body, so a stale figure is visibly stale rather than
+ * quietly wrong.
+ *
+ * Slugs are authored as `{brand}-pricing` so the file name and the public URL are the
+ * same string — nothing to keep in sync.
+ */
+import { getCollection, render } from 'astro:content';
+import SeoLayout from '../../layouts/SeoLayout.astro';
+import ComparisonArticle from '../../components/seo/ComparisonArticle.astro';
+import { isPublished, comparisonUrl } from '../../lib/seo-routes';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('comparisons', (e) => e.data.kind === 'pricing');
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const brand = entry.data.competitors[0];
+const title = `${brand} pricing, explained`;
+const description =
+  `What ${brand} actually costs for live meeting translation — plans, per-minute and ` +
+  `per-language charges, and the line items that are easy to miss.`;
+---
+
+<SeoLayout
+  title={title}
+  description={description}
+  path={comparisonUrl('pricing', entry.id)}
+  noindex={!isPublished(entry.data)}
+>
+  <ComparisonArticle data={entry.data} title={title}>
+    <Content />
+  </ComparisonArticle>
+</SeoLayout>

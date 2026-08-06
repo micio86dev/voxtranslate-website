@@ -10,6 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "typecheck": "astro check",
+    "verify:schemas": "node --experimental-strip-types scripts/verify-schema-gate.ts",
     "lint": "prettier --check \"src/**/*.{astro,ts,js,json,css}\" && eslint .",
     "format": "prettier --write \"src/**/*.{astro,ts,js,json,css}\"",
     "astro": "astro"

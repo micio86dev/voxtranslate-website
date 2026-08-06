@@ -1,6 +1,5 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 // Canonical origin for SEO — powers Astro.site so layouts emit absolute
@@ -14,10 +13,6 @@ const SITE = (process.env.PUBLIC_SITE_ORIGIN || 'https://voxtranslate.app').repl
 
 // 5 marketing locales. Keep in sync with src/i18n/*.json and the sitemap map.
 export const LOCALES = ['en', 'it', 'es', 'de', 'fr'];
-
-// The whole site is statically rebuilt on every deploy, so build time is an
-// honest <lastmod> for the sitemap. Computed once at config load.
-const BUILD_DATE = new Date().toISOString();
 
 export default defineConfig({
   site: SITE,
@@ -33,35 +28,13 @@ export default defineConfig({
     // src/pages/index.astro does soft browser-language detection instead.
     routing: { prefixDefaultLocale: true, redirectToDefaultLocale: false },
   },
-  integrations: [
-    sitemap({
-      // hreflang codes MUST match the in-page <link rel="alternate"> tags, which
-      // buildAlternates() (src/lib/seo.ts) emits as plain language codes (en, it,
-      // es, de, fr). Google flags sitemap↔page hreflang mismatches, and
-      // VoxTranslate targets each language globally (not a single region), so
-      // plain codes are the right target — not region-qualified en-US/it-IT.
-      i18n: {
-        defaultLocale: 'en',
-        locales: {
-          en: 'en',
-          it: 'it',
-          es: 'es',
-          de: 'de',
-          fr: 'fr',
-        },
-      },
-      // Give every URL a <lastmod> (build date) so crawlers get a freshness
-      // hint — the one field Google actually consults. The localized home pages
-      // also get top priority; other routes inherit the sitemap default (0.7).
-      serialize(item) {
-        item.lastmod = BUILD_DATE;
-        if (/^\/(?:[a-z]{2}\/)?$/.test(new URL(item.url).pathname)) {
-          item.priority = 1.0;
-        }
-        return item;
-      },
-    }),
-  ],
+  // No sitemap integration. `@astrojs/sitemap` emits one chunked set under a single
+  // base name, and the SEO programme (docs/seo/tasks/00-foundations.md §4) needs four
+  // separately named sitemaps behind an index so Search Console reports indexing PER
+  // CONTENT FAMILY — which is the signal the task 04/05 phase gates are read from.
+  // They are generated as endpoints instead: src/pages/sitemap-*.xml.ts, sharing the
+  // hreflang builder in src/lib/seo.ts so page and sitemap alternates cannot disagree.
+  integrations: [],
   prefetch: { prefetchAll: true, defaultStrategy: 'viewport' },
   image: { service: { entrypoint: 'astro/assets/services/sharp' } },
   vite: {
