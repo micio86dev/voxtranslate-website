@@ -1,11 +1,14 @@
 name: CI
 
 on:
+  # Every pull request, whatever its base — no branch allow-list.
+  #
+  # This previously listed `main` only, so nothing ran on PRs into `develop`, which is
+  # where every feature actually lands. Adding `develop` was not enough either: a stacked
+  # PR based on another feature branch still matched nothing, so the change that most
+  # needs checking — one built on top of unmerged work — was the one that got no checks
+  # at all. An allow-list of bases is the wrong shape for this; a PR is a PR.
   pull_request:
-    # `develop` is the integration branch (staging); every feature branch is merged
-    # there first, so gating only on `main` meant the schema gate and the Lighthouse
-    # budget never ran on the PR that actually introduced a regression.
-    branches: [main, develop]
   workflow_dispatch:
 
 permissions:
