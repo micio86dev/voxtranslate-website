@@ -8,8 +8,8 @@ import type { APIRoute } from 'astro';
 import { getPosts } from '../lib/pocketbase';
 import { absoluteUrl } from '../lib/seo';
 import { LOCALE_NAMES, LOCALES, localizePath } from '../lib/i18n';
+import { APP_URL, SITE_ORIGIN } from '../lib/site';
 
-const APP_URL = 'https://voxtranslate.app/';
 const clean = (s: string) => s.replace(/\s+/g, ' ').trim();
 
 export const GET: APIRoute = async ({ site }) => {
@@ -21,7 +21,7 @@ export const GET: APIRoute = async ({ site }) => {
     '',
     '> Free real-time AI voice translator for video calls: VoxTranslate transcribes, translates and speaks every voice in a call live — voice-to-voice across 84 languages, right in the browser.',
     '',
-    "VoxTranslate turns any video call into a multilingual conversation: live speech-to-text captions, spoken voice-to-voice translation in each listener's own language, and auto-translated text chat. It runs in the browser with no install and is free to start. The app lives at https://voxtranslate.app; this marketing site (product, business, blog) lives at https://website.voxtranslate.app.",
+    `VoxTranslate turns any video call into a multilingual conversation: live speech-to-text captions, spoken voice-to-voice translation in each listener's own language, and auto-translated text chat. It runs in the browser with no install and is free to start. This marketing site (product, business, blog) lives at ${SITE_ORIGIN}; the app itself lives at ${APP_URL}.`,
     '',
     '## Product',
     `- [VoxTranslate — real-time AI voice translator](${url(localizePath('en'))}): product overview, features, three quality tiers, and pricing.`,
