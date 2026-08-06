@@ -17,7 +17,9 @@ import {
   isPublished,
   pairUrl,
   platformUrl,
+  personaUrl,
   PLATFORMS,
+  PERSONAS,
   LANGUAGES_URL,
   LATENCY_URL,
   LIVE_TRANSLATION_HUB,
@@ -26,6 +28,10 @@ import {
 const pairs = (await getCollection('pairs'))
   .filter((e) => isPublished(e.data))
   .sort((a, b) => a.id.localeCompare(b.id));
+
+// Use-case landing pages, once they are live. The hub is the one page every cluster links
+// back to, so it is where the internal-link graph is held together.
+const personas = PERSONAS.filter((p) => isPublished(p));
 
 const title = 'Live voice translation for video calls';
 const description =
@@ -59,6 +65,21 @@ const description =
                 <a href={pairUrl(p.id)}>
                   {p.data.source} to {p.data.target}
                 </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )
+    }
+
+    {
+      personas.length > 0 && (
+        <nav aria-labelledby="personas-h">
+          <h2 id="personas-h">By use case</h2>
+          <ul>
+            {personas.map((p) => (
+              <li>
+                <a href={personaUrl(p.slug)}>For {p.name}</a>
               </li>
             ))}
           </ul>

@@ -1,0 +1,115 @@
+---
+import SeoLayout from '../../layouts/SeoLayout.astro';
+import { personaBySlug, isPublished, personaUrl, guideUrl } from '../../lib/seo-routes';
+import { APP_URL } from '../../lib/site';
+
+const persona = personaBySlug('distributed-teams');
+const title = 'Live translation for distributed teams';
+const description =
+  'Recurring calls across three or four languages, without a per-language tariff or a ' +
+  'procurement cycle. Everyone speaks their own language and nobody waits.';
+---
+
+<SeoLayout
+  title={title}
+  description={description}
+  path={personaUrl(persona.slug)}
+  noindex={!isPublished(persona)}
+>
+  <article class="wrap">
+    <h1>{title}</h1>
+
+    <p class="lede">
+      Four people, four languages, everyone speaking, nobody waiting. That is a different problem
+      from a conference — and it is the one the large platforms are not solving, because their
+      customer is the event.
+    </p>
+
+    <h2>Why the native tooling struggles here</h2>
+    <ul>
+      <li>
+        <strong>Google Meet supports one language pair per meeting</strong>, English-anchored. A
+        team with Polish, Spanish and German speakers cannot use it — an architectural limit, not a
+        pricing one.
+      </li>
+      <li>
+        <strong>Teams Interpreter does not work in ad hoc meetings</strong>, covers 10 languages,
+        and requires Microsoft 365 Copilot rather than Teams Premium — roughly three times the cost
+        most teams budget for. External contractors are excluded entirely.
+      </li>
+      <li>
+        <strong>Zoom translates to captions only.</strong> Reading captions while trying to contribute
+        to a fast discussion leaves people passive.
+      </li>
+    </ul>
+
+    <h2>What actually helps</h2>
+    <p>
+      Before buying anything, the free changes usually do more: decisions in writing, channel
+      translation on, meetings recorded with transcripts, agendas circulated in advance. Live
+      translation earns its cost in one place — <strong
+        >the meetings where discussion happens</strong
+      >. Design debates, retrospectives, planning. Not status updates, which should be written.
+    </p>
+
+    <h2>What we offer</h2>
+    <ul>
+      <li><strong>Symmetric conversation</strong>, not one speaker into many passive listeners</li>
+      <li>
+        <strong>No per-language tariff</strong> — a four-language call is not four times the price
+      </li>
+      <li><strong>Credits that never expire</strong>, which matters when usage is irregular</li>
+      <li><strong>Published pricing</strong>, no sales call</li>
+    </ul>
+
+    <h2>When you should not choose us</h2>
+    <p>
+      If your team is two languages with English on one side, everyone is internal and licensed, and
+      calls run under 90 minutes, Google Meet already does this and it is included in what you pay.
+      Use it. If you need twelve active participants, we cap at four and you should look elsewhere
+      rather than work around it.
+    </p>
+
+    <h2>Where to start</h2>
+    <ul>
+      <li>
+        <a href={guideUrl('run-meetings-with-a-multilingual-team')}
+          >How to run meetings with a multilingual team</a
+        >
+      </li>
+      <li>
+        <a href={guideUrl('remote-team-language-barrier-solutions')}
+          >Practical fixes for a remote team's language barrier</a
+        >
+      </li>
+      <li>
+        <a href={guideUrl('team-standup-different-languages')}
+          >Running a standup when the team speaks different languages</a
+        >
+      </li>
+    </ul>
+
+    <p class="cta"><a href={APP_URL}>Try it on a real call</a> — no contract, no minimum.</p>
+  </article>
+</SeoLayout>
+
+<style>
+  .wrap {
+    max-width: 72ch;
+    margin-inline: auto;
+    padding: 3rem 1.25rem;
+  }
+  .lede {
+    font-size: 1.15rem;
+  }
+  ul {
+    padding-left: 1.25rem;
+  }
+  li {
+    margin-block: 0.5rem;
+  }
+  .cta {
+    margin-top: 2rem;
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,132 @@
+---
+import SeoLayout from '../../layouts/SeoLayout.astro';
+import { personaBySlug, isPublished, personaUrl, guideUrl } from '../../lib/seo-routes';
+import { APP_URL } from '../../lib/site';
+
+const persona = personaBySlug('internal-comms');
+const title = 'Live translation for internal communications';
+const description =
+  'Translate the Q&A, not just the leadership presentation — and keep the translation in the ' +
+  'recording, which Teams and Google Meet both drop.';
+---
+
+<SeoLayout
+  title={title}
+  description={description}
+  path={personaUrl(persona.slug)}
+  noindex={!isPublished(persona)}
+>
+  <article class="wrap">
+    <h1>{title}</h1>
+
+    <p class="lede">
+      An all-hands has a specific failure mode: the parts that are easy to translate are the parts
+      that matter least. The prepared presentation could have been a written update. The Q&A is what
+      makes it a town hall — and it is usually left in the working language.
+    </p>
+
+    <h2>Two things that decide whether it works</h2>
+
+    <h3>Translate the questions, not only the answers</h3>
+    <p>
+      If leadership is translated into five languages and questions must come back in English, the
+      meeting has told everyone whose language is the real one. It also means the questions you
+      receive are filtered by English confidence rather than by importance.
+    </p>
+
+    <h3>Keep the translation in the recording</h3>
+    <p>
+      For a global company, the asynchronous audience is usually larger than the live one.
+      Microsoft's own documentation states that Teams
+      <strong
+        >recordings capture only the original meeting audio and do not include interpretation audio</strong
+      >, and that translated transcripts disappear when the meeting ends. Google Meet does not
+      translate recordings or live streams either.
+    </p>
+    <p>
+      If most of your company watches the next morning, that means the translation served the
+      smaller half.
+    </p>
+
+    <h2>Why native tooling handles this format worst</h2>
+    <ul>
+      <li>
+        <strong>Teams Interpreter is unavailable in town halls and webinars</strong>, and requires
+        Microsoft 365 Copilot
+      </li>
+      <li>
+        <strong>Google Meet supports one language pair per meeting</strong> — three offices in three languages
+        cannot use it at all
+      </li>
+      <li>
+        <strong>Zoom translates to captions only</strong>, so international staff read while
+        everyone else listens
+      </li>
+    </ul>
+
+    <h2>What we offer</h2>
+    <ul>
+      <li>
+        <strong>Symmetric translation</strong>, so questions arrive in the asker's own language
+      </li>
+      <li>
+        <strong>Multi-track recording and per-language transcripts</strong> — the translation survives
+        the meeting
+      </li>
+      <li>
+        <strong>No per-language tariff</strong>, so adding a fifth office is not a fifth invoice
+      </li>
+    </ul>
+
+    <h2>When you should not choose us</h2>
+    <p>
+      For a works council consultation, a regulatory briefing, or anything people sign off on, book
+      human interpreters. We are for the recurring internal sessions where the alternative today is
+      that half the company follows along approximately.
+    </p>
+
+    <h2>Where to start</h2>
+    <ul>
+      <li>
+        <a href={guideUrl('all-hands-meeting-global-team-languages')}
+          >Running an all-hands for a global team across languages</a
+        >
+      </li>
+      <li>
+        <a href={guideUrl('international-town-hall-meeting-languages')}
+          >How to run an international town hall across languages</a
+        >
+      </li>
+      <li>
+        <a href={guideUrl('include-non-native-english-speakers-in-meetings')}
+          >How to include non-native English speakers in meetings</a
+        >
+      </li>
+    </ul>
+
+    <p class="cta">
+      <a href={APP_URL}>Try it on your next all-hands</a> — no contract, no minimum.
+    </p>
+  </article>
+</SeoLayout>
+
+<style>
+  .wrap {
+    max-width: 72ch;
+    margin-inline: auto;
+    padding: 3rem 1.25rem;
+  }
+  .lede {
+    font-size: 1.15rem;
+  }
+  ul {
+    padding-left: 1.25rem;
+  }
+  li {
+    margin-block: 0.5rem;
+  }
+  .cta {
+    margin-top: 2rem;
+    font-weight: 600;
+  }
+</style>

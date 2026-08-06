@@ -10,7 +10,14 @@ import { LOCALES, localizePath } from '../lib/i18n';
 import { getPosts } from '../lib/pocketbase';
 import { buildAlternates, absoluteUrl } from '../lib/seo';
 import { listMeasurements } from '../lib/measurements';
-import { LATENCY_URL, LANGUAGES_URL, LIVE_TRANSLATION_HUB } from '../lib/seo-routes';
+import {
+  LATENCY_URL,
+  LANGUAGES_URL,
+  LIVE_TRANSLATION_HUB,
+  PERSONAS,
+  personaUrl,
+  isPublished,
+} from '../lib/seo-routes';
 import { renderUrlset, xmlResponse, BUILD_DATE, type SitemapEntry } from '../lib/sitemap';
 
 /** Localized routes that exist for every locale. '' is the home page. */
@@ -62,6 +69,17 @@ export const GET: APIRoute = async ({ site }) => {
   if (listMeasurements().length > 0) {
     entries.push({ loc: absoluteUrl(site, LATENCY_URL), lastmod: BUILD_DATE, priority: 0.8 });
     entries.push({ loc: absoluteUrl(site, LANGUAGES_URL), lastmod: BUILD_DATE, priority: 0.8 });
+  }
+
+  // Use-case landing pages. Commercial intent rather than editorial, so they belong with
+  // the site's own pages rather than in the guides segment. Drafts render `noindex` and
+  // are absent here until someone sets a publish date in the PERSONAS registry.
+  for (const persona of PERSONAS.filter((p) => isPublished(p))) {
+    entries.push({
+      loc: absoluteUrl(site, personaUrl(persona.slug)),
+      lastmod: persona.publishedAt ?? BUILD_DATE,
+      priority: 0.8,
+    });
   }
 
   return xmlResponse(renderUrlset(entries));

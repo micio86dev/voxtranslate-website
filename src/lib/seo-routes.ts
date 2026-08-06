@@ -70,17 +70,39 @@ export interface PlatformEntry {
 export interface PersonaEntry {
   slug: string;
   name: string;
+  /** Same convention as the collections: `null` = written but not live. */
+  publishedAt: string | null;
 }
 
 /**
- * Both registries are EMPTY on purpose.
- *
- * Task 00 builds scaffolding and writes no public content, so these routes compile,
- * type-check and are wired into the sitemaps while producing zero pages. Tasks 02 and 03
- * add entries; nothing else has to change when they do.
+ * Platform integration pages. Still empty — task 02's territory.
  *
  * Note AGENTS.md R6: `/live-translation/for-zoom/` is a platform INTEGRATION page and is
  * allowed. A page targeting the head term "zoom translation" is not.
  */
 export const PLATFORMS: readonly PlatformEntry[] = [];
-export const PERSONAS: readonly PersonaEntry[] = [];
+
+/**
+ * Use-case landing pages (task 03 §3). Unlike guides, these carry a direct commercial
+ * CTA, which is why each is a hand-written page under `src/pages/for/` rather than an
+ * entry in a collection rendered through one template.
+ *
+ * All five are drafts. They render for review, `noindex`, and stay out of the sitemap
+ * until someone sets a date here — publishing five pages of commercial copy is a
+ * decision, not a build step.
+ */
+export const PERSONAS: readonly PersonaEntry[] = [
+  { slug: 'webinar-organizers', name: 'webinar organisers', publishedAt: null },
+  { slug: 'distributed-teams', name: 'distributed teams', publishedAt: null },
+  { slug: 'procurement', name: 'procurement teams', publishedAt: null },
+  { slug: 'internal-comms', name: 'internal communications', publishedAt: null },
+  { slug: 'sales-teams', name: 'sales teams', publishedAt: null },
+];
+
+/** Look up a persona by slug. Throws rather than returning undefined, so a typo in a
+ *  page's slug fails the build instead of rendering an untitled page. */
+export function personaBySlug(slug: string): PersonaEntry {
+  const found = PERSONAS.find((p) => p.slug === slug);
+  if (!found) throw new Error(`[seo-routes] unknown persona slug "${slug}"`);
+  return found;
+}

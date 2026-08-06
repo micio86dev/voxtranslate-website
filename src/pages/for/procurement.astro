@@ -1,0 +1,118 @@
+---
+import SeoLayout from '../../layouts/SeoLayout.astro';
+import { personaBySlug, isPublished, personaUrl, guideUrl } from '../../lib/seo-routes';
+import { APP_URL } from '../../lib/site';
+
+const persona = personaBySlug('procurement');
+const title = 'Live translation for procurement and supplier calls';
+const description =
+  'Talk to the production manager, not the sales contact who happens to speak English. ' +
+  'Per-room glossaries for commercial terms, published pricing, credits that never expire.';
+---
+
+<SeoLayout
+  title={title}
+  description={description}
+  path={personaUrl(persona.slug)}
+  noindex={!isPublished(persona)}
+>
+  <article class="wrap">
+    <h1>{title}</h1>
+
+    <p class="lede">
+      The problem in supplier calls is rarely translation quality. It is that everything routes
+      through whoever on the supplier's side speaks your language best — usually a commercial
+      contact rather than the person who knows the answer.
+    </p>
+
+    <h2>What changes when you can talk to the operational people</h2>
+    <ul>
+      <li>Quality issues get discussed with the person who runs the process</li>
+      <li>Delivery dates come from the production planner, not from a relayed assurance</li>
+      <li>A factory audit is answered by the floor, not narrated by sales</li>
+    </ul>
+    <p>
+      That is the actual value of translation here. It is not about comfort — it changes
+      <strong>who can be in the conversation</strong>.
+    </p>
+
+    <h2>Where commercial vocabulary breaks</h2>
+    <p>
+      General translation handles ordinary speech well and business terms badly, because the
+      business sense diverges from the everyday sense of the same word: <em>purchase order</em>,
+      <em>lead time</em>, <em>backorder</em>, <em>minimum order quantity</em>, <em>net thirty</em>,
+      <em>incoterms</em>. A wrong rendering here is expensive rather than embarrassing.
+    </p>
+    <p>
+      Per-room glossaries let you fix your terms once and reuse them on every call with that
+      supplier.
+    </p>
+
+    <h2>Why the native tooling usually does not fit</h2>
+    <ul>
+      <li>
+        <strong>Teams Interpreter excludes external guests and anonymous users</strong>, and needs
+        Microsoft 365 Copilot. Suppliers are external by definition.
+      </li>
+      <li>
+        <strong>Google Meet supports one English-anchored language pair per meeting</strong> — so a call
+        with a Chinese-speaking production team and your Spanish-speaking quality lead is outside it.
+      </li>
+      <li>
+        <strong>Zoom gives captions only</strong>, awkward for someone walking a factory floor.
+      </li>
+    </ul>
+
+    <h2>When you should not choose us</h2>
+    <p>
+      For contract negotiation — terms, liability, penalties — hire a human interpreter. The
+      judgement matters more than the words, and we will tell you so. We are for the fortnightly
+      production call, the quality escalation and the audit, which currently happen in approximate
+      English or not at all.
+    </p>
+
+    <h2>Where to start</h2>
+    <ul>
+      <li>
+        <a href={guideUrl('negotiate-with-a-supplier-who-doesnt-speak-english')}
+          >Negotiating with a supplier who doesn't speak English</a
+        >
+      </li>
+      <li>
+        <a href={guideUrl('factory-audit-call-language-barrier')}
+          >Running a factory audit call across a language barrier</a
+        >
+      </li>
+      <li>
+        <a href={guideUrl('supplier-qualification-call-translation')}
+          >Translating a supplier qualification call</a
+        >
+      </li>
+    </ul>
+
+    <p class="cta">
+      <a href={APP_URL}>Try it on a real supplier call</a> — no contract, no minimum.
+    </p>
+  </article>
+</SeoLayout>
+
+<style>
+  .wrap {
+    max-width: 72ch;
+    margin-inline: auto;
+    padding: 3rem 1.25rem;
+  }
+  .lede {
+    font-size: 1.15rem;
+  }
+  ul {
+    padding-left: 1.25rem;
+  }
+  li {
+    margin-block: 0.5rem;
+  }
+  .cta {
+    margin-top: 2rem;
+    font-weight: 600;
+  }
+</style>
