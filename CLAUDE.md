@@ -3,6 +3,12 @@
 Marketing site & multilingual blog for VoxTranslate. Lives as a git submodule at
 `website/` inside the main VoxTranslate repo. Separate deploy pipeline from the app.
 
+## Marketing context
+
+Before writing any public-facing copy — headlines, meta descriptions, landing page
+text, FAQs — read `docs/positioning.md`. Never invent competitor claims or product
+numbers that are not in that file. For SEO work, follow `docs/seo/AGENTS.md`.
+
 ## Stack
 
 - **Framework:** Astro 5 (static SSG, `output: 'static'`, `trailingSlash: 'always'`)
