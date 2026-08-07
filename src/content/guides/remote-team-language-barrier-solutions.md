@@ -2,7 +2,7 @@
 title: Practical fixes for a remote team's language barrier
 cluster: teams
 shortAnswer: Most of the fix is asynchronous and free — write decisions down, translate the channels, record with transcripts. Live translation is worth adding for the meetings where discussion actually happens, not for status updates that should be written anyway.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Distributed teams usually reach for a translation tool first. It is rarely the cheapest improvement available, and it works far better once the free changes are in place.

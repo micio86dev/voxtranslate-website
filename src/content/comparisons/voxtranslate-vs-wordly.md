@@ -17,7 +17,7 @@ whenNotToChooseUs: >-
   usage is high and predictable, buying hours in bulk will beat per-minute pricing on rate. We
   are the better answer for symmetric small-group conversation, irregular usage where expiring
   hours cost real money, and buyers who need to start before a purchase order exists.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 ## Two different products with overlapping vocabulary

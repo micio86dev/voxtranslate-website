@@ -18,7 +18,7 @@ whenNotToChooseUs: >-
   rare and low-resource languages the difference is not close. Our case is not that we are a
   cheaper interpreter. It is that most meetings were never going to have one, and those are the
   meetings we serve.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 ## The question behind the question

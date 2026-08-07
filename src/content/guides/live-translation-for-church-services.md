@@ -2,7 +2,7 @@
 title: Live translation for church services
 cluster: events
 shortAnswer: Most congregations need translated audio for a small number of listeners, delivered to their own phones, with volunteers rather than staff running it. That points to simple setups — captions on a screen or audio to personal devices — rather than conference interpreting equipment.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 This is a common need with an unusually poor fit to the tools built for it. Conference interpreting equipment assumes a budget, an AV team and a schedule. A congregation typically has none of the three, and runs the same event every week.

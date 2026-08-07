@@ -2,7 +2,7 @@
 title: Do I need an interpreter for my webinar?
 cluster: events
 shortAnswer: If a mistranslation would carry legal, financial or safety consequences, book a human interpreter. If the session is internal, informal or announced at short notice, AI translation or captions are usually enough — and often the honest answer is that you need neither.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 The useful version of this question is not "can I afford an interpreter" but "what happens if a sentence comes out wrong".

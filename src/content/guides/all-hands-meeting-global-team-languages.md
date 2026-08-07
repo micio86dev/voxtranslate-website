@@ -2,7 +2,7 @@
 title: Running an all-hands for a global team across languages
 cluster: teams
 shortAnswer: Translate the Q&A, not just the leadership presentation, and confirm the recording keeps the translation before choosing a platform — for a global team the asynchronous audience is usually larger than the live one, and Teams and Meet both drop translated audio from recordings.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 An all-hands has a specific failure mode: the parts that are easy to translate are the parts that matter least.

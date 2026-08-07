@@ -15,7 +15,7 @@ whenNotToChooseUs: >-
   latency and does not work in native WebRTC. If you are running twenty hours a month across
   a team, or you need several languages live in the same conversation, or you have any
   compliance requirement at all, the picture is different. Below that, take the cheaper option.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 ## What JotMe does well

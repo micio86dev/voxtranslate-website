@@ -17,7 +17,7 @@ whenNotToChooseUs: >-
   in procurement in ways we cannot currently answer. Look at us only for the meetings that sit
   underneath both of their minimum commitments: the small, frequent, unscheduled call in
   several languages, where the realistic alternative today is that nobody translates anything.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 ## The one-line difference

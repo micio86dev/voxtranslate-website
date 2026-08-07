@@ -2,7 +2,7 @@
 title: Running a standup when the team speaks different languages
 cluster: teams
 shortAnswer: Move status to writing and keep the call for blockers only. A standup is the worst possible format for live translation — short, fast, overlapping turns — and the cheapest fix is usually to stop doing status verbally at all.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 A standup is the hardest meeting format to translate and the easiest to redesign so that it does not need translating.

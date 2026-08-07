@@ -2,7 +2,7 @@
 title: Teams live captions not translating — what to check
 cluster: platform
 shortAnswer: "Live captions and translated interpretation are separate features in Teams. Captions transcribe the spoken language; translation requires Teams Interpreter, which needs Microsoft 365 Copilot, covers 10 languages, and excludes external guests and ad hoc meetings."
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Most reports of this are two features being confused. Establish which one you are trying to use.

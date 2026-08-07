@@ -2,7 +2,7 @@
 title: How to run a sales call with a client who speaks another language
 cluster: sales
 shortAnswer: Prepare materials in their language before the call, decide in advance whether you will translate live or work in a shared second language, and put every number in writing. Most deals lost to "language" are lost to ambiguity nobody wanted to admit to.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Selling across a language barrier is mostly a preparation problem. What happens live is the smallest part of it.

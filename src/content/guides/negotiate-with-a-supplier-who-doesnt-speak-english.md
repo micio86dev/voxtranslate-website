@@ -2,7 +2,7 @@
 title: How to negotiate with a supplier who doesn't speak English
 cluster: sales
 shortAnswer: For contract negotiation, use a human interpreter — the judgement matters more than the words. For routine commercial calls, AI translation with a glossary of your terms works, provided every number and commitment is confirmed in writing afterwards.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Procurement across a language barrier has a specific asymmetry: ambiguity almost always resolves in favour of whoever wrote the document. Everything below is about removing ambiguity rather than about translation quality.

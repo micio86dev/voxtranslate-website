@@ -2,7 +2,7 @@
 title: What licence does Teams live translation actually require?
 cluster: platform
 shortAnswer: "Teams Interpreter requires Microsoft 365 Copilot, not Teams Premium. This is the most common and most expensive surprise — Copilot is roughly three times the cost of Premium, and every participant who needs the feature has to have it."
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 This is the single most misunderstood requirement in the category, and it is usually discovered after a budget has been approved.

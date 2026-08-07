@@ -2,7 +2,7 @@
 title: How to translate meeting minutes into multiple languages
 cluster: platform
 shortAnswer: Write the minutes in a structure that translates cleanly — short declarative decisions with owners and dates — then translate. Most problems with translated minutes come from vague source text, not from the translation.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Translated minutes fail far more often because of how they were written than because of how they were translated. Fixing the source is cheaper and helps the original-language readers too.

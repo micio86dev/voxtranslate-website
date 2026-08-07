@@ -92,11 +92,19 @@ export const PLATFORMS: readonly PlatformEntry[] = [];
  * decision, not a build step.
  */
 export const PERSONAS: readonly PersonaEntry[] = [
-  { slug: 'webinar-organizers', name: 'webinar organisers', publishedAt: null },
-  { slug: 'distributed-teams', name: 'distributed teams', publishedAt: null },
-  { slug: 'procurement', name: 'procurement teams', publishedAt: null },
-  { slug: 'internal-comms', name: 'internal communications', publishedAt: null },
-  { slug: 'sales-teams', name: 'sales teams', publishedAt: null },
+  {
+    slug: 'webinar-organizers',
+    name: 'webinar organisers',
+    publishedAt: '2026-08-07T00:00:00.000Z',
+  },
+  { slug: 'distributed-teams', name: 'distributed teams', publishedAt: '2026-08-07T00:00:00.000Z' },
+  { slug: 'procurement', name: 'procurement teams', publishedAt: '2026-08-07T00:00:00.000Z' },
+  {
+    slug: 'internal-comms',
+    name: 'internal communications',
+    publishedAt: '2026-08-07T00:00:00.000Z',
+  },
+  { slug: 'sales-teams', name: 'sales teams', publishedAt: '2026-08-07T00:00:00.000Z' },
 ];
 
 /** Look up a persona by slug. Throws rather than returning undefined, so a typo in a

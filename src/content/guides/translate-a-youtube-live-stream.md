@@ -2,7 +2,7 @@
 title: How to translate a live stream in real time
 cluster: platform
 shortAnswer: Decide whether viewers need translated captions or translated audio, because they need different setups. Captions can be generated from the stream; translated audio generally means producing separate language tracks, which is a production decision rather than a settings change.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Live streaming to a multilingual audience splits into two quite different projects. Confusing them is the usual reason a plan falls apart a week before the event.

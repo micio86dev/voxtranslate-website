@@ -2,7 +2,7 @@
 title: Translating a supplier qualification call
 cluster: sales
 shortAnswer: Send the qualification criteria translated in advance so the right people attend with the right documents, and score against evidence rather than answers. Translation matters here mainly because it decides who can be in the conversation.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Qualification differs from audit in that you are deciding whether to proceed at all, usually with incomplete information and several candidates. Language barriers distort that comparison in a specific way: **you will rate the supplier with the best English speaker highest**, and that correlates with nothing you care about.

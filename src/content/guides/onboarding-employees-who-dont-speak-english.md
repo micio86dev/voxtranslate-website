@@ -2,7 +2,7 @@
 title: Onboarding employees who don't speak English well
 cluster: teams
 shortAnswer: Translate the material that has consequences — contracts, safety, compliance, systems access — and accept that the social parts matter more than the documents. Give new joiners written material in their language before any live session, not after.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Onboarding is dense, high-stakes and front-loaded, which is the worst combination for someone working in a second language. It is also one of the few processes where translation has an unambiguous return.

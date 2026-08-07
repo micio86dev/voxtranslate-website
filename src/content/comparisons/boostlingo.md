@@ -16,7 +16,7 @@ whenNotToChooseUs: >-
   We are the better answer where the honest alternative is no translation at all: the recurring
   internal call, the supplier check-in, the standup that happens in approximate English because
   nobody was ever going to book an interpreter for it.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 ## What Boostlingo does well
