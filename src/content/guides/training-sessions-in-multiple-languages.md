@@ -2,7 +2,7 @@
 title: Running a training session in multiple languages
 cluster: teams
 shortAnswer: Decide whether the training is instruction or discussion. Instruction translates well and often works better recorded with subtitles; discussion needs live translation. For anything people sign off on, translate the assessment too, not just the delivery.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Training is one of the few formats where the asynchronous option is often genuinely better than the live one — which makes it worth deciding deliberately rather than defaulting to a live session with an interpreter.

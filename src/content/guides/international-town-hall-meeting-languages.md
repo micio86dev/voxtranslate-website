@@ -2,7 +2,7 @@
 title: How to run an international town hall across languages
 cluster: events
 shortAnswer: Decide whether the town hall is broadcast or conversation, because that determines everything else. Translate the Q&A, not just the presentation — and confirm before you choose a platform that the recording will keep the translation, because Teams and Meet drop it.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 An all-hands or town hall has a structural problem no other event format has: it is a broadcast that is supposed to feel like a conversation. Those two halves need different handling.

@@ -2,7 +2,7 @@
 title: Handling a customer support call in another language
 cluster: sales
 shortAnswer: Route to a native speaker when one is available and the issue is complex. When one is not, live translation beats forcing the customer into a second language while they are already frustrated — and always send the resolution in writing, in their language.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Support has a constraint other call types do not: the customer is already unhappy, and asking them to also operate in a second language compounds it.

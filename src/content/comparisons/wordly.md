@@ -19,7 +19,7 @@ whenNotToChooseUs: >-
   several people speak several languages, for usage that is irregular enough that expiring
   hours cost you real money, and for teams who need to start on Monday without a procurement
   cycle.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 ## What Wordly does well

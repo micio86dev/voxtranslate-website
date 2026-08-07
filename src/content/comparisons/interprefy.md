@@ -17,7 +17,7 @@ whenNotToChooseUs: >-
   specific case its pricing model handles worst: a small group where several languages are
   live at once, happening often, scheduled at short notice. If that is not your shape, take
   Interprefy seriously.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 ## What Interprefy does well

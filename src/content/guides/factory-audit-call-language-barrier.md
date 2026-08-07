@@ -2,7 +2,7 @@
 title: Running a factory audit call across a language barrier
 cluster: sales
 shortAnswer: Send the checklist translated in advance, insist on speaking to the people who do the work rather than the sales contact, and get evidence in images and documents rather than verbal confirmation. An audit answered entirely by one English speaker is not an audit.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 A remote factory audit has a structural weakness that the language barrier makes worse: you are asking people to describe their own compliance, and the person best able to describe it in your language is usually the person furthest from the floor.

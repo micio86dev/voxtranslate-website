@@ -2,7 +2,7 @@
 title: How to run meetings with a multilingual team
 cluster: teams
 shortAnswer: Decide the working language explicitly rather than letting it default to whoever is loudest, put anything decision-critical in writing, and translate the discussion rather than only the presentation — most exclusion happens in the parts nobody plans.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Teams usually manage the formal parts of a multilingual meeting well and lose people in the informal parts, which is where the actual work happens.

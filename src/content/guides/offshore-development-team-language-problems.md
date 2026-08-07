@@ -2,7 +2,7 @@
 title: Fixing communication problems with an offshore development team
 cluster: teams
 shortAnswer: Language is usually blamed for problems caused by ambiguous requirements and thin feedback loops. Write specifications down, insist on read-back, and shorten the cycle — then add live translation to the design conversations, not the status calls.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Most reported "language problems" with an offshore team survive translation, because they were never language problems.

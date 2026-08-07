@@ -2,7 +2,7 @@
 title: Live translation in Google Meet
 cluster: platform
 shortAnswer: Google Meet does voice-to-voice translation well and preserves the speaker's voice, but supports one language pair per meeting, all English-anchored, with a 90-minute cap and no translation in recordings or live streams. Two languages with English on one side is the case it fits.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Google Meet's speech translation is good at the narrow thing it does. The limits are sharp rather than gradual, which makes it easy to evaluate: you are either inside them or you are not.

@@ -2,7 +2,7 @@
 title: Interviewing a candidate who speaks another language
 cluster: sales
 shortAnswer: Decide first whether the role genuinely requires fluency in your working language. If it does not, assess the skill in a language the candidate is strong in — otherwise you are measuring language ability and calling it competence.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 The important question comes before any tooling decision: **does this role actually require fluency in your working language?**

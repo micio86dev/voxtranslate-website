@@ -2,7 +2,7 @@
 title: Real-time translation for Webex meetings
 cluster: platform
 shortAnswer: "Check your own Webex admin console for what your licence includes, because native translation features change between releases and plans. Whatever it offers, the same four questions decide whether it fits: audio or captions, how many languages, external guests, and what the recording keeps."
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 We do not publish verified figures for Webex's current native translation capability, so this guide will not state any. Feature sets and language counts in this category change between releases, and a number quoted from a blog post is worth less than thirty seconds in your own admin console.

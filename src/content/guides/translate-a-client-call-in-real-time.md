@@ -2,7 +2,7 @@
 title: How to translate a client call in real time
 cluster: sales
 shortAnswer: For a scheduled high-value call, book an interpreter. For the routine calls that currently happen in approximate English, AI translation is the realistic option — load a glossary of your product terms first, and agree with the client beforehand that translation is running.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 The decision is mostly about which call this is. A first meeting with a prospect worth a year's quota is a different problem from the fourth support check-in this month.

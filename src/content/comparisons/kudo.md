@@ -17,7 +17,7 @@ whenNotToChooseUs: >-
   and a budget cycle that expects a contract. We are the better answer for the meetings that
   are too frequent and too small to justify booking anyone: the weekly call, the supplier
   check-in, the standup. Those are not KUDO's market and we are not competing for its.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 ## What KUDO does well

@@ -2,7 +2,7 @@
 title: How to translate a Zoom meeting in real time
 cluster: platform
 shortAnswer: Zoom provides translated captions only — there is no translated audio. It covers 34 languages plus 3 target-only and needs Business Plus, Enterprise, or the Translated Captions add-on. If your participants need to hear the translation rather than read it, Zoom alone will not do it.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Zoom's translation feature is frequently assumed to do more than it does, partly because Zoom's own marketing page and support documentation disagree with each other.

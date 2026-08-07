@@ -2,7 +2,7 @@
 title: Zoom live translation not working — what to check
 cluster: platform
 shortAnswer: "Zoom provides translated captions only, never translated audio. If you expected to hear another language, the feature is working as designed. If captions are missing, check your plan: it needs Business Plus, Enterprise, or the Translated Captions add-on."
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Two very different problems get reported the same way. Work out which one you have first.
