@@ -2,7 +2,7 @@
 title: How to translate a Microsoft Teams meeting live
 cluster: platform
 shortAnswer: Teams Interpreter does voice-to-voice in 10 languages, but it requires Microsoft 365 Copilot rather than Teams Premium, excludes external guests, and does not work in ad hoc meetings, webinars or town halls. Check those four limits before planning around it.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Teams has the most capable native translation of the three major platforms and the most conditions attached. The conditions are where plans fail.

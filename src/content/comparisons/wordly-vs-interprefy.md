@@ -18,7 +18,7 @@ whenNotToChooseUs: >-
   looking at if what you actually have is not an event but a recurring conversation among a few
   people in several languages, happening often enough and at short enough notice that neither
   vendor's model fits.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 ## The one-line difference

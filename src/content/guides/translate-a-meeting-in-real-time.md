@@ -2,7 +2,7 @@
 title: How to translate a meeting in real time
 cluster: platform
 shortAnswer: Check what your conferencing platform actually does first — most translate to captions or a single language pair. If that fits, use it. If you need several languages, translated audio, or external guests, you will need something alongside it.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Start with what you already pay for, because a surprising share of cases are covered and the rest fail for reasons worth knowing before you buy anything.

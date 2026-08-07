@@ -2,7 +2,7 @@
 title: How to make your conference accessible to non-English speakers
 cluster: events
 shortAnswer: Translation is one part of it. Publish materials in advance, brief speakers on pace and idiom, provide captions as well as audio, and make the language options obvious in each language — most of what excludes people is not the absence of an interpreter.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Conference organisers tend to treat this as a procurement question — which interpretation vendor — when most of the exclusion happens in decisions made long before anyone books one.

@@ -2,7 +2,7 @@
 title: Can Zoom translate a meeting in real time?
 cluster: platform
 shortAnswer: "Partly. Zoom translates to captions in real time — 34 languages plus 3 target-only — but it does not produce translated audio. Participants read the translation while hearing the original. It requires Business Plus, Enterprise, or the Translated Captions add-on."
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 The short answer is yes for text and no for speech, and the distinction decides whether Zoom solves your problem.

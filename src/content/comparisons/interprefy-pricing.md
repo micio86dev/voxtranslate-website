@@ -16,7 +16,7 @@ whenNotToChooseUs: >-
   per-hour economics at volume may be better than ours. We are the better answer for the case
   its model prices worst — a handful of people, several languages at once, happening weekly,
   scheduled at short notice — and for buyers who want to know the cost before booking a call.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 ## What Interprefy charges

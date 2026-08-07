@@ -2,7 +2,7 @@
 title: Real-time translation in Zoom breakout rooms
 cluster: platform
 shortAnswer: Breakout rooms are the hardest case — features configured in the main session often do not follow participants in, and interpreters cannot be in several rooms at once. Plan the room composition around language rather than trying to translate every room.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Breakout rooms break most translation arrangements, for a structural reason: translation capacity is finite and rooms multiply.

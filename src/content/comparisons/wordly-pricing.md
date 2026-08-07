@@ -17,7 +17,7 @@ whenNotToChooseUs: >-
   when usage is irregular enough that expiring hours are a real cost, when the meeting is a
   conversation rather than a broadcast, or when you need to start before a purchase order
   could possibly be raised.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 ## What Wordly charges

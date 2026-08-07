@@ -2,7 +2,7 @@
 title: How to include non-native English speakers in meetings
 cluster: teams
 shortAnswer: Most exclusion comes from pace, idiom and turn-taking rather than vocabulary. Slow the transitions, drop the idioms, invite people by name, and treat the chat as a real channel — these cost nothing and help more than translation does.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 The instinct is to reach for a translation tool. Often the barrier is not vocabulary at all — it is speed, idiom and the social mechanics of getting a turn.

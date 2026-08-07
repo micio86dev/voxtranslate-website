@@ -2,7 +2,7 @@
 title: Google Meet translation not available in your language
 cluster: platform
 shortAnswer: "Google Meet supports 5 language pairs, all anchored to English, and only one pair per meeting. If neither of your languages is English, or you need more than one pair in the same call, no plan or setting enables it — the limit is architectural."
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 This one usually is not fixable, and knowing that quickly saves a support ticket.

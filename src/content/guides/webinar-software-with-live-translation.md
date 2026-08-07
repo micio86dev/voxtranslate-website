@@ -2,7 +2,7 @@
 title: Webinar software with live translation, compared honestly
 cluster: events
 shortAnswer: Native platforms translate to captions or a narrow set of language pairs; event vendors do voice properly but sell prepaid hours through a sales call. Which is right depends on audience size, how many languages, and whether the recording has to keep the translation.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 There are three categories here, and they fail in different ways. Knowing which failure you can live with is most of the decision.

@@ -2,7 +2,7 @@
 title: How to run a multilingual webinar
 cluster: events
 shortAnswer: Pick one of three models — human interpreters, AI live translation, or subtitles only — based on audience size and budget. Decide before you build the run of show, because each one changes your rehearsal, your platform and your recording.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 Most webinar problems in a second language are not translation problems. They are planning problems that only become visible on the day.

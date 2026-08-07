@@ -2,7 +2,7 @@
 title: How to add interpretation to a webinar
 cluster: events
 shortAnswer: Check whether your platform supports interpreter channels or only captions, then choose human interpreters for high-stakes content or AI translation for short-notice sessions. Book interpreters at least two weeks ahead and brief them with your slides and terminology.
-publishedAt: null
+publishedAt: '2026-08-07T00:00:00.000Z'
 ---
 
 "Adding interpretation" means two very different projects depending on which route you take. Pick the route first.
