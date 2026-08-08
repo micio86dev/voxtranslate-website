@@ -212,7 +212,7 @@
       "plans": [
         {
           "name": "Business",
-          "price": "€49",
+          "price": "$49",
           "points": [
             "Monthly credits included",
             "Up to 20 members",
@@ -220,11 +220,11 @@
             "Transcripts included",
             "Email support"
           ],
-          "annual": "or €490/yr — 2 months free"
+          "annual": "or $490/yr — 2 months free"
         },
         {
           "name": "Enterprise",
-          "price": "€199",
+          "price": "$199",
           "points": [
             "More credits included",
             "Unlimited members",
@@ -232,7 +232,7 @@
             "Configurable data retention",
             "SLA & priority support"
           ],
-          "annual": "or €1,990/yr — 2 months free"
+          "annual": "or $1,990/yr — 2 months free"
         }
       ]
     },
@@ -244,7 +244,7 @@
       "rows": [
         {
           "feature": "Cost",
-          "vox": "From €49/mo",
+          "vox": "From $49/mo",
           "meet": "€60–120 / hour"
         },
         {
@@ -364,7 +364,7 @@
     },
     "business": {
       "title": "VoxTranslate for Business — multilingual meetings for teams",
-      "description": "Translated video calls for your whole team: shared call history, multilingual transcripts, projects, and compliance — across 84 languages. From €49/month per organization."
+      "description": "Translated video calls for your whole team: shared call history, multilingual transcripts, projects, and compliance — across 84 languages. From $49/month per organization."
     },
     "pricing": {
       "title": "Pricing — pay by the minute, from $0.0045",
