@@ -282,7 +282,7 @@
     },
     "business": {
       "title": "VoxTranslate for Business — mehrsprachige Meetings für Teams",
-      "description": "Übersetzte Videoanrufe fürs Team: gemeinsame Historie, mehrsprachige Transkripte, Projekte und Compliance, in bis zu 84 Sprachen. Ab $49/Monat."
+      "description": "Übersetzte Videoanrufe fürs Team: gemeinsame Historie, mehrsprachige Transkripte, Projekte und Compliance, in bis zu 84 Sprachen. Ab {price}/Monat."
     },
     "pricing": {
       "title": "Preise — Abrechnung pro Minute, ab 0,0045 $",
@@ -331,29 +331,26 @@
       "plans": [
         {
           "name": "Business",
-          "price": "$49",
           "points": [
             "Monatliches Guthaben inklusive",
             "Bis zu 20 Mitglieder",
             "Unbegrenzte Anrufhistorie",
             "Transkripte inklusive",
             "E-Mail-Support"
-          ],
-          "annual": "oder $490/Jahr — 2 Monate gratis"
+          ]
         },
         {
           "name": "Enterprise",
-          "price": "$199",
           "points": [
             "Mehr Guthaben inklusive",
             "Unbegrenzte Mitglieder",
             "Compliance-Modus + Audit-Log",
             "Konfigurierbare Datenaufbewahrung",
             "SLA & Priority-Support"
-          ],
-          "annual": "oder $1.990/Jahr — 2 Monate gratis"
+          ]
         }
-      ]
+      ],
+      "annual": "oder {price}/Jahr — {months} Monate gratis"
     },
     "compare": {
       "title": "Günstiger als ein Dolmetscher, präziser als gebrochenes Englisch",
@@ -363,7 +360,7 @@
       "rows": [
         {
           "feature": "Kosten",
-          "vox": "Ab $49/Monat",
+          "vox": "Ab {price}/Monat",
           "meet": "$60–120 / Stunde"
         },
         {

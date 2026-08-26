@@ -10,6 +10,7 @@ import {
   type Locale,
 } from '../../lib/i18n';
 import { DASHBOARD_URL, CONTACT_EMAIL, API_BASE } from '../../lib/site';
+import { findPlan, formatPlanPrice, monthsFreeOnAnnual } from '../../lib/org-plans';
 
 export function getStaticPaths() {
   return LOCALES.map((lang) => ({ params: { lang } }));
@@ -23,11 +24,44 @@ const features = tList<{ icon: string; title: string; desc: string }>(
   lang,
   'business.features.items',
 );
-const plans = tList<{ name: string; price: string; points: string[]; annual?: string }>(
-  lang,
-  'business.pricing.plans',
+// Plan COPY comes from i18n; the plan PRICE comes from Stripe, via the committed
+// snapshot in src/data/org-plans.json. It used to be typed into all five locale files —
+// which is how the site advertised $49/$199 for two months against Stripe Prices
+// denominated in EUR. Nothing compared the two, because there was nothing to compare to.
+//
+// `findPlan` returning undefined renders no price rather than a stale one: a missing
+// figure is a visible gap someone fixes, a wrong figure is a refund.
+const PLAN_KEYS = ['business', 'enterprise'] as const;
+
+const plans = tList<{ name: string; points: string[] }>(lang, 'business.pricing.plans').map(
+  (plan, i) => {
+    const key = PLAN_KEYS[i];
+    const monthly = key ? findPlan(key, 'month') : undefined;
+    const annual = key ? findPlan(key, 'year') : undefined;
+    const monthsFree = key ? monthsFreeOnAnnual(key) : null;
+    return {
+      ...plan,
+      price: monthly ? formatPlanPrice(monthly) : null,
+      // Only shown when the annual price really is a whole number of months cheaper —
+      // `monthsFreeOnAnnual` derives that from the two Prices instead of asserting "2".
+      annual:
+        annual && monthsFree
+          ? t('business.pricing.annual', {
+              price: formatPlanPrice(annual),
+              months: String(monthsFree),
+            })
+          : null,
+    };
+  },
 );
-const rows = tList<{ feature: string; vox: string; meet: string }>(lang, 'business.compare.rows');
+
+/** The cheapest monthly plan, for the "from {price}" lines. */
+const cheapestMonthly = findPlan('business', 'month');
+const fromPrice = cheapestMonthly ? formatPlanPrice(cheapestMonthly) : '';
+const rows = tList<{ feature: string; vox: string; meet: string }>(
+  lang,
+  'business.compare.rows',
+).map((r) => ({ ...r, vox: r.vox.replace('{price}', fromPrice) }));
 const POPULAR = 0; // Business
 const mailto = `mailto:${CONTACT_EMAIL}`;
 ---
@@ -35,7 +69,7 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
 <BaseLayout
   lang={lang}
   title={t('meta.business.title')}
-  description={t('meta.business.description')}
+  description={t('meta.business.description', { price: fromPrice })}
   pathWithoutLocale="business"
 >
   <!-- Hero -->
@@ -104,10 +138,12 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
                 <span class="biz-flag badge badge-accent">{t('business.pricing.popular')}</span>
               )}
               <h3 class="biz-plan-name">{plan.name}</h3>
-              <p class="biz-plan-price">
-                <span class="biz-price">{plan.price}</span>
-                <span class="biz-per">{t('business.pricing.perMonth')}</span>
-              </p>
+              {plan.price && (
+                <p class="biz-plan-price">
+                  <span class="biz-price">{plan.price}</span>
+                  <span class="biz-per">{t('business.pricing.perMonth')}</span>
+                </p>
+              )}
               {plan.annual && <p class="biz-annual">{plan.annual}</p>}
               <ul class="biz-plan-points">
                 {plan.points.map((p) => (

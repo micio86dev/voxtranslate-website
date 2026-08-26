@@ -50,8 +50,14 @@ export function findPlan(plan: OrgPlanName, interval: BillingInterval): OrgPlan 
  * renders whatever currency Stripe reports rather than a currency we assumed. Whole
  * amounts drop the decimals, since "$49" is what a pricing page says and "$49.00" is
  * what an invoice says.
+ *
+ * The locale is pinned to `en-US` and is NOT the page locale, deliberately. Formatting
+ * USD under `it` yields "49,00 USD" and under `de` "49,00 $" — the price would appear to
+ * change between translations of the same page. Every other figure on this site (the
+ * per-minute rates, the credit packs) is written `$0.0045` in all five languages, and a
+ * plan price that alone switched notation would read as a different offer.
  */
-export function formatPlanPrice(plan: OrgPlan, locale = 'en'): string {
+export function formatPlanPrice(plan: OrgPlan, locale = 'en-US'): string {
   const amount = plan.unit_amount / 100;
   return new Intl.NumberFormat(locale, {
     style: 'currency',
