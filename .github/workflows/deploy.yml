@@ -23,6 +23,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # A queued run can outlive the commit it was created for. GitHub Actions
+      # occasionally strands runs in a `queued` state that the API then refuses to
+      # cancel ("has not been queued yet", HTTP 409) — two sat that way for hours on
+      # 2026-08-26 while newer runs deployed past them. If such a run ever wakes, it
+      # checks out ITS commit and publishes it, silently rolling production back to
+      # whatever the branch looked like when it was created.
+      #
+      # Concurrency does not cover this: `cancel-in-progress` acts on runs that are
+      # actually running, and these never are.
+      - name: Refuse to deploy a stale commit
+        run: |
+          git fetch --depth=1 origin "${{ github.ref_name }}"
+          tip="$(git rev-parse FETCH_HEAD)"
+          if [ "$tip" != "${{ github.sha }}" ]; then
+            echo "::error::This run is for ${{ github.sha }} but ${{ github.ref_name }} is now at $tip. Refusing to publish stale content."
+            exit 1
+          fi
+          echo "Commit is the current tip of ${{ github.ref_name }} — proceeding."
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -71,6 +90,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      # A queued run can outlive the commit it was created for. GitHub Actions
+      # occasionally strands runs in a `queued` state that the API then refuses to
+      # cancel ("has not been queued yet", HTTP 409) — two sat that way for hours on
+      # 2026-08-26 while newer runs deployed past them. If such a run ever wakes, it
+      # checks out ITS commit and publishes it, silently rolling production back to
+      # whatever the branch looked like when it was created.
+      #
+      # Concurrency does not cover this: `cancel-in-progress` acts on runs that are
+      # actually running, and these never are.
+      - name: Refuse to deploy a stale commit
+        run: |
+          git fetch --depth=1 origin "${{ github.ref_name }}"
+          tip="$(git rev-parse FETCH_HEAD)"
+          if [ "$tip" != "${{ github.sha }}" ]; then
+            echo "::error::This run is for ${{ github.sha }} but ${{ github.ref_name }} is now at $tip. Refusing to publish stale content."
+            exit 1
+          fi
+          echo "Commit is the current tip of ${{ github.ref_name }} — proceeding."
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
