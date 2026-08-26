@@ -364,7 +364,7 @@
         {
           "feature": "Costo",
           "vox": "Da $49/mese",
-          "meet": "€60–120 / ora"
+          "meet": "$60–120 / ora"
         },
         {
           "feature": "Disponibilità",
@@ -580,14 +580,14 @@
   "pricing": {
     "hero": {
       "badge": "Prezzi",
-      "title": "Paghi i minuti che parli",
-      "subtitle": "Nessuna postazione. Nessun minimo mensile. Scegli il motore per ogni chiamata e paghi al minuto di parlato.",
+      "title": "Paghi la traduzione che ascolti",
+      "subtitle": "Niente postazioni. Nessun minimo mensile. Scegli il motore con cui vuoi ascoltare e paghi al minuto solo mentre qualcuno parla una lingua che non è la tua.",
       "note": "Credito iniziale gratuito · Senza carta di credito · 18+"
     },
     "perLanguage": {
       "title": "Come funziona la fatturazione",
-      "body": "La tariffa qui sotto si applica per minuto di parlato, una volta per ogni lingua di destinazione presente nella stanza. Una chiamata di 30 minuti tradotta in una lingua costa tariffa × 30. Tradotta in tre lingue, costa tariffa × 30 × 3.",
-      "example": "Paga solo chi parla — ascoltare è gratis."
+      "body": "Sei addebitato come ascoltatore, alla tariffa del motore che hai scelto TU — paghi la qualità che hai chiesto, non quella scelta da qualcun altro. Il contatore gira solo mentre qualcun altro parla una lingua diversa dalla tua, e conta uno stream per ciascuna persona che lo sta facendo in quel momento.",
+      "example": "Se nella stanza parlano già tutti la tua lingua, non si traduce nulla e non si paga nulla. Nei webinar paga l'organizzazione dell'host — chi partecipa non paga mai."
     },
     "tiers": {
       "title": "Tre motori",
@@ -602,9 +602,9 @@
     },
     "examples": {
       "title": "Quanto costa una chiamata vera",
-      "subtitle": "Una chiamata di 60 minuti, un relatore, tradotta in diretta.",
-      "oneLang": "in 1 lingua",
-      "threeLang": "in 3 lingue",
+      "subtitle": "60 minuti di ascolto mentre qualcuno parla una lingua che non è la tua.",
+      "oneLang": "una persona in lingua straniera",
+      "threeLang": "tre che parlano insieme",
       "free": "Il credito iniziale gratuito copre circa {minutes} minuti su Standard."
     },
     "compare": {
@@ -613,7 +613,7 @@
       "rows": [
         {
           "what": "Interprete umano",
-          "cost": "€60–120 / ora",
+          "cost": "$60–120 / ora",
           "note": "Da prenotare giorni prima, una coppia linguistica"
         },
         {
@@ -638,12 +638,12 @@
       "title": "Domande",
       "items": [
         {
-          "q": "Chi ascolta paga?",
-          "a": "No. Consuma credito solo chi parla, e solo mentre parla. Entrare, ascoltare e leggere i sottotitoli è gratis."
+          "q": "Chi paga, chi parla o chi ascolta?",
+          "a": "Chi ascolta. Ti viene addebitata la traduzione che ricevi, alla tariffa del motore che hai scelto, e solo mentre qualcuno sta davvero parlando una lingua diversa dalla tua. Parlare è gratis; è farsela tradurre che costa. I webinar sono l'eccezione: lì paga l'organizzazione dell'host e chi partecipa non paga mai."
         },
         {
-          "q": "Perché la tariffa si moltiplica per il numero di lingue?",
-          "a": "Ogni lingua di destinazione apre il proprio flusso di traduzione in tempo reale presso il provider: una stanza con tre lingue fa il triplo del lavoro. Il moltiplicatore è sempre visibile prima che la chiamata inizi."
+          "q": "Perché a volte la tariffa viene moltiplicata?",
+          "a": "Ogni persona che parla una lingua diversa dalla tua è uno stream di traduzione a sé. Una persona in lingua straniera costa la tariffa; tre che si accavallano costano il triplo, per tutto il tempo in cui si sovrappongono. Nel momento in cui nessuno parla una lingua straniera, il contatore si ferma."
         },
         {
           "q": "Serve un abbonamento?",

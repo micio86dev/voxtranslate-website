@@ -1,0 +1,35 @@
+{
+  "fetchedAt": "2026-08-26",
+  "source": "hand-seeded from the Stripe product/price export of 2026-08-26",
+  "_note": "Seeded by hand because GET /api/business/plans had not shipped yet. These are the LIVE Stripe amounts as of this date, in the currency Stripe actually charges — not the currency the site was displaying. Replaced wholesale by the first run of `node scripts/refresh-org-plans.mjs` once the endpoint is deployed; do not hand-edit again.",
+  "plans": [
+    {
+      "plan": "business",
+      "interval": "month",
+      "unit_amount": 4900,
+      "currency": "eur",
+      "active": true
+    },
+    {
+      "plan": "business",
+      "interval": "year",
+      "unit_amount": 49000,
+      "currency": "eur",
+      "active": true
+    },
+    {
+      "plan": "enterprise",
+      "interval": "month",
+      "unit_amount": 19900,
+      "currency": "eur",
+      "active": true
+    },
+    {
+      "plan": "enterprise",
+      "interval": "year",
+      "unit_amount": 199000,
+      "currency": "eur",
+      "active": true
+    }
+  ]
+}
