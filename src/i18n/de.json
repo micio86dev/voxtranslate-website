@@ -46,7 +46,7 @@
     },
     "catalogue": {
       "value": "84",
-      "label": "Sprachen"
+      "label": "Sprachen (Premium)"
     }
   },
   "features": {
@@ -62,8 +62,8 @@
         "desc": "Wähle die richtige Balance aus Tempo, Stimmqualität und Kosten — von Standard bis zu natürlichen KI-Stimmen mit Premium."
       },
       {
-        "title": "84 Sprachen",
-        "desc": "Sprich und höre in 84 Sprachen. Die Ausgangssprache wird automatisch erkannt oder du legst sie selbst fest."
+        "title": "Bis zu 84 Sprachen",
+        "desc": "Premium deckt alle 84 Sprachen ab, Enhanced 61 und Standard 29 — die Tier-Auswahl zeigt genau welche. Deine gesprochene Sprache wird automatisch erkannt oder du legst sie selbst fest."
       },
       {
         "title": "Abrechnung per Guthaben",
@@ -238,7 +238,7 @@
   "meta": {
     "home": {
       "title": "VoxTranslate — Echtzeit-KI-Sprachübersetzer für Videoanrufe",
-      "description": "Kostenloser KI-Sprachübersetzer in Echtzeit für Live-Gespräche. VoxTranslate transkribiert, übersetzt und spricht jede Stimme in deinem Videoanruf — von Stimme zu Stimme, in 84 Sprachen und ohne Installation."
+      "description": "KI-Sprachübersetzung in Echtzeit für Videoanrufe: jede Stimme transkribiert, übersetzt und gesprochen, in bis zu 84 Sprachen. Ohne Installation."
     },
     "blog": {
       "title": "Blog — VoxTranslate",
@@ -246,18 +246,18 @@
     },
     "business": {
       "title": "VoxTranslate for Business — mehrsprachige Meetings für Teams",
-      "description": "Übersetzte Videoanrufe für dein ganzes Team: gemeinsame Historie, mehrsprachige Transkripte, Projekte und Compliance — in 84 Sprachen. Ab $49/Monat pro Organisation."
+      "description": "Übersetzte Videoanrufe fürs Team: gemeinsame Historie, mehrsprachige Transkripte, Projekte und Compliance, in bis zu 84 Sprachen. Ab $49/Monat."
     },
     "pricing": {
       "title": "Preise — Abrechnung pro Minute, ab 0,0045 $",
-      "description": "VoxTranslate-Preise: drei Übersetzungs-Engines, abgerechnet pro gesprochener Minute und Zielsprache. Keine Platzlizenzen, kein Pflichtabo. Kostenloses Startguthaben."
+      "description": "Drei Übersetzungs-Engines, abgerechnet pro gesprochener Minute und Zielsprache. Keine Platzlizenzen, kein Pflichtabo. Kostenloses Startguthaben."
     }
   },
   "business": {
     "hero": {
       "badge": "VoxTranslate for Business",
       "title": "Mehrsprachige Meetings in Echtzeit für dein Team",
-      "subtitle": "Gib deinem Team übersetzte Videoanrufe mit gemeinsamer Historie, Transkripten und Projekten — in 84 Sprachen.",
+      "subtitle": "Gib deinem Team übersetzte Videoanrufe mit gemeinsamer Historie, Transkripten und Projekten — in bis zu 84 Sprachen.",
       "ctaPrimary": "Loslegen",
       "ctaSecondary": "Kontakt"
     },
@@ -272,7 +272,7 @@
         {
           "icon": "📝",
           "title": "Mehrsprachige Transkripte",
-          "desc": "Nimm jeden Anruf auf und erhalte ein Transkript mit Sprecher-Labels, übersetzbar in 84 Sprachen, mit Übersetzung auf Abruf."
+          "desc": "Nimm jeden Anruf auf und erhalte ein diarisiertes Transkript mit Sprecher-Labels, das jede im Raum gesprochene Sprache enthält. Export als JSON, PDF, SRT oder VTT."
         },
         {
           "icon": "🔒",
@@ -333,7 +333,7 @@
         },
         {
           "feature": "Sprachen pro Meeting",
-          "vox": "84",
+          "vox": "Bis zu 4 gleichzeitig",
           "meet": "Ein Sprachpaar pro Dolmetscher"
         },
         {

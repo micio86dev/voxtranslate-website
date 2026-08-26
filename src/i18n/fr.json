@@ -46,7 +46,7 @@
     },
     "catalogue": {
       "value": "84",
-      "label": "Langues"
+      "label": "Langues (Premium)"
     }
   },
   "features": {
@@ -62,8 +62,8 @@
         "desc": "Trouvez le bon équilibre entre rapidité, qualité de voix et coût — de Standard jusqu'aux voix IA naturelles de Premium."
       },
       {
-        "title": "84 langues",
-        "desc": "Parlez et écoutez dans 84 langues. La langue source est détectée automatiquement, ou vous la définissez vous-même."
+        "title": "Jusqu'à 84 langues",
+        "desc": "Premium couvre les 84 langues, Enhanced 61 et Standard 29 — le sélecteur de niveau indique précisément lesquelles. Votre langue parlée est détectée automatiquement, ou vous la définissez vous-même."
       },
       {
         "title": "Facturation à crédits",
@@ -237,27 +237,27 @@
   },
   "meta": {
     "home": {
-      "title": "VoxTranslate — Traducteur vocal en temps réel pour appels vidéo",
-      "description": "Traducteur vocal IA en temps réel pour les conversations en direct. VoxTranslate transcrit, traduit et donne voix à chaque personne de votre appel vidéo — voix à voix, en 84 langues et sans installation."
+      "title": "VoxTranslate — Traduction vocale live en appel vidéo",
+      "description": "Traduction vocale IA en temps réel pour appels vidéo : chaque voix transcrite, traduite et parlée, jusqu'à 84 langues. Sans installation."
     },
     "blog": {
       "title": "Blog — VoxTranslate",
-      "description": "Guides et comparatifs sur la traduction vocale en temps réel : fonctionnement des niveaux de moteur, lequel choisir, et VoxTranslate face aux interprètes classiques."
+      "description": "Guides et comparatifs sur la traduction vocale en temps réel : fonctionnement des niveaux, lequel choisir, VoxTranslate face aux interprètes."
     },
     "business": {
-      "title": "VoxTranslate for Business — réunions multilingues pour les équipes",
-      "description": "Appels vidéo traduits pour toute votre équipe : historique partagé, transcriptions multilingues, projets et conformité — en 84 langues. À partir de $49/mois par organisation."
+      "title": "VoxTranslate for Business — réunions multilingues",
+      "description": "Appels vidéo traduits pour votre équipe : historique partagé, transcriptions multilingues, projets et conformité, jusqu'à 84 langues. Dès 49 $/mois."
     },
     "pricing": {
       "title": "Tarifs — paiement à la minute, dès 0,0045 $",
-      "description": "Tarifs VoxTranslate : trois moteurs de traduction facturés à la minute de parole, par langue cible. Sans licence par poste, sans abonnement obligatoire. Crédit de départ offert."
+      "description": "Trois moteurs de traduction facturés à la minute de parole, par langue cible. Sans licence par poste, sans abonnement. Crédit de départ offert."
     }
   },
   "business": {
     "hero": {
       "badge": "VoxTranslate for Business",
       "title": "Réunions multilingues en temps réel pour votre équipe",
-      "subtitle": "Offrez à votre équipe des appels vidéo traduits avec historique partagé, transcriptions et projets — en 84 langues.",
+      "subtitle": "Offrez à votre équipe des appels vidéo traduits avec historique partagé, transcriptions et projets — jusqu'à 84 langues.",
       "ctaPrimary": "Commencer",
       "ctaSecondary": "Nous contacter"
     },
@@ -272,7 +272,7 @@
         {
           "icon": "📝",
           "title": "Transcriptions multilingues",
-          "desc": "Enregistrez n'importe quel appel pour obtenir une transcription avec locuteurs, traduisible en 84 langues, avec étiquettes de locuteur et traduction à la demande."
+          "desc": "Enregistrez n'importe quel appel pour obtenir une transcription diarisée avec étiquettes de locuteur, reprenant chaque langue parlée dans la salle. Export en JSON, PDF, SRT ou VTT."
         },
         {
           "icon": "🔒",
@@ -333,7 +333,7 @@
         },
         {
           "feature": "Langues par réunion",
-          "vox": "84",
+          "vox": "Jusqu'à 4 en même temps",
           "meet": "Une paire par interprète"
         },
         {

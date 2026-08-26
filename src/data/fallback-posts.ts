@@ -127,7 +127,7 @@ const BASE_POSTS: RawPost[] = [
 <p>Human interpreters are remarkable. They carry tone, idiom and cultural context in ways software is still catching up to. So when does it make sense to use a tool like VoxTranslate instead? The honest answer: it depends on the conversation. Here's a clear-eyed comparison.</p>
 
 <h2>Availability</h2>
-<p>A professional interpreter has to be booked, scheduled and matched to your exact language pair — often days in advance, and rarely at 11pm on a Sunday. VoxTranslate is there the moment you open a room, in any of 84 languages, with no booking. For spontaneous and global-by-default conversations, instant availability is the single biggest difference.</p>
+<p>A professional interpreter has to be booked, scheduled and matched to your exact language pair — often days in advance, and rarely at 11pm on a Sunday. VoxTranslate is there the moment you open a room, in up to 84 languages depending on the tier, with no booking. For spontaneous and global-by-default conversations, instant availability is the single biggest difference.</p>
 
 <h2>Cost</h2>
 <p>Interpreters typically bill by the hour, often with minimums, and a single rare language pair can be expensive. VoxTranslate is credit-based: you start with free credits, pay only for the minutes you actually speak, and choose a cheaper or pricier engine per call. For short, frequent or unpredictable conversations, the cost difference is dramatic.</p>

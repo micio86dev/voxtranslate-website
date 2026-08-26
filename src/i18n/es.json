@@ -46,7 +46,7 @@
     },
     "catalogue": {
       "value": "84",
-      "label": "Idiomas"
+      "label": "Idiomas (Premium)"
     }
   },
   "features": {
@@ -62,8 +62,8 @@
         "desc": "Elige el equilibrio perfecto entre velocidad, calidad de voz y coste — desde Standard hasta las voces de IA naturales de Premium."
       },
       {
-        "title": "84 idiomas",
-        "desc": "Habla y escucha en 84 idiomas. El idioma de origen se detecta solo, o puedes fijarlo a mano."
+        "title": "Hasta 84 idiomas",
+        "desc": "Premium cubre los 84 idiomas, Enhanced 61 y Standard 29 — el selector de nivel muestra exactamente cuáles. El idioma que hablas se detecta solo, o puedes fijarlo a mano."
       },
       {
         "title": "Facturación por créditos",
@@ -237,27 +237,27 @@
   },
   "meta": {
     "home": {
-      "title": "VoxTranslate — Traductor de voz en tiempo real para videollamadas",
-      "description": "Traductor de voz con IA en tiempo real para conversaciones en directo. VoxTranslate transcribe, traduce y da voz a cada persona de tu videollamada — de voz a voz, en 84 idiomas y sin instalar nada."
+      "title": "VoxTranslate — Traducción de voz en directo en videollamadas",
+      "description": "Traducción de voz con IA en tiempo real para videollamadas: cada voz transcrita, traducida y hablada, hasta en 84 idiomas. Sin instalar nada."
     },
     "blog": {
       "title": "Blog — VoxTranslate",
-      "description": "Guías y comparativas sobre traducción de voz en tiempo real: cómo funcionan los niveles de motor, cuál elegir y VoxTranslate frente a los intérpretes tradicionales."
+      "description": "Guías y comparativas sobre traducción de voz en tiempo real: cómo funcionan los niveles, cuál elegir y VoxTranslate frente a los intérpretes."
     },
     "business": {
-      "title": "VoxTranslate for Business — reuniones multilingües para equipos",
-      "description": "Videollamadas traducidas para todo tu equipo: historial compartido, transcripciones multilingües, proyectos y cumplimiento — en 84 idiomas. Desde $49/mes por organización."
+      "title": "VoxTranslate for Business — reuniones multilingües",
+      "description": "Videollamadas traducidas para tu equipo: historial compartido, transcripciones multilingües, proyectos y cumplimiento, hasta en 84 idiomas. Desde $49/mes."
     },
     "pricing": {
       "title": "Precios — pagas por minuto, desde 0,0045 $",
-      "description": "Precios de VoxTranslate: tres motores de traducción facturados por minuto de habla, por idioma de destino. Sin licencias por puesto, sin suscripción obligatoria. Crédito inicial gratuito."
+      "description": "Tres motores de traducción facturados por minuto de habla, por idioma de destino. Sin licencias por puesto, sin suscripción. Crédito inicial gratuito."
     }
   },
   "business": {
     "hero": {
       "badge": "VoxTranslate for Business",
       "title": "Reuniones multilingües en tiempo real para tu equipo",
-      "subtitle": "Ofrece a tu equipo videollamadas traducidas con historial compartido, transcripciones y proyectos — en 84 idiomas.",
+      "subtitle": "Ofrece a tu equipo videollamadas traducidas con historial compartido, transcripciones y proyectos — hasta en 84 idiomas.",
       "ctaPrimary": "Empezar",
       "ctaSecondary": "Contáctanos"
     },
@@ -272,7 +272,7 @@
         {
           "icon": "📝",
           "title": "Transcripciones multilingües",
-          "desc": "Graba cualquier llamada para obtener una transcripción con hablantes, traducible a 84 idiomas, con etiquetas de hablante y traducción bajo demanda."
+          "desc": "Graba cualquier llamada para obtener una transcripción diarizada con etiquetas de hablante, que recoge todos los idiomas hablados en la sala. Exporta en JSON, PDF, SRT o VTT."
         },
         {
           "icon": "🔒",
@@ -333,7 +333,7 @@
         },
         {
           "feature": "Idiomas por reunión",
-          "vox": "84",
+          "vox": "Hasta 4 a la vez",
           "meet": "Un par por intérprete"
         },
         {

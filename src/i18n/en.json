@@ -46,7 +46,7 @@
     },
     "catalogue": {
       "value": "84",
-      "label": "Languages"
+      "label": "Languages (Premium)"
     }
   },
   "features": {
@@ -62,8 +62,8 @@
         "desc": "Pick the right balance of speed, voice quality and cost — from Standard up to natural AI voices on Premium."
       },
       {
-        "title": "84 languages",
-        "desc": "Speak and listen across 84 languages. Source language is auto-detected, or you can set it manually."
+        "title": "Up to 84 languages",
+        "desc": "Premium covers all 84, Enhanced 61 and Standard 29 — the tier picker shows exactly which. Your spoken language is auto-detected, or you can set it manually."
       },
       {
         "title": "Credit-based billing",
@@ -178,7 +178,7 @@
     "hero": {
       "badge": "VoxTranslate for Business",
       "title": "Real-time multilingual meetings for your team",
-      "subtitle": "Give your team translated video calls with shared history, transcripts and projects — across 84 languages.",
+      "subtitle": "Give your team translated video calls with shared history, transcripts and projects — across up to 84 languages.",
       "ctaPrimary": "Get started",
       "ctaSecondary": "Contact us"
     },
@@ -193,7 +193,7 @@
         {
           "icon": "📝",
           "title": "Multilingual transcripts",
-          "desc": "Record any call for a diarized transcript — translatable into 84 languages, with speaker labels and on-demand translation."
+          "desc": "Record any call for a diarized transcript with speaker labels, carrying every language spoken in the room. Export as JSON, PDF, SRT or VTT."
         },
         {
           "icon": "🔒",
@@ -254,7 +254,7 @@
         },
         {
           "feature": "Languages per meeting",
-          "vox": "84",
+          "vox": "Up to 4 at once",
           "meet": "One pair per interpreter"
         },
         {
@@ -356,7 +356,7 @@
   "meta": {
     "home": {
       "title": "VoxTranslate — Real-Time AI Voice Translator for Video Calls",
-      "description": "Free real-time AI voice translator for live conversations. VoxTranslate transcribes, translates and speaks every voice in your video call — voice-to-voice across 84 languages, no install."
+      "description": "Real-time AI voice translation for live video calls — every voice transcribed, translated and spoken aloud, across up to 84 languages. No install."
     },
     "blog": {
       "title": "Blog — VoxTranslate",
@@ -364,7 +364,7 @@
     },
     "business": {
       "title": "VoxTranslate for Business — multilingual meetings for teams",
-      "description": "Translated video calls for your whole team: shared call history, multilingual transcripts, projects, and compliance — across 84 languages. From $49/month per organization."
+      "description": "Translated video calls for your team: shared history, multilingual transcripts, projects and compliance, across up to 84 languages. From $49/month."
     },
     "pricing": {
       "title": "Pricing — pay by the minute, from $0.0045",

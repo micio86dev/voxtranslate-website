@@ -72,13 +72,13 @@ export function softwareAppJsonLd(site: string | URL | undefined) {
     operatingSystem: 'Web',
     url: absoluteUrl(site, '/'),
     description:
-      'Real-time AI voice translator for video calls. VoxTranslate transcribes, translates and speaks every voice in your call live — voice-to-voice across 84 languages.',
+      'Real-time AI voice translator for video calls. VoxTranslate transcribes, translates and speaks every voice in your call live — voice-to-voice across up to 84 languages.',
     featureList: [
       'Real-time AI voice translation',
       'Voice-to-voice translation in video calls',
       'Live translated subtitles',
       'Auto-translated text chat',
-      '84 languages',
+      'Up to 84 languages',
     ],
     offers: {
       '@type': 'Offer',

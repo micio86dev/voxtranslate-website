@@ -19,7 +19,7 @@ export const GET: APIRoute = async ({ site }) => {
   const lines = [
     '# VoxTranslate',
     '',
-    '> Free real-time AI voice translator for video calls: VoxTranslate transcribes, translates and speaks every voice in a call live — voice-to-voice across 84 languages, right in the browser.',
+    '> Free real-time AI voice translator for video calls: VoxTranslate transcribes, translates and speaks every voice in a call live — voice-to-voice across up to 84 languages, right in the browser.',
     '',
     `VoxTranslate turns any video call into a multilingual conversation: live speech-to-text captions, spoken voice-to-voice translation in each listener's own language, and auto-translated text chat. It runs in the browser with no install and is free to start. This marketing site (product, business, blog) lives at ${SITE_ORIGIN}; the app itself lives at ${APP_URL}.`,
     '',
