@@ -13,7 +13,7 @@
  * Run:  node --experimental-strip-types scripts/verify-schema-gate.ts
  *       (the flag is a no-op on Node 24+, required on Node 22.6-22.17)
  */
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import type { ZodTypeAny } from 'astro/zod';
 import {
   pairSchema,
@@ -188,6 +188,43 @@ rejects(guideSchema, 'guide with a 301-char shortAnswer (unliftable)', {
   shortAnswer: text(301),
 });
 rejects(guideSchema, 'guide with an unknown cluster', { ...validGuide, cluster: 'misc' });
+
+/* -- reveal animations ----------------------------------------------------- */
+
+/**
+ * A page that uses `data-reveal` MUST load the animations script.
+ *
+ * global.css hides `[data-reveal]` behind `:where(html.js:not(.reduce-motion))`, and
+ * BaseLayout adds `html.js` on every page — so the hiding always applies and only the
+ * animations script ever undoes it. A page with reveal markup and no script renders a
+ * complete, valid, correctly-structured, entirely INVISIBLE document.
+ *
+ * That happened to /{lang}/pricing/ and went unnoticed for three weeks: 200 OK, full
+ * HTML, valid FAQ schema, Lighthouse SEO 1.0. Every automated signal was green because
+ * every automated signal reads the DOM, and the DOM was fine. Only a human eye — or
+ * this check — sees the difference between "present" and "visible".
+ */
+{
+  const pagesDir = new URL('../src/pages/', import.meta.url);
+  const offenders: string[] = [];
+  const walk = (dir: URL): void => {
+    for (const name of readdirSync(dir, { withFileTypes: true })) {
+      const child = new URL(name.name + (name.isDirectory() ? '/' : ''), dir);
+      if (name.isDirectory()) walk(child);
+      else if (name.name.endsWith('.astro')) {
+        const src = readFileSync(child, 'utf-8');
+        if (src.includes('data-reveal') && !src.includes('scripts/animations')) {
+          offenders.push(name.name);
+        }
+      }
+    }
+  };
+  walk(pagesDir);
+  check(
+    `NO page uses data-reveal without the animations script${offenders.length ? ` — offenders: ${offenders.join(', ')}` : ''}`,
+    offenders.length === 0,
+  );
+}
 
 /* -- platforms ------------------------------------------------------------ */
 
