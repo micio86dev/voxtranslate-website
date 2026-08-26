@@ -2,6 +2,14 @@
 
 *Research conducted 5 August 2026. All pricing verified against primary sources; where not public, this is stated explicitly. Claims in this file were checked by an adversarial verification pass.*
 
+> **Changelog — 26 August 2026.** Added §3.4 (the browser layer), because the Chrome extension went
+> public after this file was written and nothing here described it. The addition is purely
+> additive: no competitor claim, price, language count or objection script in the 5 August text was
+> altered, and all of those still carry their original verification date. Per AGENTS.md §5 this
+> edit is flagged rather than silent — see `docs/seo/reports/06-2026-08-26.md` §8. The competitor
+> table in §2 is now three weeks old and should be re-verified by someone with the primary sources
+> in front of them.
+
 **This file is the single source of truth for public-facing copy and competitor claims. Do not state anything about a competitor that is not in here or backed by a linked primary source.**
 
 ---
@@ -96,6 +104,54 @@ The multi-vendor architecture underneath sells to *technical* buyers as resilien
 **Do not build go-to-market on webinar broadcast.** Against Lingopal and Camb.ai you do not compete. Sell it as a natural extension for existing call customers: *"same platform, same glossary, same voices, when you go from 4 people to 400."*
 
 ---
+
+### 3.4 The browser layer
+
+*Added 26 August 2026. Everything here is checked against the shipped extension; file references are
+to `voxtranslate-chrome-extension/`.*
+
+The calls product asks a buyer to move a meeting. That is the single hardest thing to ask, and §5's
+most frequent objection — *"we already use Zoom"* — is really an objection to moving, not to
+translation. The extension removes the ask entirely: it listens to the audio of the browser tab the
+user is already looking at.
+
+**What it actually is.** One tab, chosen by pressing the toolbar button. `chrome.tabCapture` into an
+offscreen document; live subtitles in a shadow-DOM overlay, plus spoken translation on tiers that
+produce audio, with the original audio on a 0–100% control that ducks under the translated voice
+(`src/offscreen/pipeline.ts:99,495-505`). Never the microphone, never another tab, never a
+background tab (`PRIVACY.md:15-20`). No `<all_urls>`, no access to tabs, history or cookies
+(`manifest.config.ts:35`).
+
+**Why it is a positioning change and not a feature.** There is no site allowlist and no per-site
+adapter — no domain string appears anywhere in the extension source. It works on anything that makes
+sound in a tab. That makes the addressable surface Google Meet Web, Zoom Web, Teams on the web,
+YouTube, YouTube Live, Twitch, course players, podcasts and webinar players, in one product, with no
+integration to maintain per platform. None of the vendors in §2 covers that surface: the platform
+natives are confined to their own product by construction, and the event vendors sell into the
+event, not into the browser.
+
+**The line.** *Don't change your platform. Change the language.* It is the same commercial promise
+as §3.2 — published per-minute price, no seats, credits that don't expire — applied to content the
+buyer already has open.
+
+**What must be said honestly, every time.**
+
+- **Chrome only.** Not Firefox, Safari or Edge (`README.md:124-125`).
+- **The web clients, not the desktop apps.** "Google Meet Web" and "Zoom Web", never "Google Meet"
+  and "Zoom" unqualified. Saying otherwise is the same class of error as an unqualified "84
+  languages".
+- The subtitle overlay cannot be injected on `chrome://` pages or the Web Store itself; audio
+  translation still runs there (`src/background/index.ts:469`).
+- The Enhanced tier is not available in the extension — it is client-direct to Cartesia and needs a
+  second in-browser pipeline that does not exist yet (`README.md:462-463`).
+- Language detection runs once at session start, so a video that switches language mid-way is not
+  re-detected (`README.md:458-476`).
+
+**Where it sits against the calls product.** Not a downgrade and not a funnel — a different
+question. *"I need everyone in this call understood in their own language"* is the calls product.
+*"I need to understand this"* is the extension. Same account, same balance, same per-minute
+economics. The site should present them as two doors into one product, not a product and its
+accessory.
 
 ## 4. Three things to do now
 
