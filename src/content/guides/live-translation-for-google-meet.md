@@ -56,6 +56,22 @@ Both alternatives trade one limit for another:
 
 There is no native option that handles three languages with translated audio in one meeting. That is the gap worth knowing about before you evaluate anything else.
 
+## Following a Meet call in your own language
+
+Everything above is about what the *organiser* can turn on. There is a separate question:
+what can you do about a Meet call you were simply invited to, on someone else's Workspace,
+where the pair is not English-anchored?
+
+[VoxTranslate for Chrome](/live-translation/for-google-meet-web/) translates the audio of
+the Meet tab in your browser, showing subtitles over the call and optionally speaking the
+translation. It needs the **web** client — the desktop app has no browser tab to listen to
+— and it is one-directional: it translates what you hear, and the other participants get
+nothing back.
+
+That is the honest boundary. It solves your comprehension, not the room's. For a meeting
+where three people each need to be understood in their own language, the answer is still a
+tool that runs the call, not one that listens to it.
+
 ## Practical notes
 
 - **Brief speakers to pause at clause boundaries.** Meet's translation, like all of them, needs a phrase to work with.

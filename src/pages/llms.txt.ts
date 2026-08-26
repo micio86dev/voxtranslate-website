@@ -8,7 +8,16 @@ import type { APIRoute } from 'astro';
 import { getPosts } from '../lib/pocketbase';
 import { absoluteUrl } from '../lib/seo';
 import { LOCALE_NAMES, LOCALES, localizePath } from '../lib/i18n';
-import { APP_URL, SITE_ORIGIN } from '../lib/site';
+import { APP_URL, SITE_ORIGIN, CHROME_WEBSTORE_URL } from '../lib/site';
+import {
+  PLATFORMS,
+  PERSONAS,
+  platformUrl,
+  personaUrl,
+  isPublished,
+  GUIDES_URL,
+  LIVE_TRANSLATION_HUB,
+} from '../lib/seo-routes';
 
 const clean = (s: string) => s.replace(/\s+/g, ' ').trim();
 
@@ -19,14 +28,27 @@ export const GET: APIRoute = async ({ site }) => {
   const lines = [
     '# VoxTranslate',
     '',
-    '> Free real-time AI voice translator for video calls: VoxTranslate transcribes, translates and speaks every voice in a call live — voice-to-voice across up to 84 languages, right in the browser.',
+    '> Real-time translation in two places: video calls and webinars you run yourself, and the audio of any tab in Chrome. Credit-based, billed per minute of speech, no subscription required.',
     '',
-    `VoxTranslate turns any video call into a multilingual conversation: live speech-to-text captions, spoken voice-to-voice translation in each listener's own language, and auto-translated text chat. It runs in the browser with no install and is free to start. This marketing site (product, business, blog) lives at ${SITE_ORIGIN}; the app itself lives at ${APP_URL}.`,
+    `VoxTranslate is two products on one account. **Calls and webinars**: up to four participants, each speaking and hearing their own language, with live subtitles, spoken translation and diarized transcripts — webinar attendees join by link and pick their own language. **VoxTranslate for Chrome**: an extension that translates the audio playing in one browser tab, giving you subtitles over the page and an optional spoken translation, which covers Google Meet Web, Zoom Web, YouTube and YouTube Live, Twitch, course players and podcasts. Billing is per minute of speech, per target language, from $0.0045 — nothing is charged when everyone already shares a language. Language coverage is per tier: Standard 29, Enhanced 61, Premium 84. No latency figure is published anywhere on this site, because none has been measured on the shipped build. This marketing site lives at ${SITE_ORIGIN}; the call app lives at ${APP_URL}.`,
     '',
     '## Product',
-    `- [VoxTranslate — real-time AI voice translator](${url(localizePath('en'))}): product overview, features, three quality tiers, and pricing.`,
+    `- [VoxTranslate — real-time translated calls and webinars](${url(localizePath('en'))}): product overview, features, three quality tiers, and pricing.`,
+    `- [VoxTranslate for Chrome](${url(localizePath('en', 'chrome'))}): the browser extension — what it captures (one tab's audio, never the microphone), what you control, and what it does not do.`,
+    `- [Pricing](${url(localizePath('en', 'pricing'))}): per-minute rates per engine, worked examples, and the billing rules.`,
     `- [VoxTranslate for Business](${url(localizePath('en', 'business'))}): translated meetings for teams — shared call history, multilingual transcripts, projects, and compliance.`,
     `- [Launch the app](${APP_URL}): start or join a real-time translated video call.`,
+    `- [Install the Chrome extension](${CHROME_WEBSTORE_URL}): the Chrome Web Store listing.`,
+    '',
+    '## Where the extension applies',
+    ...PLATFORMS.map((p) => `- [Live translation for ${p.name}](${url(platformUrl(p.slug))})`),
+    '',
+    '## Guides and use cases',
+    `- [Live translation hub](${url(LIVE_TRANSLATION_HUB)}): the entry point for the guides, platform pages and language matrix.`,
+    `- [All guides](${url(GUIDES_URL)}): 35 practical guides on running meetings, webinars and calls across languages.`,
+    ...PERSONAS.filter((p) => isPublished(p)).map(
+      (p) => `- [For ${p.name}](${url(personaUrl(p.slug))})`,
+    ),
     '',
     '## Blog',
     `- [VoxTranslate blog](${url(localizePath('en', 'blog'))}): guides and comparisons on real-time voice translation and how the engine tiers work.`,

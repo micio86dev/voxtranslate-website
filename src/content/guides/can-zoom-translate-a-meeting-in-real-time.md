@@ -48,3 +48,17 @@ Your options are human interpreters on Zoom's interpretation channels where supp
 The native alternatives have sharp limits of their own: **Google Meet** does voice-to-voice but one English-anchored pair per meeting, 90-minute cap, and nothing in recordings. **Teams Interpreter** does 10 languages, requires **Microsoft 365 Copilot** rather than Teams Premium, excludes external guests, and does not work in ad hoc meetings or webinars.
 
 There is no native option that handles three languages with translated audio in one meeting. Worth knowing before you start comparing.
+
+
+## Can I translate it just for myself?
+
+Yes, and it is a materially easier problem than translating the meeting for everyone.
+
+[VoxTranslate for Chrome](/live-translation/for-zoom-web/) translates the audio of a Zoom
+meeting joined **in the browser**, giving you subtitles over the call and, on tiers that
+produce audio, a spoken translation with the original on its own volume control. It needs
+no plan change from the host, appears nowhere in the participant list, and can speak the
+translation rather than only writing it — which Zoom's own captions cannot do.
+
+Two limits. It only works if you can join from the browser rather than the desktop app,
+and it is one-directional: it translates what you hear, not what you say.
