@@ -89,7 +89,7 @@ const jsonLd = blogPostingJsonLd(Astro.site, lang, { ...post, coverUrl: imageAbs
           <ul class="related-grid">
             {related.map((rp) => (
               <li>
-                <PostCard lang={lang} post={rp} />
+                <PostCard lang={lang} post={rp} headingLevel={3} />
               </li>
             ))}
           </ul>
