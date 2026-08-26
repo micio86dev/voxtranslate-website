@@ -282,7 +282,7 @@
     },
     "business": {
       "title": "VoxTranslate for Business — reuniones multilingües",
-      "description": "Videollamadas traducidas para tu equipo: historial compartido, transcripciones multilingües, proyectos y cumplimiento, hasta en 84 idiomas. Desde $49/mes."
+      "description": "Videollamadas traducidas para tu equipo: historial compartido, transcripciones multilingües, proyectos y cumplimiento, hasta en 84 idiomas. Desde {price}/mes."
     },
     "pricing": {
       "title": "Precios — pagas por minuto, desde 0,0045 $",
@@ -331,29 +331,26 @@
       "plans": [
         {
           "name": "Business",
-          "price": "$49",
           "points": [
             "Créditos mensuales incluidos",
             "Hasta 20 miembros",
             "Historial de llamadas ilimitado",
             "Transcripciones incluidas",
             "Soporte por correo"
-          ],
-          "annual": "o $490/año — 2 meses gratis"
+          ]
         },
         {
           "name": "Enterprise",
-          "price": "$199",
           "points": [
             "Más créditos incluidos",
             "Miembros ilimitados",
             "Modo de cumplimiento + registro de auditoría",
             "Retención de datos configurable",
             "SLA y soporte prioritario"
-          ],
-          "annual": "o $1990/año — 2 meses gratis"
+          ]
         }
-      ]
+      ],
+      "annual": "o {price}/año — {months} meses gratis"
     },
     "compare": {
       "title": "Más barato que un intérprete, más preciso que el inglés improvisado",
@@ -363,7 +360,7 @@
       "rows": [
         {
           "feature": "Coste",
-          "vox": "Desde $49/mes",
+          "vox": "Desde {price}/mes",
           "meet": "$60–120 / hora"
         },
         {
