@@ -1,1 +1,8 @@
 /  /en/  302
+
+# The Chrome Web Store listing's privacy notice and data disclosure both print
+# https://voxtranslate.app/contact as the support URL (see the extension repo's
+# PRIVACY.md and docs/store/data-disclosure.md). It 404'd on both hosts. The
+# business page carries the only contact form the site has.
+/contact  /en/business/  301
+/contact/  /en/business/  301

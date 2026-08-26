@@ -56,7 +56,7 @@ const BASE_POSTS: RawPost[] = [
 <p>The default. Fast, economical streaming recognition with live translated subtitles and a built-in browser voice. Perfect for everyday chats where you mainly read along.</p>
 
 <h3>Enhanced</h3>
-<p>A client-direct streaming path tuned for ultra-low latency — roughly sub-250-millisecond responsiveness — across a wide set of languages. Ideal for fast, natural back-and-forth where every pause counts.</p>
+<p>A client-direct streaming path across a wide set of languages: the audio goes straight from your browser to the provider instead of passing through our servers. It can also clone each speaker's voice, so people still sound like themselves.</p>
 
 <h3>Premium</h3>
 <p>The highest-fidelity option, with a natural AI voice and the broadest coverage — all 84 supported languages. Built for high-stakes conversations where accuracy and nuance are worth the premium.</p>
@@ -92,7 +92,7 @@ const BASE_POSTS: RawPost[] = [
 <p>Choose Standard when subtitles are the main event and budget matters. Streaming recognition plus a built-in browser voice keeps it fast and economical. Great for casual catch-ups, community rooms and quick coordination.</p>
 
 <h3>Enhanced — fast, natural back-and-forth</h3>
-<p>When the rhythm of the conversation matters — interviews, negotiations, lively group calls — Enhanced's client-direct path delivers roughly sub-250-millisecond responsiveness across a broad language set. Pick it when waiting even half a second would break the flow.</p>
+<p>When it matters that people still sound like themselves — interviews, negotiations, lively group calls — Enhanced clones each speaker's voice and streams client-direct, so the audio never touches our servers. Pick it when voice identity is part of the conversation.</p>
 
 <h3>Premium — high-stakes, every language</h3>
 <p>Premium is the highest-fidelity tier, with a natural voice and full coverage of all 84 languages. Reach for it when nuance is non-negotiable: sensitive discussions, cross-cultural negotiations, or any call where a misunderstanding is expensive.</p>
@@ -127,13 +127,13 @@ const BASE_POSTS: RawPost[] = [
 <p>Human interpreters are remarkable. They carry tone, idiom and cultural context in ways software is still catching up to. So when does it make sense to use a tool like VoxTranslate instead? The honest answer: it depends on the conversation. Here's a clear-eyed comparison.</p>
 
 <h2>Availability</h2>
-<p>A professional interpreter has to be booked, scheduled and matched to your exact language pair — often days in advance, and rarely at 11pm on a Sunday. VoxTranslate is there the moment you open a room, in any of 84 languages, with no booking. For spontaneous and global-by-default conversations, instant availability is the single biggest difference.</p>
+<p>A professional interpreter has to be booked, scheduled and matched to your exact language pair — often days in advance, and rarely at 11pm on a Sunday. VoxTranslate is there the moment you open a room, in up to 84 languages depending on the tier, with no booking. For spontaneous and global-by-default conversations, instant availability is the single biggest difference.</p>
 
 <h2>Cost</h2>
 <p>Interpreters typically bill by the hour, often with minimums, and a single rare language pair can be expensive. VoxTranslate is credit-based: you start with free credits, pay only for the minutes you actually speak, and choose a cheaper or pricier engine per call. For short, frequent or unpredictable conversations, the cost difference is dramatic.</p>
 
 <h2>Speed and latency</h2>
-<p>Skilled simultaneous interpreters are fast, but they still introduce a delay, and consecutive interpreting roughly doubles the length of a conversation. VoxTranslate's Enhanced tier targets roughly sub-250-millisecond responsiveness, and subtitles appear as you speak — so the back-and-forth stays tight.</p>
+<p>Skilled simultaneous interpreters are fast, but consecutive interpreting roughly doubles the length of a conversation — one sentence, then its translation, then the next. VoxTranslate's subtitles appear as you speak rather than after you finish, so the back-and-forth does not stretch out the same way. We do not publish a latency figure: we have not measured one on the shipped build, and it varies with the tier, the language pair, your device and your network.</p>
 
 <h2>Quality and nuance</h2>
 <p>This is where humans still shine. A great interpreter handles sarcasm, legal precision and emotional subtext with judgment that AI doesn't fully match. VoxTranslate's Premium tier closes a lot of the gap with high-fidelity translation and a natural voice, but AI output can still contain errors.</p>

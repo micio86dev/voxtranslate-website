@@ -45,5 +45,73 @@ const structuredData = [breadcrumbJsonLd(Astro.site, trail), ...extra];
   noindex={noindex}
   ogImage={ogImage}
 >
-  <slot />
+  <div class="seo-body">
+    <slot />
+  </div>
 </BaseLayout>
+
+<style is:global>
+  /*
+    A typographic scale for the SEO tree.
+
+    Tailwind's preflight resets every heading to `font-size: inherit`, and the base layer
+    in global.css sets family, weight, colour and line-height for h1-h4 but deliberately
+    no size — each home-page component defines its own. Pages rendered through this layout
+    have no such component, so h1, h2, h3 and body text all shipped at 1rem: on
+    /guides/, /alternatives/*, /compare/*, /for/* and every platform page, the headline was
+    the same size as the paragraph under it.
+
+    That is a hierarchy problem before it is a taste problem. The document outline was
+    always correct — one h1, properly nested h2s — but nothing rendered it, so a sighted
+    reader had to infer structure from bold text alone.
+
+    `is:global` because the content arrives through a <slot/> and scoped styles do not
+    reach it. Everything is confined to `.seo-body` so it cannot touch the header, footer,
+    consent banner, or any page that already sets its own scale.
+  */
+  .seo-body h1 {
+    font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+    margin: 0 0 1rem;
+  }
+  .seo-body h2 {
+    font-size: clamp(1.35rem, 3vw, 1.6rem);
+    margin: 2.75rem 0 0.75rem;
+  }
+  .seo-body h3 {
+    font-size: 1.12rem;
+    margin: 1.75rem 0 0.5rem;
+  }
+  .seo-body p,
+  .seo-body li {
+    line-height: 1.7;
+  }
+  .seo-body p {
+    margin: 0 0 1.1rem;
+  }
+  /* Inline prose links get an underline; a navigational list of links does not —
+     thirty-five underlined titles on the guides hub is texture, not emphasis. Opt out
+     with `.plain` where a link IS the block rather than sitting inside one. */
+  .seo-body a:not(.btn):not(.plain) {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .seo-body a:not(.btn):hover {
+    color: var(--primary-hover);
+  }
+  /* Tables appear on the comparison and language-matrix pages and must not push the
+     page wide on a phone. */
+  .seo-body table {
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
+    border-collapse: collapse;
+  }
+  .seo-body th,
+  .seo-body td {
+    text-align: left;
+    padding: 0.6rem 0.9rem;
+    border-bottom: 1px solid var(--glass-border);
+    white-space: nowrap;
+  }
+</style>

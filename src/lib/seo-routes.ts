@@ -43,6 +43,13 @@ export const LATENCY_URL = '/latency/';
 export const LANGUAGES_URL = '/languages/';
 
 /**
+ * The guides hub. `/guides/{slug}/` shipped in task 03 without one, so two thirds of
+ * the guides had no inbound internal link at all and were reachable only through
+ * `sitemap-guides.xml` — a sitemap entry is a crawl hint, not a vote.
+ */
+export const GUIDES_URL = '/guides/';
+
+/**
  * Map a comparison entry to its URL. The three kinds share one collection because they
  * share one contract (verified sources, a publish date, an honest "when not to choose
  * us"), but they live under three different prefixes.
@@ -62,7 +69,7 @@ export function comparisonUrl(kind: 'alternative' | 'versus' | 'pricing', slug: 
 /* -- Platform and persona registries --------------------------------------- */
 
 export interface PlatformEntry {
-  /** URL segment after `for-`, e.g. `zoom` → /live-translation/for-zoom/ */
+  /** URL segment after `for-`, e.g. `zoom-web` → /live-translation/for-zoom-web/ */
   slug: string;
   name: string;
 }
@@ -75,12 +82,28 @@ export interface PersonaEntry {
 }
 
 /**
- * Platform integration pages. Still empty — task 02's territory.
+ * Platform integration pages, filled by task 06.
  *
- * Note AGENTS.md R6: `/live-translation/for-zoom/` is a platform INTEGRATION page and is
- * allowed. A page targeting the head term "zoom translation" is not.
+ * Note AGENTS.md R6: `/live-translation/for-zoom-web/` is a platform INTEGRATION page and
+ * is allowed. A page targeting the head term "zoom translation" is not.
+ *
+ * The `-web` suffix on the two meeting platforms is not decoration. The extension listens
+ * to a browser tab, so it reaches Google Meet and Zoom through their WEB clients and not
+ * their desktop applications. A slug that said `for-zoom` would promise the desktop app
+ * on the strength of its URL alone, which is the same class of error as an unqualified
+ * language count.
+ *
+ * This registry is the ORDER; the content lives in `src/content/platforms/{slug}.md` and
+ * `platformSchema` is what stops a thin one shipping. A slug here with no matching entry
+ * fails the build in `for-[platform].astro`, which is the intended direction: the URL
+ * architecture is declared, the content has to earn it.
  */
-export const PLATFORMS: readonly PlatformEntry[] = [];
+export const PLATFORMS: readonly PlatformEntry[] = [
+  { slug: 'google-meet-web', name: 'Google Meet Web' },
+  { slug: 'zoom-web', name: 'Zoom Web' },
+  { slug: 'youtube', name: 'YouTube and YouTube Live' },
+  { slug: 'twitch', name: 'Twitch' },
+];
 
 /**
  * Use-case landing pages (task 03 §3). Unlike guides, these carry a direct commercial

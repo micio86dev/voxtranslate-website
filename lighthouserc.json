@@ -42,7 +42,7 @@
           }
         },
         {
-          "matchingUrlPattern": ".*/(live-translation|latency|languages)/$",
+          "matchingUrlPattern": ".*/(live-translation|latency|languages|guides|chrome)/$|.*/live-translation/for-.*/$",
           "assertions": {
             "categories:performance": ["error", { "minScore": 0.9 }]
           }

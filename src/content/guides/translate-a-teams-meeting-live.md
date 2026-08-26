@@ -57,3 +57,18 @@ That is a real scenario, particularly in large enterprises that have already bou
 - **Put numbers, names and acronyms in the chat** as well as saying them
 - **Test with real speakers** before a meeting that matters — spontaneous speech behaves differently from a scripted demo
 - **Decide the fallback** if it fails mid-meeting: continue in the source language and circulate a translated summary is usually the least disruptive answer
+
+
+## Following a Teams call you were invited to
+
+Teams Interpreter is something the *organisation* enables, which is exactly the problem for
+an external guest — the group Interpreter explicitly excludes.
+
+If you join Teams in the browser rather than the desktop app,
+[VoxTranslate for Chrome](/en/chrome/) translates that tab's audio into subtitles over the
+call, and can speak the translation while the original stays audible underneath. It needs
+no Microsoft licence and nothing from the organiser.
+
+Same boundary as everywhere else: it translates what you hear, not what you say. It is the
+answer to "I cannot follow this meeting", not to "we need a meeting nobody has to hold in a
+second language".

@@ -51,6 +51,21 @@ Live chat and Q&A in a multilingual stream is the part most often left monolingu
 
 Collecting questions in writing, in any language, and answering a stated number of them costs nothing and is the difference between a broadcast and an event.
 
+## What a viewer can do without you
+
+Worth knowing, because it changes how much you need to build.
+
+A viewer can translate your stream themselves with a browser extension —
+[VoxTranslate for Chrome](/live-translation/for-youtube/) reads the audio of the YouTube
+tab and renders subtitles over the player, with an optional spoken translation. It works on
+a live stream exactly as it does on a recording, because it listens to the sound rather
+than waiting for a caption file.
+
+This does not replace the decisions above. Anything you want **guaranteed** — a language
+you have committed to supporting, terminology you need correct, an archive that must be
+subtitled — is yours to produce. But it does mean the long tail of languages you were never
+going to cover is not simply lost, and it is a reasonable thing to say in the description.
+
 ## Before you go live
 
 - Captions or audio, decided and built
