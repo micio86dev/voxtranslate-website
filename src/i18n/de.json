@@ -364,7 +364,7 @@
         {
           "feature": "Kosten",
           "vox": "Ab $49/Monat",
-          "meet": "€60–120 / Stunde"
+          "meet": "$60–120 / Stunde"
         },
         {
           "feature": "Verfügbarkeit",
@@ -580,14 +580,14 @@
   "pricing": {
     "hero": {
       "badge": "Preise",
-      "title": "Sie zahlen die Minuten, die Sie sprechen",
-      "subtitle": "Keine Plätze. Kein Monatsminimum. Engine pro Anruf wählen und pro gesprochener Minute zahlen.",
+      "title": "Du zahlst die Übersetzung, die du hörst",
+      "subtitle": "Keine Platzlizenzen. Kein Monatsminimum. Wähl die Engine, mit der du hören willst, und zahl pro Minute nur, während jemand eine Sprache spricht, die nicht deine ist.",
       "note": "Kostenloses Startguthaben · Ohne Kreditkarte · 18+"
     },
     "perLanguage": {
       "title": "So wird abgerechnet",
-      "body": "Der Tarif unten gilt pro gesprochener Minute, einmal je Zielsprache im Raum. Ein 30-Minuten-Gespräch in eine Sprache kostet Tarif × 30. In drei Sprachen kostet es Tarif × 30 × 3.",
-      "example": "Nur wer spricht, zahlt — Zuhören ist kostenlos."
+      "body": "Abgerechnet wirst du als Zuhörer, zum Tarif der Engine, die DU gewählt hast — du zahlst die Qualität, die du wolltest, nicht die von jemand anderem. Der Zähler läuft nur, während jemand anderes eine andere Sprache als deine spricht, und zählt einen Stream pro Person, die das gerade tut.",
+      "example": "Sprechen im Raum ohnehin alle deine Sprache, wird nichts übersetzt und nichts berechnet. Im Webinar zahlt die Organisation des Hosts — Teilnehmende nie."
     },
     "tiers": {
       "title": "Drei Engines",
@@ -602,9 +602,9 @@
     },
     "examples": {
       "title": "Was ein echtes Gespräch kostet",
-      "subtitle": "Ein 60-Minuten-Gespräch, ein Sprecher, live übersetzt.",
-      "oneLang": "in 1 Sprache",
-      "threeLang": "in 3 Sprachen",
+      "subtitle": "60 Minuten zuhören, während jemand eine Sprache spricht, die nicht deine ist.",
+      "oneLang": "eine fremdsprachige Person",
+      "threeLang": "drei gleichzeitig",
       "free": "Ihr kostenloses Startguthaben reicht für rund {minutes} Minuten auf Standard."
     },
     "compare": {
@@ -613,7 +613,7 @@
       "rows": [
         {
           "what": "Dolmetscher",
-          "cost": "60–120 € / Stunde",
+          "cost": "$60–120 / Stunde",
           "note": "Tage im Voraus gebucht, ein Sprachpaar"
         },
         {
@@ -638,12 +638,12 @@
       "title": "Fragen",
       "items": [
         {
-          "q": "Zahlen Zuhörer?",
-          "a": "Nein. Guthaben verbraucht nur, wer spricht, und nur während des Sprechens. Beitreten, zuhören und Untertitel lesen ist kostenlos."
+          "q": "Wer zahlt — wer spricht oder wer zuhört?",
+          "a": "Wer zuhört. Berechnet wird dir die Übersetzung, die du empfängst, zum Tarif der Engine, die du gewählt hast, und nur während wirklich jemand eine andere Sprache als deine spricht. Sprechen ist kostenlos; sie sich übersetzen zu lassen kostet. Webinare sind die Ausnahme: dort zahlt die Organisation des Hosts und Teilnehmende nie."
         },
         {
-          "q": "Warum wird der Tarif mit der Zahl der Sprachen multipliziert?",
-          "a": "Jede Zielsprache öffnet beim Anbieter einen eigenen Live-Übersetzungsstream — ein Raum mit drei Sprachen leistet dreifache Arbeit. Der Multiplikator ist vor Gesprächsbeginn immer sichtbar."
+          "q": "Warum wird der Tarif manchmal multipliziert?",
+          "a": "Jede Person, die eine andere Sprache als deine spricht, ist ein eigener Übersetzungs-Stream. Eine fremdsprachige Person kostet den Tarif; drei, die durcheinanderreden, kosten das Dreifache, solange sie sich überschneiden. Sobald niemand eine Fremdsprache spricht, stoppt der Zähler."
         },
         {
           "q": "Brauche ich ein Abo?",

@@ -364,7 +364,7 @@
         {
           "feature": "Coût",
           "vox": "À partir de $49/mois",
-          "meet": "€60–120 / heure"
+          "meet": "$60–120 / heure"
         },
         {
           "feature": "Disponibilité",
@@ -580,14 +580,14 @@
   "pricing": {
     "hero": {
       "badge": "Tarifs",
-      "title": "Vous payez les minutes que vous parlez",
-      "subtitle": "Aucun poste. Aucun minimum mensuel. Choisissez le moteur à chaque appel et payez à la minute de parole.",
+      "title": "Vous payez la traduction que vous entendez",
+      "subtitle": "Pas de licences par poste. Pas de minimum mensuel. Choisissez le moteur avec lequel vous voulez écouter, et payez à la minute uniquement pendant que quelqu'un parle une langue qui n'est pas la vôtre.",
       "note": "Crédit de départ offert · Sans carte bancaire · 18+"
     },
     "perLanguage": {
       "title": "Comment se fait la facturation",
-      "body": "Le tarif ci-dessous s'applique par minute de parole, une fois pour chaque langue cible présente dans la salle. Un appel de 30 minutes traduit vers une langue coûte tarif × 30. Traduit vers trois langues, il coûte tarif × 30 × 3.",
-      "example": "Seule la personne qui parle est facturée — écouter est gratuit."
+      "body": "Vous êtes facturé en tant qu'auditeur, au tarif du moteur que VOUS avez choisi — vous payez la qualité que vous avez demandée, pas celle choisie par quelqu'un d'autre. Le compteur ne tourne que pendant qu'une autre personne parle une langue différente de la vôtre, et compte un flux par personne qui le fait à cet instant.",
+      "example": "Si tout le monde dans la salle parle déjà votre langue, rien n'est traduit et rien n'est facturé. Dans un webinaire, c'est l'organisation de l'hôte qui paie — jamais les participants."
     },
     "tiers": {
       "title": "Trois moteurs",
@@ -602,9 +602,9 @@
     },
     "examples": {
       "title": "Ce que coûte un vrai appel",
-      "subtitle": "Un appel de 60 minutes, un intervenant, traduit en direct.",
-      "oneLang": "vers 1 langue",
-      "threeLang": "vers 3 langues",
+      "subtitle": "60 minutes d'écoute pendant que quelqu'un parle une langue qui n'est pas la vôtre.",
+      "oneLang": "une personne en langue étrangère",
+      "threeLang": "trois qui parlent en même temps",
       "free": "Votre crédit de départ couvre environ {minutes} minutes en Standard."
     },
     "compare": {
@@ -613,7 +613,7 @@
       "rows": [
         {
           "what": "Interprète humain",
-          "cost": "60–120 € / heure",
+          "cost": "$60–120 / heure",
           "note": "Réservé des jours à l'avance, une paire de langues"
         },
         {
@@ -638,12 +638,12 @@
       "title": "Questions",
       "items": [
         {
-          "q": "Les auditeurs paient-ils ?",
-          "a": "Non. Seule la personne qui parle consomme du crédit, et uniquement pendant qu’elle parle. Rejoindre, écouter et lire les sous-titres est gratuit."
+          "q": "Qui paie — celui qui parle ou celui qui écoute ?",
+          "a": "Celui qui écoute. On vous facture la traduction que vous recevez, au tarif du moteur que vous avez choisi, et uniquement pendant que quelqu'un parle réellement une langue différente de la vôtre. Parler est gratuit ; se la faire traduire, c'est ce qui coûte. Les webinaires font exception : l'organisation de l'hôte paie et les participants jamais."
         },
         {
-          "q": "Pourquoi le tarif est-il multiplié par le nombre de langues ?",
-          "a": "Chaque langue cible ouvre son propre flux de traduction en temps réel chez le fournisseur : une salle en trois langues fait trois fois le travail. Le multiplicateur est toujours affiché avant le début de l'appel."
+          "q": "Pourquoi le tarif est-il parfois multiplié ?",
+          "a": "Chaque personne qui parle une langue différente de la vôtre est un flux de traduction distinct. Une personne en langue étrangère coûte le tarif ; trois qui se chevauchent coûtent le triple, tant qu'elles se chevauchent. Dès que personne ne parle une langue étrangère, le compteur s'arrête."
         },
         {
           "q": "Faut-il un abonnement ?",

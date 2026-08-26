@@ -271,7 +271,7 @@
         {
           "feature": "Cost",
           "vox": "From $49/mo",
-          "meet": "€60–120 / hour"
+          "meet": "$60–120 / hour"
         },
         {
           "feature": "Availability",
@@ -580,14 +580,14 @@
   "pricing": {
     "hero": {
       "badge": "Pricing",
-      "title": "Pay for the minutes you speak",
-      "subtitle": "No seats. No monthly minimum. Pick an engine per call and pay by the minute of speech.",
+      "title": "Pay for the translation you hear",
+      "subtitle": "No seats. No monthly minimum. Choose the engine you want to listen with, and pay by the minute only while someone is speaking a language you don't.",
       "note": "Free starter credit · No credit card · 18+"
     },
     "perLanguage": {
       "title": "How billing works",
-      "body": "The rate below is charged per minute of speech, once for each target language in the room. A 30-minute call translated into one language costs the rate × 30. Translated into three languages, it costs the rate × 30 × 3.",
-      "example": "Only the person speaking is billed — listening is free."
+      "body": "You are billed as a listener, at the rate of the engine YOU chose — you pay for the quality you asked for, not for whatever anyone else picked. The meter runs only while someone else is speaking a language different from yours, and counts one stream for each person doing so at that moment.",
+      "example": "If everyone in the room already speaks your language, nothing is translated and nothing is charged. In a webinar, the host's organisation pays — attendees never do."
     },
     "tiers": {
       "title": "Three engines",
@@ -602,9 +602,9 @@
     },
     "examples": {
       "title": "What a real call costs",
-      "subtitle": "A 60-minute call, one speaker, translated live.",
-      "oneLang": "into 1 language",
-      "threeLang": "into 3 languages",
+      "subtitle": "60 minutes of listening while someone speaks a language you don't.",
+      "oneLang": "one foreign speaker",
+      "threeLang": "three speaking at once",
       "free": "Your free starter credit covers about {minutes} minutes on Standard."
     },
     "compare": {
@@ -613,7 +613,7 @@
       "rows": [
         {
           "what": "Human interpreter",
-          "cost": "€60–120 / hour",
+          "cost": "$60–120 / hour",
           "note": "Booked days ahead, one language pair"
         },
         {
@@ -638,12 +638,12 @@
       "title": "Questions",
       "items": [
         {
-          "q": "Do listeners pay?",
-          "a": "No. Only the person speaking consumes credit, and only while they speak. Joining, listening and reading subtitles are free."
+          "q": "Who pays — the speaker or the listener?",
+          "a": "The listener. You are billed for the translation you receive, at the rate of the engine you chose, and only while someone is actually speaking a language different from yours. Talking is free; having it translated for you is what costs. Webinars are the exception: there the host's organisation pays and attendees never do."
         },
         {
-          "q": "Why is the rate multiplied by the number of languages?",
-          "a": "Each target language opens its own live translation stream on the provider, so a room with three languages does three times the work. You always see the multiplier before the call starts."
+          "q": "Why is the rate sometimes multiplied?",
+          "a": "Each person speaking a language different from yours is a separate live translation stream. One foreign speaker costs the rate; three talking over each other cost three times it, for as long as they overlap. The moment nobody is speaking a foreign language, the meter stops."
         },
         {
           "q": "Do I need a subscription?",
