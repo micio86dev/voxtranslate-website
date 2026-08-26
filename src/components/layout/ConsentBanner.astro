@@ -88,8 +88,15 @@ const t = useTranslations(lang);
       s.src = 'https://www.googletagmanager.com/gtag/js?id=' + primaryId;
       document.head.appendChild(s);
       window.dataLayer = window.dataLayer || [];
-      window.gtag = function (...args) {
-        window.dataLayer.push(args);
+      // `arguments`, NOT a rest array. This looks like a style detail and is not:
+      // gtag.js identifies its own commands by finding `[object Arguments]` on the
+      // dataLayer and silently ignores real arrays. With `push(args)` the library
+      // loads, the queue fills, `config` sits there — and not one hit is ever sent.
+      // Verified against production on 2026-08-26: zero /g/collect requests with the
+      // rest-parameter form, page_view immediately on switching to `arguments`.
+      window.gtag = function () {
+        // eslint-disable-next-line prefer-rest-params
+        window.dataLayer.push(arguments);
       };
       window.gtag('js', new Date());
       if (GA_ID) {
