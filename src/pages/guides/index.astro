@@ -77,7 +77,9 @@ const description =
           <ul>
             {cluster.items.map((g) => (
               <li>
-                <a href={guideUrl(g.id)}>{g.data.title}</a>
+                <a class="plain" href={guideUrl(g.id)}>
+                  {g.data.title}
+                </a>
                 <span class="answer">{g.data.shortAnswer}</span>
               </li>
             ))}
