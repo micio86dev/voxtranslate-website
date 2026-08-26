@@ -235,6 +235,22 @@ const faqSchema = {
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} is:inline />
 </BaseLayout>
 
+<!--
+  Without this, the page is BLANK.
+
+  Eleven elements here carry `data-reveal`, and global.css hides them with
+  `:where(html.js:not(.reduce-motion)) [data-reveal] { opacity: 0 }`. BaseLayout adds
+  `html.js` on every page, so the hiding always applies; only the animations script
+  ever removes it. This page never imported it, so everything inside the reveal
+  wrappers rendered at opacity 0 to any visitor with JS on and motion not reduced.
+
+  The HTML was always complete, which is why nothing caught it: 200, full markup,
+  correct schema, Lighthouse SEO 1.0 — and a white page.
+-->
+<script>
+  import '../../scripts/animations';
+</script>
+
 <style>
   .pr-hero {
     padding-block: clamp(3rem, 8vw, 5.5rem) clamp(2rem, 5vw, 3rem);

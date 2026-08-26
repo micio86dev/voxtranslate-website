@@ -3,7 +3,7 @@
 //      Basic Auth and mark every response noindex. Unset in production ⇒ no-op.
 //   1. Canonical-host enforcement: any request to the *.pages.dev subdomain
 //      (the permanent project domain + per-deploy <hash> aliases, which can't be
-//      deleted) is 301'd to the custom domain, so the site is only reachable —
+//      deleted) is 302'd to the custom domain, so the site is only reachable —
 //      and only indexed — at CANONICAL_HOST. Skipped on staging (own host).
 //   2. Language redirect for the bare root: an explicit `vox-lang` cookie wins,
 //      otherwise the browser's Accept-Language, otherwise English.
@@ -85,7 +85,15 @@ export async function onRequest(context: EventContext<Env, string, unknown>) {
   const appHost = env.APP_HOST || DEFAULT_APP_HOST;
   const legacyMarketingHost = env.LEGACY_MARKETING_HOST || DEFAULT_LEGACY_MARKETING_HOST;
   if (url.hostname.endsWith('.pages.dev')) {
-    return Response.redirect(`https://${canonicalHost}${url.pathname}${url.search}`, 301);
+    // 302, NOT 301. A permanent redirect is cached by the browser indefinitely and
+    // keyed on the URL, so anyone who opens a preview host before staging is enabled
+    // can never reach it again from that profile — the redirect fires from cache
+    // without a request, and no amount of redeploying changes it. Incognito becomes
+    // the only way in, which is how this was found.
+    // Nothing is lost: this rule exists to keep pages.dev out of the index, and a 302
+    // does that identically for crawlers. The 301 that matters is 1b below, where
+    // permanence is the whole point.
+    return Response.redirect(`https://${canonicalHost}${url.pathname}${url.search}`, 302);
   }
 
   // 1b. The old marketing host keeps answering, but only to hand visitors and
