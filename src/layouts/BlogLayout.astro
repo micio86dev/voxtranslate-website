@@ -4,7 +4,7 @@ import PostHeader from '../components/blog/PostHeader.astro';
 import TableOfContents from '../components/blog/TableOfContents.astro';
 import PostCard from '../components/blog/PostCard.astro';
 import Button from '../components/ui/Button.astro';
-import { useTranslations, type Locale } from '../lib/i18n';
+import { useTranslations, localizePath, type Locale } from '../lib/i18n';
 import { absoluteUrl, blogPostingJsonLd, buildAlternates } from '../lib/seo';
 import { APP_URL } from '../lib/site';
 import type { Post } from '../lib/pocketbase';
@@ -62,7 +62,23 @@ const jsonLd = blogPostingJsonLd(Astro.site, lang, { ...post, coverUrl: imageAbs
       <div class="post-cta glass glass-glow">
         <h2>{t('blog.ctaTitle')}</h2>
         <p>{t('blog.ctaSubtitle')}</p>
-        <Button href={APP_URL} variant="primary" rel="noopener">{t('blog.ctaButton')}</Button>
+        <div class="post-cta-actions">
+          <Button
+            href={APP_URL}
+            variant="primary"
+            rel="noopener"
+            data-track-cta="start_translating"
+            data-track-location="blog_post">{t('blog.ctaButton')}</Button
+          >
+          <!-- A reader who arrived on "translate a Zoom meeting" is at least as likely
+               to want the extension as a room of their own. One link, not a second card. -->
+          <a
+            class="post-cta-alt"
+            href={`${localizePath(lang)}chrome/`}
+            data-track-cta="chrome_page"
+            data-track-location="blog_post">{t('blog.ctaChrome')}</a
+          >
+        </div>
       </div>
     </div>
 
@@ -73,7 +89,7 @@ const jsonLd = blogPostingJsonLd(Astro.site, lang, { ...post, coverUrl: imageAbs
           <ul class="related-grid">
             {related.map((rp) => (
               <li>
-                <PostCard lang={lang} post={rp} />
+                <PostCard lang={lang} post={rp} headingLevel={3} />
               </li>
             ))}
           </ul>
@@ -97,6 +113,20 @@ const jsonLd = blogPostingJsonLd(Astro.site, lang, { ...post, coverUrl: imageAbs
     max-width: 45rem;
     margin-inline: auto;
     width: 100%;
+  }
+  .post-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .post-cta-alt {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .post-cta-alt:hover {
+    color: var(--primary);
   }
   .post-cta {
     text-align: center;

@@ -74,7 +74,13 @@ const faqSchema = {
       <h1>{t('pricing.hero.title')}</h1>
       <p class="pr-sub">{t('pricing.hero.subtitle')}</p>
       <div class="pr-cta-row">
-        <Button href={APP_URL} variant="primary" rel="noopener">{t('pricing.tiers.cta')}</Button>
+        <Button
+          href={APP_URL}
+          variant="primary"
+          rel="noopener"
+          data-track-cta="start_translating"
+          data-track-location="pricing_hero">{t('pricing.tiers.cta')}</Button
+        >
       </div>
       <p class="pr-note">{t('pricing.hero.note')}</p>
     </div>
@@ -144,6 +150,8 @@ const faqSchema = {
                 rel="noopener"
                 variant={engine.display_name === POPULAR ? 'primary' : 'ghost'}
                 class="pr-cta"
+                data-track-cta="start_translating"
+                data-track-location={`pricing_tier_${engine.id}`}
               >
                 {t('pricing.tiers.cta')}
               </Button>
@@ -193,7 +201,12 @@ const faqSchema = {
       <div class="pr-business-card glass" data-reveal>
         <h2>{t('pricing.business.title')}</h2>
         <p>{t('pricing.business.body')}</p>
-        <Button href={`${localizePath(lang)}business/`} variant="primary">
+        <Button
+          href={`${localizePath(lang)}business/`}
+          variant="primary"
+          data-track-cta="business_cta"
+          data-track-location="pricing_business"
+        >
           {t('pricing.business.cta')}
         </Button>
       </div>

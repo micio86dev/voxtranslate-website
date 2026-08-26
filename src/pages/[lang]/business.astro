@@ -45,10 +45,21 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
       <h1>{t('business.hero.title')}</h1>
       <p class="biz-sub">{t('business.hero.subtitle')}</p>
       <div class="biz-cta-row">
-        <Button href={`${DASHBOARD_URL}/`} variant="primary" rel="noopener">
+        <Button
+          href={`${DASHBOARD_URL}/`}
+          variant="primary"
+          rel="noopener"
+          data-track-cta="business_get_started"
+          data-track-location="business_hero"
+        >
           {t('business.hero.ctaPrimary')}
         </Button>
-        <Button href="#contact" variant="ghost">{t('business.hero.ctaSecondary')}</Button>
+        <Button
+          href="#contact"
+          variant="ghost"
+          data-track-cta="business_contact"
+          data-track-location="business_hero">{t('business.hero.ctaSecondary')}</Button
+        >
       </div>
     </div>
   </section>
@@ -229,7 +240,14 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
           <label for="cf-message">{t('business.contact.message')}</label>
           <textarea id="cf-message" name="message" rows="5" required maxlength="4000"></textarea>
         </div>
-        <Button type="submit" variant="primary" class="biz-contact-submit" id="cf-submit">
+        <Button
+          type="submit"
+          variant="primary"
+          class="biz-contact-submit"
+          id="cf-submit"
+          data-track-cta="business_contact_submit"
+          data-track-location="business_form"
+        >
           {t('business.contact.submit')}
         </Button>
         <p class="biz-contact-status" id="cf-status" role="status" aria-live="polite"></p>

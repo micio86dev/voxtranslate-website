@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/home/Hero.astro';
 import SocialProof from '../../components/home/SocialProof.astro';
+import TwoWays from '../../components/home/TwoWays.astro';
 import Features from '../../components/home/Features.astro';
 import HowItWorks from '../../components/home/HowItWorks.astro';
 import Highlights from '../../components/home/Highlights.astro';
@@ -31,6 +32,7 @@ const jsonLd = [websiteJsonLd(Astro.site, lang), softwareAppJsonLd(Astro.site)];
 >
   <Hero lang={lang} />
   <SocialProof lang={lang} />
+  <TwoWays lang={lang} />
   <Features lang={lang} />
   <HowItWorks lang={lang} />
   <Highlights lang={lang} />
@@ -41,18 +43,4 @@ const jsonLd = [websiteJsonLd(Astro.site, lang), softwareAppJsonLd(Astro.site)];
 
 <script>
   import '../../scripts/animations';
-  import { track } from '../../scripts/analytics';
-
-  // Track CTA clicks
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('[data-track-cta]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const button = btn.getAttribute('data-track-cta');
-        const location = btn.getAttribute('data-track-location');
-        if (button && location) {
-          track('cta_clicked', { button, location });
-        }
-      });
-    });
-  });
 </script>

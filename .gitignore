@@ -25,3 +25,7 @@ docker/pocketbase/pb_data/
 # editor
 .vscode/
 .idea/
+
+# pnpm 11 writes this on ERR_PNPM_IGNORED_BUILDS. CI pins pnpm 9, which rejects its
+# syntax with "packages field missing or empty" — keep it out of the repo.
+pnpm-workspace.yaml

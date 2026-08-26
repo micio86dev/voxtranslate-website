@@ -47,6 +47,19 @@ Zoom's own feature will not provide it. The options are:
 2. **A separate translation tool** running alongside the call
 3. **A different platform** for those specific meetings
 
+## Translating a Zoom call for yourself
+
+The sections above are about what the host can enable. If you are a participant and the
+host's plan does not include translated captions — or does not include your language —
+there is a path that does not involve them at all.
+
+[VoxTranslate for Chrome](/live-translation/for-zoom-web/) translates the audio of a Zoom
+meeting **joined in the browser**, with subtitles over the call and an optional spoken
+translation. The catch is in that word: Zoom pushes people towards its desktop client, and
+some hosts disable browser joining entirely, in which case this does not apply.
+
+It also does not send anything back into the meeting. Everyone else hears you unchanged.
+
 ## Practical notes for captions
 
 - **Speak at a steady pace.** Captions degrade fastest with rapid speech and heavy overlap.

@@ -1,38 +1,111 @@
 ---
 /**
- * `/live-translation/for-{platform}/` — platform integration pages (Zoom, Teams, Meet…).
+ * `/live-translation/for-{platform}/` — platform integration pages.
  *
  * These target integration intent ("how do I get translation INTO this tool"), which is a
  * different query from the head terms AGENTS.md R6 bans. The distinction matters: a page
  * about running VoxTranslate alongside Zoom is legitimate; a page targeting "zoom
  * translation" is a head term owned by Zoom's own documentation.
  *
- * `PLATFORMS` is empty until task 02/03 fills it, so this route builds zero pages today.
+ * Order comes from `PLATFORMS`; content comes from the `platforms` collection, whose Zod
+ * schema enforces the publication threshold. The two are joined here rather than merged
+ * because they answer different questions — the registry says which URLs exist and in
+ * what order, the collection says whether there is anything worth putting at them. A slug
+ * in one and not the other is a build error, deliberately.
  */
+import { getCollection, render } from 'astro:content';
 import SeoLayout from '../../layouts/SeoLayout.astro';
-import { PLATFORMS, platformUrl, LIVE_TRANSLATION_HUB } from '../../lib/seo-routes';
+import Button from '../../components/ui/Button.astro';
+import { faqPageJsonLd } from '../../lib/seo';
+import { CHROME_WEBSTORE_URL } from '../../lib/site';
+import {
+  PLATFORMS,
+  platformUrl,
+  guideUrl,
+  isPublished,
+  LIVE_TRANSLATION_HUB,
+} from '../../lib/seo-routes';
 
-export function getStaticPaths() {
-  return PLATFORMS.map((p) => ({ params: { platform: p.slug }, props: { platform: p } }));
+export async function getStaticPaths() {
+  const entries = await getCollection('platforms');
+  const bySlug = new Map(entries.map((e) => [e.id, e]));
+
+  return PLATFORMS.map((p) => {
+    const entry = bySlug.get(p.slug);
+    if (!entry) {
+      throw new Error(
+        `[platforms] PLATFORMS lists "${p.slug}" but src/content/platforms/${p.slug}.md ` +
+          `does not exist. Declare the URL and write the page, or remove the registry entry.`,
+      );
+    }
+    return { params: { platform: p.slug }, props: { entry } };
+  });
 }
 
-const { platform } = Astro.props;
-const title = `Live translation for ${platform.name}`;
-const description =
-  `How to add real-time voice translation and translated subtitles to ${platform.name} ` +
-  `meetings, and what the setup actually costs in latency.`;
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { name, shortAnswer, howItWorks, limitations, relatedGuides } = entry.data;
+
+const title = `Live translation for ${name}`;
+
+// The FAQ mirrors the three blocks rendered below, in the same words. Schema that says
+// something the page does not is the mismatch Google treats as spam.
+const faq = [
+  { q: `Can VoxTranslate translate ${name}?`, a: shortAnswer },
+  { q: `How does it work with ${name}?`, a: howItWorks },
+  { q: `What does not work with ${name}?`, a: limitations },
+];
 ---
 
 <SeoLayout
   title={title}
-  description={description}
-  path={platformUrl(platform.slug)}
+  description={shortAnswer}
+  path={platformUrl(entry.id)}
   crumbs={[{ name: 'Live translation', path: LIVE_TRANSLATION_HUB }]}
+  noindex={!isPublished(entry.data)}
+  jsonLd={faqPageJsonLd(faq)}
 >
-  <div class="wrap">
+  <article class="wrap">
     <h1>{title}</h1>
-    <slot />
-  </div>
+    <p class="short-answer">{shortAnswer}</p>
+
+    <div class="cta">
+      <Button
+        href={CHROME_WEBSTORE_URL}
+        variant="primary"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-track-cta="chrome_webstore"
+        data-track-location={`platform_${entry.id}`}>Add to Chrome — free</Button
+      >
+      <a class="cta-more" href="/en/chrome/">How VoxTranslate for Chrome works</a>
+    </div>
+
+    <section aria-labelledby="how-h">
+      <h2 id="how-h">How it works</h2>
+      <p>{howItWorks}</p>
+    </section>
+
+    <Content />
+
+    <section aria-labelledby="limits-h">
+      <h2 id="limits-h">What it does not do</h2>
+      <p>{limitations}</p>
+    </section>
+
+    <nav aria-labelledby="related-h">
+      <h2 id="related-h">Related guides</h2>
+      <ul>
+        {
+          relatedGuides.map((g) => (
+            <li>
+              <a href={guideUrl(g)}>{g.replace(/-/g, ' ')}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </article>
 </SeoLayout>
 
 <style>
@@ -40,5 +113,26 @@ const description =
     max-width: 72ch;
     margin-inline: auto;
     padding: 3rem 1.25rem;
+  }
+  .short-answer {
+    font-size: 1.15rem;
+    font-weight: 500;
+  }
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-block: 2rem 2.5rem;
+  }
+  .cta-more {
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+  .cta-more:hover {
+    color: var(--primary);
+  }
+  ul {
+    padding-left: 1.25rem;
   }
 </style>

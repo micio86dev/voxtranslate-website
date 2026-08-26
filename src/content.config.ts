@@ -12,7 +12,7 @@
  */
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
-import { pairSchema, comparisonSchema, guideSchema } from './content/schemas';
+import { pairSchema, comparisonSchema, guideSchema, platformSchema } from './content/schemas';
 
 /** Language-pair pages — structured data, one JSON file per direction. */
 const pairs = defineCollection({
@@ -26,10 +26,16 @@ const comparisons = defineCollection({
   schema: comparisonSchema,
 });
 
+/** `/live-translation/for-{platform}/` — the browser layer's integration pages. */
+const platforms = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/platforms' }),
+  schema: platformSchema,
+});
+
 /** `/guides/` — the topical-authority cluster. */
 const guides = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/guides' }),
   schema: guideSchema,
 });
 
-export const collections = { pairs, comparisons, guides };
+export const collections = { pairs, comparisons, guides, platforms };

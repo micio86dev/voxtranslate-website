@@ -1,7 +1,7 @@
 ---
 import Button from '../ui/Button.astro';
 import { useTranslations, type Locale } from '../../lib/i18n';
-import { APP_URL } from '../../lib/site';
+import { APP_URL, CHROME_WEBSTORE_URL } from '../../lib/site';
 import { icon } from '../../lib/icons';
 
 // In-call control bar — same icons as the app (mic, camera, screen share, chat,
@@ -72,7 +72,18 @@ const tiles = [
           data-track-cta="try_free"
           data-track-location="hero">{t('hero.ctaPrimary')}</Button
         >
-        <Button href="#how" variant="ghost">{t('hero.ctaSecondary')}</Button>
+        <!-- The secondary slot used to be an in-page anchor to "how it works".
+             The two-doors section immediately below now carries that job, so the
+             slot goes to the extension: it is the only place a visitor who never
+             scrolls will see that the browser layer exists. -->
+        <Button
+          href={CHROME_WEBSTORE_URL}
+          variant="ghost"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track-cta="chrome_webstore"
+          data-track-location="hero">{t('hero.ctaSecondary')}</Button
+        >
       </div>
       <p class="hero-note" data-reveal>{t('hero.note')}</p>
     </div>

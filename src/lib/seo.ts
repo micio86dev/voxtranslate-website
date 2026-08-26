@@ -72,19 +72,55 @@ export function softwareAppJsonLd(site: string | URL | undefined) {
     operatingSystem: 'Web',
     url: absoluteUrl(site, '/'),
     description:
-      'Real-time AI voice translator for video calls. VoxTranslate transcribes, translates and speaks every voice in your call live — voice-to-voice across 84 languages.',
+      'Real-time AI voice translator for video calls. VoxTranslate transcribes, translates and speaks every voice in your call live — voice-to-voice across up to 84 languages.',
     featureList: [
       'Real-time AI voice translation',
       'Voice-to-voice translation in video calls',
       'Live translated subtitles',
       'Auto-translated text chat',
-      '84 languages',
+      'Up to 84 languages',
     ],
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
       description: 'Free starter credits, credit-based usage billing.',
+    },
+  };
+}
+
+/**
+ * The Chrome extension as its own `SoftwareApplication`.
+ *
+ * Separate from {@link softwareAppJsonLd} rather than a variant of it: they describe
+ * different things installed in different places. `operatingSystem: 'Chrome'` and
+ * `installUrl` pointing at the Web Store are what let a search engine treat this as a
+ * browser extension rather than a second copy of the web app.
+ *
+ * `featureList` deliberately mirrors what the page says out loud. Schema that
+ * describes capabilities the visible copy does not is exactly the mismatch Google's
+ * structured-data guidance treats as spam, and it is also just dishonest.
+ */
+export function browserExtensionJsonLd(
+  site: string | URL | undefined,
+  opts: { url: string; description: string; installUrl: string; featureList: string[] },
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'VoxTranslate for Chrome',
+    applicationCategory: 'BrowserApplication',
+    operatingSystem: 'Chrome',
+    url: absoluteUrl(site, opts.url),
+    installUrl: opts.installUrl,
+    description: opts.description,
+    featureList: opts.featureList,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      description:
+        'Free to install. Translation is billed per minute of speech from account credit.',
     },
   };
 }

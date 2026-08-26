@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
   workflow_dispatch:
   # Daily rebuild so published PocketBase content is picked up even without a hook.
   schedule:
@@ -17,6 +17,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.ref != 'refs/heads/develop'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -42,6 +43,12 @@ jobs:
           # Optional override for the Meta pixel (repo Variables → PUBLIC_FB_PIXEL_ID).
           # Unset falls back to the id in src/lib/site.ts; 'off' ships no pixel at all.
           PUBLIC_FB_PIXEL_ID: ${{ vars.PUBLIC_FB_PIXEL_ID }}
+          # GA4 and Google Ads. These were NOT passed before, so `GA_ID` resolved to ''
+          # and gtag.js never loaded in production — every track() call on the site was
+          # a no-op. Set the repo Variables to switch them on; unset keeps them off,
+          # which is the correct default rather than a silent failure.
+          PUBLIC_GA_ID: ${{ vars.PUBLIC_GA_ID }}
+          PUBLIC_GOOGLE_ADS_ID: ${{ vars.PUBLIC_GOOGLE_ADS_ID }}
         run: pnpm run build
 
       - name: Deploy to Cloudflare Pages
@@ -50,3 +57,52 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy dist --project-name=voxtranslate-website --branch=main
+
+  # Staging. `functions/_middleware.ts` step 0 short-circuits into Basic Auth +
+  # `X-Robots-Tag: noindex` whenever STAGING_BASIC_AUTH is set — and it does so BEFORE
+  # the `*.pages.dev` → apex 301, which is what makes a preview host reachable at all.
+  #
+  # That variable is set on the Cloudflare Pages **Preview** environment, not here: this
+  # workflow only uploads the build. Without it the preview deploy succeeds and then
+  # redirects every request to production, which looks like a broken deploy and is not.
+  staging:
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        env:
+          POCKETBASE_URL: ${{ secrets.POCKETBASE_URL }}
+          # Staging points its canonical, hreflang and OG URLs at ITSELF. Building with
+          # the production origin would emit canonicals pointing at voxtranslate.app from
+          # a host that is noindex anyway — harmless for ranking, useless for reviewing
+          # whether the tags are right.
+          PUBLIC_SITE_ORIGIN: https://develop.voxtranslate-website.pages.dev
+          # No pixel, no GA on staging. A staging visit is a developer, and counting
+          # developers as conversions is how a funnel becomes fiction.
+          PUBLIC_FB_PIXEL_ID: 'off'
+          PUBLIC_STAGING: 'true'
+        run: pnpm run build
+
+      - name: Deploy to Cloudflare Pages (preview)
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=voxtranslate-website --branch=develop

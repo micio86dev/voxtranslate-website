@@ -64,7 +64,10 @@ jobs:
           urls: |
             http://localhost:4321/en/
             http://localhost:4321/en/blog/
+            http://localhost:4321/en/chrome/
             http://localhost:4321/live-translation/
+            http://localhost:4321/live-translation/for-google-meet-web/
+            http://localhost:4321/guides/
             http://localhost:4321/latency/
             http://localhost:4321/languages/
           configPath: ./lighthouserc.json

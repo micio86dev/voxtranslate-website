@@ -2,7 +2,9 @@
 import Logo from './Logo.astro';
 import LangSwitcher from '../ui/LangSwitcher.astro';
 import { useTranslations, localizePath, type Locale } from '../../lib/i18n';
-import { APP_URL, LEGAL_URLS } from '../../lib/site';
+import { APP_URL, LEGAL_URLS, SOCIAL, type SocialNetwork } from '../../lib/site';
+import { GUIDES_URL } from '../../lib/seo-routes';
+import { brandIcon } from '../../lib/icons';
 
 interface Props {
   lang: Locale;
@@ -15,10 +17,22 @@ const year = new Date().getFullYear();
 
 const product = [
   { href: `${localizePath(lang)}#features`, label: t('footer.links.features') },
+  { href: `${localizePath(lang)}chrome/`, label: t('footer.links.chrome') },
   { href: `${localizePath(lang)}pricing/`, label: t('footer.links.pricing') },
   { href: localizePath(lang, 'blog'), label: t('footer.links.blog') },
+  // Non-localized: the guides hub lives in the English-only SEO tree (AGENTS.md §1).
+  { href: GUIDES_URL, label: t('footer.links.guides') },
   { href: APP_URL, label: t('footer.links.app'), external: true },
 ];
+
+// Order comes from SOCIAL. Each entry needs a matching `a11y.social.*` key and a
+// glyph in `brandIcon()`; an icon-only link with no accessible name is invisible
+// to a screen reader, so the label is not optional.
+const socials = (Object.keys(SOCIAL) as SocialNetwork[]).map((key) => ({
+  key,
+  href: SOCIAL[key],
+  label: t(`a11y.social.${key}`),
+}));
 const legal = [
   { href: LEGAL_URLS.privacy, label: t('footer.links.privacy') },
   { href: LEGAL_URLS.terms, label: t('footer.links.terms') },
@@ -32,6 +46,28 @@ const legal = [
       <Logo lang={lang} label={t('a11y.homeLink')} />
       <p>{t('footer.tagline')}</p>
       <LangSwitcher lang={lang} pathWithoutLocale={pathWithoutLocale} pathByLocale={pathByLocale} />
+
+      <!-- No visible <h2> here, unlike the other footer navs: the icons are the
+           content, and `aria-label` already gives the region its accessible name. -->
+      <nav class="footer-social" aria-label={t('footer.social')}>
+        <ul>
+          {
+            socials.map((s) => (
+              <li>
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  title={s.label}
+                >
+                  <Fragment set:html={brandIcon(s.key)} />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
     </div>
 
     <nav aria-label={t('footer.product')}>
@@ -116,6 +152,52 @@ const legal = [
   .site-footer ul a:hover {
     color: var(--primary);
   }
+  /* Social row. Overrides the column layout the sibling navs use — these are
+     icons in a line, and the 44px hit area is the WCAG 2.5.8 target size, not a
+     visual choice. */
+  .footer-social {
+    margin-top: 1.5rem;
+  }
+  .footer-social ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+  .footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 0.65rem;
+    border: 1px solid var(--glass-border);
+    color: var(--muted);
+    transition:
+      color 0.18s ease,
+      border-color 0.18s ease,
+      transform 0.18s ease;
+  }
+  .footer-social a:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+  }
+  .footer-social a:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .footer-social a {
+      transition: none;
+    }
+    .footer-social a:hover {
+      transform: none;
+    }
+  }
+
   .footer-bottom {
     display: flex;
     flex-wrap: wrap;

@@ -39,6 +39,21 @@ You are outside what Meet can do, and the other native options have their own sh
 
 **There is no native option that handles three languages with translated audio in one meeting.** If that is what you need, the answer is a tool alongside your conferencing platform rather than a setting inside it.
 
+## If you only need to understand, not to be understood
+
+Worth separating, because it changes the answer entirely.
+
+If the problem is that *you* cannot follow a call in a language Meet does not pair with
+English, [VoxTranslate for Chrome](/live-translation/for-google-meet-web/) translates the
+audio of the Meet tab in your browser — subtitles over the call, optionally spoken, with
+the original audio on its own volume control. No plan change, no organiser involvement,
+nothing visible to anyone else in the meeting. It works on the Meet web client, not the
+desktop app.
+
+It does not help the other direction. Everyone else still hears whatever language you
+speak. If the requirement is mutual — three languages, everyone talking — that is the case
+in the previous section, and a browser extension is not the answer to it.
+
 ## Before you buy anything
 
 Check the three things that rule out most options: how many languages in the same meeting, whether external guests are involved, and whether the recording has to keep the translation. Those three answers narrow the field faster than any feature comparison.

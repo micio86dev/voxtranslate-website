@@ -99,8 +99,34 @@ export const GA_ID = import.meta.env.PUBLIC_GA_ID ?? '';
  *  Shares gtag.js with GA4 and, like the Pixel, loads only after consent. */
 export const GOOGLE_ADS_ID = import.meta.env.PUBLIC_GOOGLE_ADS_ID ?? '';
 
+/**
+ * The public Chrome Web Store listing. Overridable via `PUBLIC_CHROME_WEBSTORE_URL`
+ * like every other origin here, so a staging build can point at an unlisted test
+ * item rather than sending reviewers to the live one.
+ *
+ * The id is the store's, not ours, and it does not change when the extension is
+ * updated — only if the item were ever unpublished and re-created, which would
+ * also invalidate every install. Treat it as stable.
+ */
+export const CHROME_WEBSTORE_URL = (
+  import.meta.env.PUBLIC_CHROME_WEBSTORE_URL ||
+  'https://chromewebstore.google.com/detail/voxtranslate/maabjjeohcieihdockimokcckcnjcmbb'
+)
+  .trim()
+  .replace(/\/$/, '');
+
+/**
+ * Official social profiles, rendered in the footer.
+ *
+ * Order here is the order they appear. Keys must match the `a11y.social.*` i18n
+ * keys and the glyph names in `brandIcon()` — a link with no accessible label is
+ * an unlabelled icon, which is the single most common footer accessibility bug.
+ */
 export const SOCIAL = {
-  // Placeholder handles — update when official accounts exist.
-  x: 'https://x.com/voxtranslate',
-  github: 'https://github.com/micio86dev',
-};
+  tiktok: 'https://www.tiktok.com/@voxtranslate.app',
+  instagram: 'https://www.instagram.com/voxtranslateapp/',
+  facebook: 'https://www.facebook.com/profile.php?id=61590895577218',
+  linkedin: 'https://www.linkedin.com/company/voxtranslate-app',
+} as const;
+
+export type SocialNetwork = keyof typeof SOCIAL;

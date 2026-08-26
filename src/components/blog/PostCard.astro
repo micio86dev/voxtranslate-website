@@ -6,8 +6,16 @@ interface Props {
   lang: Locale;
   post: Post;
   loading?: 'lazy' | 'eager';
+  /**
+   * Heading level for the title. The card sits directly under the page h1 on the blog
+   * index (h2), and under a "Related articles" h2 in BlogLayout (h3). Hardcoding either
+   * one breaks the outline in the other place, which is what `heading-order` was
+   * catching: the index went h1 → h3 with nothing between.
+   */
+  headingLevel?: 2 | 3;
 }
-const { lang, post, loading = 'lazy' } = Astro.props;
+const { lang, post, loading = 'lazy', headingLevel = 2 } = Astro.props;
+const Title = `h${headingLevel}` as 'h2' | 'h3';
 const t = useTranslations(lang);
 const href = localizePath(lang, `blog/${post.slug}`);
 const date = new Intl.DateTimeFormat(lang, { dateStyle: 'medium' }).format(
@@ -16,7 +24,11 @@ const date = new Intl.DateTimeFormat(lang, { dateStyle: 'medium' }).format(
 ---
 
 <article class="post-card glass" data-tags={post.tags.join(',')}>
-  <a class="post-card-link" href={href} aria-label={post.title}>
+  <!-- No aria-label: the link contains the title, so that IS its accessible name.
+       An aria-label duplicating visible text narrowed the name to the title alone while
+       the visible label was tags + title + excerpt + date, which is the WCAG 2.5.3
+       mismatch Lighthouse flagged. -->
+  <a class="post-card-link" href={href}>
     {
       post.image && (
         <img
@@ -34,7 +46,7 @@ const date = new Intl.DateTimeFormat(lang, { dateStyle: 'medium' }).format(
       <div class="post-tags">
         {post.tags.slice(0, 2).map((tag) => <span class="badge">{tag}</span>)}
       </div>
-      <h3 class="post-title">{post.title}</h3>
+      <Title class="post-title">{post.title}</Title>
       <p class="post-excerpt">{post.excerpt}</p>
       <div class="post-meta">
         <span>{date}</span>

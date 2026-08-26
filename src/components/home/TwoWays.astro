@@ -1,0 +1,208 @@
+---
+/**
+ * The two doors into VoxTranslate: run the conversation, or understand someone
+ * else's.
+ *
+ * This sits directly under the stat strip because it is the answer to the question
+ * the hero raises. The site sold one product for months while shipping two, and a
+ * visitor who reads "don't change your platform" needs to see, immediately and
+ * without scrolling far, what the second door actually is.
+ *
+ * Deliberately two cards and not three: a third option turns a clear fork into a
+ * menu, and the fork is the point.
+ */
+import Button from '../ui/Button.astro';
+import { useTranslations, tList, localizePath, type Locale } from '../../lib/i18n';
+import { APP_URL, CHROME_WEBSTORE_URL } from '../../lib/site';
+import { icon } from '../../lib/icons';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+interface Door {
+  key: string;
+  glyph: string;
+  href: string;
+  track: string;
+  title: string;
+  desc: string;
+  points: string[];
+  cta: string;
+  /** Secondary link. `null` on Calls: its primary already goes to the product. */
+  more: { href: string; label: string } | null;
+}
+
+// Resolved here rather than in the template. A nested `.map()` is fine (see
+// Tiers.astro), but a GENERIC call inside a template expression is not: the Astro
+// compiler reads the `<string>` in `tList<string>(...)` as the start of an element
+// and fails with "Unknown token, expected: class".
+const doors: Door[] = [
+  {
+    key: 'calls',
+    glyph: 'video',
+    href: APP_URL,
+    track: 'start_translating',
+    title: t('twoWays.calls.title'),
+    desc: t('twoWays.calls.desc'),
+    points: tList<string>(lang, 'twoWays.calls.points'),
+    cta: t('twoWays.calls.cta'),
+    more: null,
+  },
+  {
+    key: 'chrome',
+    glyph: 'browser',
+    href: CHROME_WEBSTORE_URL,
+    track: 'chrome_webstore',
+    title: t('twoWays.chrome.title'),
+    desc: t('twoWays.chrome.desc'),
+    points: tList<string>(lang, 'twoWays.chrome.points'),
+    cta: t('twoWays.chrome.cta'),
+    more: { href: `${localizePath(lang)}chrome/`, label: t('twoWays.chrome.more') },
+  },
+];
+---
+
+<section class="two-ways" aria-labelledby="two-ways-title">
+  <div class="container-page">
+    <header class="section-head" data-reveal>
+      <h2 id="two-ways-title">{t('twoWays.title')}</h2>
+      <p>{t('twoWays.subtitle')}</p>
+    </header>
+
+    <div class="tw-grid">
+      {
+        doors.map((door) => (
+          <article class="tw-card glass" data-reveal>
+            <span class="tw-icon" aria-hidden="true" set:html={icon(door.glyph, 22)} />
+            <h3>{door.title}</h3>
+            <p class="tw-desc">{door.desc}</p>
+            <ul class="tw-points">
+              {door.points.map((p) => (
+                <li>{p}</li>
+              ))}
+            </ul>
+            <div class="tw-actions">
+              <Button
+                href={door.href}
+                variant="primary"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-track-cta={door.track}
+                data-track-location="two_ways"
+              >
+                {door.cta}
+              </Button>
+              {door.more ? (
+                <a class="tw-more" href={door.more.href}>
+                  {door.more.label}
+                </a>
+              ) : null}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .two-ways {
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+  }
+  .section-head {
+    max-width: 42rem;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+  .section-head h2 {
+    font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+    margin: 0 0 0.75rem;
+  }
+  .section-head p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .tw-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .tw-card {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .tw-icon {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius-md);
+    color: var(--primary);
+    background: color-mix(in srgb, var(--primary) 12%, transparent);
+    margin-bottom: 1rem;
+  }
+  .tw-icon :global(.ico) {
+    width: 22px;
+    height: 22px;
+  }
+  .tw-card h3 {
+    font-size: 1.3rem;
+    margin: 0 0 0.6rem;
+  }
+  .tw-desc {
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0 0 1.25rem;
+    font-size: 0.98rem;
+  }
+  .tw-points {
+    list-style: none;
+    margin: 0 0 1.75rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    /* Pushes the actions to a shared baseline when the two cards differ in height. */
+    flex: 1;
+  }
+  .tw-points li {
+    position: relative;
+    padding-left: 1.6rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .tw-points li::before {
+    content: '';
+    position: absolute;
+    left: 0.25rem;
+    top: 0.5rem;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--primary);
+  }
+  .tw-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+  .tw-more {
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+  .tw-more:hover {
+    color: var(--primary);
+  }
+  @media (min-width: 820px) {
+    .tw-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

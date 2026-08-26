@@ -11,7 +11,8 @@
     "app": "App öffnen",
     "tryFree": "Kostenlos testen",
     "menu": "Menü",
-    "business": "Business"
+    "business": "Business",
+    "chrome": "Für Chrome"
   },
   "theme": {
     "toLight": "Zum hellen Design wechseln",
@@ -22,13 +23,38 @@
     "select": "Sprache wählen"
   },
   "hero": {
-    "badge": "Sprich deine Sprache. Werde in ihrer verstanden.",
-    "title": "Videoanrufe mit",
-    "titleAccent": "Echtzeit-Übersetzung",
-    "subtitle": "VoxTranslate transkribiert, übersetzt und spricht jede Stimme im Raum — live. Anruf starten, Sprache wählen und einfach reden. Keine Installation, kein Warten.",
+    "badge": "Anrufe, Webinare und jeder Browser-Tab",
+    "title": "Wechsle nicht die Plattform.",
+    "titleAccent": "Wechsle die Sprache.",
+    "subtitle": "VoxTranslate übersetzt das Gespräch, während es läuft — in deinen eigenen Anrufen und Webinaren und in jedem Chrome-Tab, den du ohnehin offen hast. Sprich deine Sprache, um den Rest kümmert sich Vox.",
     "ctaPrimary": "Jetzt übersetzen",
-    "ctaSecondary": "So funktioniert's",
-    "note": "Gratis-Startguthaben · Keine Kreditkarte · 18+"
+    "ctaSecondary": "Zu Chrome hinzufügen — kostenlos",
+    "note": "Kostenloses Startguthaben · Keine Karte · 18+"
+  },
+  "twoWays": {
+    "title": "Zwei Wege. Ein Konto.",
+    "subtitle": "Führe das Gespräch selbst — oder versteh das von jemand anderem. Gleiches Guthaben, gleicher Minutenpreis.",
+    "calls": {
+      "title": "Anrufe & Webinare",
+      "desc": "Öffne einen Raum, und jede Person spricht ihre eigene Sprache — bis zu vier Personen, vier Sprachen, niemand wartet. Webinar-Teilnehmende kommen über einen Link und wählen ihre eigene.",
+      "points": [
+        "Übersetzte Stimme und Live-Untertitel",
+        "Bis zu 4 Sprachen in einem Raum",
+        "Transkripte mit Sprecher-Labels, exportierbar"
+      ],
+      "cta": "Anruf starten"
+    },
+    "chrome": {
+      "title": "VoxTranslate für Chrome",
+      "desc": "Verleg nicht das Meeting. Füg VoxTranslate zu Chrome hinzu, und es übersetzt den Ton des Tabs, in dem du gerade bist — Google Meet Web, Zoom Web, YouTube, Twitch, Kurse, Podcasts.",
+      "points": [
+        "Untertitel über der Seite, die du gerade siehst",
+        "Gesprochene Übersetzung, Originalton am Regler",
+        "Nur dieser eine Tab — nie dein Mikrofon"
+      ],
+      "cta": "Zu Chrome hinzufügen — kostenlos",
+      "more": "So funktioniert es"
+    }
   },
   "social": {
     "title": "Gemacht für Gespräche ohne Grenzen",
@@ -46,7 +72,7 @@
     },
     "catalogue": {
       "value": "84",
-      "label": "Sprachen"
+      "label": "Sprachen (Premium)"
     }
   },
   "features": {
@@ -62,15 +88,15 @@
         "desc": "Wähle die richtige Balance aus Tempo, Stimmqualität und Kosten — von Standard bis zu natürlichen KI-Stimmen mit Premium."
       },
       {
-        "title": "84 Sprachen",
-        "desc": "Sprich und höre in 84 Sprachen. Die Ausgangssprache wird automatisch erkannt oder du legst sie selbst fest."
+        "title": "Bis zu 84 Sprachen",
+        "desc": "Premium deckt alle 84 Sprachen ab, Enhanced 61 und Standard 29 — die Tier-Auswahl zeigt genau welche. Deine gesprochene Sprache wird automatisch erkannt oder du legst sie selbst fest."
       },
       {
         "title": "Abrechnung per Guthaben",
         "desc": "Zahle nur, was du nutzt. Starte mit Gratis-Guthaben und lade jederzeit auf — kein Abo, keine Bindung."
       },
       {
-        "title": "Geringe Latenz & privat",
+        "title": "Peer-to-Peer & privat",
         "desc": "Audio und Video laufen Peer-to-Peer über WebRTC. Deine Medien landen nie auf unseren Servern."
       },
       {
@@ -181,7 +207,7 @@
     "secondary": "Blog lesen"
   },
   "footer": {
-    "tagline": "Videoanrufe mit Echtzeit-Übersetzung für Gespräche ohne Grenzen.",
+    "tagline": "Echtzeit-Übersetzung für deine Anrufe, deine Webinare und jeden Browser-Tab.",
     "product": "Produkt",
     "company": "Unternehmen",
     "legal": "Rechtliches",
@@ -193,10 +219,13 @@
       "privacy": "Datenschutz",
       "terms": "AGB",
       "acceptableUse": "Nutzungsrichtlinie",
-      "cookies": "Cookie-Einstellungen"
+      "cookies": "Cookie-Einstellungen",
+      "chrome": "VoxTranslate für Chrome",
+      "guides": "Guides"
     },
     "rights": "Alle Rechte vorbehalten.",
-    "builtWith": "Sprich frei, überall."
+    "builtWith": "Sprich frei, überall.",
+    "social": "Folgen"
   },
   "consent": {
     "title": "Deine Privatsphäre",
@@ -224,7 +253,8 @@
     "pageOf": "Seite {n} von {m}",
     "ctaTitle": "VoxTranslate kostenlos testen",
     "ctaSubtitle": "Stell es im echten Gespräch auf die Probe.",
-    "ctaButton": "Jetzt übersetzen"
+    "ctaButton": "Jetzt übersetzen",
+    "ctaChrome": "Oder füg es zu Chrome hinzu"
   },
   "notFound": {
     "title": "Lost in Translation",
@@ -233,12 +263,18 @@
   },
   "a11y": {
     "skipToContent": "Zum Inhalt springen",
-    "homeLink": "VoxTranslate Startseite"
+    "homeLink": "VoxTranslate Startseite",
+    "social": {
+      "tiktok": "VoxTranslate auf TikTok",
+      "instagram": "VoxTranslate auf Instagram",
+      "facebook": "VoxTranslate auf Facebook",
+      "linkedin": "VoxTranslate auf LinkedIn"
+    }
   },
   "meta": {
     "home": {
       "title": "VoxTranslate — Echtzeit-KI-Sprachübersetzer für Videoanrufe",
-      "description": "Kostenloser KI-Sprachübersetzer in Echtzeit für Live-Gespräche. VoxTranslate transkribiert, übersetzt und spricht jede Stimme in deinem Videoanruf — von Stimme zu Stimme, in 84 Sprachen und ohne Installation."
+      "description": "KI-Sprachübersetzung in Echtzeit für Videoanrufe: jede Stimme transkribiert, übersetzt und gesprochen, in bis zu 84 Sprachen. Ohne Installation."
     },
     "blog": {
       "title": "Blog — VoxTranslate",
@@ -246,18 +282,22 @@
     },
     "business": {
       "title": "VoxTranslate for Business — mehrsprachige Meetings für Teams",
-      "description": "Übersetzte Videoanrufe für dein ganzes Team: gemeinsame Historie, mehrsprachige Transkripte, Projekte und Compliance — in 84 Sprachen. Ab $49/Monat pro Organisation."
+      "description": "Übersetzte Videoanrufe fürs Team: gemeinsame Historie, mehrsprachige Transkripte, Projekte und Compliance, in bis zu 84 Sprachen. Ab $49/Monat."
     },
     "pricing": {
       "title": "Preise — Abrechnung pro Minute, ab 0,0045 $",
-      "description": "VoxTranslate-Preise: drei Übersetzungs-Engines, abgerechnet pro gesprochener Minute und Zielsprache. Keine Platzlizenzen, kein Pflichtabo. Kostenloses Startguthaben."
+      "description": "Drei Übersetzungs-Engines, abgerechnet pro gesprochener Minute und Zielsprache. Keine Platzlizenzen, kein Pflichtabo. Kostenloses Startguthaben."
+    },
+    "chrome": {
+      "title": "VoxTranslate für Chrome — Ton jedes Tabs übersetzen",
+      "description": "Live übersetzte Untertitel und Sprache für den Ton in deinem Chrome-Tab: Google Meet Web, Zoom Web, YouTube, Twitch, Kurse und Podcasts."
     }
   },
   "business": {
     "hero": {
       "badge": "VoxTranslate for Business",
       "title": "Mehrsprachige Meetings in Echtzeit für dein Team",
-      "subtitle": "Gib deinem Team übersetzte Videoanrufe mit gemeinsamer Historie, Transkripten und Projekten — in 84 Sprachen.",
+      "subtitle": "Gib deinem Team übersetzte Videoanrufe mit gemeinsamer Historie, Transkripten und Projekten — in bis zu 84 Sprachen.",
       "ctaPrimary": "Loslegen",
       "ctaSecondary": "Kontakt"
     },
@@ -272,7 +312,7 @@
         {
           "icon": "📝",
           "title": "Mehrsprachige Transkripte",
-          "desc": "Nimm jeden Anruf auf und erhalte ein Transkript mit Sprecher-Labels, übersetzbar in 84 Sprachen, mit Übersetzung auf Abruf."
+          "desc": "Nimm jeden Anruf auf und erhalte ein diarisiertes Transkript mit Sprecher-Labels, das jede im Raum gesprochene Sprache enthält. Export als JSON, PDF, SRT oder VTT."
         },
         {
           "icon": "🔒",
@@ -333,7 +373,7 @@
         },
         {
           "feature": "Sprachen pro Meeting",
-          "vox": "84",
+          "vox": "Bis zu 4 gleichzeitig",
           "meet": "Ein Sprachpaar pro Dolmetscher"
         },
         {
@@ -369,6 +409,172 @@
       "sending": "Wird gesendet…",
       "success": "Danke — wir haben deine Nachricht erhalten und melden uns bald.",
       "error": "Etwas ist schiefgelaufen. Bitte versuche es erneut oder schreib uns direkt."
+    }
+  },
+  "chrome": {
+    "hero": {
+      "badge": "VoxTranslate für Chrome",
+      "title": "Ein Browser. Beliebige Inhalte.",
+      "titleAccent": "Deine Sprache.",
+      "subtitle": "Füg VoxTranslate zu Chrome hinzu, und es übersetzt den Ton, der im aktuellen Tab läuft — Live-Untertitel über der Seite und eine gesprochene Übersetzung, die du gegen das Original abmischst.",
+      "cta": "Zu Chrome hinzufügen — kostenlos",
+      "ctaSecondary": "Preise ansehen",
+      "note": "Nur Chrome. Nutzt das VoxTranslate-Konto und Guthaben, das du bereits hast."
+    },
+    "how": {
+      "title": "Drei Schritte, in jedem Tab",
+      "steps": [
+        {
+          "title": "Öffne den Tab, den du verstehen willst",
+          "desc": "Ein Meeting, ein Video, ein Livestream, ein Kurs, ein Podcast. Alles, was in Chrome Ton macht."
+        },
+        {
+          "title": "Drück den VoxTranslate-Button",
+          "desc": "Dieser Klick erteilt den Zugriff — auf genau diesen einen Tab und sonst nichts. Wähl die Sprache, in der du lesen und hören willst."
+        },
+        {
+          "title": "Lies mit, hör zu, oder beides",
+          "desc": "Die Untertitel erscheinen über der Seite. Auf Stufen, die Audio erzeugen, spricht die übersetzte Stimme, während das Original darunter leiser wird."
+        }
+      ]
+    },
+    "where": {
+      "title": "Wo es funktioniert",
+      "subtitle": "Es hört den Tab ab, nicht eine Plattform. Das hier sind Beispiele, keine Kompatibilitätsliste.",
+      "items": [
+        {
+          "title": "Google Meet Web",
+          "desc": "Der Meet-Tab in deinem Browser. Nicht die Desktop-App — VoxTranslate hört einen Browser-Tab ab, also funktioniert der Web-Client."
+        },
+        {
+          "title": "Zoom Web",
+          "desc": "Dasselbe gilt für den Web-Client von Zoom. Du trittst im Browser bei und übersetzt, was du hörst, ohne jemand anderen um einen Werkzeugwechsel zu bitten."
+        },
+        {
+          "title": "YouTube und YouTube Live",
+          "desc": "Aufgezeichnete Vorträge, Konferenz-Streams, Produktlaunches. Ein Livestream funktioniert genau wie ein Video: übersetzt wird, was gerade läuft."
+        },
+        {
+          "title": "Twitch",
+          "desc": "Folge einem Stream in einer Sprache, die du nicht sprichst — Untertitel über dem Player, Originalton weiterhin darunter."
+        },
+        {
+          "title": "Online-Kurse",
+          "desc": "Vorlesungs-Player, Lernplattformen, aufgezeichnete Schulungen. Was in einem Tab läuft, lässt sich übersetzen."
+        },
+        {
+          "title": "Podcasts und Webinare",
+          "desc": "Player im Browser und Webinar-Räume. Auf der anderen Seite ist nichts zu installieren, und niemand sonst muss davon wissen."
+        }
+      ],
+      "note": "Es gibt keine Seitenliste und keine Integration pro Anbieter. VoxTranslate funktioniert in jedem Tab, der Ton abspielt."
+    },
+    "controls": {
+      "title": "Was du bekommst — und was du steuerst",
+      "items": [
+        {
+          "title": "Untertitel über der Seite",
+          "desc": "In einer isolierten Ebene gezeichnet, die dem Video auch in den Vollbildmodus folgt. Größe und Position stellst du ein, oder du zeigst die Originalzeile unter der Übersetzung."
+        },
+        {
+          "title": "Gesprochene Übersetzung",
+          "desc": "Auf Stufen, die Audio erzeugen, hörst du die Übersetzung, während das Original dahinter weiterläuft."
+        },
+        {
+          "title": "Original behalten, absenken oder stummschalten",
+          "desc": "Ein Regler von 0 bis 100% für den Originalton. Während die übersetzte Stimme spricht, sinkt das Original darunter und kommt sofort wieder hoch."
+        },
+        {
+          "title": "Deine Sprache, pro Sitzung",
+          "desc": "Du entscheidest jedes Mal neu, was du lesen und hören willst. Die gesprochene Sprache wird für dich erkannt."
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Was es sehen kann — und was nicht",
+      "items": [
+        {
+          "title": "Ein Tab, von dir gewählt",
+          "desc": "Nur der Tab, in dem du den Button gedrückt hast. Nie dein Mikrofon, nie ein anderer Tab, nie ein Hintergrund-Tab."
+        },
+        {
+          "title": "Kein Zugriff auf dein Surfverhalten",
+          "desc": "Die Erweiterung fordert keinen Zugriff auf alle Websites an. Kein Zugriff auf Tabs, Verlauf, Cookies oder Netzwerkanfragen."
+        },
+        {
+          "title": "Die Seite selbst wird nie gesendet",
+          "desc": "Weder URL noch Titel, weder Video-ID noch Seiteninhalt. Nur der Ton, die gewählte Sprache und dein Sitzungs-Token."
+        },
+        {
+          "title": "KI-generiert, und das steht auch da",
+          "desc": "Untertitel und jede übersetzte Stimme werden von KI erzeugt und können falsch sein. Die Stimme ist synthetisiert — sie ist keine Aufnahme der sprechenden Person."
+        }
+      ]
+    },
+    "limits": {
+      "title": "Was es nicht kann",
+      "subtitle": "Die Dinge, die man vor der Installation wissen sollte, nicht danach.",
+      "items": [
+        {
+          "title": "Nur Chrome",
+          "desc": "Firefox, Safari und Edge werden nicht unterstützt, und wir behaupten nichts anderes."
+        },
+        {
+          "title": "Web-Clients, keine Desktop-Apps",
+          "desc": "Es hört einen Browser-Tab ab, also fallen die Desktop-Anwendungen von Google Meet und Zoom heraus."
+        },
+        {
+          "title": "Auf einigen Seiten keine Untertitel",
+          "desc": "Chrome verbietet Skripte auf seinen eigenen Seiten und im Web Store. Die Tonübersetzung läuft dort weiter; die Untertitel-Ebene erscheint nicht."
+        },
+        {
+          "title": "Eine Spracherkennung pro Sitzung",
+          "desc": "Die gesprochene Sprache wird beim Start erkannt. Ein Video, das mittendrin die Sprache wechselt, wird nicht neu erkannt — starte die Sitzung neu."
+        },
+        {
+          "title": "Keine Latenzangabe",
+          "desc": "Wir haben die Übersetzungsverzögerung im ausgelieferten Build nicht gemessen, also veröffentlichen wir keine Zahl. Sie hängt von Stufe, Sprachpaar, Gerät und Netzwerk ab."
+        }
+      ]
+    },
+    "billing": {
+      "title": "Gleiches Konto, gleiches Guthaben",
+      "desc": "Die Erweiterung bucht von dem VoxTranslate-Guthaben ab, das du schon hast — pro gesprochener Minute, ab 0,0045 $ pro Minute und Sprache. Neue Konten starten mit 2 $ Guthaben und ohne Karte.",
+      "cta": "Preise ansehen"
+    },
+    "faq": {
+      "title": "Fragen, die wirklich gestellt werden",
+      "items": [
+        {
+          "q": "Funktioniert es mit Google Meet und Zoom?",
+          "a": "Mit ihren Web-Clients ja. VoxTranslate hört den Ton eines Browser-Tabs ab, also funktionieren Google Meet Web und Zoom Web. Die Desktop-Anwendungen nicht, weil es dort keinen Tab zum Abhören gibt."
+        },
+        {
+          "q": "Kann es einen YouTube-Livestream übersetzen?",
+          "a": "Ja. Ein Livestream ist Ton, der in einem Tab läuft, und genau das übersetzt VoxTranslate. Die Untertitel erscheinen über dem Player, während der Stream läuft — ohne auf eine Aufzeichnung zu warten."
+        },
+        {
+          "q": "Nimmt es mein Mikrofon auf?",
+          "a": "Nein. Es erfasst den Ton eines einzigen Browser-Tabs — dem, in dem du gestartet hast. In der Erweiterung gibt es keinerlei Mikrofonzugriff, und sie fordert auch keinen an."
+        },
+        {
+          "q": "Höre ich den Originalton weiterhin?",
+          "a": "Ja. Das Original behält einen eigenen Lautstärkeregler von 0 bis 100%. Während die übersetzte Stimme spricht, sinkt das Original darunter und kommt zurück, sobald sie endet."
+        },
+        {
+          "q": "Welche Browser werden unterstützt?",
+          "a": "Nur Chrome. Firefox, Safari und Edge werden nicht unterstützt. Die Erweiterung nutzt Chromes Tab-Capture- und Side-Panel-APIs, die es anderswo so nicht gibt."
+        },
+        {
+          "q": "Brauche ich ein Abo?",
+          "a": "Nein. Sie greift auf das Guthaben deines VoxTranslate-Kontos zu, abgerechnet pro gesprochener Minute. Jedes neue Konto startet mit 2 $ Guthaben und ohne Karte — genug, um es ernsthaft auszuprobieren."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Sprich deine Sprache. Um den Rest kümmert sich Vox.",
+      "subtitle": "Füg es zu Chrome hinzu und probier es an der nächsten Sache aus, der du nicht folgen kannst.",
+      "button": "Zu Chrome hinzufügen — kostenlos"
     }
   },
   "pricing": {

@@ -1,0 +1,488 @@
+---
+/**
+ * `/{lang}/chrome/` — the extension's product page.
+ *
+ * Localized like `/{lang}/pricing/` rather than parked in the English-only SEO tree,
+ * because this is a product page, not a programmatic one: it needs hreflang, a
+ * canonical per locale and the OG block, all of which `BaseLayout` already emits.
+ *
+ * Every claim on this page is checked against the extension source, and the two
+ * sections most sites leave out — `limits` and `privacy` — are the reason it is
+ * worth publishing at all. A page about a thing that listens to your browser audio
+ * has to say what it cannot hear before it says what it can.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import {
+  LOCALES,
+  useTranslations,
+  tList,
+  isLocale,
+  localizePath,
+  DEFAULT_LOCALE,
+  type Locale,
+} from '../../lib/i18n';
+import { CHROME_WEBSTORE_URL } from '../../lib/site';
+import { browserExtensionJsonLd, faqPageJsonLd } from '../../lib/seo';
+import { icon } from '../../lib/icons';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const langParam = Astro.params.lang;
+const lang: Locale = isLocale(langParam) ? langParam : DEFAULT_LOCALE;
+const t = useTranslations(lang);
+
+type TitleDesc = { title: string; desc: string };
+const steps = tList<TitleDesc>(lang, 'chrome.how.steps');
+const surfaces = tList<TitleDesc>(lang, 'chrome.where.items');
+const controls = tList<TitleDesc>(lang, 'chrome.controls.items');
+const privacy = tList<TitleDesc>(lang, 'chrome.privacy.items');
+const limits = tList<TitleDesc>(lang, 'chrome.limits.items');
+const faq = tList<{ q: string; a: string }>(lang, 'chrome.faq.items');
+
+// Glyph per section list, positional — same convention as Highlights.astro.
+// Deliberately no `mic` anywhere on this page: the whole privacy argument is that
+// the extension never touches a microphone, and a mic glyph would say otherwise
+// before anyone reads a word.
+const controlIcons = ['subtitle', 'volume', 'sliders', 'users'];
+const privacyIcons = ['browser', 'shield', 'lock', 'sparkles'];
+
+const pricingHref = `${localizePath(lang)}pricing/`;
+
+// The featureList mirrors the visible `controls` section one-for-one. If a control is
+// added or removed there, this moves with it — schema must not out-claim the page.
+const jsonLd = [
+  browserExtensionJsonLd(Astro.site, {
+    url: `${localizePath(lang)}chrome/`,
+    description: t('meta.chrome.description'),
+    installUrl: CHROME_WEBSTORE_URL,
+    featureList: controls.map((c) => c.title),
+  }),
+  faqPageJsonLd(faq),
+];
+---
+
+<BaseLayout
+  lang={lang}
+  title={t('meta.chrome.title')}
+  description={t('meta.chrome.description')}
+  pathWithoutLocale="chrome"
+  jsonLd={jsonLd}
+>
+  <section class="ch-hero">
+    <div class="container-page ch-hero-inner">
+      <p class="ch-badge label-caps" data-reveal>{t('chrome.hero.badge')}</p>
+      <h1 data-reveal>
+        {t('chrome.hero.title')}
+        <span class="accent">{t('chrome.hero.titleAccent')}</span>
+      </h1>
+      <p class="ch-sub" data-reveal>{t('chrome.hero.subtitle')}</p>
+      <div class="ch-cta" data-reveal>
+        <Button
+          href={CHROME_WEBSTORE_URL}
+          variant="primary"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track-cta="chrome_webstore"
+          data-track-location="chrome_hero">{t('chrome.hero.cta')}</Button
+        >
+        <Button href={pricingHref} variant="ghost">{t('chrome.hero.ctaSecondary')}</Button>
+      </div>
+      <p class="ch-note" data-reveal>{t('chrome.hero.note')}</p>
+    </div>
+  </section>
+
+  <section class="ch-section" aria-labelledby="ch-how">
+    <div class="container-page">
+      <header class="section-head" data-reveal><h2 id="ch-how">{t('chrome.how.title')}</h2></header>
+      <ol class="ch-steps">
+        {
+          steps.map((step, i) => (
+            <li class="ch-step glass" data-reveal>
+              <span class="ch-step-n" aria-hidden="true">
+                {i + 1}
+              </span>
+              <h3>{step.title}</h3>
+              <p>{step.desc}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="ch-section" aria-labelledby="ch-where">
+    <div class="container-page">
+      <header class="section-head" data-reveal>
+        <h2 id="ch-where">{t('chrome.where.title')}</h2>
+        <p>{t('chrome.where.subtitle')}</p>
+      </header>
+      <ul class="ch-grid">
+        {
+          surfaces.map((s) => (
+            <li class="ch-card glass" data-reveal>
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="ch-aside" data-reveal>{t('chrome.where.note')}</p>
+    </div>
+  </section>
+
+  <section class="ch-section" aria-labelledby="ch-controls">
+    <div class="container-page">
+      <header class="section-head" data-reveal>
+        <h2 id="ch-controls">{t('chrome.controls.title')}</h2>
+      </header>
+      <ul class="ch-grid ch-grid-2">
+        {
+          controls.map((c, i) => (
+            <li class="ch-card glass ch-card-icon" data-reveal>
+              <span
+                class="ch-icon"
+                aria-hidden="true"
+                set:html={icon(controlIcons[i] ?? 'sparkles', 22)}
+              />
+              <h3>{c.title}</h3>
+              <p>{c.desc}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="ch-section" aria-labelledby="ch-privacy">
+    <div class="container-page">
+      <header class="section-head" data-reveal>
+        <h2 id="ch-privacy">{t('chrome.privacy.title')}</h2>
+      </header>
+      <ul class="ch-grid ch-grid-2">
+        {
+          privacy.map((p, i) => (
+            <li class="ch-card glass ch-card-icon" data-reveal>
+              <span
+                class="ch-icon"
+                aria-hidden="true"
+                set:html={icon(privacyIcons[i] ?? 'sparkles', 22)}
+              />
+              <h3>{p.title}</h3>
+              <p>{p.desc}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="ch-section ch-limits" aria-labelledby="ch-limits">
+    <div class="container-page">
+      <header class="section-head" data-reveal>
+        <h2 id="ch-limits">{t('chrome.limits.title')}</h2>
+        <p>{t('chrome.limits.subtitle')}</p>
+      </header>
+      <ul class="ch-limit-list">
+        {
+          limits.map((l) => (
+            <li data-reveal>
+              <h3>{l.title}</h3>
+              <p>{l.desc}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="ch-section" aria-labelledby="ch-billing">
+    <div class="container-page">
+      <div class="ch-billing glass" data-reveal>
+        <h2 id="ch-billing">{t('chrome.billing.title')}</h2>
+        <p>{t('chrome.billing.desc')}</p>
+        <Button
+          href={pricingHref}
+          variant="ghost"
+          data-track-cta="pricing"
+          data-track-location="chrome_billing">{t('chrome.billing.cta')}</Button
+        >
+      </div>
+    </div>
+  </section>
+
+  <section class="ch-section" aria-labelledby="ch-faq">
+    <div class="container-page ch-faq">
+      <header class="section-head" data-reveal><h2 id="ch-faq">{t('chrome.faq.title')}</h2></header>
+      <dl>
+        {
+          faq.map((item) => (
+            <div class="ch-faq-item" data-reveal>
+              <dt>{item.q}</dt>
+              <dd>{item.a}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <section class="ch-section">
+    <div class="container-page">
+      <div class="ch-final glass glass-glow" data-reveal>
+        <h2>{t('chrome.cta.title')}</h2>
+        <p>{t('chrome.cta.subtitle')}</p>
+        <Button
+          href={CHROME_WEBSTORE_URL}
+          variant="primary"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track-cta="chrome_webstore"
+          data-track-location="chrome_final">{t('chrome.cta.button')}</Button
+        >
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import '../../scripts/animations';
+</script>
+
+<style>
+  .ch-hero {
+    padding-block: clamp(3rem, 8vw, 6rem) clamp(2rem, 5vw, 3rem);
+  }
+  .ch-hero-inner {
+    max-width: 46rem;
+    text-align: center;
+  }
+  .ch-badge {
+    color: var(--primary);
+    margin: 0 0 1rem;
+  }
+  .ch-hero h1 {
+    font-size: clamp(2.1rem, 6vw, 3.4rem);
+    line-height: 1.1;
+    margin: 0 0 1.25rem;
+  }
+  /* Same gradient the home hero uses. Duplicated rather than lifted into a global
+     utility because it is the only other place it appears; a shared class earns its
+     keep at three call sites, not two. */
+  .ch-hero h1 .accent {
+    background: linear-gradient(120deg, var(--primary), var(--accent) 55%, var(--tertiary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .ch-sub {
+    color: var(--muted);
+    font-size: 1.1rem;
+    line-height: 1.65;
+    margin: 0 auto 2rem;
+    max-width: 40rem;
+  }
+  .ch-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    justify-content: center;
+  }
+  .ch-note {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin: 1.25rem 0 0;
+  }
+
+  .ch-section {
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .section-head {
+    max-width: 42rem;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+  }
+  .section-head h2 {
+    font-size: clamp(1.7rem, 4.2vw, 2.3rem);
+    margin: 0 0 0.75rem;
+  }
+  .section-head p {
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .ch-steps {
+    list-style: none;
+    counter-reset: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .ch-step {
+    padding: 1.5rem;
+  }
+  .ch-step-n {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--primary);
+    background: color-mix(in srgb, var(--primary) 12%, transparent);
+    margin-bottom: 1rem;
+  }
+  .ch-step h3,
+  .ch-card h3 {
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem;
+  }
+  .ch-step p,
+  .ch-card p {
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .ch-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .ch-card {
+    padding: 1.5rem;
+  }
+  .ch-card-icon .ch-icon {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-md);
+    color: var(--primary);
+    background: color-mix(in srgb, var(--primary) 12%, transparent);
+    margin-bottom: 0.9rem;
+  }
+  .ch-icon :global(.ico) {
+    width: 22px;
+    height: 22px;
+  }
+  .ch-aside {
+    max-width: 42rem;
+    margin: 1.75rem auto 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Limitations read as prose, not as cards: a grid of tidy boxes makes drawbacks
+     look like features. A plain list with a rule down the side does not. */
+  .ch-limit-list {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 46rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .ch-limit-list li {
+    border-left: 2px solid var(--glass-border);
+    padding-left: 1.25rem;
+  }
+  .ch-limit-list h3 {
+    font-size: 1.02rem;
+    margin: 0 0 0.35rem;
+  }
+  .ch-limit-list p {
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .ch-billing {
+    padding: 2rem;
+    max-width: 46rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .ch-billing h2 {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    margin: 0 0 0.75rem;
+  }
+  .ch-billing p {
+    color: var(--muted);
+    line-height: 1.65;
+    margin: 0 0 1.5rem;
+  }
+
+  .ch-faq {
+    max-width: 46rem;
+  }
+  .ch-faq dl {
+    margin: 0;
+  }
+  .ch-faq-item {
+    border-top: 1px solid var(--glass-border);
+    padding-block: 1.5rem;
+  }
+  .ch-faq-item:last-child {
+    border-bottom: 1px solid var(--glass-border);
+  }
+  .ch-faq dt {
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
+  .ch-faq dd {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.65;
+    font-size: 0.97rem;
+  }
+
+  .ch-final {
+    padding: clamp(2rem, 5vw, 3.5rem);
+    text-align: center;
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+  .ch-final h2 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    margin: 0 0 0.75rem;
+  }
+  .ch-final p {
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0 0 1.75rem;
+  }
+
+  @media (min-width: 700px) {
+    .ch-steps,
+    .ch-grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 980px) {
+    .ch-steps {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .ch-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .ch-grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
