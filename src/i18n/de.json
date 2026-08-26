@@ -96,7 +96,7 @@
         "desc": "Zahle nur, was du nutzt. Starte mit Gratis-Guthaben und lade jederzeit auf — kein Abo, keine Bindung."
       },
       {
-        "title": "Geringe Latenz & privat",
+        "title": "Peer-to-Peer & privat",
         "desc": "Audio und Video laufen Peer-to-Peer über WebRTC. Deine Medien landen nie auf unseren Servern."
       },
       {
@@ -207,7 +207,7 @@
     "secondary": "Blog lesen"
   },
   "footer": {
-    "tagline": "Videoanrufe mit Echtzeit-Übersetzung für Gespräche ohne Grenzen.",
+    "tagline": "Echtzeit-Übersetzung für deine Anrufe, deine Webinare und jeden Browser-Tab.",
     "product": "Produkt",
     "company": "Unternehmen",
     "legal": "Rechtliches",

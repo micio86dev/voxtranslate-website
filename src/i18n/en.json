@@ -96,7 +96,7 @@
         "desc": "Pay only for what you use. Start with free credits, top up anytime — no subscriptions, no lock-in."
       },
       {
-        "title": "Low-latency & private",
+        "title": "Peer-to-peer & private",
         "desc": "Audio and video flow peer-to-peer over WebRTC. Your media never sits on our servers."
       },
       {
@@ -491,7 +491,7 @@
     "secondary": "Read the blog"
   },
   "footer": {
-    "tagline": "Real-time translated video calls for conversations without borders.",
+    "tagline": "Real-time translation for your calls, your webinars and any browser tab.",
     "product": "Product",
     "company": "Company",
     "legal": "Legal",

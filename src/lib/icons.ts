@@ -29,6 +29,13 @@ const PATHS: Record<string, string> = {
   // Volume / the original-audio control.
   volume:
     '<path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>',
+  // Mixing the translated voice against the original.
+  sliders:
+    '<line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>',
+  // Permission boundary — what the extension is not allowed to reach.
+  shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+  // Data that never leaves the page.
+  lock: '<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
   // Email recap.
   mail: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-9.5 6.5a1.7 1.7 0 0 1-1 .3 1.7 1.7 0 0 1-1-.3L2 7"/>',
 };

@@ -96,7 +96,7 @@
         "desc": "Ne payez que ce que vous utilisez. Démarrez avec des crédits offerts et rechargez quand vous voulez — sans abonnement, sans engagement."
       },
       {
-        "title": "Faible latence et confidentiel",
+        "title": "Pair-à-pair et privé",
         "desc": "L'audio et la vidéo circulent en pair-à-pair via WebRTC. Vos médias ne restent jamais sur nos serveurs."
       },
       {
@@ -207,7 +207,7 @@
     "secondary": "Lire le blog"
   },
   "footer": {
-    "tagline": "Appels vidéo traduits en temps réel, pour des conversations sans frontières.",
+    "tagline": "Traduction en temps réel pour vos appels, vos webinaires et n'importe quel onglet du navigateur.",
     "product": "Produit",
     "company": "Entreprise",
     "legal": "Mentions légales",

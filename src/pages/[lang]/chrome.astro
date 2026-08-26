@@ -43,8 +43,11 @@ const limits = tList<TitleDesc>(lang, 'chrome.limits.items');
 const faq = tList<{ q: string; a: string }>(lang, 'chrome.faq.items');
 
 // Glyph per section list, positional — same convention as Highlights.astro.
-const controlIcons = ['subtitle', 'volume', 'volume', 'users'];
-const privacyIcons = ['browser', 'monitor', 'subtitle', 'sparkles'];
+// Deliberately no `mic` anywhere on this page: the whole privacy argument is that
+// the extension never touches a microphone, and a mic glyph would say otherwise
+// before anyone reads a word.
+const controlIcons = ['subtitle', 'volume', 'sliders', 'users'];
+const privacyIcons = ['browser', 'shield', 'lock', 'sparkles'];
 
 const pricingHref = `${localizePath(lang)}pricing/`;
 
@@ -273,6 +276,15 @@ const jsonLd = [
     font-size: clamp(2.1rem, 6vw, 3.4rem);
     line-height: 1.1;
     margin: 0 0 1.25rem;
+  }
+  /* Same gradient the home hero uses. Duplicated rather than lifted into a global
+     utility because it is the only other place it appears; a shared class earns its
+     keep at three call sites, not two. */
+  .ch-hero h1 .accent {
+    background: linear-gradient(120deg, var(--primary), var(--accent) 55%, var(--tertiary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
   .ch-sub {
     color: var(--muted);

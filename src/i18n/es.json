@@ -96,7 +96,7 @@
         "desc": "Paga solo por lo que usas. Empieza con créditos gratis y recarga cuando quieras — sin suscripciones, sin ataduras."
       },
       {
-        "title": "Baja latencia y privacidad",
+        "title": "Peer-to-peer y privado",
         "desc": "El audio y el vídeo van peer-to-peer por WebRTC. Tus contenidos nunca se quedan en nuestros servidores."
       },
       {
@@ -207,7 +207,7 @@
     "secondary": "Leer el blog"
   },
   "footer": {
-    "tagline": "Videollamadas traducidas en tiempo real para conversaciones sin fronteras.",
+    "tagline": "Traducción en tiempo real para tus llamadas, tus seminarios web y cualquier pestaña del navegador.",
     "product": "Producto",
     "company": "Empresa",
     "legal": "Legal",
