@@ -537,7 +537,8 @@
     "pageOf": "Page {n} of {m}",
     "ctaTitle": "Try VoxTranslate free",
     "ctaSubtitle": "Put it to the test in a real conversation.",
-    "ctaButton": "Start translating"
+    "ctaButton": "Start translating",
+    "ctaChrome": "Or add it to Chrome"
   },
   "notFound": {
     "title": "Lost in translation",

@@ -249,15 +249,6 @@ const jsonLd = [
 
 <script>
   import '../../scripts/animations';
-  import { track } from '../../scripts/analytics';
-
-  document.querySelectorAll('[data-track-cta]').forEach((el) => {
-    el.addEventListener('click', () => {
-      const button = el.getAttribute('data-track-cta');
-      const location = el.getAttribute('data-track-location');
-      if (button && location) track('cta_clicked', { button, location });
-    });
-  });
 </script>
 
 <style>

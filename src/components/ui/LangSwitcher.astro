@@ -48,6 +48,7 @@ function targetFor(l: Locale): string {
             href={targetFor(l)}
             hreflang={l}
             data-lang={l}
+            data-track-locale={l}
             aria-current={l === lang ? 'true' : undefined}
           >
             <span aria-hidden="true">{LOCALE_FLAGS[l]}</span>

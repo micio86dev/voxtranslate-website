@@ -197,6 +197,44 @@ const jsonLdItems = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
       })();
     </script>
 
+    <!--
+      Conversion tracking, wired ONCE here rather than per page.
+
+      `data-track-cta` lives on the header CTA, which is on every page, but the listener
+      used to be copied into three page templates — so a click on the header button from
+      /pricing/, /business/, /blog/ or any of the 50+ SEO pages recorded nothing. One
+      delegated listener on `document` covers every page that uses this layout, including
+      pages that do not exist yet.
+
+      Delegation also survives markup changes: `closest()` catches clicks that land on an
+      icon or a span inside the button rather than on the button itself.
+
+      This fires `window.gtag`, which ConsentBanner only defines AFTER the visitor accepts.
+      Before that, `track()` is a no-op — no request, no cookie, no identifier. The
+      analytics call is downstream of consent by construction, not by a flag someone can
+      forget to check.
+    -->
+    <script>
+      import { track } from '../scripts/analytics';
+
+      document.addEventListener('click', (event) => {
+        const el = (event.target as Element | null)?.closest?.('[data-track-cta]');
+        if (!el) return;
+        const button = el.getAttribute('data-track-cta');
+        const location = el.getAttribute('data-track-location');
+        if (button && location) track('cta_clicked', { button, location });
+      });
+
+      // Locale switch. A separate event rather than a CTA: it measures which languages
+      // people actually want, which is a content decision, not a conversion.
+      document.addEventListener('click', (event) => {
+        const el = (event.target as Element | null)?.closest?.('[data-track-locale]');
+        if (!el) return;
+        const to = el.getAttribute('data-track-locale');
+        if (to) track('locale_switched', { from: document.documentElement.lang, to });
+      });
+    </script>
+
     <style>
       .skip-link {
         position: absolute;

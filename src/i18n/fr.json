@@ -253,7 +253,8 @@
     "pageOf": "Page {n} sur {m}",
     "ctaTitle": "Essayez VoxTranslate gratuitement",
     "ctaSubtitle": "Mettez-le à l'épreuve dans une vraie conversation.",
-    "ctaButton": "Commencer à traduire"
+    "ctaButton": "Commencer à traduire",
+    "ctaChrome": "Ou ajoutez-le à Chrome"
   },
   "notFound": {
     "title": "Perdu dans la traduction",
