@@ -1,0 +1,134 @@
+---
+/**
+ * `/guides/` — the hub that task 03 never built.
+ *
+ * Thirty-five guides shipped without one. Fifteen of them are linked from the five
+ * persona pages, three each; the other twenty had no inbound internal link at all and
+ * were reachable only through `sitemap-guides.xml`. A sitemap entry is a crawl hint, not
+ * a vote — it tells a crawler a URL exists, not that anything on the site considers it
+ * worth reading. This page is the difference.
+ *
+ * Grouped by `cluster` because that field already exists on every guide and is the only
+ * grouping the content itself asserts. Inventing a second taxonomy here would drift from
+ * the schema the moment someone adds a guide.
+ */
+import { getCollection } from 'astro:content';
+import SeoLayout from '../../layouts/SeoLayout.astro';
+import { isPublished, guideUrl, GUIDES_URL, LIVE_TRANSLATION_HUB } from '../../lib/seo-routes';
+import type { Guide } from '../../content/schemas';
+
+/** Display order and headings for `guideSchema.cluster`. */
+const CLUSTERS: { key: Guide['cluster']; title: string; blurb: string }[] = [
+  {
+    key: 'platform',
+    title: 'Platform how-tos',
+    blurb: 'Getting translation into the tool the meeting is already happening in.',
+  },
+  {
+    key: 'events',
+    title: 'Events and webinars',
+    blurb: 'Running something one-to-many, in more than one language.',
+  },
+  {
+    key: 'teams',
+    title: 'Distributed teams',
+    blurb: 'The recurring internal meetings where the language barrier is a daily cost.',
+  },
+  {
+    key: 'sales',
+    title: 'Sales, support and procurement',
+    blurb: 'Conversations with someone outside your company, where precision has a price.',
+  },
+];
+
+const guides = (await getCollection('guides'))
+  .filter((e) => isPublished(e.data))
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const grouped = CLUSTERS.map((c) => ({
+  ...c,
+  items: guides.filter((g) => g.data.cluster === c.key),
+})).filter((c) => c.items.length > 0);
+
+const title = 'Guides to translated meetings, webinars and calls';
+const description =
+  'Practical guides to running meetings, webinars and calls across languages: what the ' +
+  'native platform features do, where they stop, and what to do instead.';
+---
+
+<SeoLayout
+  title={title}
+  description={description}
+  path={GUIDES_URL}
+  crumbs={[{ name: 'Live translation', path: LIVE_TRANSLATION_HUB }]}
+>
+  <div class="wrap">
+    <h1>{title}</h1>
+    <p class="lede">
+      {guides.length} guides, each answering one question in its first paragraph. Where a platform's own
+      feature is the right answer, the guide says so.
+    </p>
+
+    {
+      grouped.map((cluster) => (
+        <section aria-labelledby={`c-${cluster.key}`}>
+          <h2 id={`c-${cluster.key}`}>{cluster.title}</h2>
+          <p class="blurb">{cluster.blurb}</p>
+          <ul>
+            {cluster.items.map((g) => (
+              <li>
+                <a href={guideUrl(g.id)}>{g.data.title}</a>
+                <span class="answer">{g.data.shortAnswer}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</SeoLayout>
+
+<style>
+  .wrap {
+    max-width: 78ch;
+    margin-inline: auto;
+    padding: 3rem 1.25rem;
+  }
+  .lede {
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin-bottom: 3rem;
+  }
+  h2 {
+    margin-top: 3rem;
+    margin-bottom: 0.35rem;
+  }
+  .blurb {
+    color: var(--muted);
+    margin: 0 0 1.5rem;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  li {
+    border-left: 2px solid var(--glass-border);
+    padding-left: 1.25rem;
+  }
+  li a {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+  /* The shortAnswer is the guide's own one-line summary. Showing it here means the hub is
+     readable on its own rather than a wall of undifferentiated blue links. */
+  .answer {
+    color: var(--muted);
+    font-size: 0.94rem;
+    line-height: 1.6;
+  }
+</style>

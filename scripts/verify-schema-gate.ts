@@ -15,7 +15,12 @@
  */
 import { readFileSync } from 'node:fs';
 import type { ZodTypeAny } from 'astro/zod';
-import { pairSchema, comparisonSchema, guideSchema } from '../src/content/schemas.ts';
+import {
+  pairSchema,
+  comparisonSchema,
+  guideSchema,
+  platformSchema,
+} from '../src/content/schemas.ts';
 import {
   measurementSchema,
   measurementAgeDays,
@@ -49,6 +54,13 @@ function accepts(schema: ZodTypeAny, label: string, input: unknown): void {
 /** The schema must REJECT this input. This is the gate. */
 function rejects(schema: ZodTypeAny, label: string, input: unknown): void {
   check(`REJECT ${label}`, !schema.safeParse(input).success);
+}
+
+/** A fixture minus one required field — the shape a half-written page actually has. */
+function omit<T extends object, K extends keyof T>(obj: T, key: K): Omit<T, K> {
+  const copy = { ...obj };
+  delete copy[key];
+  return copy;
 }
 
 function throws(label: string, fn: () => unknown): void {
@@ -176,6 +188,49 @@ rejects(guideSchema, 'guide with a 301-char shortAnswer (unliftable)', {
   shortAnswer: text(301),
 });
 rejects(guideSchema, 'guide with an unknown cluster', { ...validGuide, cluster: 'misc' });
+
+/* -- platforms ------------------------------------------------------------ */
+
+const validPlatform = {
+  name: 'Zoom Web',
+  surface: 'meeting',
+  shortAnswer: text(280),
+  howItWorks: text(220),
+  limitations: text(180),
+  relatedGuides: [
+    'translate-a-zoom-meeting-in-real-time',
+    'can-zoom-translate-a-meeting-in-real-time',
+  ],
+  publishedAt: null,
+};
+
+accepts(platformSchema, 'a complete platform page', validPlatform);
+rejects(platformSchema, 'platform with a 301-char shortAnswer (unliftable)', {
+  ...validPlatform,
+  shortAnswer: text(301),
+});
+// The three that make this page more than a template with a name substituted in.
+rejects(platformSchema, 'platform with a thin howItWorks', {
+  ...validPlatform,
+  howItWorks: text(199),
+});
+rejects(
+  platformSchema,
+  'platform with NO limitations section (R5)',
+  omit(validPlatform, 'limitations'),
+);
+rejects(platformSchema, 'platform with a token limitations section', {
+  ...validPlatform,
+  limitations: text(149),
+});
+rejects(platformSchema, 'platform linking fewer than 2 guides (orphan)', {
+  ...validPlatform,
+  relatedGuides: ['translate-a-zoom-meeting-in-real-time'],
+});
+rejects(platformSchema, 'platform with an unknown surface', {
+  ...validPlatform,
+  surface: 'radio',
+});
 
 /* -- measurements --------------------------------------------------------- */
 

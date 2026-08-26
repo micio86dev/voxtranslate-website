@@ -125,6 +125,37 @@ export const guideSchema = z.object({
   publishedAt: publishedAtSchema,
 });
 
+/**
+ * A platform integration page: `/live-translation/for-{platform}/`.
+ *
+ * AGENTS.md R6 bans head-term pages but explicitly permits these — the query is
+ * "how do I get translation INTO this thing", not "zoom translation". The distinction
+ * only survives if the page actually answers the integration question, which is what
+ * the length floors below are for.
+ *
+ * `limitations` is mandatory for the same reason `comparisonSchema.whenNotToChooseUs`
+ * is. A platform page that lists only what works is an advertisement, and on the four
+ * surfaces this covers the limits are the part a reader most needs: the extension works
+ * on Google Meet's WEB client and not its desktop app, and a page that glosses over that
+ * generates refunds rather than installs.
+ */
+export const platformSchema = z.object({
+  /** The platform as a user names it. `Google Meet Web`, not `google-meet-web`. */
+  name: z.string().min(1),
+  /** What kind of surface this is — drives grouping on the hub, nothing else. */
+  surface: z.enum(['meeting', 'video', 'stream', 'learning']),
+  /** Capped, not floored: this is the block lifted into a snippet or an AI answer. */
+  shortAnswer: z.string().min(1).max(300),
+  /** What is specifically true of THIS surface. Generic prose fails the floor. */
+  howItWorks: z.string().min(200),
+  /** Mandatory, in good faith — the R5 rule applied to integration pages. */
+  limitations: z.string().min(150),
+  /** An orphan page helps nobody; two related guides is the minimum that links it in. */
+  relatedGuides: z.array(z.string()).min(2),
+  publishedAt: publishedAtSchema,
+});
+
 export type Pair = z.infer<typeof pairSchema>;
 export type Comparison = z.infer<typeof comparisonSchema>;
 export type Guide = z.infer<typeof guideSchema>;
+export type Platform = z.infer<typeof platformSchema>;

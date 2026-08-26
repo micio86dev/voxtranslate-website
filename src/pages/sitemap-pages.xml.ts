@@ -6,6 +6,7 @@
  * of programmatic pages would hide exactly the signal the phase gates need.
  */
 import type { APIRoute } from 'astro';
+import { getCollection } from 'astro:content';
 import { LOCALES, localizePath } from '../lib/i18n';
 import { getPosts } from '../lib/pocketbase';
 import { buildAlternates, absoluteUrl } from '../lib/seo';
@@ -14,8 +15,11 @@ import {
   LATENCY_URL,
   LANGUAGES_URL,
   LIVE_TRANSLATION_HUB,
+  GUIDES_URL,
   PERSONAS,
+  PLATFORMS,
   personaUrl,
+  platformUrl,
   isPublished,
 } from '../lib/seo-routes';
 import { renderUrlset, xmlResponse, BUILD_DATE, type SitemapEntry } from '../lib/sitemap';
@@ -69,6 +73,27 @@ export const GET: APIRoute = async ({ site }) => {
   if (listMeasurements().length > 0) {
     entries.push({ loc: absoluteUrl(site, LATENCY_URL), lastmod: BUILD_DATE, priority: 0.8 });
     entries.push({ loc: absoluteUrl(site, LANGUAGES_URL), lastmod: BUILD_DATE, priority: 0.8 });
+  }
+
+  // The guides hub. Ships with the guides themselves (sitemap-guides.xml) but belongs
+  // here: it is a navigational page of this site, not a piece of the guides cluster.
+  entries.push({ loc: absoluteUrl(site, GUIDES_URL), lastmod: BUILD_DATE, priority: 0.7 });
+
+  // Platform integration pages. Ordered by PLATFORMS; a draft (publishedAt: null) renders
+  // noindex and stays out of here, same rule as the personas below.
+  {
+    const published = new Map(
+      (await getCollection('platforms')).filter((e) => isPublished(e.data)).map((e) => [e.id, e]),
+    );
+    for (const p of PLATFORMS) {
+      const entry = published.get(p.slug);
+      if (!entry) continue;
+      entries.push({
+        loc: absoluteUrl(site, platformUrl(p.slug)),
+        lastmod: entry.data.publishedAt ?? BUILD_DATE,
+        priority: 0.8,
+      });
+    }
   }
 
   // Use-case landing pages. Commercial intent rather than editorial, so they belong with
