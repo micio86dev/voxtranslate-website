@@ -14,11 +14,14 @@ interface Props {
 const { lang, pathWithoutLocale = '', pathByLocale } = Astro.props;
 const t = useTranslations(lang);
 
+// Chrome sits second, right after Features: it is the other half of the product,
+// not an add-on, and a visitor who never scrolls should still see that it exists.
 const navLinks = [
-  { href: localizePath(lang, 'blog'), label: t('nav.blog') },
   { href: `${localizePath(lang)}#features`, label: t('nav.features') },
+  { href: `${localizePath(lang)}chrome/`, label: t('nav.chrome') },
   { href: `${localizePath(lang)}pricing/`, label: t('nav.pricing') },
   { href: localizePath(lang, 'business'), label: t('nav.business') },
+  { href: localizePath(lang, 'blog'), label: t('nav.blog') },
 ];
 ---
 

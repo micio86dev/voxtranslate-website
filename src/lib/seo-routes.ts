@@ -43,6 +43,13 @@ export const LATENCY_URL = '/latency/';
 export const LANGUAGES_URL = '/languages/';
 
 /**
+ * The guides hub. `/guides/{slug}/` shipped in task 03 without one, so two thirds of
+ * the guides had no inbound internal link at all and were reachable only through
+ * `sitemap-guides.xml` — a sitemap entry is a crawl hint, not a vote.
+ */
+export const GUIDES_URL = '/guides/';
+
+/**
  * Map a comparison entry to its URL. The three kinds share one collection because they
  * share one contract (verified sources, a publish date, an honest "when not to choose
  * us"), but they live under three different prefixes.

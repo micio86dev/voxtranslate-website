@@ -89,6 +89,42 @@ export function softwareAppJsonLd(site: string | URL | undefined) {
   };
 }
 
+/**
+ * The Chrome extension as its own `SoftwareApplication`.
+ *
+ * Separate from {@link softwareAppJsonLd} rather than a variant of it: they describe
+ * different things installed in different places. `operatingSystem: 'Chrome'` and
+ * `installUrl` pointing at the Web Store are what let a search engine treat this as a
+ * browser extension rather than a second copy of the web app.
+ *
+ * `featureList` deliberately mirrors what the page says out loud. Schema that
+ * describes capabilities the visible copy does not is exactly the mismatch Google's
+ * structured-data guidance treats as spam, and it is also just dishonest.
+ */
+export function browserExtensionJsonLd(
+  site: string | URL | undefined,
+  opts: { url: string; description: string; installUrl: string; featureList: string[] },
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'VoxTranslate for Chrome',
+    applicationCategory: 'BrowserApplication',
+    operatingSystem: 'Chrome',
+    url: absoluteUrl(site, opts.url),
+    installUrl: opts.installUrl,
+    description: opts.description,
+    featureList: opts.featureList,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      description:
+        'Free to install. Translation is billed per minute of speech from account credit.',
+    },
+  };
+}
+
 export interface Crumb {
   name: string;
   /** Root-relative path with a trailing slash, e.g. `/live-translation/`. */

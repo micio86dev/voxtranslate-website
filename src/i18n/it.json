@@ -11,7 +11,8 @@
     "app": "Apri l'app",
     "tryFree": "Prova gratis",
     "menu": "Menu",
-    "business": "Business"
+    "business": "Business",
+    "chrome": "Per Chrome"
   },
   "theme": {
     "toLight": "Passa al tema chiaro",
@@ -22,13 +23,38 @@
     "select": "Seleziona lingua"
   },
   "hero": {
-    "badge": "Parla la tua lingua. Fatti capire nella loro.",
-    "title": "Videochiamate tradotte",
-    "titleAccent": "in tempo reale",
-    "subtitle": "VoxTranslate trascrive, traduce e dà voce a ogni persona nella stanza — dal vivo. Avvia una chiamata, scegli la tua lingua e parla. Niente installazioni, niente attese.",
+    "badge": "Chiamate, webinar e qualsiasi scheda del browser",
+    "title": "Non cambiare piattaforma.",
+    "titleAccent": "Cambia lingua.",
+    "subtitle": "VoxTranslate traduce la conversazione mentre accade — nelle tue chiamate e nei tuoi webinar, e in qualsiasi scheda di Chrome che hai già aperta. Tu parla la tua lingua, al resto pensa Vox.",
     "ctaPrimary": "Inizia a tradurre",
-    "ctaSecondary": "Scopri come funziona",
-    "note": "Crediti gratuiti per iniziare · Senza carta di credito · 18+"
+    "ctaSecondary": "Aggiungi a Chrome — gratis",
+    "note": "Credito iniziale gratuito · Nessuna carta · 18+"
+  },
+  "twoWays": {
+    "title": "Due strade. Un solo account.",
+    "subtitle": "Conduci tu la conversazione, oppure capisci quella di qualcun altro. Stesso credito, stesso prezzo al minuto.",
+    "calls": {
+      "title": "Chiamate e webinar",
+      "desc": "Apri una stanza e ognuno parla la propria lingua — fino a quattro persone, quattro lingue, nessuno che aspetta. Chi segue un webinar entra da un link e sceglie la sua.",
+      "points": [
+        "Voce tradotta e sottotitoli in tempo reale",
+        "Fino a 4 lingue nella stessa stanza",
+        "Trascrizioni con i relatori, esportabili"
+      ],
+      "cta": "Avvia una chiamata"
+    },
+    "chrome": {
+      "title": "VoxTranslate per Chrome",
+      "desc": "Non spostare la riunione. Aggiungi VoxTranslate a Chrome e traduce l'audio della scheda su cui sei — Google Meet Web, Zoom Web, YouTube, Twitch, corsi, podcast.",
+      "points": [
+        "Sottotitoli sopra la pagina che stai guardando",
+        "Traduzione parlata, audio originale su una manopola",
+        "Solo quella scheda — mai il microfono"
+      ],
+      "cta": "Aggiungi a Chrome — gratis",
+      "more": "Come funziona"
+    }
   },
   "social": {
     "title": "Pensato per conversazioni senza confini",
@@ -193,10 +219,13 @@
       "privacy": "Privacy",
       "terms": "Termini",
       "acceptableUse": "Uso accettabile",
-      "cookies": "Impostazioni cookie"
+      "cookies": "Impostazioni cookie",
+      "chrome": "VoxTranslate per Chrome",
+      "guides": "Guide"
     },
     "rights": "Tutti i diritti riservati.",
-    "builtWith": "Parla liberamente, ovunque."
+    "builtWith": "Parla liberamente, ovunque.",
+    "social": "Seguici"
   },
   "consent": {
     "title": "La tua privacy",
@@ -233,7 +262,13 @@
   },
   "a11y": {
     "skipToContent": "Vai al contenuto",
-    "homeLink": "Home di VoxTranslate"
+    "homeLink": "Home di VoxTranslate",
+    "social": {
+      "tiktok": "VoxTranslate su TikTok",
+      "instagram": "VoxTranslate su Instagram",
+      "facebook": "VoxTranslate su Facebook",
+      "linkedin": "VoxTranslate su LinkedIn"
+    }
   },
   "meta": {
     "home": {
@@ -251,6 +286,10 @@
     "pricing": {
       "title": "Prezzi — paghi al minuto, da $0,0045",
       "description": "Tre motori di traduzione fatturati al minuto di parlato, per lingua di destinazione. Nessuna postazione, nessun abbonamento. Credito iniziale gratuito."
+    },
+    "chrome": {
+      "title": "VoxTranslate per Chrome — traduci l'audio di ogni scheda",
+      "description": "Sottotitoli e voce tradotti in tempo reale per l'audio della tua scheda Chrome: Google Meet Web, Zoom Web, YouTube, Twitch, corsi e podcast."
     }
   },
   "business": {
@@ -369,6 +408,172 @@
       "sending": "Invio in corso…",
       "success": "Grazie — abbiamo ricevuto il tuo messaggio e ti contatteremo presto.",
       "error": "Qualcosa è andato storto. Riprova o scrivici direttamente."
+    }
+  },
+  "chrome": {
+    "hero": {
+      "badge": "VoxTranslate per Chrome",
+      "title": "Un browser. Qualsiasi contenuto.",
+      "titleAccent": "La tua lingua.",
+      "subtitle": "Aggiungi VoxTranslate a Chrome e traduce l'audio che sta suonando nella scheda su cui sei — sottotitoli dal vivo sopra la pagina e una traduzione parlata che puoi dosare rispetto all'originale.",
+      "cta": "Aggiungi a Chrome — gratis",
+      "ctaSecondary": "Vedi i prezzi",
+      "note": "Solo Chrome. Usa l'account e il credito VoxTranslate che hai già."
+    },
+    "how": {
+      "title": "Tre passaggi, su qualsiasi scheda",
+      "steps": [
+        {
+          "title": "Apri la scheda che vuoi capire",
+          "desc": "Una riunione, un video, una diretta, un corso, un podcast. Qualsiasi cosa suoni dentro Chrome."
+        },
+        {
+          "title": "Premi il pulsante VoxTranslate",
+          "desc": "È quel clic a dare l'accesso — a quella scheda soltanto, e a nient'altro. Scegli la lingua in cui vuoi leggere e ascoltare."
+        },
+        {
+          "title": "Leggi, ascolta, o entrambe le cose",
+          "desc": "I sottotitoli compaiono sopra la pagina. Sui tier che generano audio, la voce tradotta parla mentre l'originale si abbassa sotto."
+        }
+      ]
+    },
+    "where": {
+      "title": "Dove funziona",
+      "subtitle": "Ascolta la scheda, non una piattaforma. Questi sono esempi, non un elenco di compatibilità.",
+      "items": [
+        {
+          "title": "Google Meet Web",
+          "desc": "La scheda di Meet nel browser. Non l'app desktop — VoxTranslate ascolta una scheda, quindi è il client web quello che funziona."
+        },
+        {
+          "title": "Zoom Web",
+          "desc": "Lo stesso vale per il client web di Zoom. Entri dal browser e traduci quello che senti, senza chiedere a nessun altro di cambiare strumento."
+        },
+        {
+          "title": "YouTube e YouTube Live",
+          "desc": "Talk registrati, dirette da conferenze, lanci di prodotto. Una diretta funziona esattamente come un video: traduce quello che sta andando in onda adesso."
+        },
+        {
+          "title": "Twitch",
+          "desc": "Segui uno stream in una lingua che non parli, con i sottotitoli sopra il player e l'audio originale che resta lì sotto."
+        },
+        {
+          "title": "Corsi online",
+          "desc": "Player di lezioni, piattaforme di formazione, training registrati. Se suona in una scheda, si può tradurre."
+        },
+        {
+          "title": "Podcast e webinar",
+          "desc": "Player nel browser e stanze webinar. Niente da installare dall'altra parte, e nessun altro deve saperlo."
+        }
+      ],
+      "note": "Non esiste un elenco di siti né un'integrazione dedicata per ciascuno. VoxTranslate funziona su qualsiasi scheda che produce audio."
+    },
+    "controls": {
+      "title": "Cosa ottieni, e cosa controlli",
+      "items": [
+        {
+          "title": "Sottotitoli sopra la pagina",
+          "desc": "Disegnati in un overlay isolato che segue il video anche a schermo intero. Regoli dimensione e posizione, oppure mostri la riga originale sotto la traduzione."
+        },
+        {
+          "title": "Traduzione parlata",
+          "desc": "Sui tier che generano audio senti la traduzione mentre l'originale continua a suonare dietro."
+        },
+        {
+          "title": "Tieni, abbassa o silenzia l'originale",
+          "desc": "Un unico controllo da 0 a 100% sull'audio originale. Mentre parla la voce tradotta l'originale scende sotto, e torna subito su appena finisce."
+        },
+        {
+          "title": "La tua lingua, sessione per sessione",
+          "desc": "Scegli ogni volta cosa vuoi leggere e ascoltare. La lingua parlata viene rilevata per te."
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Cosa può e cosa non può vedere",
+      "items": [
+        {
+          "title": "Una sola scheda, scelta da te",
+          "desc": "Solo la scheda su cui hai premuto il pulsante. Mai il microfono, mai un'altra scheda, mai una scheda in secondo piano."
+        },
+        {
+          "title": "Nessun accesso alla tua navigazione",
+          "desc": "L'estensione non chiede l'accesso a tutti i siti. Nessun accesso a schede, cronologia, cookie o richieste di rete."
+        },
+        {
+          "title": "La pagina non viene mai inviata",
+          "desc": "Né l'URL, né il titolo, né l'id del video, né il contenuto. Solo l'audio, la lingua che hai scelto e il token di sessione."
+        },
+        {
+          "title": "Generato dall'AI, e lo dice",
+          "desc": "I sottotitoli e l'eventuale voce tradotta sono generati dall'AI e possono contenere errori. La voce è sintetizzata — non è la registrazione di chi parla."
+        }
+      ]
+    },
+    "limits": {
+      "title": "Cosa non fa",
+      "subtitle": "Le cose che vale la pena sapere prima di installarlo, non dopo.",
+      "items": [
+        {
+          "title": "Solo Chrome",
+          "desc": "Firefox, Safari ed Edge non sono supportati, e non sosteniamo il contrario."
+        },
+        {
+          "title": "Client web, non app desktop",
+          "desc": "Ascolta una scheda del browser, quindi le applicazioni desktop di Google Meet e Zoom restano fuori."
+        },
+        {
+          "title": "Su alcune pagine niente sottotitoli",
+          "desc": "Chrome vieta di iniettare script nelle proprie pagine e nel Web Store. Lì la traduzione audio funziona lo stesso; l'overlay non compare."
+        },
+        {
+          "title": "Un solo rilevamento di lingua per sessione",
+          "desc": "La lingua parlata viene rilevata quando premi start. Un video che cambia lingua a metà non viene rilevato di nuovo — riavvia la sessione."
+        },
+        {
+          "title": "Nessun dato sulla latenza",
+          "desc": "Non abbiamo misurato il ritardo di traduzione sulla build pubblicata, quindi non pubblichiamo un numero. Dipende dal tier, dalla coppia di lingue, dal tuo dispositivo e dalla tua rete."
+        }
+      ]
+    },
+    "billing": {
+      "title": "Stesso account, stesso credito",
+      "desc": "L'estensione scala il credito VoxTranslate che hai già, al minuto di parlato — da $0,0045 al minuto, per lingua. I nuovi account partono con $2 di credito e senza carta.",
+      "cta": "Vedi i prezzi"
+    },
+    "faq": {
+      "title": "Le domande che ci fanno davvero",
+      "items": [
+        {
+          "q": "Funziona con Google Meet e Zoom?",
+          "a": "Con i loro client web sì. VoxTranslate ascolta l'audio di una scheda del browser, quindi Google Meet Web e Zoom Web funzionano. Le applicazioni desktop no, perché non c'è nessuna scheda da ascoltare."
+        },
+        {
+          "q": "Può tradurre una diretta YouTube?",
+          "a": "Sì. Una diretta è audio che suona in una scheda, ed è esattamente ciò che VoxTranslate traduce. I sottotitoli compaiono sopra il player mentre lo stream va avanti, senza aspettare la registrazione."
+        },
+        {
+          "q": "Registra il mio microfono?",
+          "a": "No. Cattura l'audio di una sola scheda del browser — quella su cui l'hai avviato. Nell'estensione non esiste alcun accesso al microfono, e non lo chiede mai."
+        },
+        {
+          "q": "Posso continuare a sentire l'audio originale?",
+          "a": "Sì. L'originale ha un suo controllo di volume, da 0 a 100%. Quando parla la voce tradotta l'originale si abbassa sotto, e risale appena la traduzione finisce."
+        },
+        {
+          "q": "Quali browser sono supportati?",
+          "a": "Solo Chrome. Firefox, Safari ed Edge non sono supportati. L'estensione usa le API di cattura scheda e pannello laterale di Chrome, che gli altri non offrono nella stessa forma."
+        },
+        {
+          "q": "Serve un abbonamento?",
+          "a": "No. Attinge al credito del tuo account VoxTranslate, fatturato al minuto di parlato. Ogni nuovo account parte con $2 di credito e senza carta, abbastanza per provarlo sul serio."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Tu parla la tua lingua. Al resto pensa Vox.",
+      "subtitle": "Aggiungilo a Chrome e provalo sulla prossima cosa che non riesci a seguire.",
+      "button": "Aggiungi a Chrome — gratis"
     }
   },
   "pricing": {

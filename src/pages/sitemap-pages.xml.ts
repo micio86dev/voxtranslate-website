@@ -21,7 +21,7 @@ import {
 import { renderUrlset, xmlResponse, BUILD_DATE, type SitemapEntry } from '../lib/sitemap';
 
 /** Localized routes that exist for every locale. '' is the home page. */
-const LOCALIZED_ROUTES = ['', 'blog', 'business', 'pricing'];
+const LOCALIZED_ROUTES = ['', 'blog', 'business', 'chrome', 'pricing'];
 
 export const GET: APIRoute = async ({ site }) => {
   const entries: SitemapEntry[] = [];
