@@ -1,10 +1,20 @@
 /*
   X-Content-Type-Options: nosniff
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   X-Robots-Tag: index, follow
+  # Enforcing: the three directives that were already here. They cannot break a
+  # page that renders today, so they stay enforcing.
   Content-Security-Policy: object-src 'none'; base-uri 'self'; frame-ancestors 'none'
+  # Staged: the full policy, Report-Only first — the same way the app's CSP was
+  # rolled out (#117). Derived from a source audit of every external host this
+  # site references: GTM + Meta Pixel scripts, the analytics beacons they send,
+  # the demo video on cdn.voxtranslate.app, and self-hosted fonts. Watch the
+  # violation reports through one full release, then move these directives up
+  # into the line above and delete this one.
+  Content-Security-Policy-Report-Only: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.voxtranslate.app https://www.facebook.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com; font-src 'self'; media-src 'self' https://cdn.voxtranslate.app; connect-src 'self' https://api.voxtranslate.app https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.facebook.com; frame-src 'none'
 
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
