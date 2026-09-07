@@ -350,7 +350,8 @@
           ]
         }
       ],
-      "annual": "ou {price}/an — {months} mois offerts"
+      "annual": "ou {price}/an — {months} mois offerts",
+      "credits": "{credits} crédits inclus chaque mois"
     },
     "compare": {
       "title": "Moins cher qu'un interprète, plus précis que l'anglais approximatif",
