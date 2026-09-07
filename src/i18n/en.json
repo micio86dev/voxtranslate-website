@@ -257,7 +257,8 @@
           ]
         }
       ],
-      "annual": "or {price}/yr — {months} months free"
+      "annual": "or {price}/yr — {months} months free",
+      "credits": "{credits} credits included every month"
     },
     "compare": {
       "title": "Cheaper than an interpreter, sharper than broken English",

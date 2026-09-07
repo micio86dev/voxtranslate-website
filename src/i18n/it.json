@@ -350,7 +350,8 @@
           ]
         }
       ],
-      "annual": "oppure {price}/anno — {months} mesi gratis"
+      "annual": "oppure {price}/anno — {months} mesi gratis",
+      "credits": "{credits} crediti inclusi ogni mese"
     },
     "compare": {
       "title": "Più economico di un interprete, più preciso dell'inglese arrangiato",

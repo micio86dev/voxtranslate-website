@@ -350,7 +350,8 @@
           ]
         }
       ],
-      "annual": "o {price}/año — {months} meses gratis"
+      "annual": "o {price}/año — {months} meses gratis",
+      "credits": "{credits} créditos incluidos cada mes"
     },
     "compare": {
       "title": "Más barato que un intérprete, más preciso que el inglés improvisado",

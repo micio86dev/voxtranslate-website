@@ -31,6 +31,14 @@ export interface OrgPlan {
   /** ISO 4217, lower-case, as Stripe returns it. */
   currency: string;
   active: boolean;
+  /**
+   * Credits each paid invoice grants, from `ORG_CREDITS_*` on the server.
+   *
+   * Optional because a snapshot taken before the API published the field simply
+   * will not have it — and a missing allowance must render nothing rather than a
+   * confident zero. Refresh the snapshot to fill it in.
+   */
+  credits?: number;
 }
 
 export const ORG_PLANS = snapshot.plans as OrgPlan[];

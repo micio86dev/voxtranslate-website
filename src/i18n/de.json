@@ -350,7 +350,8 @@
           ]
         }
       ],
-      "annual": "oder {price}/Jahr — {months} Monate gratis"
+      "annual": "oder {price}/Jahr — {months} Monate gratis",
+      "credits": "{credits} Guthaben monatlich inklusive"
     },
     "compare": {
       "title": "Günstiger als ein Dolmetscher, präziser als gebrochenes Englisch",
