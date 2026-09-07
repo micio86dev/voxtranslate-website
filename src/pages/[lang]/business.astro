@@ -51,6 +51,15 @@ const plans = tList<{ name: string; points: string[] }>(lang, 'business.pricing.
               months: String(monthsFree),
             })
           : null,
+      // Credits included, straight from the snapshot the API filled in. Rendered
+      // only when the number is actually there: an older snapshot has no
+      // allowance, and no line beats a wrong one.
+      credits:
+        typeof monthly?.credits === 'number'
+          ? t('business.pricing.credits', {
+              credits: monthly.credits.toLocaleString(lang),
+            })
+          : null,
     };
   },
 );
@@ -145,6 +154,7 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
                 </p>
               )}
               {plan.annual && <p class="biz-annual">{plan.annual}</p>}
+              {plan.credits && <p class="biz-credits">{plan.credits}</p>}
               <ul class="biz-plan-points">
                 {plan.points.map((p) => (
                   <li>
@@ -465,6 +475,13 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
     font-size: 1.4rem;
     margin: 0 0 0.5rem;
   }
+  .biz-credits {
+    margin-top: 0.35rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
   .biz-plan-price {
     margin: 0 0 0.3rem;
     display: flex;
