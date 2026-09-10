@@ -14,6 +14,7 @@ import { listMeasurements } from '../lib/measurements';
 import {
   LATENCY_URL,
   LANGUAGES_URL,
+  PHONE_TRANSLATION_URL,
   LIVE_TRANSLATION_HUB,
   GUIDES_URL,
   PERSONAS,
@@ -74,6 +75,15 @@ export const GET: APIRoute = async ({ site }) => {
     entries.push({ loc: absoluteUrl(site, LATENCY_URL), lastmod: BUILD_DATE, priority: 0.8 });
     entries.push({ loc: absoluteUrl(site, LANGUAGES_URL), lastmod: BUILD_DATE, priority: 0.8 });
   }
+
+  // Translated telephone calls (spec 0111). A commercial landing page of this site, so it
+  // belongs in this segment rather than with the programmatic families — it should be
+  // reported on separately from them in Search Console.
+  entries.push({
+    loc: absoluteUrl(site, PHONE_TRANSLATION_URL),
+    lastmod: BUILD_DATE,
+    priority: 0.9,
+  });
 
   // The guides hub. Ships with the guides themselves (sitemap-guides.xml) but belongs
   // here: it is a navigational page of this site, not a piece of the guides cluster.
