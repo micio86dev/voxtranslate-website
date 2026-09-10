@@ -1,0 +1,208 @@
+---
+/**
+ * `/phone-call-translation/` — real telephone calls, translated both ways (spec 0111).
+ *
+ * Every claim on this page is read from `src/lib/phone-capabilities.ts`, and the FAQ is
+ * generated from it. That is deliberate. The two things this product must never overstate
+ * are its GDPR posture and mainland-China support, and those are precisely the two
+ * questions a buyer asks first — so the page is wired so that a promise cannot get ahead
+ * of the build.
+ *
+ * The honest-no answers are kept prominent rather than buried. In this category every
+ * competitor's page says yes to everything; a page that says "not yet, and here is what
+ * we will publish when it is" is both truer and more persuasive to the kind of buyer who
+ * has been burned before.
+ */
+import SeoLayout from '../layouts/SeoLayout.astro';
+import { faqPageJsonLd } from '../lib/seo';
+import { PHONE_TRANSLATION_URL, LATENCY_URL, LANGUAGES_URL } from '../lib/seo-routes';
+import { PHONE_CAPABILITIES, phoneFaq } from '../lib/phone-capabilities';
+
+const faq = phoneFaq();
+const c = PHONE_CAPABILITIES;
+
+const title = 'Real-time translated phone calls';
+const description =
+  'Call any telephone number and have both sides translated as you speak. The person you ' +
+  'call needs no account, no app and no internet — just their phone.';
+
+const useCases = [
+  {
+    h: 'International sales',
+    p: 'Call a prospect in their language on the first attempt, instead of waiting for an interpreter to be free.',
+  },
+  {
+    h: 'Suppliers and manufacturing',
+    p: 'Talk to a factory line manager directly. The people who actually know the answer are rarely the ones who speak English.',
+  },
+  {
+    h: 'Customer support',
+    p: 'Handle a call in a language nobody on shift speaks, without transferring the customer twice.',
+  },
+  {
+    h: 'Cross-border teams',
+    p: 'Reach a colleague or contractor on an ordinary phone, wherever they are and whatever they speak.',
+  },
+  {
+    h: 'Logistics and travel',
+    p: 'Call a hotel, a port agent or a driver who will never install an app for one conversation.',
+  },
+  {
+    h: 'Recruitment',
+    p: 'Screen candidates in their own language, and keep the transcript against the role.',
+  },
+];
+---
+
+<SeoLayout
+  title={title}
+  description={description}
+  path={PHONE_TRANSLATION_URL}
+  jsonLd={faqPageJsonLd(faq.map((f) => ({ q: f.question, a: f.answer })))}
+>
+  <div class="wrap">
+    <h1>{title}</h1>
+
+    <p class="lede">
+      You speak Italian. Their phone rings in Shenzhen and they hear Mandarin. They answer in
+      Mandarin and you hear Italian. It is an ordinary telephone call on their side — no account, no
+      app, no browser, no internet.
+    </p>
+
+    <h2>How it works</h2>
+    <ol>
+      <li>Open the dialer in your VoxTranslate dashboard and type a phone number.</li>
+      <li>Pick your language and theirs, and the translation tier you want.</li>
+      <li>
+        You see the price per minute and your credit balance <em>before</em> you dial. Nothing starts
+        on a number you have not been shown.
+      </li>
+      <li>
+        Their phone rings. You talk. Each of you hears the other translated, live, in both
+        directions at once — not turn by turn.
+      </li>
+      <li>
+        When the call ends, the transcript, the cost and — if you enabled it — the recording and an
+        AI summary land against the project you chose.
+      </li>
+    </ol>
+
+    <h2>What it can do today</h2>
+    <ul class="caps">
+      <li><strong>Call any supported number.</strong> {c.outboundCalls.note}</li>
+      <li><strong>Nothing to install at the other end.</strong> {c.recipientNeedsNothing.note}</li>
+      <li><strong>Mobiles and landlines.</strong> {c.mobiles.note}</li>
+      <li><strong>Your own caller ID.</strong> {c.ownNumber.note}</li>
+      <li><strong>Transcripts.</strong> {c.transcription.note}</li>
+      <li><strong>Optional recording.</strong> {c.recording.note}</li>
+      <li><strong>AI summaries.</strong> {c.aiSummaries.note}</li>
+      <li><strong>EU infrastructure.</strong> {c.euInfrastructure.note}</li>
+    </ul>
+
+    <h2>What it cannot do yet</h2>
+    <p>
+      We would rather you find this here than after signing something. Each of these is a limitation
+      with a reason, not a gap we are hoping you will not notice.
+    </p>
+    <ul class="caps">
+      <li><strong>Receiving calls.</strong> {c.inbound.note}</li>
+      <li><strong>Two telephones bridged together.</strong> {c.pstnBridge.note}</li>
+      <li><strong>Video to a telephone.</strong> {c.video.note}</li>
+      <li><strong>Mainland China.</strong> {c.china.note}</li>
+      <li><strong>EU-only processing.</strong> {c.euOnlyProcessing.note}</li>
+    </ul>
+
+    <h2>The person you call is told</h2>
+    <p>
+      If a call is being recorded or transcribed, the other person hears a short spoken announcement
+      saying so — in the language they are hearing — <em>before</em> anything is kept. Your organisation
+      chooses whether they are simply told, or asked to press a key to agree, and what happens if they
+      decline.
+    </p>
+    <p>
+      This is not a setting you can switch off while recording is on. A recording nobody was told
+      about is not a feature.
+    </p>
+
+    <h2>Where it fits</h2>
+    <div class="cases">
+      {
+        useCases.map((u) => (
+          <div class="case">
+            <h3>{u.h}</h3>
+            <p>{u.p}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <h2>What it costs</h2>
+    <p>
+      Calls draw on the same credit balance as the rest of your organisation's VoxTranslate usage —
+      there is no separate wallet and no separate invoice. The rate per minute depends on the
+      destination and on the translation tier, and it is shown before the call.
+    </p>
+    <p>
+      Credits are held when the call starts and settled against the real duration when it ends.
+      Anything unused comes back. Your administrators can cap the maximum destination rate, the
+      maximum call length, how many calls can run at once, and which countries are reachable at all.
+    </p>
+
+    <h2>Questions</h2>
+    <dl class="faq">
+      {
+        faq.map((f) => (
+          <>
+            <dt>{f.question}</dt>
+            <dd>{f.answer}</dd>
+          </>
+        ))
+      }
+    </dl>
+
+    <h2>Related</h2>
+    <ul>
+      <li><a href={LANGUAGES_URL}>Every language VoxTranslate speaks</a></li>
+      <li><a href={LATENCY_URL}>How we measure translation latency</a></li>
+      <li><a href="/en/business/">VoxTranslate for Business</a></li>
+      <li><a href="/en/pricing/">Pricing</a></li>
+    </ul>
+  </div>
+</SeoLayout>
+
+<style>
+  .lede {
+    font-size: 1.15rem;
+  }
+
+  .caps {
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .cases {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    margin-block: 1rem 1.5rem;
+  }
+
+  .case {
+    border: 1px solid var(--line, #2a2a2a);
+    border-radius: 0.75rem;
+    padding: 1rem;
+  }
+
+  .case h3 {
+    margin-top: 0;
+  }
+
+  .faq dt {
+    font-weight: 600;
+    margin-top: 1rem;
+  }
+
+  .faq dd {
+    margin: 0.25rem 0 0;
+  }
+</style>

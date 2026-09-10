@@ -39,6 +39,13 @@ export const brandPricingUrl = (brand: string) => `/pricing/${brand}-pricing/`;
 export const personaUrl = (persona: string) => `/for/${persona}/`;
 export const guideUrl = (slug: string) => `/guides/${slug}/`;
 
+/**
+ * Translated telephone calls (spec 0111). Not locale-prefixed, like the rest of this
+ * tree: `phone-call-translation` is the phrase people search, and it is English-only
+ * until localisation of the SEO routes is real.
+ */
+export const PHONE_TRANSLATION_URL = '/phone-call-translation/';
+
 export const LATENCY_URL = '/latency/';
 export const LANGUAGES_URL = '/languages/';
 
