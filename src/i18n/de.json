@@ -221,7 +221,8 @@
       "acceptableUse": "Nutzungsrichtlinie",
       "cookies": "Cookie-Einstellungen",
       "chrome": "VoxTranslate für Chrome",
-      "guides": "Guides"
+      "guides": "Guides",
+      "phone": "Telefonanrufe"
     },
     "rights": "Alle Rechte vorbehalten.",
     "builtWith": "Sprich frei, überall.",
@@ -320,6 +321,16 @@
           "desc": "Audit-Log, konfigurierbare Datenaufbewahrung und privater Speicher mit signierten URLs — für regulierte Teams."
         }
       ]
+    },
+    "phone": {
+      "title": "Ein gewöhnliches Telefon anrufen, in beide Richtungen übersetzt",
+      "body": "Ihr Team wählt jede unterstützte Nummer aus dem Dashboard, und beide Seiten hören in Echtzeit ihre eigene Sprache. Die angerufene Person braucht kein Konto, keine App und kein Internet — nur ein Telefon. Ausgehende Anrufe gibt es heute; Anrufe auf einer eigenen Nummer entgegenzunehmen folgt als Nächstes.",
+      "points": [
+        "Eine Nummer anzeigen, die Ihrer Organisation gehört und beim Anbieter verifiziert ist.",
+        "Aufzeichnung, Transkripte und KI-Zusammenfassungen sind optional und aus, bis eine Administratorin sie einschaltet.",
+        "Der Tarif wird vor dem Anruf genannt, und die Credits kommen aus demselben Guthaben wie Ihre Meetings."
+      ],
+      "link": "Wie übersetzte Telefonate funktionieren"
     },
     "pricing": {
       "title": "Einfache Tarife für jedes Team",

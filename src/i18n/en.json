@@ -228,6 +228,16 @@
         }
       ]
     },
+    "phone": {
+      "title": "Call an ordinary telephone, translated both ways",
+      "body": "Your team dials any supported number from the dashboard and both sides hear their own language in real time. The person you call needs no account, no app and no internet — only a phone. Outbound calling is available today; receiving calls on a number you own is next.",
+      "points": [
+        "Present a number your organisation owns and has verified with the carrier.",
+        "Optional recording, transcripts and AI summaries, off until an administrator turns them on.",
+        "The rate is quoted before the call, and credits come from the same balance as your meetings."
+      ],
+      "link": "How translated phone calls work"
+    },
     "pricing": {
       "title": "Simple plans for every team",
       "subtitle": "Priced per organization, not per seat. Auto-renews — cancel anytime.",
@@ -503,7 +513,8 @@
       "acceptableUse": "Acceptable Use",
       "cookies": "Cookie settings",
       "chrome": "VoxTranslate for Chrome",
-      "guides": "Guides"
+      "guides": "Guides",
+      "phone": "Phone calls"
     },
     "rights": "All rights reserved.",
     "builtWith": "Speak freely, everywhere.",

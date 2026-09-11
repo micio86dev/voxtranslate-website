@@ -17,6 +17,9 @@ import SeoLayout from '../layouts/SeoLayout.astro';
 import { faqPageJsonLd } from '../lib/seo';
 import { PHONE_TRANSLATION_URL, LATENCY_URL, LANGUAGES_URL } from '../lib/seo-routes';
 import { PHONE_CAPABILITIES, phoneFaq } from '../lib/phone-capabilities';
+import { ENGINES, formatRate } from '../lib/engines';
+import Button from '../components/ui/Button.astro';
+import { DASHBOARD_URL } from '../lib/site';
 
 const faq = phoneFaq();
 const c = PHONE_CAPABILITIES;
@@ -52,6 +55,16 @@ const useCases = [
     p: 'Screen candidates in their own language, and keep the transcript against the role.',
   },
 ];
+
+// The only figure on this page, and it is read rather than typed. `engines.ts` serves
+// `src/data/engines.json`, a dated snapshot refreshed by a script — the same pattern
+// `org-plans.ts` exists to enforce after five hand-copied plan prices left the site
+// advertising USD against EUR Stripe prices for two months.
+//
+// The carrier's share is deliberately absent: per-destination rates live in a CSV deck
+// imported into `voip_rates` (docs/voip-telnyx-setup.md §6), there is no published feed
+// for them, and a "from" number invented here would be exactly the failure above.
+const cheapestTier = ENGINES[0];
 ---
 
 <SeoLayout
@@ -139,9 +152,26 @@ const useCases = [
     <h2>What it costs</h2>
     <p>
       Calls draw on the same credit balance as the rest of your organisation's VoxTranslate usage —
-      there is no separate wallet and no separate invoice. The rate per minute depends on the
-      destination and on the translation tier, and it is shown before the call.
+      there is no separate wallet and no separate invoice. A minute of a translated call is made of
+      three things, and you see the total before you dial.
     </p>
+    <ul class="cost-parts">
+      <li>
+        <strong>Real-time translation.</strong> The tier you choose, from {formatRate(cheapestTier.rate_per_minute)}
+        per minute on {cheapestTier.display_name}. A call runs two streams, one in each direction,
+        for its whole duration — closing the idle side would lose the first words of every reply.
+      </li>
+      <li>
+        <strong>The telephone network.</strong> This is the part that varies, and it varies by where
+        you are calling: a landline in Milan and a mobile in Shenzhen are not the same number. We do
+        not publish a single figure for it, because there isn't one. The dashboard quotes the exact
+        rate for the destination you typed, before the call starts.
+      </li>
+      <li>
+        <strong>Optional services.</strong> Recording, transcription and AI summaries are off until
+        an administrator turns them on, and they are priced only when used.
+      </li>
+    </ul>
     <p>
       Credits are held when the call starts and settled against the real duration when it ends.
       Anything unused comes back. Your administrators can cap the maximum destination rate, the
@@ -159,6 +189,21 @@ const useCases = [
         ))
       }
     </dl>
+
+    <div class="phone-cta">
+      <Button
+        href={`${DASHBOARD_URL}/`}
+        variant="primary"
+        rel="noopener"
+        data-track-cta="phone_get_started"
+        data-track-location="phone_footer"
+      >
+        Set up business phone
+      </Button>
+      <p class="phone-cta-note">
+        Business and Enterprise plans. You will need a verified number to call from.
+      </p>
+    </div>
 
     <h2>Related</h2>
     <ul>
@@ -195,6 +240,23 @@ const useCases = [
 
   .case h3 {
     margin-top: 0;
+  }
+
+  .cost-parts {
+    display: grid;
+    gap: 0.75rem;
+    margin-block: 1rem 1.5rem;
+    padding-left: 1.1rem;
+  }
+
+  .phone-cta {
+    margin-block: 2rem;
+  }
+
+  .phone-cta-note {
+    color: var(--muted, #888);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
   }
 
   .faq dt {

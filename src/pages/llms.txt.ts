@@ -17,6 +17,7 @@ import {
   isPublished,
   GUIDES_URL,
   LIVE_TRANSLATION_HUB,
+  PHONE_TRANSLATION_URL,
 } from '../lib/seo-routes';
 
 const clean = (s: string) => s.replace(/\s+/g, ' ').trim();
@@ -37,6 +38,7 @@ export const GET: APIRoute = async ({ site }) => {
     `- [VoxTranslate for Chrome](${url(localizePath('en', 'chrome'))}): the browser extension — what it captures (one tab's audio, never the microphone), what you control, and what it does not do.`,
     `- [Pricing](${url(localizePath('en', 'pricing'))}): per-minute rates per engine, worked examples, and the billing rules.`,
     `- [VoxTranslate for Business](${url(localizePath('en', 'business'))}): translated meetings for teams — shared call history, multilingual transcripts, projects, and compliance.`,
+    `- [Translated phone calls](${url(PHONE_TRANSLATION_URL)}): Business and Enterprise organisations call ordinary telephone numbers from the dashboard, with both sides translated in real time — the person on the other end needs no account, no app and no internet, only a phone. OUTBOUND ONLY today: VoxTranslate cannot yet receive calls, bridge two telephones, carry video on a call, or guarantee EU-only processing, and mainland China is switched off pending a route validated from inside the country. The recipient is told, in their own language, before anything is recorded or transcribed.`,
     `- [Launch the app](${APP_URL}): start or join a real-time translated video call.`,
     `- [Install the Chrome extension](${CHROME_WEBSTORE_URL}): the Chrome Web Store listing.`,
     '',

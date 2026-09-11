@@ -221,7 +221,8 @@
       "acceptableUse": "Usage acceptable",
       "cookies": "Paramètres des cookies",
       "chrome": "VoxTranslate pour Chrome",
-      "guides": "Guides"
+      "guides": "Guides",
+      "phone": "Appels téléphoniques"
     },
     "rights": "Tous droits réservés.",
     "builtWith": "Parlez librement, partout.",
@@ -320,6 +321,16 @@
           "desc": "Journal d'audit, rétention des données configurable et stockage privé à URL signées — conçu pour les équipes réglementées."
         }
       ]
+    },
+    "phone": {
+      "title": "Appeler un téléphone ordinaire, traduit dans les deux sens",
+      "body": "Votre équipe compose n'importe quel numéro pris en charge depuis le tableau de bord, et chaque partie entend sa propre langue en temps réel. La personne appelée n'a besoin ni de compte, ni d'application, ni d'internet — seulement d'un téléphone. Les appels sortants sont disponibles aujourd'hui ; recevoir des appels sur un numéro à vous viendra ensuite.",
+      "points": [
+        "Présenter un numéro que votre organisation possède et a fait vérifier auprès de l'opérateur.",
+        "Enregistrement, transcriptions et résumés par IA sont optionnels et désactivés tant qu'un administrateur ne les active pas.",
+        "Le tarif est annoncé avant l'appel, et les crédits proviennent du même solde que vos réunions."
+      ],
+      "link": "Comment fonctionnent les appels traduits"
     },
     "pricing": {
       "title": "Des forfaits simples pour chaque équipe",
