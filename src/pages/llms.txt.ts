@@ -29,7 +29,11 @@ export const GET: APIRoute = async ({ site }) => {
   // posts, locales — and this one was a literal `35`, which is true today and silently
   // false the moment a guide is added. That is the same failure shape as the plan prices
   // `org-plans.ts` exists to prevent.
-  const guideCount = (await getCollection('guides')).length;
+  // Filtered the way `/guides/index.astro` and `sitemap-guides.xml.ts` filter it, and the
+  // way `PERSONAS` is filtered below with the same imported helper. An unfiltered count
+  // would replace a literal that drifts with a derivation that drifts — advertising a
+  // draft guide to every crawler while `/guides/` does not list it.
+  const guideCount = (await getCollection('guides')).filter((g) => isPublished(g.data)).length;
   const url = (path: string) => absoluteUrl(site, path);
 
   const lines = [

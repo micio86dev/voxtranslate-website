@@ -65,6 +65,12 @@ const useCases = [
 // imported into `voip_rates` (docs/voip-telnyx-setup.md §6), there is no published feed
 // for them, and a "from" number invented here would be exactly the failure above.
 const cheapestTier = ENGINES[0];
+// A translated call runs TWO streams — one per direction — for its whole duration, and
+// `engines.ts` prices per TARGET LANGUAGE. Quoting the bare tier rate therefore halves the
+// translation component of a call: the worked example in docs/voip-billing.md reads
+// "translation (Standard 0.0045 x 2 way) 0.0090 /min". `engines.ts` says it outright —
+// "Rendering a rate without saying this is a pricing-transparency bug."
+const callTranslationRate = cheapestTier.rate_per_minute * 2;
 ---
 
 <SeoLayout
@@ -157,11 +163,11 @@ const cheapestTier = ENGINES[0];
     </p>
     <ul class="cost-parts">
       <li>
-        <strong>Real-time translation.</strong> The tier you choose, from {
+        <strong>Real-time translation.</strong> A call runs two streams, one in each direction, for its
+        whole duration — closing the idle side would lose the first words of every reply. Rates are per
+        minute per direction, so on {cheapestTier.display_name} that is {
           formatRate(cheapestTier.rate_per_minute)
-        }
-        per minute on {cheapestTier.display_name}. A call runs two streams, one in each direction,
-        for its whole duration — closing the idle side would lose the first words of every reply.
+        } each way, {formatRate(callTranslationRate)} per minute of call.
       </li>
       <li>
         <strong>The telephone network.</strong> This is the part that varies, and it varies by where you
@@ -202,9 +208,7 @@ const cheapestTier = ENGINES[0];
       >
         Set up business phone
       </Button>
-      <p class="phone-cta-note">
-        Business and Enterprise plans. You will need a verified number to call from.
-      </p>
+      <p class="phone-cta-note">Available on the Business and Enterprise plans.</p>
     </div>
 
     <h2>Related</h2>
