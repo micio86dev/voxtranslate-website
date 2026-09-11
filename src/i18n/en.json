@@ -306,7 +306,9 @@
           "vox": "yes",
           "meet": "no"
         }
-      ]
+      ],
+      "yes": "Yes",
+      "no": "No"
     },
     "cta": {
       "title": "Bring your team together, in every language",

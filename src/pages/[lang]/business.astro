@@ -234,11 +234,11 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
                   <th scope="row">{r.feature}</th>
                   <td class="biz-col-vox">
                     {r.vox === 'yes' ? (
-                      <span class="biz-yes" aria-label="Yes">
+                      <span class="biz-yes" aria-label={t('business.compare.yes')}>
                         ✓
                       </span>
                     ) : r.vox === 'no' ? (
-                      <span class="biz-no" aria-label="No">
+                      <span class="biz-no" aria-label={t('business.compare.no')}>
                         ✗
                       </span>
                     ) : (
@@ -247,11 +247,11 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
                   </td>
                   <td>
                     {r.meet === 'yes' ? (
-                      <span class="biz-yes" aria-label="Yes">
+                      <span class="biz-yes" aria-label={t('business.compare.yes')}>
                         ✓
                       </span>
                     ) : r.meet === 'no' ? (
-                      <span class="biz-no" aria-label="No">
+                      <span class="biz-no" aria-label={t('business.compare.no')}>
                         ✗
                       </span>
                     ) : (

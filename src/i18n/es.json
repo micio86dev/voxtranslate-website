@@ -400,7 +400,9 @@
           "vox": "yes",
           "meet": "no"
         }
-      ]
+      ],
+      "yes": "Sí",
+      "no": "No"
     },
     "cta": {
       "title": "Une a tu equipo, en cada idioma",

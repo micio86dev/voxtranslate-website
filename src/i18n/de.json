@@ -400,7 +400,9 @@
           "vox": "yes",
           "meet": "no"
         }
-      ]
+      ],
+      "yes": "Ja",
+      "no": "Nein"
     },
     "cta": {
       "title": "Bring dein Team zusammen — in jeder Sprache",

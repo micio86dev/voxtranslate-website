@@ -64,7 +64,11 @@ const useCases = [
 // The carrier's share is deliberately absent: per-destination rates live in a CSV deck
 // imported into `voip_rates` (docs/voip-telnyx-setup.md §6), there is no published feed
 // for them, and a "from" number invented here would be exactly the failure above.
-const cheapestTier = ENGINES[0];
+// Sorted, not indexed. `engines.ts` documents the catalogue as cheapest-first, and it is —
+// but this file's whole argument is that a figure must be read rather than assumed, and
+// array position is an assumption. Prepending a tier to the snapshot would otherwise quote
+// the wrong price with no error anywhere.
+const cheapestTier = [...ENGINES].sort((a, b) => a.rate_per_minute - b.rate_per_minute)[0];
 // A translated call runs TWO streams — one per direction — for its whole duration, and
 // `engines.ts` prices per TARGET LANGUAGE. Quoting the bare tier rate therefore halves the
 // translation component of a call: the worked example in docs/voip-billing.md reads
