@@ -157,19 +157,21 @@ const cheapestTier = ENGINES[0];
     </p>
     <ul class="cost-parts">
       <li>
-        <strong>Real-time translation.</strong> The tier you choose, from {formatRate(cheapestTier.rate_per_minute)}
+        <strong>Real-time translation.</strong> The tier you choose, from {
+          formatRate(cheapestTier.rate_per_minute)
+        }
         per minute on {cheapestTier.display_name}. A call runs two streams, one in each direction,
         for its whole duration — closing the idle side would lose the first words of every reply.
       </li>
       <li>
-        <strong>The telephone network.</strong> This is the part that varies, and it varies by where
-        you are calling: a landline in Milan and a mobile in Shenzhen are not the same number. We do
-        not publish a single figure for it, because there isn't one. The dashboard quotes the exact
-        rate for the destination you typed, before the call starts.
+        <strong>The telephone network.</strong> This is the part that varies, and it varies by where you
+        are calling: a landline in Milan and a mobile in Shenzhen are not the same number. We do not publish
+        a single figure for it, because there isn't one. The dashboard quotes the exact rate for the destination
+        you typed, before the call starts.
       </li>
       <li>
-        <strong>Optional services.</strong> Recording, transcription and AI summaries are off until
-        an administrator turns them on, and they are priced only when used.
+        <strong>Optional services.</strong> Recording, transcription and AI summaries are off until an
+        administrator turns them on, and they are priced only when used.
       </li>
     </ul>
     <p>
