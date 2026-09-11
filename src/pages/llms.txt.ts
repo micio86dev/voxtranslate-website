@@ -5,6 +5,7 @@
  * so the post list never drifts. Complements robots.txt + the sitemap.
  */
 import type { APIRoute } from 'astro';
+import { getCollection } from 'astro:content';
 import { getPosts } from '../lib/pocketbase';
 import { absoluteUrl } from '../lib/seo';
 import { LOCALE_NAMES, LOCALES, localizePath } from '../lib/i18n';
@@ -24,6 +25,11 @@ const clean = (s: string) => s.replace(/\s+/g, ' ').trim();
 
 export const GET: APIRoute = async ({ site }) => {
   const posts = await getPosts('en');
+  // Counted, not typed. Every other list in this file is derived — platforms, personas,
+  // posts, locales — and this one was a literal `35`, which is true today and silently
+  // false the moment a guide is added. That is the same failure shape as the plan prices
+  // `org-plans.ts` exists to prevent.
+  const guideCount = (await getCollection('guides')).length;
   const url = (path: string) => absoluteUrl(site, path);
 
   const lines = [
@@ -47,7 +53,7 @@ export const GET: APIRoute = async ({ site }) => {
     '',
     '## Guides and use cases',
     `- [Live translation hub](${url(LIVE_TRANSLATION_HUB)}): the entry point for the guides, platform pages and language matrix.`,
-    `- [All guides](${url(GUIDES_URL)}): 35 practical guides on running meetings, webinars and calls across languages.`,
+    `- [All guides](${url(GUIDES_URL)}): ${guideCount} practical guides on running meetings, webinars and calls across languages.`,
     ...PERSONAS.filter((p) => isPublished(p)).map(
       (p) => `- [For ${p.name}](${url(personaUrl(p.slug))})`,
     ),
