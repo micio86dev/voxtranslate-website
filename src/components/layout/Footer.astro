@@ -3,7 +3,7 @@ import Logo from './Logo.astro';
 import LangSwitcher from '../ui/LangSwitcher.astro';
 import { useTranslations, localizePath, type Locale } from '../../lib/i18n';
 import { APP_URL, LEGAL_URLS, SOCIAL, type SocialNetwork } from '../../lib/site';
-import { GUIDES_URL } from '../../lib/seo-routes';
+import { GUIDES_URL, PHONE_TRANSLATION_URL } from '../../lib/seo-routes';
 import { brandIcon } from '../../lib/icons';
 
 interface Props {
@@ -22,6 +22,10 @@ const product = [
   { href: localizePath(lang, 'blog'), label: t('footer.links.blog') },
   // Non-localized: the guides hub lives in the English-only SEO tree (AGENTS.md §1).
   { href: GUIDES_URL, label: t('footer.links.guides') },
+  // English-only, like the guides hub above it and the rest of the non-prefixed SEO
+  // tree. The footer is where such a page belongs: reachable from every locale without
+  // putting an English destination into a localised header.
+  { href: PHONE_TRANSLATION_URL, label: t('footer.links.phone') },
   { href: APP_URL, label: t('footer.links.app'), external: true },
 ];
 

@@ -10,6 +10,7 @@ import {
   type Locale,
 } from '../../lib/i18n';
 import { DASHBOARD_URL, CONTACT_EMAIL, API_BASE } from '../../lib/site';
+import { PHONE_TRANSLATION_URL } from '../../lib/seo-routes';
 import { findPlan, formatPlanPrice, monthsFreeOnAnnual } from '../../lib/org-plans';
 
 export function getStaticPaths() {
@@ -129,6 +130,27 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
     </div>
   </section>
 
+  <!--
+    Telephony. The deep-dive at /phone-call-translation/ is English-only, like the whole
+    non-prefixed SEO tree (see `seo-routes.ts`), so the explanation lives HERE where the
+    site is localised, and only the link leads to English. Without this a German or
+    Spanish B2B visitor had no way at all to learn the product does telephone calls.
+  -->
+  <section class="biz-phone">
+    <div class="container-page">
+      <header class="section-head" data-reveal>
+        <h2>{t('business.phone.title')}</h2>
+      </header>
+      <p class="biz-phone-body" data-reveal>{t('business.phone.body')}</p>
+      <ul class="biz-phone-points" data-reveal>
+        {tList(lang, 'business.phone.points').map((point) => <li>{point}</li>)}
+      </ul>
+      <p data-reveal>
+        <a href={PHONE_TRANSLATION_URL} hreflang="en">{t('business.phone.link')}</a>
+      </p>
+    </div>
+  </section>
+
   <!-- Pricing -->
   <section class="biz-pricing" id="pricing">
     <div class="container-page">
@@ -212,11 +234,11 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
                   <th scope="row">{r.feature}</th>
                   <td class="biz-col-vox">
                     {r.vox === 'yes' ? (
-                      <span class="biz-yes" aria-label="Yes">
+                      <span class="biz-yes" aria-label={t('business.compare.yes')}>
                         ✓
                       </span>
                     ) : r.vox === 'no' ? (
-                      <span class="biz-no" aria-label="No">
+                      <span class="biz-no" aria-label={t('business.compare.no')}>
                         ✗
                       </span>
                     ) : (
@@ -225,11 +247,11 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
                   </td>
                   <td>
                     {r.meet === 'yes' ? (
-                      <span class="biz-yes" aria-label="Yes">
+                      <span class="biz-yes" aria-label={t('business.compare.yes')}>
                         ✓
                       </span>
                     ) : r.meet === 'no' ? (
-                      <span class="biz-no" aria-label="No">
+                      <span class="biz-no" aria-label={t('business.compare.no')}>
                         ✗
                       </span>
                     ) : (
@@ -642,5 +664,16 @@ const mailto = `mailto:${CONTACT_EMAIL}`;
       max-width: 56rem;
       margin-inline: auto;
     }
+  }
+  .biz-phone-body {
+    max-width: 46rem;
+  }
+
+  .biz-phone-points {
+    display: grid;
+    gap: 0.5rem;
+    margin-block: 1rem 1.25rem;
+    max-width: 46rem;
+    padding-left: 1.1rem;
   }
 </style>

@@ -221,7 +221,8 @@
       "acceptableUse": "Uso aceptable",
       "cookies": "Configuración de cookies",
       "chrome": "VoxTranslate para Chrome",
-      "guides": "Guías"
+      "guides": "Guías",
+      "phone": "Llamadas telefónicas"
     },
     "rights": "Todos los derechos reservados.",
     "builtWith": "Habla con libertad, en cualquier lugar.",
@@ -321,6 +322,16 @@
         }
       ]
     },
+    "phone": {
+      "title": "Llama a un teléfono cualquiera, traducido en ambos sentidos",
+      "body": "Tu equipo marca cualquier número admitido desde el panel y cada parte oye su propio idioma en tiempo real. Quien recibe la llamada no necesita cuenta, ni aplicación, ni internet: solo un teléfono. Las llamadas salientes ya están disponibles; recibir llamadas en un número propio es el siguiente paso.",
+      "points": [
+        "Presenta un número que tu organización posee y ha verificado con el operador.",
+        "Grabación, transcripciones y resúmenes con IA son opcionales y están desactivados hasta que un administrador los active.",
+        "La tarifa se muestra antes de llamar y los créditos salen del mismo saldo que tus reuniones."
+      ],
+      "link": "Cómo funcionan las llamadas traducidas"
+    },
     "pricing": {
       "title": "Planes sencillos para cada equipo",
       "subtitle": "Precio por organización, no por usuario. Se renueva automáticamente — cancela cuando quieras.",
@@ -389,7 +400,9 @@
           "vox": "yes",
           "meet": "no"
         }
-      ]
+      ],
+      "yes": "Sí",
+      "no": "No"
     },
     "cta": {
       "title": "Une a tu equipo, en cada idioma",

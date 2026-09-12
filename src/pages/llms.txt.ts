@@ -5,6 +5,7 @@
  * so the post list never drifts. Complements robots.txt + the sitemap.
  */
 import type { APIRoute } from 'astro';
+import { getCollection } from 'astro:content';
 import { getPosts } from '../lib/pocketbase';
 import { absoluteUrl } from '../lib/seo';
 import { LOCALE_NAMES, LOCALES, localizePath } from '../lib/i18n';
@@ -17,12 +18,22 @@ import {
   isPublished,
   GUIDES_URL,
   LIVE_TRANSLATION_HUB,
+  PHONE_TRANSLATION_URL,
 } from '../lib/seo-routes';
 
 const clean = (s: string) => s.replace(/\s+/g, ' ').trim();
 
 export const GET: APIRoute = async ({ site }) => {
   const posts = await getPosts('en');
+  // Counted, not typed. Every other list in this file is derived — platforms, personas,
+  // posts, locales — and this one was a literal `35`, which is true today and silently
+  // false the moment a guide is added. That is the same failure shape as the plan prices
+  // `org-plans.ts` exists to prevent.
+  // Filtered the way `/guides/index.astro` and `sitemap-guides.xml.ts` filter it, and the
+  // way `PERSONAS` is filtered below with the same imported helper. An unfiltered count
+  // would replace a literal that drifts with a derivation that drifts — advertising a
+  // draft guide to every crawler while `/guides/` does not list it.
+  const guideCount = (await getCollection('guides')).filter((g) => isPublished(g.data)).length;
   const url = (path: string) => absoluteUrl(site, path);
 
   const lines = [
@@ -37,6 +48,7 @@ export const GET: APIRoute = async ({ site }) => {
     `- [VoxTranslate for Chrome](${url(localizePath('en', 'chrome'))}): the browser extension — what it captures (one tab's audio, never the microphone), what you control, and what it does not do.`,
     `- [Pricing](${url(localizePath('en', 'pricing'))}): per-minute rates per engine, worked examples, and the billing rules.`,
     `- [VoxTranslate for Business](${url(localizePath('en', 'business'))}): translated meetings for teams — shared call history, multilingual transcripts, projects, and compliance.`,
+    `- [Translated phone calls](${url(PHONE_TRANSLATION_URL)}): Business and Enterprise organisations call ordinary telephone numbers from the dashboard, with both sides translated in real time — the person on the other end needs no account, no app and no internet, only a phone. OUTBOUND ONLY today: VoxTranslate cannot yet receive calls, bridge two telephones, carry video on a call, or guarantee EU-only processing, and mainland China is switched off pending a route validated from inside the country. The recipient is told, in their own language, before anything is recorded or transcribed.`,
     `- [Launch the app](${APP_URL}): start or join a real-time translated video call.`,
     `- [Install the Chrome extension](${CHROME_WEBSTORE_URL}): the Chrome Web Store listing.`,
     '',
@@ -45,7 +57,7 @@ export const GET: APIRoute = async ({ site }) => {
     '',
     '## Guides and use cases',
     `- [Live translation hub](${url(LIVE_TRANSLATION_HUB)}): the entry point for the guides, platform pages and language matrix.`,
-    `- [All guides](${url(GUIDES_URL)}): 35 practical guides on running meetings, webinars and calls across languages.`,
+    `- [All guides](${url(GUIDES_URL)}): ${guideCount} practical guides on running meetings, webinars and calls across languages.`,
     ...PERSONAS.filter((p) => isPublished(p)).map(
       (p) => `- [For ${p.name}](${url(personaUrl(p.slug))})`,
     ),

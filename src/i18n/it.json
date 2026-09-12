@@ -221,7 +221,8 @@
       "acceptableUse": "Uso accettabile",
       "cookies": "Impostazioni cookie",
       "chrome": "VoxTranslate per Chrome",
-      "guides": "Guide"
+      "guides": "Guide",
+      "phone": "Chiamate telefoniche"
     },
     "rights": "Tutti i diritti riservati.",
     "builtWith": "Parla liberamente, ovunque.",
@@ -321,6 +322,16 @@
         }
       ]
     },
+    "phone": {
+      "title": "Chiama un telefono qualunque, tradotto in entrambi i versi",
+      "body": "Il tuo team compone un numero supportato dalla dashboard e le due parti si sentono ciascuna nella propria lingua, in tempo reale. Chi riceve non ha bisogno di account, app o connessione: solo di un telefono. Le chiamate in uscita ci sono da oggi; ricevere chiamate su un numero tuo è il passo successivo.",
+      "points": [
+        "Presenti un numero che la tua organizzazione possiede e ha verificato con l'operatore.",
+        "Registrazione, trascrizioni e riassunti AI sono opzionali e spenti finché un amministratore non li attiva.",
+        "La tariffa è mostrata prima della chiamata e i crediti sono gli stessi delle riunioni."
+      ],
+      "link": "Come funzionano le chiamate tradotte"
+    },
     "pricing": {
       "title": "Piani semplici per ogni team",
       "subtitle": "Prezzo per organizzazione, non per utente. Si rinnova automaticamente — annulla quando vuoi.",
@@ -389,7 +400,9 @@
           "vox": "yes",
           "meet": "no"
         }
-      ]
+      ],
+      "yes": "Sì",
+      "no": "No"
     },
     "cta": {
       "title": "Unisci il tuo team, in ogni lingua",
